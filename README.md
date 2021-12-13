@@ -1,4 +1,4 @@
-# Smart-E-health-Consulting-System
+# Smart E-health Consulting System
 
 > Java Project: Smart E-health Consulting System
 
