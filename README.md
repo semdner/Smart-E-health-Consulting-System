@@ -5,6 +5,6 @@
 ## Contact
 
 Ersan  Ahmetovic - \
-Nico   Lick      - \
-Darius Seeger    - \
-Max    Semdner   - @mxcom - max.semdner@stud.fra-uas.de
+Nico   Lick - \
+Darius Seeger - \
+Max    Semdner - max.semdner@stud.fra-uas.de
