@@ -1,3 +1,4 @@
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -55,5 +56,35 @@ public class User {
                 {"privateInsurance", privateInsurance},
         };
         DB.insert("users", parameters);
+    }
+
+    /**
+     * Change a user's password
+     * Used by the user to change their own password
+     * @param currentPassword
+     * @param newPassword
+     * @return
+     * @throws SQLException
+     */
+    public boolean changePassword(String currentPassword, String newPassword) throws SQLException {
+        if (!DB.checkPassword(username, currentPassword))
+            return false;
+        setPassword(username, newPassword);
+        return true;
+    }
+
+    /**
+     * Set a user's password
+     * Used as helper function but also by admin, which is why it's public
+     * @param username
+     * @param password
+     * @throws SQLException
+     */
+    public void setPassword(String username, String password) throws SQLException {
+        String query = "UPDATE users SET password = ? WHERE username = ?";
+        PreparedStatement statement = DB.connection.prepareStatement(query);
+        statement.setString(1, DB.hashPassword(password));
+        statement.setString(2, username);
+        statement.execute();
     }
 }
