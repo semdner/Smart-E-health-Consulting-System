@@ -174,15 +174,19 @@ public class DB {
         for (int i = 0; i < parameters.length; i++)
         {
             Object value = parameters[i][1];
-            if (value instanceof String)
-                statement.setString(i+1, (String)value);
-            else if (value instanceof Boolean)
-                statement.setBoolean(i+1, (Boolean)value);
-            else
-                statement.setInt(i+1, (Integer)value);
+            insertValueIntoStatement(i, value, statement);
         }
 
         statement.execute();
+    }
+
+    private static void insertValueIntoStatement(int i, Object value, PreparedStatement statement) throws SQLException {
+        if (value instanceof String)
+            statement.setString(i+1, (String)value);
+        else if (value instanceof Boolean)
+            statement.setBoolean(i+1, (Boolean)value);
+        else
+            statement.setInt(i+1, (Integer)value);
     }
 
     /**
