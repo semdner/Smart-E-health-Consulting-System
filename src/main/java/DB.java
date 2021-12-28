@@ -154,12 +154,13 @@ public class DB {
 
         //add parameter names
         String names = "";
+        String separator = ", ";
         for (int i = 0; i < parameters.length; i++)
         {
             String name = (String)parameters[i][0];
-            names += name + ", ";
+            names += name + separator;
         }
-        names = names.substring(0, names.length() - 2); //remove last ", "
+        names = names.substring(0, names.length() - separator.length()); //remove last separator
         query = query.replace("<names>", names);
 
         //add question marks
