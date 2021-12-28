@@ -164,9 +164,9 @@ public class DB {
         query = query.replace("<names>", names);
 
         //add question marks
-        String questionMarks = "?, ";
+        String questionMarks = "?" + separator;
         questionMarks = questionMarks.repeat(parameters.length);
-        questionMarks = questionMarks.substring(0, questionMarks.length() - 2); //remove last ", "
+        questionMarks = questionMarks.substring(0, questionMarks.length() - separator.length()); //remove last separator
         query = query.replace("<values>", questionMarks);
 
         PreparedStatement statement = DB.connection.prepareStatement(query);
