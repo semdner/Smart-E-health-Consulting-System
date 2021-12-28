@@ -2,6 +2,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.File;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 //Database
@@ -88,5 +89,22 @@ public class DB {
         in.close();
 
         return password;
+    }
+
+    /**
+     * Get a list of all usernames for login
+     * @return usernames
+     * @throws SQLException
+     */
+    public static ArrayList<String> getUsernames() throws SQLException {
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);  // set timeout to 30 sec.
+        ResultSet rs = statement.executeQuery("SELECT username FROM users");
+
+        ArrayList<String> usernames = new ArrayList<>();
+        while (rs.next())
+            usernames.add(rs.getString("username"));
+
+        return usernames;
     }
 }
