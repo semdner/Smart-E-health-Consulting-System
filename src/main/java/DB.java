@@ -35,19 +35,6 @@ public class DB {
             // it probably means no database file is found
             System.err.println(e.getMessage());
         }
-        finally
-        {
-            try
-            {
-                if(connection != null)
-                    connection.close();
-            }
-            catch(SQLException e)
-            {
-                // connection close failed.
-                System.err.println(e.getMessage());
-            }
-        }
     }
 
     /**
@@ -89,6 +76,24 @@ public class DB {
         in.close();
 
         return password;
+    }
+
+    /**
+     * Properly closes the connection to the database
+     * Probably only needed if a big query would still be running
+     */
+    public static void close()
+    {
+        try
+        {
+            if(connection != null)
+                connection.close();
+        }
+        catch(SQLException e)
+        {
+            // connection close failed.
+            System.err.println(e.getMessage());
+        }
     }
 
     /**
