@@ -141,4 +141,45 @@ public class DB {
 
         return BCrypt.checkpw(password, storedPassword);
     }
+
+    /**
+     * General method for inserting a single row into a database table
+     * @param tableName the name of the table to which the row shall be added
+     * @param parameters array consisting of pairs of column name and value
+     * @throws SQLException
+     */
+    public static void insert(String tableName, Object[][] parameters) throws SQLException {
+        String query = "INSERT INTO <tableName> (<names>) VALUES (<values>)".replace("<tableName>", tableName);
+
+        //add parameter names
+        String names = "";
+        for (int i = 0; i < parameters.length; i++)
+        {
+            String name = (String)parameters[i][0];
+            names += name + ", ";
+        }
+        names = names.substring(0, names.length() - 2); //remove last ", "
+        query = query.replace("<names>", names);
+
+        //add question marks
+        String questionMarks = "?, ";
+        questionMarks = questionMarks.repeat(parameters.length);
+        questionMarks = questionMarks.substring(0, questionMarks.length() - 2); //remove last ", "
+        query = query.replace("<values>", questionMarks);
+
+        PreparedStatement statement = DB.connection.prepareStatement(query);
+        //insert parameter values
+        for (int i = 0; i < parameters.length; i++)
+        {
+            Object value = parameters[i][1];
+            if (value instanceof String)
+                statement.setString(i+1, (String)value);
+            else if (value instanceof Boolean)
+                statement.setBoolean(i+1, (Boolean)value);
+            else
+                statement.setInt(i+1, (Integer)value);
+        }
+
+        statement.execute();
+    }
 }
