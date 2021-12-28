@@ -13,7 +13,7 @@ public class User {
     /**
      * Creates a new user that is stored in the database
      */
-    public User(String username, String password, String firstName, String lastName, String mail, String street, String houseNo, int zipCode, LocalDate birthDate, String preExistingConditions, String allergies, String pastTreatments, String currentTreatments, String medications, String insurance, boolean privateInsurance) throws SQLException {
+    public User(String username, boolean insertIntoDb, String password, String firstName, String lastName, String mail, String street, String houseNo, int zipCode, LocalDate birthDate, String preExistingConditions, String allergies, String pastTreatments, String currentTreatments, String medications, String insurance, boolean privateInsurance) throws SQLException {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -29,7 +29,8 @@ public class User {
         this.medications = medications;
         this.insurance = insurance;
         this.privateInsurance = privateInsurance;
-        insertIntoDb(password);
+        if (insertIntoDb)
+            insertIntoDb(password);
     }
 
     private void insertIntoDb(String password) throws SQLException {
