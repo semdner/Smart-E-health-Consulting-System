@@ -189,7 +189,7 @@ public class DB {
      * @return all users
      * @throws SQLException
      */
-    public static ArrayList<User> getAllUsersDetails() throws SQLException {
+    public static ArrayList<User> getAllUsers() throws SQLException {
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);  // set timeout to 30 sec.
         ResultSet rs = statement.executeQuery("SELECT * FROM users");
