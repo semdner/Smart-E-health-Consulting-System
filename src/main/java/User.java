@@ -165,4 +165,64 @@ public class User {
         update(new Object[][]{{"privateInsurance", privateInsurance}});
         this.privateInsurance = privateInsurance;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getHouseNo() {
+        return houseNo;
+    }
+
+    public int getZipCode() {
+        return zipCode;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public String getPreExistingConditions() {
+        return preExistingConditions;
+    }
+
+    public String getAllergies() {
+        return allergies;
+    }
+
+    public String getPastTreatments() {
+        return pastTreatments;
+    }
+
+    public String getCurrentTreatments() {
+        return currentTreatments;
+    }
+
+    public String getMedications() {
+        return medications;
+    }
+
+    public String getInsurance() {
+        return insurance;
+    }
+
+    public boolean isPrivateInsurance() {
+        return privateInsurance;
+    }
 }
