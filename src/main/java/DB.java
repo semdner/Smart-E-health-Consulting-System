@@ -18,11 +18,15 @@ public class DB {
     {
         boolean isExistingDb = new File("ehealth.sqlite3").isFile(); //there isn't a database file
 
+        String initialAdminPassword = null;
+        if (!isExistingDb)
+            initialAdminPassword = initialAdminPassword(); //ask before creating file!
+
         try
         {
             connection = DriverManager.getConnection("jdbc:sqlite:ehealth.sqlite3"); //creates file if it doesn't exist
             if (!isExistingDb)
-                initDB();
+                initDB(initialAdminPassword);
         }
         catch(SQLException e)
         {
@@ -48,7 +52,7 @@ public class DB {
     /**
      * Ask for admin password and create database
      */
-    private static void initDB() throws SQLException {
+    private static void initDB(String initialAdminPassword) throws SQLException {
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
@@ -60,7 +64,7 @@ public class DB {
         //Insert admin user
         String query = "INSERT INTO users (username, isAdmin, password) VALUES ('admin', 1, ?)";
         PreparedStatement adminInsert = connection.prepareStatement(query);
-        adminInsert.setString(1, BCrypt.hashpw(initialAdminPassword(), BCrypt.gensalt()));
+        adminInsert.setString(1, BCrypt.hashpw(initialAdminPassword, BCrypt.gensalt()));
         adminInsert.execute();
     }
 
