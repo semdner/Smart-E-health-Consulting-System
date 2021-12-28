@@ -15,7 +15,7 @@ CREATE TABLE "users" (
 	"currentTreatments"	TEXT,
 	"medications"	TEXT,
 	"insurance"	TEXT,
-	"isPrivateInsurance"	INTEGER CHECK("isPrivateInsurance" BETWEEN 0 AND 1),
+	"privateInsurance"	INTEGER CHECK("privateInsurance" BETWEEN 0 AND 1),
 	"isAdmin"	INTEGER NOT NULL DEFAULT 0 CHECK("isAdmin" BETWEEN 0 AND 1),
 	"password"	TEXT NOT NULL,
 	"mail"	TEXT,
