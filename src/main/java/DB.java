@@ -2,6 +2,8 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.File;
 import java.sql.*;
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -181,5 +183,53 @@ public class DB {
         }
 
         statement.execute();
+    }
+
+    /**
+     * Get all rows of users table from the database
+     * @return all users
+     * @throws SQLException
+     */
+    public static ArrayList<User> getAllUsersDetails() throws SQLException {
+        ArrayList<User> users = new ArrayList<>();
+
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);  // set timeout to 30 sec.
+        ResultSet rs = statement.executeQuery("SELECT * FROM users");
+        while (rs.next())
+        {
+            LocalDate birthDate = null;
+            try
+            {
+                birthDate = LocalDate.of(rs.getInt("birthYear"), rs.getInt("birthMonth"), rs.getInt("birthDay"));
+            }
+            catch (DateTimeException e)
+            {
+                //admin doesn't have a stored birthdate
+            }
+
+            User user = new User(
+                    rs.getString("username"),
+                    false,
+                    null,
+                    rs.getString("firstName"),
+                    rs.getString("lastName"),
+                    rs.getString("mail"),
+                    rs.getString("street"),
+                    rs.getString("houseNo"),
+                    rs.getInt("zipCode"),
+                    birthDate,
+                    rs.getString("preExistingConditions"),
+                    rs.getString("allergies"),
+                    rs.getString("pastTreatments"),
+                    rs.getString("currentTreatments"),
+                    rs.getString("medications"),
+                    rs.getString("insurance"),
+                    rs.getBoolean("privateInsurance")
+            );
+            users.add(user);
+        }
+
+        return users;
     }
 }
