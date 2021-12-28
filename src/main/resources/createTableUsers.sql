@@ -1,0 +1,23 @@
+CREATE TABLE "users" (
+	"id"	INTEGER,
+	"username"	TEXT NOT NULL UNIQUE,
+	"firstName"	TEXT,
+	"lastName"	TEXT,
+	"street"	TEXT,
+	"houseNo"	TEXT,
+	"zipCode"	INTEGER CHECK("zipCode" > 0),
+	"birthYear"	INTEGER,
+	"birthMonth"	INTEGER CHECK("birthMonth" BETWEEN 1 AND 12),
+	"birthDay"	INTEGER CHECK("birthDay" BETWEEN 1 AND 31),
+	"preExistingConditions"	TEXT,
+	"allergies"	TEXT,
+	"pastTreatments"	TEXT,
+	"currentTreatments"	TEXT,
+	"medications"	TEXT,
+	"insurance"	TEXT,
+	"isPrivateInsurance"	INTEGER CHECK("isPrivateInsurance" BETWEEN 0 AND 1),
+	"isAdmin"	INTEGER NOT NULL DEFAULT 0 CHECK("isAdmin" BETWEEN 0 AND 1),
+	"password"	TEXT NOT NULL,
+	"mail"	TEXT,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
