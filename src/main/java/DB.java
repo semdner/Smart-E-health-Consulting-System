@@ -197,6 +197,19 @@ public class DB {
     }
 
     /**
+     * Get a user object with all user's details loaded from the database
+     * @param username
+     * @return
+     */
+    public static User getUser(String username) throws SQLException {
+        String query = "SELECT * FROM users WHERE username = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, username);
+        ResultSet rs = statement.executeQuery();
+        return loadUsersFromResultSet(rs).get(0);
+    }
+
+    /**
      * Helper method to turn result set into array of user objects
      * @param rs resultSet after the query was executed
      * @return
