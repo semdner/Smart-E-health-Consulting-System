@@ -87,4 +87,17 @@ public class User {
         statement.setString(2, username);
         statement.execute();
     }
+
+    /**
+     * Updates this user's entry in the database
+     * @param newValues
+     * @throws SQLException
+     */
+    private void update(Object[][] newValues) throws SQLException {
+        DB.update(
+                "users",
+                newValues,
+                new Object[][]{{"username", username}}
+        );
+    }
 }
