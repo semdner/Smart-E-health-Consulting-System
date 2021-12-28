@@ -59,7 +59,7 @@ public class DB {
         statement.execute(ResourceReader.getResourceString("insertIntoSuitableSpecializations.sql"));
 
         //Insert admin user
-        String query = "INSERT INTO users (username, isAdmin, password) VALUES ('admin', 1, ?)";
+        String query = "INSERT INTO users (username, password) VALUES ('admin', ?)";
         PreparedStatement adminInsert = connection.prepareStatement(query);
         adminInsert.setString(1, hashPassword(initialAdminPassword));
         adminInsert.execute();
