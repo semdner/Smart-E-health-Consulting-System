@@ -14,7 +14,7 @@ public class DB {
      * Creates a database if it doesn't exist yet.
      * Before creating a database, it asks for an admin password.
      */
-    public static void setupDB()
+    public static void init()
     {
         boolean isExistingDb = new File("ehealth.sqlite3").isFile(); //there isn't a database file
 
@@ -26,7 +26,7 @@ public class DB {
         {
             connection = DriverManager.getConnection("jdbc:sqlite:ehealth.sqlite3"); //creates file if it doesn't exist
             if (!isExistingDb)
-                initDB(initialAdminPassword);
+                createDB(initialAdminPassword);
         }
         catch(SQLException e)
         {
@@ -52,7 +52,7 @@ public class DB {
     /**
      * Ask for admin password and create database
      */
-    private static void initDB(String initialAdminPassword) throws SQLException {
+    private static void createDB(String initialAdminPassword) throws SQLException {
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
