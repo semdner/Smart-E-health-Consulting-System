@@ -59,8 +59,18 @@ public class DB {
         //Insert admin user
         String query = "INSERT INTO users (username, isAdmin, password) VALUES ('admin', 1, ?)";
         PreparedStatement adminInsert = connection.prepareStatement(query);
-        adminInsert.setString(1, BCrypt.hashpw(initialAdminPassword, BCrypt.gensalt()));
+        adminInsert.setString(1, hashPassword(initialAdminPassword));
         adminInsert.execute();
+    }
+
+    /**
+     * Helper method to generate a password's hash
+     * @param password the password to hash
+     * @return hash
+     */
+    public static String hashPassword(String password)
+    {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     /**
