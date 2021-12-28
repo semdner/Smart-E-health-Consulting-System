@@ -190,11 +190,20 @@ public class DB {
      * @throws SQLException
      */
     public static ArrayList<User> getAllUsersDetails() throws SQLException {
-        ArrayList<User> users = new ArrayList<>();
-
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);  // set timeout to 30 sec.
         ResultSet rs = statement.executeQuery("SELECT * FROM users");
+        return loadUsersFromResultSet(rs);
+    }
+
+    /**
+     * Helper method to turn result set into array of user objects
+     * @param rs resultSet after the query was executed
+     * @return
+     * @throws SQLException
+     */
+    private static ArrayList<User> loadUsersFromResultSet(ResultSet rs) throws SQLException {
+        ArrayList<User> users = new ArrayList<>();
         while (rs.next())
         {
             String username = rs.getString("username");
@@ -221,7 +230,6 @@ public class DB {
             );
             users.add(user);
         }
-
         return users;
     }
 }
