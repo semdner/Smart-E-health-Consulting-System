@@ -100,4 +100,69 @@ public class User {
                 new Object[][]{{"username", username}}
         );
     }
+
+    public void setFirstName(String firstName) throws SQLException {
+        update(new Object[][]{{"firstName", firstName}});
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) throws SQLException {
+        update(new Object[][]{{"lastName", lastName}});
+        this.lastName = lastName;
+    }
+
+    public void setStreet(String street) throws SQLException {
+        update(new Object[][]{{"street", street}});
+        this.street = street;
+    }
+
+    public void setHouseNo(String houseNo) throws SQLException {
+        update(new Object[][]{{"houseNo", houseNo}});
+        this.houseNo = houseNo;
+    }
+
+    public void setZipCode(int zipCode) throws SQLException {
+        update(new Object[][]{{"zipCode", zipCode}});
+        this.zipCode = zipCode;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        //TODO easy peasy
+        this.birthDate = birthDate;
+    }
+
+    public void setPreExistingConditions(String preExistingConditions) throws SQLException {
+        update(new Object[][]{{"preExistingConditions", preExistingConditions}});
+        this.preExistingConditions = preExistingConditions;
+    }
+
+    public void setAllergies(String allergies) throws SQLException {
+        update(new Object[][]{{"allergies", allergies}});
+        this.allergies = allergies;
+    }
+
+    public void setPastTreatments(String pastTreatments) throws SQLException {
+        update(new Object[][]{{"pastTreatments", pastTreatments}});
+        this.pastTreatments = pastTreatments;
+    }
+
+    public void setCurrentTreatments(String currentTreatments) throws SQLException {
+        update(new Object[][]{{"currentTreatments", currentTreatments}});
+        this.currentTreatments = currentTreatments;
+    }
+
+    public void setMedications(String medications) throws SQLException {
+        update(new Object[][]{{"medications", medications}});
+        this.medications = medications;
+    }
+
+    public void setInsurance(String insurance) throws SQLException {
+        update(new Object[][]{{"insurance", insurance}});
+        this.insurance = insurance;
+    }
+
+    public void setPrivateInsurance(boolean privateInsurance) throws SQLException {
+        update(new Object[][]{{"privateInsurance", privateInsurance}});
+        this.privateInsurance = privateInsurance;
+    }
 }
