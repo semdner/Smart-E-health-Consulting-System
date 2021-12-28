@@ -2,7 +2,6 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.File;
 import java.sql.*;
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -198,18 +197,11 @@ public class DB {
         ResultSet rs = statement.executeQuery("SELECT * FROM users");
         while (rs.next())
         {
-            LocalDate birthDate = null;
-            try
-            {
-                birthDate = LocalDate.of(rs.getInt("birthYear"), rs.getInt("birthMonth"), rs.getInt("birthDay"));
-            }
-            catch (DateTimeException e)
-            {
-                //admin doesn't have a stored birthdate
-            }
+            String username = rs.getString("username");
+            LocalDate birthDate = (username.equals("admin") ? null : LocalDate.of(rs.getInt("birthYear"), rs.getInt("birthMonth"), rs.getInt("birthDay"))); //admin doesn't have a stored birthdate
 
             User user = new User(
-                    rs.getString("username"),
+                    username,
                     false,
                     null,
                     rs.getString("firstName"),
