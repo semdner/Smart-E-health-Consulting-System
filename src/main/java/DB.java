@@ -180,6 +180,57 @@ public class DB {
         statement.execute();
     }
 
+    /**
+     * General method for updating rows in a database table
+     * @param tableName the name of the table where the row is to be found
+     * @param newValues array consisting of pairs of column name and value, these values will be set on the matching rows
+     * @param conditions array consisting of pairs of column name and value, rows have to match these criteria
+     * @throws SQLException
+     */
+    public static void update(String tableName, Object[][] newValues, Object[][] conditions) throws SQLException {
+        String query = "UPDATE <tableName> SET <newValues> WHERE <conditions>".replace("<tableName>", tableName);
+
+        //add placeholders for newValues
+        String separator = ", ";
+        String placeHolder = "";
+        for (Object[] newValue : newValues)
+        {
+            placeHolder += newValue[0] + " = ?" + separator;
+        }
+        placeHolder = placeHolder.substring(0, placeHolder.length() - separator.length()); //remove last separator
+        query = query.replace("<newValues>", placeHolder);
+
+        //add placeholders for conditions
+        String conjunction = " AND ";
+        String conditionsPlaceholders = "";
+        for (Object[] condition : conditions)
+        {
+            conditionsPlaceholders += condition[0] + " = ?" + conjunction;
+        }
+        conditionsPlaceholders = conditionsPlaceholders.substring(0, conditionsPlaceholders.length() - conjunction.length()); //remove last conjunction
+        query = query.replace("<conditions>", conditionsPlaceholders);
+
+        PreparedStatement statement = DB.connection.prepareStatement(query);
+
+        int i = 0; //questionMarkIndex
+
+        //insert newValues
+        for (Object[] newValue : newValues)
+        {
+            Object value = newValue[1];
+            insertValueIntoStatement(i++, value, statement);
+        }
+
+        //insert conditions
+        for (Object[] condition : conditions)
+        {
+            Object value = condition[1];
+            insertValueIntoStatement(i++, value, statement);
+        }
+
+        statement.execute();
+    }
+
     private static void insertValueIntoStatement(int i, Object value, PreparedStatement statement) throws SQLException {
         if (value instanceof String)
             statement.setString(i+1, (String)value);
