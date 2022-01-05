@@ -70,7 +70,7 @@ public class LoginController {
 
     }
 
-    public void validateCredentials() throws IOException, SQLException {
+    public boolean validateCredentials() throws IOException, SQLException {
 
         String sqlCommand = "SELECT count(1) FROM users WHERE email = '" + emailTextField.getText() + "' AND pw = '" + passwordField.getText() + "'";
         DatabaseController connection = new DatabaseController();
@@ -79,11 +79,11 @@ public class LoginController {
         try (ResultSet queryResult = statement.executeQuery(sqlCommand)) {
             while (queryResult.next()) {
                 if (queryResult.getInt(1) == 1) {
-                    errorLabel.setText("User found");
-                    errorLabel.setVisible(true);
+                    return true;
                 } else {
                     errorLabel.setText("User not found");
                     errorLabel.setVisible(true);
+                    return false;
                 }
             }
         }
