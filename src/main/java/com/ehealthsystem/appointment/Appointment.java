@@ -1,3 +1,7 @@
+package com.ehealthsystem.appointment;
+
+import com.ehealthsystem.database.Database;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -46,7 +50,7 @@ public class Appointment {
                 {"minutesBeforeReminder", minutesBeforeReminder},
                 {"duration", duration},
         };
-        id = DB.insert("appointments", parameters);
+        id = Database.insert("appointments", parameters);
     }
 
     public int getId() {
@@ -87,7 +91,7 @@ public class Appointment {
      * @throws SQLException
      */
     private void update(Object[][] newValues) throws SQLException {
-        DB.update(
+        Database.update(
                 "appointments",
                 newValues,
                 new Object[][]{{"id", id}}
@@ -101,7 +105,7 @@ public class Appointment {
      */
     public boolean delete() throws SQLException {
         String query = "DELETE FROM appointments WHERE id = ?";
-        PreparedStatement statement = DB.connection.prepareStatement(query);
+        PreparedStatement statement = Database.connection.prepareStatement(query);
         statement.setInt(1, id);
         return statement.executeUpdate() == 1;
     }
