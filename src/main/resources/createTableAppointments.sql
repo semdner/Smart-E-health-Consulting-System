@@ -1,6 +1,6 @@
 CREATE TABLE "appointments" (
 	"id"	INTEGER,
-	"user"	INTEGER,
+	"user"	TEXT,
 	"doctor"	INTEGER,
 	"healthProblem"	INTEGER,
 	"healthProblemDescription"	TEXT,
@@ -8,6 +8,6 @@ CREATE TABLE "appointments" (
 	"minutesBeforeReminder"	INTEGER CHECK("minutesBeforeReminder" IN (10, 60, 4320, 10080)),
 	"duration"	INTEGER,
     PRIMARY KEY("id" AUTOINCREMENT),
-	FOREIGN KEY("user") REFERENCES "users"("id") ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY("user") REFERENCES "users"("username") ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY("doctor") REFERENCES "doctors"("id") ON UPDATE CASCADE ON DELETE CASCADE
 );
