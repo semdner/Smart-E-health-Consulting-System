@@ -54,7 +54,8 @@ public class LoginController {
         Matcher matcher = emailPat.matcher(email);
 
         if(matcher.find() && !passwordField.getText().isBlank()) {
-            validateCredentials();
+            if (validateCredentials())
+                loadPrimaryWindow();
         } else {
             errorLabel.setText("Invalid email format. Please try again");
             errorLabel.setVisible(true);
