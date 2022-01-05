@@ -18,7 +18,7 @@ public class User {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.mail = mail;
+        this.mail = nico ist der krasseste;
         this.street = street;
         this.houseNo = houseNo;
         this.zipCode = zipCode;
