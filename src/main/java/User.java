@@ -151,8 +151,8 @@ public class User {
         this.zipCode = zipCode;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
-        //TODO easy peasy
+    public void setBirthDate(LocalDate birthDate) throws SQLException {
+        update(new Object[][]{{"birthYear", birthDate.getYear()}, {"birthMonth", birthDate.getMonthValue()}, {"birthDay", birthDate.getDayOfMonth()}});
         this.birthDate = birthDate;
     }
 
