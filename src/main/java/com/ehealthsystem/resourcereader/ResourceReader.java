@@ -1,5 +1,6 @@
 package com.ehealthsystem.resourcereader;
 
+import com.ehealthsystem.Main;
 import com.google.common.base.Charsets;
 import com.google.common.io.CharStreams;
 
@@ -14,7 +15,7 @@ public class ResourceReader {
      * @return text content of the resource as string
      */
     public static String getResourceString(String resourceName) {
-        InputStream inputStream = ResourceReader.class.getResourceAsStream(resourceName);
+        InputStream inputStream = Main.class.getResourceAsStream(resourceName);
         try {
             return CharStreams.toString(new InputStreamReader(inputStream, Charsets.UTF_8));
         } catch (IOException e) {

@@ -46,16 +46,16 @@ public class Database {
         statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
         //Create tables
-        statement.execute(ResourceReader.getResourceString("com/ehealthsystem/database/createTableUsers.sql"));
-        statement.execute(ResourceReader.getResourceString("com/ehealthsystem/database/createTableDoctors.sql"));
-        statement.execute(ResourceReader.getResourceString("com/ehealthsystem/database/createTableAppointments.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableUsers.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableDoctors.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableAppointments.sql"));
 
-        statement.execute(ResourceReader.getResourceString("com/ehealthsystem/database/createTableProblems.sql"));
-        statement.execute(ResourceReader.getResourceString("com/ehealthsystem/database/createTableSpecializations.sql"));
-        statement.execute(ResourceReader.getResourceString("com/ehealthsystem/database/createTableSuitableSpecializations.sql"));
-        statement.execute(ResourceReader.getResourceString("com/ehealthsystem/database/insertIntoProblems.sql"));
-        statement.execute(ResourceReader.getResourceString("com/ehealthsystem/database/insertIntoSpecializations.sql"));
-        statement.execute(ResourceReader.getResourceString("com/ehealthsystem/database/insertIntoSuitableSpecializations.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableProblems.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableSpecializations.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableSuitableSpecializations.sql"));
+        statement.execute(ResourceReader.getResourceString("database/insertIntoProblems.sql"));
+        statement.execute(ResourceReader.getResourceString("database/insertIntoSpecializations.sql"));
+        statement.execute(ResourceReader.getResourceString("database/insertIntoSuitableSpecializations.sql"));
 
         //Insert admin user
         String query = "INSERT INTO users (username, password) VALUES ('admin', ?)";
