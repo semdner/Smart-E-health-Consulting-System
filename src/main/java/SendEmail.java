@@ -1,3 +1,5 @@
+import com.ehealthsystem.resourcereader.ResourceReader;
+
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.BodyPart;
