@@ -34,6 +34,12 @@ public class User {
             insertIntoDb(password);
     }
 
+    /**
+     * Inserts this user into the database.
+     * Only to be used if a new user is created.
+     * @param password
+     * @throws SQLException
+     */
     private void insertIntoDb(String password) throws SQLException {
         Object[][] parameters = {
                 {"username", username},
