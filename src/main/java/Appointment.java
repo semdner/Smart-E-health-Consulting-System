@@ -1,3 +1,4 @@
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Appointment {
@@ -91,5 +92,17 @@ public class Appointment {
                 newValues,
                 new Object[][]{{"id", id}}
         );
+    }
+
+    /**
+     * Deletes an appointment from the database.
+     * Use to cancel an appointment.
+     * @return whether deletion succeeded
+     */
+    public boolean delete() throws SQLException {
+        String query = "DELETE FROM appointments WHERE id = ?";
+        PreparedStatement statement = DB.connection.prepareStatement(query);
+        statement.setInt(1, id);
+        return statement.executeUpdate() == 1;
     }
 }
