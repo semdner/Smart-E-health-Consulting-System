@@ -9,6 +9,7 @@ import java.util.Scanner;
 //Database
 public class DB {
     static Connection connection = null;
+    static final String fileName = "ehealth.sqlite3";
 
     /**
      * To be called on application start.
@@ -18,17 +19,9 @@ public class DB {
      */
     public static void init()
     {
-        boolean isExistingDb = new File("ehealth.sqlite3").isFile(); //there isn't a database file
-
-        String initialAdminPassword = null;
-        if (!isExistingDb)
-            initialAdminPassword = initialAdminPassword(); //ask before creating file!
-
         try
         {
-            connection = DriverManager.getConnection("jdbc:sqlite:ehealth.sqlite3"); //creates file if it doesn't exist
-            if (!isExistingDb)
-                createDB(initialAdminPassword);
+            connection = DriverManager.getConnection("jdbc:sqlite:" + fileName); //creates file if it doesn't exist
         }
         catch(SQLException e)
         {
@@ -39,9 +32,12 @@ public class DB {
     }
 
     /**
-     * Ask for admin password and create database
+     * Create database with provided admin password
+     * @param initialAdminPassword provided admin password desired by the user
+     * @throws SQLException
      */
-    private static void createDB(String initialAdminPassword) throws SQLException {
+    public static void createDB(String initialAdminPassword) throws SQLException {
+        init();
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
@@ -72,21 +68,6 @@ public class DB {
     public static String hashPassword(String password)
     {
         return BCrypt.hashpw(password, BCrypt.gensalt());
-    }
-
-    /**
-     * Ask the user for an initial admin password when creating the database
-     * @return desired admin password entered by the user
-     */
-    private static String initialAdminPassword()
-    {
-        System.out.println("Please enter your desired admin password: ");
-
-        Scanner in = new Scanner(System.in);
-        String password = in.nextLine();
-        in.close();
-
-        return password;
     }
 
     /**
