@@ -1,5 +1,6 @@
 package com.ehealthsystem.user;
 
+import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.database.Database;
 
 import java.sql.PreparedStatement;
