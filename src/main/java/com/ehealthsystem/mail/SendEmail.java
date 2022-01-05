@@ -1,3 +1,5 @@
+package com.ehealthsystem.mail;
+
 import com.ehealthsystem.resourcereader.ResourceReader;
 
 import java.util.Properties;
