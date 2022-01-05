@@ -47,6 +47,38 @@ public class Appointment {
         DB.insert("appointments", parameters);
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public int getDoctor() {
+        return doctor;
+    }
+
+    public int getHealthProblem() {
+        return healthProblem;
+    }
+
+    public int getTimestamp() {
+        return timestamp;
+    }
+
+    public int getMinutesBeforeReminder() {
+        return minutesBeforeReminder;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public String getHealthProblemDescription() {
+        return healthProblemDescription;
+    }
+
     /**
      * Updates the entry for this appointment in the database
      * @param newValues
