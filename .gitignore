@@ -209,3 +209,4 @@ local.properties
 # Typically, this file would be tracked if it contains build/dependency configurations:
 #.project
 ehealth.sqlite3
+src/main/resources/password.txt
