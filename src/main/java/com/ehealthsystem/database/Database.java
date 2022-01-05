@@ -344,4 +344,18 @@ public class Database {
         ResultSet rs = statement.executeQuery();
         return loadAppointmentsFromResultSet(rs);
     }
+
+    /**
+     * Get a user's past and future appointments, ordered by appointment time (newest first)
+     * To be used for the patient to see their appointments.
+     * This method is not part of the User class because the content is so similar to DB.getDoctorsAppointments() and hence shall be next to it
+     * @return usersAppointments
+     */
+    public static ArrayList<Appointment> getUsersAppointments(String username) throws SQLException {
+        String query = "SELECT * FROM appointments WHERE user = ? ORDER BY timestamp DESC"; //ordering for display as list
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, username);
+        ResultSet rs = statement.executeQuery();
+        return loadAppointmentsFromResultSet(rs);
+    }
 }
