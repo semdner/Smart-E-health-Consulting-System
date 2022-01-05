@@ -78,16 +78,14 @@ public class LoginController {
         DatabaseController connection = new DatabaseController();
         Statement statement = connection.getConnection().createStatement();
 
-        try (ResultSet queryResult = statement.executeQuery(sqlCommand)) {
-            while (queryResult.next()) {
-                if (queryResult.getInt(1) == 1) {
-                    return true;
-                } else {
-                    errorLabel.setText("User not found");
-                    errorLabel.setVisible(true);
-                    return false;
-                }
-            }
+        ResultSet queryResult = statement.executeQuery(sqlCommand);
+        queryResult.next();
+        if (queryResult.getInt(1) == 1) {
+            return true;
+        } else {
+            errorLabel.setText("User not found");
+            errorLabel.setVisible(true);
+            return false;
         }
 
     }
