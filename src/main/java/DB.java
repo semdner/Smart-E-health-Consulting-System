@@ -127,8 +127,9 @@ public class DB {
      * @param tableName the name of the table to which the row shall be added
      * @param parameters array consisting of pairs of column name and value
      * @throws SQLException
+     * @return id of inserted row
      */
-    public static void insert(String tableName, Object[][] parameters) throws SQLException {
+    public static int insert(String tableName, Object[][] parameters) throws SQLException {
         String query = "INSERT INTO <tableName> (<names>) VALUES (<values>)".replace("<tableName>", tableName);
 
         //add parameter names
@@ -148,7 +149,7 @@ public class DB {
         questionMarks = questionMarks.substring(0, questionMarks.length() - separator.length()); //remove last separator
         query = query.replace("<values>", questionMarks);
 
-        PreparedStatement statement = DB.connection.prepareStatement(query);
+        PreparedStatement statement = DB.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         //insert parameter values
         for (int i = 0; i < parameters.length; i++)
         {
@@ -156,7 +157,21 @@ public class DB {
             insertValueIntoStatement(i, value, statement);
         }
 
-        statement.execute(); //this for some reason doesn't fail whereas if you execute the query manually, you get "FOREIGN KEY constraint failed"
+        //https://stackoverflow.com/a/1915197
+        int affectedRows = statement.executeUpdate(); //this for some reason doesn't fail whereas if you execute the query manually, you get "FOREIGN KEY constraint failed"
+
+        if (affectedRows == 0) {
+            throw new SQLException("Inserting row failed, no rows affected.");
+        }
+
+        try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            }
+            else {
+                throw new SQLException("Inserting row failed, no ID obtained.");
+            }
+        }
     }
 
     /**
