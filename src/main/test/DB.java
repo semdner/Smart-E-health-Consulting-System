@@ -1,10 +1,8 @@
 import org.mindrot.jbcrypt.BCrypt;
 
-import java.io.File;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 //Database
 public class DB {
@@ -42,16 +40,16 @@ public class DB {
         statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
         //Create tables
-        statement.execute(ResourceReader.getResourceString("createTableUsers.sql"));
-        statement.execute(ResourceReader.getResourceString("createTableDoctors.sql"));
-        statement.execute(ResourceReader.getResourceString("createTableAppointments.sql"));
+        statement.execute(ResourceReader.getResourceString("com/ehealthsystem/database/createTableUsers.sql"));
+        statement.execute(ResourceReader.getResourceString("com/ehealthsystem/database/createTableDoctors.sql"));
+        statement.execute(ResourceReader.getResourceString("com/ehealthsystem/database/createTableAppointments.sql"));
 
-        statement.execute(ResourceReader.getResourceString("createTableProblems.sql"));
-        statement.execute(ResourceReader.getResourceString("createTableSpecializations.sql"));
-        statement.execute(ResourceReader.getResourceString("createTableSuitableSpecializations.sql"));
-        statement.execute(ResourceReader.getResourceString("insertIntoProblems.sql"));
-        statement.execute(ResourceReader.getResourceString("insertIntoSpecializations.sql"));
-        statement.execute(ResourceReader.getResourceString("insertIntoSuitableSpecializations.sql"));
+        statement.execute(ResourceReader.getResourceString("com/ehealthsystem/database/createTableProblems.sql"));
+        statement.execute(ResourceReader.getResourceString("com/ehealthsystem/database/createTableSpecializations.sql"));
+        statement.execute(ResourceReader.getResourceString("com/ehealthsystem/database/createTableSuitableSpecializations.sql"));
+        statement.execute(ResourceReader.getResourceString("com/ehealthsystem/database/insertIntoProblems.sql"));
+        statement.execute(ResourceReader.getResourceString("com/ehealthsystem/database/insertIntoSpecializations.sql"));
+        statement.execute(ResourceReader.getResourceString("com/ehealthsystem/database/insertIntoSuitableSpecializations.sql"));
 
         //Insert admin user
         String query = "INSERT INTO users (username, password) VALUES ('admin', ?)";

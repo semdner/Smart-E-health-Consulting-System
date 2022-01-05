@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.MainController">
+
+    <top>
+        <AnchorPane prefHeight="150.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="79.0" layoutY="23.0" text="E-HEALTH&#10;SYSTEM" textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="40.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </top>
+
+    <center>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="loginButton" layoutX="50.0" layoutY="118.0" mnemonicParsing="false" onAction="#handleLoginButton" prefWidth="250.0" text="Login" />
+                <Button fx:id="registrationButton" layoutX="50.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleRegistrationButton" prefWidth="250.0" text="Create Account" />
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>
