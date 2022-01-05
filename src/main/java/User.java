@@ -12,7 +12,7 @@ public class User {
     private boolean privateInsurance;
 
     /**
-     * Creates a new user that is stored in the database
+     * Creates a new user object representing a row in the database
      */
     public User(String username, boolean insertIntoDb, String password, String firstName, String lastName, String mail, String street, String houseNo, int zipCode, LocalDate birthDate, String preExistingConditions, String allergies, String pastTreatments, String currentTreatments, String medications, String insurance, boolean privateInsurance) throws SQLException {
         this.username = username;
