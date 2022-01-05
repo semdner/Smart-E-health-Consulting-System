@@ -50,13 +50,13 @@ public class LoginController {
     @FXML
     public void handleLoginButton(ActionEvent event) throws IOException, SQLException {
 
-        /*FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResourceAsStream("primary/primary-view.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = loader.load(getClass().getResourceAsStream("/com/ehealthsystem/primary/primary-view.fxml"));
         Stage stage = (Stage)loginButton.getScene().getWindow();
         Scene primaryScene = new Scene(root, 1000, 600);
         stage.setTitle("E-Health System");
         stage.setScene(primaryScene);
-        stage.show();*/
+        stage.show();
 
         String email = emailTextField.getText();
         Pattern emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
