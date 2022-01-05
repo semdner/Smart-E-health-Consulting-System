@@ -34,7 +34,7 @@
             <Separator layoutX="51.0" layoutY="157.0" prefHeight="0.0" prefWidth="250.0" />
             <Rectangle fill="WHITE" height="12.0" layoutX="163.0" layoutY="151.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="21.0" />
             <Label alignment="CENTER" layoutX="162.0" layoutY="148.0" prefHeight="17.0" prefWidth="23.0" text="or" textFill="#cecece" />
-            <Label fx:id="registrationLabel" layoutX="135.0" layoutY="168.0" text="Create account">
+            <Label fx:id="registrationLabel" layoutX="135.0" layoutY="168.0" text="Create account" onMouseClicked="#handleRegistrationLabel">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Label>
