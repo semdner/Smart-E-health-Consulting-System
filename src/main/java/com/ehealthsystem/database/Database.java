@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class Database {
 
     public static Connection connection = null;
-    static final String fileName = "ehealth.sqlite3";
+    public static final String fileName = "ehealth.sqlite3";
 
     /**
      * To be called on application start.
