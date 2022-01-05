@@ -1,5 +1,6 @@
 package com.ehealthsystem.database;
 
+import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.resourcereader.ResourceReader;
 import com.ehealthsystem.user.User;
 import org.mindrot.jbcrypt.BCrypt;
@@ -301,4 +302,46 @@ public class Database {
         return users;
     }
 
+    /**
+     * Helper method to turn result set into array of appointment objects
+     * @param rs resultSet after the query was executed
+     * @return
+     * @throws SQLException
+     */
+    public static ArrayList<Appointment> loadAppointmentsFromResultSet(ResultSet rs) throws SQLException {
+        ArrayList<Appointment> appointments = new ArrayList<>();
+        while (rs.next())
+        {
+            Appointment appointment = new Appointment(
+                    false,
+                    rs.getInt("id"),
+                    rs.getString("user"),
+                    rs.getInt("doctor"),
+                    rs.getInt("healthProblem"),
+                    rs.getString("healthProblemDescription"),
+                    rs.getInt("timestamp"),
+                    rs.getInt("minutesBeforeReminder"),
+                    rs.getInt("duration")
+            );
+            appointments.add(appointment);
+        }
+        return appointments;
+    }
+
+    /**
+     * Get appointments that a doctor already has within a range of days
+     * To be used to display a doctor's timetable to the patient, to find a free time for their appointment
+     * @param fromTime
+     * @param toTime
+     * @return doctorsAppointments
+     */
+    public static ArrayList<Appointment> getDoctorsAppointments(int doctor, int fromTime, int toTime) throws SQLException {
+        String query = "SELECT * FROM appointments WHERE doctor = ? AND timestamp BETWEEN ? AND ? ORDER BY timestamp"; //ordering not necessary but just convenient, e.g. if it will be displayed in a list to the doctor in the future
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, doctor);
+        statement.setInt(2, fromTime);
+        statement.setInt(3, toTime);
+        ResultSet rs = statement.executeQuery();
+        return loadAppointmentsFromResultSet(rs);
+    }
 }
