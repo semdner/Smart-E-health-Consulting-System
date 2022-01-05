@@ -8,9 +8,10 @@ module Smart.E.health.Consulting.System {
     requires com.google.common;
     requires java.mail;
 
-    opens com.ehealthsystem to javafx.fxml;
+    opens com.ehealthsystem.appointment to javafx.fxml;
     opens com.ehealthsystem.login to javafx.fxml;
-    opens com.ehealthsystem.database to javafx.fxml;
+    opens com.ehealthsystem.primary to javafx.fxml;
+    opens com.ehealthsystem.registration to javafx.fxml;
 
     exports com.ehealthsystem;
 }
