@@ -261,6 +261,6 @@ public class User {
      * @throws SQLException
      */
     public ArrayList<Appointment> getAppointments() throws SQLException {
-        return DB.getUsersAppointments(username);
+        return Database.getUsersAppointments(username);
     }
 }
