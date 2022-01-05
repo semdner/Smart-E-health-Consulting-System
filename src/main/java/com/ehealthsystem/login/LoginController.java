@@ -97,7 +97,7 @@ public class LoginController {
         FXMLLoader loader = new FXMLLoader();
         Parent root = loader.load(getClass().getResourceAsStream("/com/ehealthsystem/registration/registration-view.fxml"));
         Stage stage = (Stage)registrationLabel.getScene().getWindow();
-        Scene primaryScene = new Scene(root, 1000, 600);
+        Scene primaryScene = new Scene(root, 350, 450);
         stage.setTitle("Create Account");
         stage.setScene(primaryScene);
         stage.show();
