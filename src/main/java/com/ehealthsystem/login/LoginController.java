@@ -95,7 +95,7 @@ public class LoginController {
     public void handleRegistrationLabel(MouseEvent event) throws IOException {
 
         FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResourceAsStream("registration/registration-view.fxml"));
+        Parent root = loader.load(getClass().getResourceAsStream("/com/ehealthsystem/registration/registration-view.fxml"));
         Stage stage = (Stage)registrationLabel.getScene().getWindow();
         Scene primaryScene = new Scene(root, 1000, 600);
         stage.setTitle("Create Account");
