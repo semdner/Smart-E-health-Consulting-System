@@ -1,3 +1,7 @@
+package com.ehealthsystem.user;
+
+import com.ehealthsystem.database.Database;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -62,7 +66,7 @@ public class User {
     private void insertIntoDb(String password) throws SQLException {
         Object[][] parameters = {
                 {"username", username},
-                {"password", DB.hashPassword(password)},
+                {"password", Database.hashPassword(password)},
                 {"firstName", firstName},
                 {"lastName", lastName},
                 {"mail", mail},
@@ -80,7 +84,7 @@ public class User {
                 {"insurance", insurance},
                 {"privateInsurance", privateInsurance},
         };
-        DB.insert("users", parameters);
+        Database.insert("users", parameters);
     }
 
     /**
@@ -92,7 +96,7 @@ public class User {
      * @throws SQLException
      */
     public boolean changePassword(String currentPassword, String newPassword) throws SQLException {
-        if (!DB.checkPassword(username, currentPassword))
+        if (!Database.checkPassword(username, currentPassword))
             return false;
         setPassword(username, newPassword);
         return true;
@@ -107,8 +111,8 @@ public class User {
      */
     public void setPassword(String username, String password) throws SQLException {
         String query = "UPDATE users SET password = ? WHERE username = ?";
-        PreparedStatement statement = DB.connection.prepareStatement(query);
-        statement.setString(1, DB.hashPassword(password));
+        PreparedStatement statement = Database.connection.prepareStatement(query);
+        statement.setString(1, Database.hashPassword(password));
         statement.setString(2, username);
         statement.execute();
     }
@@ -119,7 +123,7 @@ public class User {
      * @throws SQLException
      */
     private void update(Object[][] newValues) throws SQLException {
-        DB.update(
+        Database.update(
                 "users",
                 newValues,
                 new Object[][]{{"username", username}}
