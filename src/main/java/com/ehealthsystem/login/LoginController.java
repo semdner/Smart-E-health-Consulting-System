@@ -83,7 +83,7 @@ public class LoginController {
         if (queryResult.getInt(1) == 1) {
             return true;
         } else {
-            errorLabel.setText("User not found");
+            errorLabel.setText("Invalid username or password");
             errorLabel.setVisible(true);
             return false;
         }
