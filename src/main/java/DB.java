@@ -156,7 +156,7 @@ public class DB {
             insertValueIntoStatement(i, value, statement);
         }
 
-        statement.execute();
+        statement.execute(); //this for some reason doesn't fail whereas if you execute the query manually, you get "FOREIGN KEY constraint failed"
     }
 
     /**
