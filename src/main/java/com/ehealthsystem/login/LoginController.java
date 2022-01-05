@@ -50,8 +50,7 @@ public class LoginController {
     @FXML
     public void handleLoginButton(ActionEvent event) throws IOException, SQLException {
 
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResourceAsStream("/com/ehealthsystem/primary/primary-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-view.fxml"));
         Stage stage = (Stage)loginButton.getScene().getWindow();
         Scene primaryScene = new Scene(root, 1000, 600);
         stage.setTitle("E-Health System");
