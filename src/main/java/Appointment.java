@@ -7,7 +7,7 @@ public class Appointment {
     /**
      *
      * @param insertIntoDb true if this is a new appointment that is inserted to the database, false if the object shall solely represent a appointment that is already saved in the database
-     * @param id
+     * @param id ignored when insertToDb is true (to be precise, it is saved but overwritten after successful insert)
      * @param user
      * @param doctor
      * @param healthProblem
@@ -37,7 +37,6 @@ public class Appointment {
      */
     private void insertIntoDb() throws SQLException {
         Object[][] parameters = {
-                {"id", id},
                 {"user", user},
                 {"doctor", doctor},
                 {"healthProblem", healthProblem},
@@ -46,7 +45,7 @@ public class Appointment {
                 {"minutesBeforeReminder", minutesBeforeReminder},
                 {"duration", duration},
         };
-        DB.insert("appointments", parameters);
+        id = DB.insert("appointments", parameters);
     }
 
     public int getId() {
