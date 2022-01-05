@@ -1,10 +1,8 @@
 import org.mindrot.jbcrypt.BCrypt;
 
-import java.io.File;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 //Database
 public class DB {
