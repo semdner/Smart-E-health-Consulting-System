@@ -5,7 +5,8 @@ public class Appointment {
     private String user, healthProblemDescription;
 
     /**
-     * Creates a new appointment object representing a row in the database
+     *
+     * @param insertIntoDb true if this is a new appointment that is inserted to the database, false if the object shall solely represent a appointment that is already saved in the database
      * @param id
      * @param user
      * @param doctor
@@ -14,6 +15,7 @@ public class Appointment {
      * @param timestamp
      * @param minutesBeforeReminder
      * @param duration
+     * @throws SQLException
      */
     public Appointment(boolean insertIntoDb, int id, String user, int doctor, int healthProblem, String healthProblemDescription, int timestamp, int minutesBeforeReminder, int duration) throws SQLException {
         this.id = id;

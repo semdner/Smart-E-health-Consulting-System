@@ -14,6 +14,24 @@ public class User {
 
     /**
      * Creates a new user object representing a row in the database
+     * @param username
+     * @param insertIntoDb true if this is a new user that is inserted to the database, false if the object shall solely represent a user that is already saved in the database
+     * @param password
+     * @param firstName
+     * @param lastName
+     * @param mail
+     * @param street
+     * @param houseNo
+     * @param zipCode
+     * @param birthDate
+     * @param preExistingConditions
+     * @param allergies
+     * @param pastTreatments
+     * @param currentTreatments
+     * @param medications
+     * @param insurance
+     * @param privateInsurance
+     * @throws SQLException
      */
     public User(String username, boolean insertIntoDb, String password, String firstName, String lastName, String mail, String street, String houseNo, int zipCode, LocalDate birthDate, String preExistingConditions, String allergies, String pastTreatments, String currentTreatments, String medications, String insurance, boolean privateInsurance) throws SQLException {
         this.username = username;
