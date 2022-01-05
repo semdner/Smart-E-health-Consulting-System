@@ -41,6 +41,12 @@ public class LoginController {
     public Label registrationLabel;
     public Label errorLabel;
 
+    /**
+     *
+     * @param event event that triggered the login button
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
     public void handleLoginButton(ActionEvent event) throws IOException, SQLException {
 
