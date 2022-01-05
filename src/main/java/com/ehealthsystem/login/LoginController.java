@@ -49,18 +49,31 @@ public class LoginController {
      */
     @FXML
     public void handleLoginButton(ActionEvent event) throws IOException, SQLException {
+        if (validateEmail() && validatePasswordField() && validateCredentials())
+            loadPrimaryWindow();
+    }
+
+    private boolean validateEmail() {
         String email = emailTextField.getText();
         Pattern emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = emailPat.matcher(email);
 
-        if(matcher.find() && !passwordField.getText().isBlank()) {
-            if (validateCredentials())
-                loadPrimaryWindow();
+        if(matcher.find()) {
+            return true;
         } else {
             errorLabel.setText("Invalid email format. Please try again");
             errorLabel.setVisible(true);
+            return false;
         }
+    }
 
+    private boolean validatePasswordField() {
+        if (passwordField.getText().isBlank()) {
+            errorLabel.setText("Password cannot be blank.");
+            errorLabel.setVisible(true);
+            return false;
+        }
+        return true;
     }
 
     private void loadPrimaryWindow() throws IOException {
