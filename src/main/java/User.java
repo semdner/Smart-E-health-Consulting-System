@@ -1,6 +1,7 @@
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class User {
     private String username, firstName, lastName, mail, street, houseNo;
@@ -230,5 +231,14 @@ public class User {
 
     public boolean isPrivateInsurance() {
         return privateInsurance;
+    }
+
+    /**
+     * Wrapper to get users appointments from the user object
+     * @return usersAppointments
+     * @throws SQLException
+     */
+    public ArrayList<Appointment> getAppointments() throws SQLException {
+        return DB.getUsersAppointments(username);
     }
 }
