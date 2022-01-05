@@ -19,8 +19,7 @@ public class MainController {
     @FXML
     public void handleLoginButton(ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResourceAsStream("login/login-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("login/login-view.fxml"));
         Stage stage = (Stage)loginButton.getScene().getWindow();
         Scene loginScene = new Scene(root, 350, 450);
         stage.setTitle("Login");
@@ -32,8 +31,7 @@ public class MainController {
     @FXML
     public void handleRegistrationButton(ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResourceAsStream("registration/registration-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("registration/registration-view.fxml"));
         Stage stage = (Stage)registrationButton.getScene().getWindow();
         Scene primaryScene = new Scene(root, 350, 450);
         stage.setTitle("Create Account");

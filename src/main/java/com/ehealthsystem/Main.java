@@ -23,8 +23,7 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResourceAsStream("main/main-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("main/main-view.fxml"));
         Scene mainScene = new Scene(root, 350, 450);
         primaryStage.setTitle("welcome");
         primaryStage.setScene(mainScene);
