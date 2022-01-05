@@ -49,14 +49,6 @@ public class LoginController {
      */
     @FXML
     public void handleLoginButton(ActionEvent event) throws IOException, SQLException {
-
-        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-view.fxml"));
-        Stage stage = (Stage)loginButton.getScene().getWindow();
-        Scene primaryScene = new Scene(root, 1000, 600);
-        stage.setTitle("E-Health System");
-        stage.setScene(primaryScene);
-        stage.show();
-
         String email = emailTextField.getText();
         Pattern emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = emailPat.matcher(email);
@@ -68,6 +60,15 @@ public class LoginController {
             errorLabel.setVisible(true);
         }
 
+    }
+
+    private void loadPrimaryWindow() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-view.fxml"));
+        Stage stage = (Stage)loginButton.getScene().getWindow();
+        Scene primaryScene = new Scene(root, 1000, 600);
+        stage.setTitle("E-Health System");
+        stage.setScene(primaryScene);
+        stage.show();
     }
 
     public boolean validateCredentials() throws IOException, SQLException {
