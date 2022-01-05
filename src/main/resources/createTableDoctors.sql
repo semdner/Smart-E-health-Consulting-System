@@ -3,7 +3,7 @@ CREATE TABLE "doctors" (
 	"name"	TEXT NOT NULL,
 	"specialization"	TEXT NOT NULL,
 	"street"	TEXT NOT NULL,
-	"houseNo"	INTEGER NOT NULL,
+	"houseNo"	TEXT NOT NULL,
 	"zipCode"	INTEGER NOT NULL,
 	"latitude"	INTEGER NOT NULL,
 	"longitude"	INTEGER NOT NULL,
