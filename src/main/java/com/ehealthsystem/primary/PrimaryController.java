@@ -20,7 +20,7 @@ public class PrimaryController {
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointment1-view.fxml"));
         Stage stage = (Stage)makeAppointmentButton1.getScene().getWindow();
         Scene primaryScene = new Scene(root, 1000, 600);
-        stage.setTitle("E-Health System");
+        stage.setTitle("make appointment");
         stage.setScene(primaryScene);
         stage.show();
     }

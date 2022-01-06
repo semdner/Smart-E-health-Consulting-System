@@ -113,7 +113,7 @@
          <children>
             <Button fx:id="cancelButton" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleCancelButton" text="cancel" />
             <Button fx:id="editButton" layoutX="69.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="26.0" prefWidth="50.0" text="edit" AnchorPane.leftAnchor="69.0" />
-            <Button fx:id="continueButton" layoutX="960.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="26.0" prefWidth="25.0" text="&gt;" />
+            <Button fx:id="continueButton" layoutX="960.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleContinueButton" prefHeight="26.0" prefWidth="25.0" text="&gt;" />
          </children></AnchorPane>
    </children>
 </VBox>
