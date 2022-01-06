@@ -33,9 +33,9 @@ public class MainController {
 
         Parent root = FXMLLoader.load(getClass().getResource("registration/registration-view.fxml"));
         Stage stage = (Stage)registrationButton.getScene().getWindow();
-        Scene primaryScene = new Scene(root, 350, 450);
+        Scene registrationScene = new Scene(root, 350, 450);
         stage.setTitle("Create Account");
-        stage.setScene(primaryScene);
+        stage.setScene(registrationScene);
         stage.show();
 
     }
