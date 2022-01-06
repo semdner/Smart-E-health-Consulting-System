@@ -28,9 +28,10 @@ public class AppointmentController {
     public Button continueButton;
 
     /**
+     * Switch scene to primary
      *
-     * @param event event triggered when button is pressed
-     * @throws IOException if the file can't be found.
+     * @param event event triggered when cancel button is pressed
+     * @throws IOException if the FXMLLoader cant find .fxml file
      */
 
     public void handleCancelButton(ActionEvent event) throws IOException {
@@ -39,6 +40,21 @@ public class AppointmentController {
         Scene primaryScene = new Scene(root, 1000, 600);
         stage.setTitle("E-Health-System");
         stage.setScene(primaryScene);
+    }
+
+    /**
+     * Open new window to edit the information.
+     *
+     * @param event event triggered when edit button is pressed
+     * @throws IOException if the FXMLLoader cant find .fxml file
+     */
+    public void handleEditButton(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/edit/editAppointment1-view.fxml"));
+        Stage stage = new Stage();
+        Scene dialogScene = new Scene(root, 500, 400);
+        stage.setTitle("edit user information");
+        stage.setScene(dialogScene);
+        stage.show();
     }
 
 }
