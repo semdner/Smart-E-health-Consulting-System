@@ -111,21 +111,9 @@
       </AnchorPane>
       <AnchorPane prefHeight="50.0" prefWidth="600.0">
          <children>
-            <Button fx:id="cancelButton" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" text="cancel">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="continueButton" layoutX="955.0" layoutY="10.0" mnemonicParsing="false" text="&gt;">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="editButton" layoutX="86.0" layoutY="10.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="edit">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
+            <Button fx:id="cancelButton" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleCancelButton" text="cancel" />
+            <Button fx:id="editButton" layoutX="69.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="26.0" prefWidth="50.0" text="edit" AnchorPane.leftAnchor="69.0" />
+            <Button fx:id="continueButton" layoutX="960.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="26.0" prefWidth="25.0" text="&gt;" />
          </children></AnchorPane>
    </children>
 </VBox>

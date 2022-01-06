@@ -27,14 +27,18 @@ public class AppointmentController {
     public Button editButton;
     public Button continueButton;
 
-    public void handleCancelButton(ActionEvent event) throws IOException {
+    /**
+     *
+     * @param event event triggered when button is pressed
+     * @throws IOException if the file can't be found.
+     */
 
-        Parent root = FXMLLoader.load(getClass().getResource("primary/primary-view.fxml"));
+    public void handleCancelButton(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-view.fxml"));
         Stage stage = (Stage)cancelButton.getScene().getWindow();
         Scene primaryScene = new Scene(root, 1000, 600);
         stage.setTitle("E-Health-System");
         stage.setScene(primaryScene);
-        
     }
 
 }

@@ -17,7 +17,7 @@ public class PrimaryController {
     public Button makeAppointmentButton2;
 
     public void handleMakeAppointmentButton(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appoibtment/appointment1-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointment1-view.fxml"));
         Stage stage = (Stage)makeAppointmentButton1.getScene().getWindow();
         Scene primaryScene = new Scene(root, 1000, 600);
         stage.setTitle("E-Health System");

@@ -86,7 +86,6 @@ public class LoginController {
     }
 
     public boolean validateCredentials() throws IOException, SQLException {
-
         String sqlCommand = "SELECT count(1) FROM users WHERE email = '" + emailTextField.getText() + "' AND pw = '" + passwordField.getText() + "'";
         DatabaseController connection = new DatabaseController();
         Statement statement = connection.getConnection().createStatement();
