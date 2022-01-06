@@ -57,6 +57,12 @@ public class AppointmentController {
         stage.show();
     }
 
+    /**
+     * Switch scene to next appointment view
+     *
+     * @param event
+     * @throws IOException
+     */
     public void handleContinueButton(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointment2-view.fxml"));
         Stage stage = (Stage) continueButton.getScene().getWindow();
