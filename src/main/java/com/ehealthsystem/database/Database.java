@@ -116,13 +116,14 @@ public class Database {
      * Check if user entered their correct password
      * Retrieves stored password and verifies that the entered one matches the stored hash
      * This method is not part of the User class because there isn't a user object during login yet
-     * @param username
+     * @param email
      * @param password in plain text
      * @return whether password is correct
      */
-    public static boolean checkPassword(String username, String password) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
-        statement.setString(1, username);
+    public static boolean checkPassword(String email, String password) throws SQLException {
+        init();
+        PreparedStatement statement = connection.prepareStatement("SELECT password FROM user WHERE email = ?");
+        statement.setString(1, email);
         ResultSet rs = statement.executeQuery();
 
         rs.next();

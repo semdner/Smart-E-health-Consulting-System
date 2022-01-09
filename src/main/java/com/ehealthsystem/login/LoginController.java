@@ -1,5 +1,6 @@
 package com.ehealthsystem.login;
 
+import com.ehealthsystem.database.Database;
 import com.ehealthsystem.database.DatabaseController;
 import com.ehealthsystem.primary.PrimaryController;
 
@@ -86,20 +87,13 @@ public class LoginController {
     }
 
     public boolean validateCredentials() throws IOException, SQLException {
-        String sqlCommand = "SELECT count(1) FROM users WHERE email = '" + emailTextField.getText() + "' AND pw = '" + passwordField.getText() + "'";
-        DatabaseController connection = new DatabaseController();
-        Statement statement = connection.getConnection().createStatement();
-
-        ResultSet queryResult = statement.executeQuery(sqlCommand);
-        queryResult.next();
-        if (queryResult.getInt(1) == 1) {
+        if(Database.checkPassword(emailTextField.getText(), passwordField.getText())) {
             return true;
         } else {
             errorLabel.setText("Invalid username or password");
             errorLabel.setVisible(true);
             return false;
         }
-
     }
 
     @FXML
