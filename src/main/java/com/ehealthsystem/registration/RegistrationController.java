@@ -100,13 +100,7 @@ public class RegistrationController implements Initializable {
                                     passwordField.getText(),
                                     privateInsurancCheckBox.isSelected(),
                                     true);
-
-            Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/login/login-view.fxml"));
-            Stage stage = (Stage)loginLabel.getScene().getWindow();
-            Scene loginScene = new Scene(root, 350, 450);
-            stage.setTitle("Login");
-            stage.setScene(loginScene);
-            stage.show();
+            switchToLoginView();
         } else {
             errorLabel.setText("Sign up information wrong or missing");
             errorLabel.setVisible(true);
@@ -288,6 +282,10 @@ public class RegistrationController implements Initializable {
      * @throws IOException
      */
     public void handleLoginLabel(MouseEvent event) throws IOException  {
+        switchToLoginView();
+    }
+
+    private void switchToLoginView() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/login/login-view.fxml"));
         Stage stage = (Stage)loginLabel.getScene().getWindow();
         Scene loginScene = new Scene(root, 350, 450);
