@@ -9,12 +9,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class User {
-    private String username, firstName, lastName, mail, street, houseNo;
+    private String username, email, firstName, lastName, street, houseNo, gender;
     private int zipCode;
     private LocalDate birthDate;
-    private String preExistingConditions, allergies, pastTreatments, currentTreatments, medications;
-
-    private String insurance;
     private boolean privateInsurance;
 
     /**
@@ -24,35 +21,24 @@ public class User {
      * @param password
      * @param firstName
      * @param lastName
-     * @param mail
+     * @param email
      * @param street
      * @param houseNo
      * @param zipCode
      * @param birthDate
-     * @param preExistingConditions
-     * @param allergies
-     * @param pastTreatments
-     * @param currentTreatments
-     * @param medications
-     * @param insurance
      * @param privateInsurance
      * @throws SQLException
      */
-    public User(String username, boolean insertIntoDb, String password, String firstName, String lastName, String mail, String street, String houseNo, int zipCode, LocalDate birthDate, String preExistingConditions, String allergies, String pastTreatments, String currentTreatments, String medications, String insurance, boolean privateInsurance) throws SQLException {
+    public User(String username, String email, String firstName, String lastName, String street, String houseNo, int zipCode, LocalDate birthDate, String gender, String password, boolean privateInsurance, boolean insertIntoDb) throws SQLException {
         this.username = username;
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.mail = mail;
         this.street = street;
         this.houseNo = houseNo;
         this.zipCode = zipCode;
         this.birthDate = birthDate;
-        this.preExistingConditions = preExistingConditions;
-        this.allergies = allergies;
-        this.pastTreatments = pastTreatments;
-        this.currentTreatments = currentTreatments;
-        this.medications = medications;
-        this.insurance = insurance;
+        this.gender = gender;
         this.privateInsurance = privateInsurance;
         if (insertIntoDb)
             insertIntoDb(password);
@@ -67,25 +53,18 @@ public class User {
     private void insertIntoDb(String password) throws SQLException {
         Object[][] parameters = {
                 {"username", username},
-                {"password", Database.hashPassword(password)},
-                {"firstName", firstName},
-                {"lastName", lastName},
-                {"mail", mail},
+                {"email", email},
+                {"first_name", firstName},
+                {"last_name", lastName},
+                {"birthday", birthDate},
                 {"street", street},
-                {"houseNo", houseNo},
+                {"number", houseNo},
                 {"zipCode", zipCode},
-                {"birthYear", birthDate.getYear()},
-                {"birthMonth", birthDate.getMonthValue()},
-                {"birthDay", birthDate.getDayOfMonth()},
-                {"preExistingConditions", preExistingConditions},
-                {"allergies", allergies},
-                {"pastTreatments", pastTreatments},
-                {"currentTreatments", currentTreatments},
-                {"medications", medications},
-                {"insurance", insurance},
-                {"privateInsurance", privateInsurance},
+                {"sex", gender},
+                {"password", Database.hashPassword(password)},
+                {"private_insurance", privateInsurance},
         };
-        Database.insert("users", parameters);
+        Database.insert("user", parameters);
     }
 
     /**
@@ -161,36 +140,6 @@ public class User {
         this.birthDate = birthDate;
     }
 
-    public void setPreExistingConditions(String preExistingConditions) throws SQLException {
-        update(new Object[][]{{"preExistingConditions", preExistingConditions}});
-        this.preExistingConditions = preExistingConditions;
-    }
-
-    public void setAllergies(String allergies) throws SQLException {
-        update(new Object[][]{{"allergies", allergies}});
-        this.allergies = allergies;
-    }
-
-    public void setPastTreatments(String pastTreatments) throws SQLException {
-        update(new Object[][]{{"pastTreatments", pastTreatments}});
-        this.pastTreatments = pastTreatments;
-    }
-
-    public void setCurrentTreatments(String currentTreatments) throws SQLException {
-        update(new Object[][]{{"currentTreatments", currentTreatments}});
-        this.currentTreatments = currentTreatments;
-    }
-
-    public void setMedications(String medications) throws SQLException {
-        update(new Object[][]{{"medications", medications}});
-        this.medications = medications;
-    }
-
-    public void setInsurance(String insurance) throws SQLException {
-        update(new Object[][]{{"insurance", insurance}});
-        this.insurance = insurance;
-    }
-
     public void setPrivateInsurance(boolean privateInsurance) throws SQLException {
         update(new Object[][]{{"privateInsurance", privateInsurance}});
         this.privateInsurance = privateInsurance;
@@ -209,7 +158,7 @@ public class User {
     }
 
     public String getMail() {
-        return mail;
+        return email;
     }
 
     public String getStreet() {
@@ -226,30 +175,6 @@ public class User {
 
     public LocalDate getBirthDate() {
         return birthDate;
-    }
-
-    public String getPreExistingConditions() {
-        return preExistingConditions;
-    }
-
-    public String getAllergies() {
-        return allergies;
-    }
-
-    public String getPastTreatments() {
-        return pastTreatments;
-    }
-
-    public String getCurrentTreatments() {
-        return currentTreatments;
-    }
-
-    public String getMedications() {
-        return medications;
-    }
-
-    public String getInsurance() {
-        return insurance;
     }
 
     public boolean isPrivateInsurance() {
