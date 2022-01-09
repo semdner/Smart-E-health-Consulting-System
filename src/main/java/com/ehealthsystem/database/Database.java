@@ -139,6 +139,7 @@ public class Database {
      * @return id of inserted row
      */
     public static int insert(String tableName, Object[][] parameters) throws SQLException {
+        init();
         String query = "INSERT INTO <tableName> (<names>) VALUES (<values>)".replace("<tableName>", tableName);
 
         //add parameter names
@@ -235,12 +236,17 @@ public class Database {
     }
 
     private static void insertValueIntoStatement(int i, Object value, PreparedStatement statement) throws SQLException {
-        if (value instanceof String)
+        if (value instanceof String) {
             statement.setString(i+1, (String)value);
-        else if (value instanceof Boolean)
+        } else if (value instanceof Boolean) {
             statement.setBoolean(i+1, (Boolean)value);
-        else
-            statement.setInt(i+1, (Integer)value);
+        } else if (value instanceof LocalDate) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            String date = ((LocalDate)value).format(formatter);
+            statement.setString(i+1, (String)date);
+        } else {
+            statement.setInt(i+1, (Integer) value);
+        }
     }
 
     /**
