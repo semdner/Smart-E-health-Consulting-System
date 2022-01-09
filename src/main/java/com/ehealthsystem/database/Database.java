@@ -6,6 +6,7 @@ import com.ehealthsystem.user.User;
 import org.mindrot.jbcrypt.BCrypt;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.sql.SQLException;
 
@@ -39,23 +40,25 @@ public class Database {
      * @param initialAdminPassword provided admin password desired by the user
      * @throws SQLException
      */
-
     public static void createDB(String initialAdminPassword) throws SQLException {
         init();
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
         //Create tables
-        statement.execute(ResourceReader.getResourceString("database/createTableUsers.sql"));
-        statement.execute(ResourceReader.getResourceString("database/createTableDoctors.sql"));
-        statement.execute(ResourceReader.getResourceString("database/createTableAppointments.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableMedication.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableDisease.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableLocation.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableCategory.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableDoctor.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableDoctorCategory.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableDoctorAppointment.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableUser.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTablePrescription.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableHealthStatus.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableAppointment.sql"));
 
-        statement.execute(ResourceReader.getResourceString("database/createTableProblems.sql"));
-        statement.execute(ResourceReader.getResourceString("database/createTableSpecializations.sql"));
-        statement.execute(ResourceReader.getResourceString("database/createTableSuitableSpecializations.sql"));
-        statement.execute(ResourceReader.getResourceString("database/insertIntoProblems.sql"));
-        statement.execute(ResourceReader.getResourceString("database/insertIntoSpecializations.sql"));
-        statement.execute(ResourceReader.getResourceString("database/insertIntoSuitableSpecializations.sql"));
+        statement.execute(ResourceReader.getResourceString("database/insertIntoDisease.sql"));
 
         //Insert admin user
         String query = "INSERT INTO users (username, password) VALUES ('admin', ?)";
@@ -280,22 +283,17 @@ public class Database {
 
             User user = new User(
                     username,
-                    false,
-                    null,
-                    rs.getString("firstName"),
-                    rs.getString("lastName"),
-                    rs.getString("mail"),
+                    rs.getString("email"),
+                    rs.getString("first_name"),
+                    rs.getString("last_name"),
                     rs.getString("street"),
-                    rs.getString("houseNo"),
-                    rs.getInt("zipCode"),
+                    rs.getString("number"),
+                    rs.getInt("zip"),
                     birthDate,
-                    rs.getString("preExistingConditions"),
-                    rs.getString("allergies"),
-                    rs.getString("pastTreatments"),
-                    rs.getString("currentTreatments"),
-                    rs.getString("medications"),
-                    rs.getString("insurance"),
-                    rs.getBoolean("privateInsurance")
+                    rs.getString("sex"),
+                    rs.getString("password"),
+                    rs.getBoolean("private_insurance"),
+                    false
             );
             users.add(user);
         }
