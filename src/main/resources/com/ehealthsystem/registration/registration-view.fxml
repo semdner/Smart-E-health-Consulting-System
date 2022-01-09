@@ -39,8 +39,8 @@
             <TextField fx:id="streetTextField" layoutX="50.0" layoutY="190.0" onKeyTyped="#handleStreet" prefHeight="25.0" prefWidth="200.0" promptText="street" />
             <TextField fx:id="numberTextField" layoutX="257.0" layoutY="190.0" onKeyTyped="#handleNumber" prefHeight="25.0" prefWidth="43.0" promptText="no." />
             <TextField fx:id="zipTextField" layoutX="50.0" layoutY="225.0" onKeyTyped="#handleZip" prefHeight="25.0" prefWidth="250.0" promptText="zip" />
-            <DatePicker fx:id="birthdayPicker" layoutX="50.0" layoutY="260.0" prefHeight="25.0" prefWidth="250.0" promptText="birthday" />
-            <ChoiceBox fx:id="genderBox" layoutX="99.0" layoutY="296.0" prefWidth="150.0" AnchorPane.bottomAnchor="230.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="295.0" />
+            <DatePicker fx:id="birthdayPicker" layoutX="50.0" layoutY="260.0" prefHeight="25.0" prefWidth="250.0" promptText="birthday" showWeekNumbers="true" />
+            <ChoiceBox fx:id="genderBox" layoutX="99.0" layoutY="296.0" prefHeight="25.0" prefWidth="250.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
                 <PasswordField fx:id="passwordField" layoutX="50.0" layoutY="330.0" onKeyTyped="#handlePassword" prefHeight="25.0" prefWidth="250.0" promptText="password" />
             <PasswordField fx:id="repeatPasswordField" layoutX="50.0" layoutY="365.0" onKeyTyped="#handleRepeatPassword" prefHeight="25.0" prefWidth="250.0" promptText="repeat password" />
             <CheckBox fx:id="privateInsurancCheckBox" layoutX="50.0" layoutY="395.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="250.0" text="private insurance" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
@@ -48,7 +48,7 @@
                 <Separator layoutX="51.0" layoutY="473.0" prefHeight="0.0" prefWidth="250.0" />
                 <Rectangle fill="WHITE" height="12.0" layoutX="163.0" layoutY="468.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="21.0" />
                 <Label alignment="CENTER" layoutX="162.0" layoutY="464.0" prefHeight="17.0" prefWidth="23.0" text="or" textFill="#cecece" />
-            <Label layoutX="159.0" layoutY="495.0" text="Login" AnchorPane.bottomAnchor="38.0">
+            <Label fx:id="loginLabel" layoutX="159.0" layoutY="495.0" onMouseClicked="#handleLoginLabel" text="Login" AnchorPane.bottomAnchor="38.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Label>

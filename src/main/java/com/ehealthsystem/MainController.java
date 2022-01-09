@@ -18,26 +18,22 @@ public class MainController {
 
     @FXML
     public void handleLoginButton(ActionEvent event) throws IOException {
-
         Parent root = FXMLLoader.load(getClass().getResource("login/login-view.fxml"));
         Stage stage = (Stage)loginButton.getScene().getWindow();
         Scene loginScene = new Scene(root, 350, 450);
         stage.setTitle("Login");
         stage.setScene(loginScene);
         stage.show();
-
     }
 
     @FXML
     public void handleRegistrationButton(ActionEvent event) throws IOException {
-
         Parent root = FXMLLoader.load(getClass().getResource("registration/registration-view.fxml"));
         Stage stage = (Stage)registrationButton.getScene().getWindow();
-        Scene registrationScene = new Scene(root, 350, 450);
+        Scene registrationScene = new Scene(root, 350, 700);
         stage.setTitle("Create Account");
         stage.setScene(registrationScene);
         stage.show();
-
     }
 
 }
