@@ -7,12 +7,14 @@ import com.ehealthsystem.primary.PrimaryController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 
@@ -84,6 +86,10 @@ public class LoginController {
         stage.setTitle("E-Health System");
         stage.setScene(primaryScene);
         stage.show();
+
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
+        stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
     }
 
     public boolean validateCredentials() throws IOException, SQLException {
