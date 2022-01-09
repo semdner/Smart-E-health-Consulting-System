@@ -121,7 +121,6 @@ public class Database {
      * @return whether password is correct
      */
     public static boolean checkPassword(String email, String password) throws SQLException {
-        init();
         PreparedStatement statement = connection.prepareStatement("SELECT password FROM user WHERE email = ?");
         statement.setString(1, email);
         ResultSet rs = statement.executeQuery();
@@ -140,7 +139,6 @@ public class Database {
      * @return id of inserted row
      */
     public static int insert(String tableName, Object[][] parameters) throws SQLException {
-        init();
         String query = "INSERT INTO <tableName> (<names>) VALUES (<values>)".replace("<tableName>", tableName);
 
         //add parameter names

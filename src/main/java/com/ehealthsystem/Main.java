@@ -34,7 +34,7 @@ public class Main extends Application {
         primaryStage.setScene(mainScene);
         primaryStage.show();
 
-        Database.close();
+        //Database.close();
     }
 
     public static void main(String[] args) throws SQLException {
