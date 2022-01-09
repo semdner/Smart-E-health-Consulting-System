@@ -6,13 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-import com.ehealthsystem.registration.Registration;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import org.w3c.dom.Text;
 
 import java.net.URL;
-import java.security.Key;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
