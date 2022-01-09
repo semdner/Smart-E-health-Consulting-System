@@ -244,7 +244,7 @@ public class Database {
         } else if (value instanceof LocalDate) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
             String date = ((LocalDate)value).format(formatter);
-            statement.setString(i+1, (String)date);
+            statement.setString(i+1, date);
         } else {
             statement.setInt(i+1, (Integer) value);
         }
