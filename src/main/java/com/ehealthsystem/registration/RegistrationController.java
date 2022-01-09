@@ -1,13 +1,20 @@
 package com.ehealthsystem.registration;
 
+import com.ehealthsystem.login.LoginController;
 import com.ehealthsystem.user.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -57,6 +64,9 @@ public class RegistrationController implements Initializable {
     @FXML
     Label errorLabel;
 
+    @FXML
+    Label loginLabel;
+
 
     /**
      * fist method called when scene is switched.
@@ -76,7 +86,7 @@ public class RegistrationController implements Initializable {
      * missing for registration
      * @param event event the Button reacts to
      */
-    public void handleRegistrationButton(ActionEvent event) throws SQLException {
+    public void handleRegistrationButton(ActionEvent event) throws IOException, SQLException {
         if(validateUsername() && validateEmail() && validateFirstname() && validateLastname() && validateStreet() && validateNumber() && validateZip() && validateBirthday() && validateGender() && validatePasswords()) {
             User newUser = new User(usernameTextField.getText(),
                                     emailTextField.getText(),
@@ -90,6 +100,13 @@ public class RegistrationController implements Initializable {
                                     passwordField.getText(),
                                     privateInsurancCheckBox.isSelected(),
                                     true);
+
+            Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/login/login-view.fxml"));
+            Stage stage = (Stage)loginLabel.getScene().getWindow();
+            Scene loginScene = new Scene(root, 350, 450);
+            stage.setTitle("Login");
+            stage.setScene(loginScene);
+            stage.show();
         } else {
             errorLabel.setText("Sign up information wrong or missing");
             errorLabel.setVisible(true);
@@ -262,6 +279,21 @@ public class RegistrationController implements Initializable {
             errorLabel.setVisible(true);
             repeatPasswordField.setStyle("-fx-control-inner-background: #ffb3b3;");
         }
+    }
+
+    /**
+     * Method called when Login Label is pressed.
+     * Used to check to switch the scene to the login screen.
+     * @param event
+     * @throws IOException
+     */
+    public void handleLoginLabel(MouseEvent event) throws IOException  {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/login/login-view.fxml"));
+        Stage stage = (Stage)loginLabel.getScene().getWindow();
+        Scene loginScene = new Scene(root, 350, 450);
+        stage.setTitle("Login");
+        stage.setScene(loginScene);
+        stage.show();
     }
 
     /**
