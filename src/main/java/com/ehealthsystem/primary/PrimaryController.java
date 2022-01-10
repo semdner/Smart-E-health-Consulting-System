@@ -80,7 +80,7 @@ public class PrimaryController implements Initializable {
      * @param email
      * @throws SQLException
      */
-    public void loadUser(String email) throws SQLException {
+    private void loadUser(String email) throws SQLException {
         User currentUser = Database.getUserFromEmail(email);
         setUsernameLabel(currentUser.getUsername());
         setEmailLabel(currentUser.getMail());
@@ -94,44 +94,44 @@ public class PrimaryController implements Initializable {
         setPrivateInsuranceLabel(currentUser.isPrivateInsurance());
     }
 
-    public void setUsernameLabel(String username) {
+    private void setUsernameLabel(String username) {
         usernameLabel.setText(username);
     }
 
-    public void setEmailLabel(String email) {
+    private void setEmailLabel(String email) {
         emailLabel.setText(email);
     }
 
-    public void setFirstNameLabel(String firstName) {
+    private void setFirstNameLabel(String firstName) {
         firstNameLabel.setText(firstName);
     }
 
-    public void setLastNameLabel(String lastName) {
+    private void setLastNameLabel(String lastName) {
         lastNameLabel.setText(lastName);
     }
 
-    public void setStreetLabel(String street) {
+    private void setStreetLabel(String street) {
         streetLabel.setText(street);
     }
 
-    public void setHouseNoLabel(String houseNo) {
+    private void setHouseNoLabel(String houseNo) {
         houseNoLabel.setText(houseNo);
     }
 
-    public void setZipLabel(int zip) {
+    private void setZipLabel(int zip) {
         zipLabel.setText(String.valueOf(zip));
     }
 
-    public void setBirthdayLabel(LocalDate birthday) {
+    private void setBirthdayLabel(LocalDate birthday) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         birthdayLabel.setText(birthday.format(formatter));
     }
 
-    public void setGenderLabel(String gender) {
+    private void setGenderLabel(String gender) {
         genderLabel.setText(gender);
     }
 
-    public void setPrivateInsuranceLabel(boolean privateInsurance) {
+    private void setPrivateInsuranceLabel(boolean privateInsurance) {
         if(privateInsurance) {
             privateInsuranceLabel.setText("yes");
         } else {
@@ -147,6 +147,16 @@ public class PrimaryController implements Initializable {
      */
     public void handleMakeAppointmentButton(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointment1-view.fxml"));
+        Stage stage = (Stage)makeAppointmentButton1.getScene().getWindow();
+        Scene primaryScene = new Scene(root, 1000, 600);
+        stage.setTitle("make appointment");
+        stage.setScene(primaryScene);
+        stage.show();
+    }
+
+    public void handleEditButton(ActionEvent event) throws IOException {
+        PrimaryEditController.setEmail(email);
+        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-edit-view.fxml"));
         Stage stage = (Stage)makeAppointmentButton1.getScene().getWindow();
         Scene primaryScene = new Scene(root, 1000, 600);
         stage.setTitle("make appointment");
