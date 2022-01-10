@@ -145,11 +145,7 @@ public class RegistrationController implements Initializable {
      * @param event KeyEvent the Textbox reacts to
      */
     public void handleEmail(KeyEvent event) {
-        String email = emailTextField.getText();
-        Pattern emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = emailPat.matcher(email);
-
-        if(matcher.find()) {
+        if(validateEmail()) {
             errorLabel.setVisible(false);
             normalBackground(emailTextField);
         } else {
@@ -164,12 +160,12 @@ public class RegistrationController implements Initializable {
      * @param event KeyEvent the Textbox reacts to
      */
     public void handleFirstName(KeyEvent event) {
-        if(firstNameTextField.getText().isBlank()) {
-            showError("first name cannot be blank");
-            redBackground(firstNameTextField);
-        } else {
+        if(validateFirstname()) {
             errorLabel.setVisible(false);
             normalBackground(firstNameTextField);
+        } else {
+            showError("first name cannot be blank");
+            redBackground(firstNameTextField);
         }
     }
 
@@ -179,12 +175,12 @@ public class RegistrationController implements Initializable {
      * @param event KeyEvent the Textbox reacts to
      */
     public void handleLastName(KeyEvent event) {
-        if(lastNameTextField.getText().isBlank()) {
-            showError("last name cannot be blank");
-            redBackground(lastNameTextField);
-        } else {
+        if(validateLastname()) {
             errorLabel.setVisible(false);
             normalBackground(lastNameTextField);
+        } else {
+            showError("last name cannot be blank");
+            redBackground(lastNameTextField);
         }
     }
 
@@ -194,12 +190,12 @@ public class RegistrationController implements Initializable {
      * @param event KeyEvent the Textbox reacts to
      */
     public void handleStreet(KeyEvent event) {
-        if(streetTextField.getText().isBlank()) {
-            showError("street cannot be blank");
-            redBackground(streetTextField);
-        } else {
+        if(validateStreet()) {
             errorLabel.setVisible(false);
             normalBackground(streetTextField);
+        } else {
+            showError("street cannot be blank");
+            redBackground(streetTextField);
         }
     }
 
