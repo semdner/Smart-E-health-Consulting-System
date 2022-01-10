@@ -2,15 +2,18 @@ package com.ehealthsystem.primary;
 
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.user.User;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -48,6 +51,12 @@ public class PrimaryEditController implements Initializable {
 
     @FXML
     CheckBox privateInsuranceCheckBox;
+
+    @FXML
+    Button cancelButton;
+
+    @FXML
+    Button saveButton;
 
     static String email;
 
@@ -118,6 +127,16 @@ public class PrimaryEditController implements Initializable {
         } else {
             privateInsuranceCheckBox.setSelected(false);
         }
+    }
+
+    public void handleCancelButton(ActionEvent event) throws IOException {
+        PrimaryController.setEmail(emailTextField.getText());
+        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-view.fxml"));
+        Stage stage = (Stage)cancelButton.getScene().getWindow();
+        Scene primaryScene = new Scene(root, 1000, 600);
+        stage.setTitle("E-Health System");
+        stage.setScene(primaryScene);
+        stage.show();
     }
 
     public static void setEmail(String loginEmail) {

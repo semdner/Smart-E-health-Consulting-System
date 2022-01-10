@@ -122,8 +122,8 @@
                   <TextField fx:id="houseNoTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <TextField fx:id="zipTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <CheckBox fx:id="privateInsuranceCheckBox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                  <ChoiceBox fx:id="genderBox" prefHeight="25.0" prefWidth="370.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <DatePicker fx:id="birthdayPicker" prefHeight="25.0" prefWidth="370.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <ChoiceBox fx:id="genderBox" minWidth="0.0" prefHeight="25.0" prefWidth="365.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <DatePicker fx:id="birthdayPicker" prefHeight="25.0" prefWidth="365.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                </children>
             </GridPane>
             <Label layoutX="10.0" layoutY="11.0" text="User information" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="590.8" AnchorPane.topAnchor="5.0">
@@ -132,7 +132,7 @@
                </font>
             </Label>
             <Separator layoutX="10.0" layoutY="40.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="590.0" AnchorPane.topAnchor="35.0" />
-            <Button fx:id="cancelButton" layoutX="21.0" layoutY="536.0" mnemonicParsing="false" prefWidth="60.0" text="cancel" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+            <Button fx:id="cancelButton" layoutX="21.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleCancelButton" prefWidth="60.0" text="cancel" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
             <Button fx:id="saveButton" layoutX="70.0" layoutY="540.0" mnemonicParsing="false" prefWidth="60.0" text="save" AnchorPane.leftAnchor="80.0" />
          </children></AnchorPane>
    </center>
