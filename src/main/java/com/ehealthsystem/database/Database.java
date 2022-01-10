@@ -61,7 +61,7 @@ public class Database {
         statement.execute(ResourceReader.getResourceString("database/insertIntoDisease.sql"));
 
         //Insert admin user
-        String query = "INSERT INTO users (username, password) VALUES ('admin', ?)";
+        String query = "INSERT INTO user (username, password) VALUES ('admin', ?)";
         PreparedStatement adminInsert = connection.prepareStatement(query);
         adminInsert.setString(1, hashPassword(initialAdminPassword));
         adminInsert.execute();
