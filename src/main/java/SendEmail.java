@@ -29,6 +29,16 @@ public class SendEmail {
         // Body-Part dem Multipart-Wrapper hinzufügen
         multipart.addBodyPart(messageBodyPart);
         // Message fertigstellen, indem sie mit dem Multipart-Content ausgestattet wird
+
+        /*
+        messageBodyPart = new MimeBodyPart();
+        String filename = "file.txt";
+        DataSource source = new FileDataSource(filename);
+        messageBodyPart.setDataHandler(new DataHandler(source));
+        messageBodyPart.setFileName(filename);
+        multipart.addBodyPart(messageBodyPart);
+        */
+
         message.setContent(multipart);
 
         return message;
