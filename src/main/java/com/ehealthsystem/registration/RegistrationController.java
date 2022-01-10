@@ -89,6 +89,10 @@ public class RegistrationController implements Initializable {
         field.setStyle("-fx-control-inner-background: #ffb3b3;");
     }
 
+    private void normalBackground(TextField field) {
+        field.setStyle("-fx-control-inner-background: #cce6ff;");
+    }
+
     /**
      * Method called when Button is pressed.
      * Used to check if values are wrong or
@@ -131,7 +135,7 @@ public class RegistrationController implements Initializable {
             redBackground(usernameTextField);
         } else {
             errorLabel.setVisible(false);
-            usernameTextField.setStyle("-fx-control-inner-background: #cce6ff;");
+            normalBackground(usernameTextField);
         }
     }
 
@@ -147,7 +151,7 @@ public class RegistrationController implements Initializable {
 
         if(matcher.find()) {
             errorLabel.setVisible(false);
-            emailTextField.setStyle("-fx-control-inner-background: #cce6ff;");
+            normalBackground(emailTextField);
         } else {
             showError("Invalid email format");
             redBackground(emailTextField);
@@ -165,7 +169,7 @@ public class RegistrationController implements Initializable {
             redBackground(firstNameTextField);
         } else {
             errorLabel.setVisible(false);
-            firstNameTextField.setStyle("-fx-control-inner-background: #cce6ff;");
+            normalBackground(firstNameTextField);
         }
     }
 
@@ -180,7 +184,7 @@ public class RegistrationController implements Initializable {
             redBackground(lastNameTextField);
         } else {
             errorLabel.setVisible(false);
-            lastNameTextField.setStyle("-fx-control-inner-background: #cce6ff;");
+            normalBackground(lastNameTextField);
         }
     }
 
@@ -195,7 +199,7 @@ public class RegistrationController implements Initializable {
             redBackground(streetTextField);
         } else {
             errorLabel.setVisible(false);
-            streetTextField.setStyle("-fx-control-inner-background: #cce6ff;");
+            normalBackground(streetTextField);
         }
     }
 
@@ -216,7 +220,7 @@ public class RegistrationController implements Initializable {
 
         if(matcher.find()) {
             errorLabel.setVisible(false);
-            numberTextField.setStyle("-fx-control-inner-background: #cce6ff;");
+            normalBackground(numberTextField);
         } else {
             showError("invalid house number");
             redBackground(numberTextField);
@@ -235,7 +239,7 @@ public class RegistrationController implements Initializable {
 
         if(matcher.find()) {
             errorLabel.setVisible(false);
-            zipTextField.setStyle("-fx-control-inner-background: #cce6ff;");
+            normalBackground(zipTextField);
         } else {
             showError("Invalid zip format");
             redBackground(zipTextField);
@@ -253,7 +257,7 @@ public class RegistrationController implements Initializable {
             redBackground(passwordField);
         } else {
             errorLabel.setVisible(false);
-            passwordField.setStyle("-fx-control-inner-background: #cce6ff;");
+            normalBackground(passwordField);
         }
     }
 
@@ -265,7 +269,7 @@ public class RegistrationController implements Initializable {
     public void handleRepeatPassword(KeyEvent event) {
         if(repeatPasswordField.getText().equals(passwordField.getText())) {
             errorLabel.setVisible(false);
-            repeatPasswordField.setStyle("-fx-control-inner-background: #cce6ff;");
+            normalBackground(repeatPasswordField);
         } else {
             showError("Passwords don't match");
             redBackground(repeatPasswordField);
