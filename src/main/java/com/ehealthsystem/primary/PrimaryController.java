@@ -1,21 +1,150 @@
 package com.ehealthsystem.primary;
 
+import com.ehealthsystem.user.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import com.ehealthsystem.database.Database;
 
-public class PrimaryController {
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
+
+public class PrimaryController implements Initializable{
 
     @FXML
-    public Button makeAppointmentButton1;
-    public Button makeAppointmentButton2;
+    Label usernameLabel;
 
+    @FXML
+    Label emailLabel;
+
+    @FXML
+    Label firstNameLabel;
+
+    @FXML
+    Label lastNameLabel;
+
+    @FXML
+    Label streetLabel;
+
+    @FXML
+    Label houseNoLabel;
+
+    @FXML
+    Label zipLabel;
+
+    @FXML
+    Label birthdayLabel;
+
+    @FXML
+    Label genderLabel;
+
+    @FXML
+    Label privateInsuranceLabel;
+
+    @FXML
+    Button makeAppointmentButton1;
+
+    @FXML
+    Button makeAppointmentButton2;
+
+    static String email;
+
+    /**
+     * First method called when scene is switched.
+     * Used to set the user information form the database.
+     * @param url
+     * @param resourceBundle
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            loadUser(email);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     * @param email
+     * @throws SQLException
+     */
+    public void loadUser(String email) throws SQLException {
+        User currentUser = Database.getUserFromEmail(email);
+        setUsernameLabel(currentUser.getUsername());
+        setEmailLabel(currentUser.getMail());
+        setFirstNameLabel(currentUser.getFirstName());
+        setLastNameLabel(currentUser.getLastName());
+        setStreetLabel(currentUser.getStreet());
+        setHouseNoLabel(currentUser.getHouseNo());
+        setZipLabel(currentUser.getZipCode());
+        setBirthdayLabel(currentUser.getBirthDate());
+        setGenderLabel(currentUser.getGender());
+        setPrivateInsuranceLabel(currentUser.isPrivateInsurance());
+    }
+
+    public void setUsernameLabel(String username) {
+        usernameLabel.setText(username);
+    }
+
+    public void setEmailLabel(String email) {
+        emailLabel.setText(email);
+    }
+
+    public void setFirstNameLabel(String firstName) {
+        firstNameLabel.setText(firstName);
+    }
+
+    public void setLastNameLabel(String lastName) {
+        lastNameLabel.setText(lastName);
+    }
+
+    public void setStreetLabel(String street) {
+        streetLabel.setText(street);
+    }
+
+    public void setHouseNoLabel(String houseNo) {
+        houseNoLabel.setText(houseNo);
+    }
+
+    public void setZipLabel(int zip) {
+        zipLabel.setText(String.valueOf(zip));
+    }
+
+    public void setBirthdayLabel(LocalDate birthday) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyyy");
+        birthdayLabel.setText(birthday.format(formatter));
+    }
+
+    public void setGenderLabel(String gender) {
+        genderLabel.setText(gender);
+    }
+
+    public void setPrivateInsuranceLabel(boolean privateInsurance) {
+        if(privateInsurance) {
+            privateInsuranceLabel.setText("yes");
+        } else {
+            privateInsuranceLabel.setText("no");
+        }
+    }
+
+    /**
+     * Method executed when one of the make appointment Buttons are pressed.
+     * Used to switch scene to appointment form.
+     * @param event
+     * @throws IOException
+     */
     public void handleMakeAppointmentButton(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointment1-view.fxml"));
         Stage stage = (Stage)makeAppointmentButton1.getScene().getWindow();
@@ -25,4 +154,7 @@ public class PrimaryController {
         stage.show();
     }
 
+    public static void setString(String loginEmail) {
+        email = loginEmail;
+    }
 }
