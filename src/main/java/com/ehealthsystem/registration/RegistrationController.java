@@ -3,9 +3,11 @@ package com.ehealthsystem.registration;
 import com.ehealthsystem.login.LoginController;
 import com.ehealthsystem.user.User;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -113,7 +115,7 @@ public class RegistrationController implements Initializable {
                                     passwordField.getText(),
                                     privateInsurancCheckBox.isSelected(),
                                     true);
-            switchToLoginView();
+            switchToLoginView(event);
         } else {
             showError("Sign up information wrong or missing");
         }
@@ -280,12 +282,12 @@ public class RegistrationController implements Initializable {
      * @throws IOException
      */
     public void handleLoginLabel(MouseEvent event) throws IOException  {
-        switchToLoginView();
+        switchToLoginView(event);
     }
 
-    private void switchToLoginView() throws IOException {
+    private void switchToLoginView(Event event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/login/login-view.fxml"));
-        Stage stage = (Stage)loginLabel.getScene().getWindow();
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene loginScene = new Scene(root, 350, 450);
         stage.setTitle("Login");
         stage.setScene(loginScene);
