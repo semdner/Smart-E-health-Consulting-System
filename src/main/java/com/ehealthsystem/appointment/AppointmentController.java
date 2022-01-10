@@ -3,6 +3,7 @@ package com.ehealthsystem.appointment;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -36,7 +37,7 @@ public class AppointmentController {
 
     public void handleCancelButton(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-view.fxml"));
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene primaryScene = new Scene(root, 1000, 600);
         stage.setTitle("E-Health-System");
         stage.setScene(primaryScene);
@@ -65,7 +66,7 @@ public class AppointmentController {
      */
     public void handleContinueButton(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointment2-view.fxml"));
-        Stage stage = (Stage) continueButton.getScene().getWindow();
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene primaryScene = new Scene(root, 1000, 600);
         stage.setTitle("make appointment");
         stage.setScene(primaryScene);

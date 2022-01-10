@@ -3,9 +3,11 @@ package com.ehealthsystem.registration;
 import com.ehealthsystem.login.LoginController;
 import com.ehealthsystem.user.User;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -80,6 +82,19 @@ public class RegistrationController implements Initializable {
         genderBox.getItems().addAll(choices);
     }
 
+    private void showError(String error) {
+        errorLabel.setText(error);
+        errorLabel.setVisible(true);
+    }
+
+    private void redBackground(TextField field) {
+        field.setStyle("-fx-control-inner-background: #ffb3b3;");
+    }
+
+    private void normalBackground(TextField field) {
+        field.setStyle("-fx-control-inner-background: #cce6ff;");
+    }
+
     /**
      * Method called when Button is pressed.
      * Used to check if values are wrong or
@@ -100,10 +115,9 @@ public class RegistrationController implements Initializable {
                                     passwordField.getText(),
                                     privateInsurancCheckBox.isSelected(),
                                     true);
-            switchToLoginView();
+            switchToLoginView(event);
         } else {
-            errorLabel.setText("Sign up information wrong or missing");
-            errorLabel.setVisible(true);
+            showError("Sign up information wrong or missing");
         }
     }
 
@@ -114,18 +128,16 @@ public class RegistrationController implements Initializable {
      */
     public void handleUsername(KeyEvent event) {
         if(usernameTextField.getText().isBlank()) {
-            errorLabel.setText("username cannot be blank");
-            errorLabel.setVisible(true);
-            usernameTextField.setStyle("-fx-control-inner-background: #ffb3b3;");
+            showError("username cannot be blank");
+            redBackground(usernameTextField);
         }
 
         if(usernameTextField.getText().length() < 5) {
-            errorLabel.setText("username needs to be at least 8 characters long");
-            errorLabel.setVisible(true);
-            usernameTextField.setStyle("-fx-control-inner-background: #ffb3b3;");
+            showError("username needs to be at least 5 characters long");
+            redBackground(usernameTextField);
         } else {
             errorLabel.setVisible(false);
-            usernameTextField.setStyle("-fx-control-inner-background: #cce6ff;");
+            normalBackground(usernameTextField);
         }
     }
 
@@ -135,17 +147,12 @@ public class RegistrationController implements Initializable {
      * @param event KeyEvent the Textbox reacts to
      */
     public void handleEmail(KeyEvent event) {
-        String email = emailTextField.getText();
-        Pattern emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = emailPat.matcher(email);
-
-        if(matcher.find()) {
+        if(validateEmail()) {
             errorLabel.setVisible(false);
-            emailTextField.setStyle("-fx-control-inner-background: #cce6ff;");
+            normalBackground(emailTextField);
         } else {
-            errorLabel.setText("Invalid email format");
-            errorLabel.setVisible(true);
-            emailTextField.setStyle("-fx-control-inner-background: #ffb3b3;");
+            showError("Invalid email format");
+            redBackground(emailTextField);
         }
     }
 
@@ -155,13 +162,12 @@ public class RegistrationController implements Initializable {
      * @param event KeyEvent the Textbox reacts to
      */
     public void handleFirstName(KeyEvent event) {
-        if(firstNameTextField.getText().isBlank()) {
-            errorLabel.setText("first name cannot be blank");
-            errorLabel.setVisible(true);
-            firstNameTextField.setStyle("-fx-control-inner-background: #ffb3b3;");
-        } else {
+        if(validateFirstname()) {
             errorLabel.setVisible(false);
-            firstNameTextField.setStyle("-fx-control-inner-background: #cce6ff;");
+            normalBackground(firstNameTextField);
+        } else {
+            showError("first name cannot be blank");
+            redBackground(firstNameTextField);
         }
     }
 
@@ -171,13 +177,12 @@ public class RegistrationController implements Initializable {
      * @param event KeyEvent the Textbox reacts to
      */
     public void handleLastName(KeyEvent event) {
-        if(lastNameTextField.getText().isBlank()) {
-            errorLabel.setText("last name cannot be blank");
-            errorLabel.setVisible(true);
-            lastNameTextField.setStyle("-fx-control-inner-background: #ffb3b3;");
-        } else {
+        if(validateLastname()) {
             errorLabel.setVisible(false);
-            lastNameTextField.setStyle("-fx-control-inner-background: #cce6ff;");
+            normalBackground(lastNameTextField);
+        } else {
+            showError("last name cannot be blank");
+            redBackground(lastNameTextField);
         }
     }
 
@@ -187,13 +192,12 @@ public class RegistrationController implements Initializable {
      * @param event KeyEvent the Textbox reacts to
      */
     public void handleStreet(KeyEvent event) {
-        if(streetTextField.getText().isBlank()) {
-            errorLabel.setText("street cannot be blank");
-            errorLabel.setVisible(true);
-            streetTextField.setStyle("-fx-control-inner-background: #ffb3b3;");
-        } else {
+        if(validateStreet()) {
             errorLabel.setVisible(false);
-            streetTextField.setStyle("-fx-control-inner-background: #cce6ff;");
+            normalBackground(streetTextField);
+        } else {
+            showError("street cannot be blank");
+            redBackground(streetTextField);
         }
     }
 
@@ -208,18 +212,17 @@ public class RegistrationController implements Initializable {
         Matcher matcher = numberPat.matcher(number);
 
         if(numberTextField.getText().isBlank()) {
-            errorLabel.setText("number cannot be blank");
-            errorLabel.setVisible(true);
-            numberTextField.setStyle("-fx-control-inner-background: #ffb3b3;");
+            showError("number cannot be blank");
+            redBackground(numberTextField);
+            return;
         }
 
         if(matcher.find()) {
             errorLabel.setVisible(false);
-            numberTextField.setStyle("-fx-control-inner-background: #cce6ff;");
+            normalBackground(numberTextField);
         } else {
-            errorLabel.setText("invalid house number");
-            errorLabel.setVisible(true);
-            numberTextField.setStyle("-fx-control-inner-background: #ffb3b3;");
+            showError("invalid house number");
+            redBackground(numberTextField);
         }
     }
 
@@ -235,11 +238,10 @@ public class RegistrationController implements Initializable {
 
         if(matcher.find()) {
             errorLabel.setVisible(false);
-            zipTextField.setStyle("-fx-control-inner-background: #cce6ff;");
+            normalBackground(zipTextField);
         } else {
-            errorLabel.setText("Invalid zip format");
-            errorLabel.setVisible(true);
-            zipTextField.setStyle("-fx-control-inner-background: #ffb3b3;");
+            showError("Invalid zip format");
+            redBackground(zipTextField);
         }
     }
 
@@ -250,12 +252,11 @@ public class RegistrationController implements Initializable {
      */
     public void handlePassword(KeyEvent event) {
         if(passwordField.getText().length() < 8) {
-            errorLabel.setText("Password needs to be at least 8 characters");
-            errorLabel.setVisible(true);
-            passwordField.setStyle("-fx-control-inner-background: #ffb3b3;");
+            showError("Password needs to be at least 8 characters");
+            redBackground(passwordField);
         } else {
             errorLabel.setVisible(false);
-            passwordField.setStyle("-fx-control-inner-background: #cce6ff;");
+            normalBackground(passwordField);
         }
     }
 
@@ -267,11 +268,10 @@ public class RegistrationController implements Initializable {
     public void handleRepeatPassword(KeyEvent event) {
         if(repeatPasswordField.getText().equals(passwordField.getText())) {
             errorLabel.setVisible(false);
-            repeatPasswordField.setStyle("-fx-control-inner-background: #cce6ff;");
+            normalBackground(repeatPasswordField);
         } else {
-            errorLabel.setText("Passwords don't match");
-            errorLabel.setVisible(true);
-            repeatPasswordField.setStyle("-fx-control-inner-background: #ffb3b3;");
+            showError("Passwords don't match");
+            redBackground(repeatPasswordField);
         }
     }
 
@@ -282,12 +282,12 @@ public class RegistrationController implements Initializable {
      * @throws IOException
      */
     public void handleLoginLabel(MouseEvent event) throws IOException  {
-        switchToLoginView();
+        switchToLoginView(event);
     }
 
-    private void switchToLoginView() throws IOException {
+    private void switchToLoginView(Event event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/login/login-view.fxml"));
-        Stage stage = (Stage)loginLabel.getScene().getWindow();
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene loginScene = new Scene(root, 350, 450);
         stage.setTitle("Login");
         stage.setScene(loginScene);

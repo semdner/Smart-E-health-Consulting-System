@@ -4,9 +4,11 @@ import com.ehealthsystem.database.Database;
 import com.ehealthsystem.primary.PrimaryController;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -48,7 +50,7 @@ public class LoginController {
     @FXML
     public void handleLoginButton(ActionEvent event) throws IOException, SQLException {
         if (validateEmail() && validatePasswordField() && validateCredentials())
-            loadPrimaryWindow();
+            loadPrimaryWindow(event);
     }
 
     /**
@@ -86,10 +88,10 @@ public class LoginController {
      * Method called to switch scene to primary window after successfully logged in.
      * @throws IOException FXMLLOADER can't find file for switching scene
      */
-    private void loadPrimaryWindow() throws IOException {
+    private void loadPrimaryWindow(Event event) throws IOException {
         PrimaryController.setEmail(emailTextField.getText());
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-view.fxml"));
-        Stage stage = (Stage)loginButton.getScene().getWindow();
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene primaryScene = new Scene(root, 1000, 600);
         stage.setTitle("E-Health System");
         stage.setScene(primaryScene);
@@ -123,7 +125,7 @@ public class LoginController {
      */
     public void handleRegistrationLabel(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/registration/registration-view.fxml"));
-        Stage stage = (Stage)registrationLabel.getScene().getWindow();
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene primaryScene = new Scene(root, 350, 700);
         stage.setTitle("Create Account");
         stage.setScene(primaryScene);
