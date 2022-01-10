@@ -212,6 +212,7 @@ public class RegistrationController implements Initializable {
         if(numberTextField.getText().isBlank()) {
             showError("number cannot be blank");
             redBackground(numberTextField);
+            return;
         }
 
         if(matcher.find()) {
