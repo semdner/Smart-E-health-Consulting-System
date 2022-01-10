@@ -131,7 +131,7 @@ public class RegistrationController implements Initializable {
         }
 
         if(usernameTextField.getText().length() < 5) {
-            showError("username needs to be at least 8 characters long");
+            showError("username needs to be at least 5 characters long");
             redBackground(usernameTextField);
         } else {
             errorLabel.setVisible(false);
