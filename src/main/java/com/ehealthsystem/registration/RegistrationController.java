@@ -80,6 +80,11 @@ public class RegistrationController implements Initializable {
         genderBox.getItems().addAll(choices);
     }
 
+    private void showError(String error) {
+        errorLabel.setText(error);
+        errorLabel.setVisible(true);
+    }
+
     /**
      * Method called when Button is pressed.
      * Used to check if values are wrong or
@@ -102,8 +107,7 @@ public class RegistrationController implements Initializable {
                                     true);
             switchToLoginView();
         } else {
-            errorLabel.setText("Sign up information wrong or missing");
-            errorLabel.setVisible(true);
+            showError("Sign up information wrong or missing");
         }
     }
 
@@ -114,14 +118,12 @@ public class RegistrationController implements Initializable {
      */
     public void handleUsername(KeyEvent event) {
         if(usernameTextField.getText().isBlank()) {
-            errorLabel.setText("username cannot be blank");
-            errorLabel.setVisible(true);
+            showError("username cannot be blank");
             usernameTextField.setStyle("-fx-control-inner-background: #ffb3b3;");
         }
 
         if(usernameTextField.getText().length() < 5) {
-            errorLabel.setText("username needs to be at least 8 characters long");
-            errorLabel.setVisible(true);
+            showError("username needs to be at least 8 characters long");
             usernameTextField.setStyle("-fx-control-inner-background: #ffb3b3;");
         } else {
             errorLabel.setVisible(false);
@@ -143,8 +145,7 @@ public class RegistrationController implements Initializable {
             errorLabel.setVisible(false);
             emailTextField.setStyle("-fx-control-inner-background: #cce6ff;");
         } else {
-            errorLabel.setText("Invalid email format");
-            errorLabel.setVisible(true);
+            showError("Invalid email format");
             emailTextField.setStyle("-fx-control-inner-background: #ffb3b3;");
         }
     }
@@ -156,8 +157,7 @@ public class RegistrationController implements Initializable {
      */
     public void handleFirstName(KeyEvent event) {
         if(firstNameTextField.getText().isBlank()) {
-            errorLabel.setText("first name cannot be blank");
-            errorLabel.setVisible(true);
+            showError("first name cannot be blank");
             firstNameTextField.setStyle("-fx-control-inner-background: #ffb3b3;");
         } else {
             errorLabel.setVisible(false);
@@ -172,8 +172,7 @@ public class RegistrationController implements Initializable {
      */
     public void handleLastName(KeyEvent event) {
         if(lastNameTextField.getText().isBlank()) {
-            errorLabel.setText("last name cannot be blank");
-            errorLabel.setVisible(true);
+            showError("last name cannot be blank");
             lastNameTextField.setStyle("-fx-control-inner-background: #ffb3b3;");
         } else {
             errorLabel.setVisible(false);
@@ -188,8 +187,7 @@ public class RegistrationController implements Initializable {
      */
     public void handleStreet(KeyEvent event) {
         if(streetTextField.getText().isBlank()) {
-            errorLabel.setText("street cannot be blank");
-            errorLabel.setVisible(true);
+            showError("street cannot be blank");
             streetTextField.setStyle("-fx-control-inner-background: #ffb3b3;");
         } else {
             errorLabel.setVisible(false);
@@ -208,8 +206,7 @@ public class RegistrationController implements Initializable {
         Matcher matcher = numberPat.matcher(number);
 
         if(numberTextField.getText().isBlank()) {
-            errorLabel.setText("number cannot be blank");
-            errorLabel.setVisible(true);
+            showError("number cannot be blank");
             numberTextField.setStyle("-fx-control-inner-background: #ffb3b3;");
         }
 
@@ -217,8 +214,7 @@ public class RegistrationController implements Initializable {
             errorLabel.setVisible(false);
             numberTextField.setStyle("-fx-control-inner-background: #cce6ff;");
         } else {
-            errorLabel.setText("invalid house number");
-            errorLabel.setVisible(true);
+            showError("invalid house number");
             numberTextField.setStyle("-fx-control-inner-background: #ffb3b3;");
         }
     }
@@ -237,8 +233,7 @@ public class RegistrationController implements Initializable {
             errorLabel.setVisible(false);
             zipTextField.setStyle("-fx-control-inner-background: #cce6ff;");
         } else {
-            errorLabel.setText("Invalid zip format");
-            errorLabel.setVisible(true);
+            showError("Invalid zip format");
             zipTextField.setStyle("-fx-control-inner-background: #ffb3b3;");
         }
     }
@@ -250,8 +245,7 @@ public class RegistrationController implements Initializable {
      */
     public void handlePassword(KeyEvent event) {
         if(passwordField.getText().length() < 8) {
-            errorLabel.setText("Password needs to be at least 8 characters");
-            errorLabel.setVisible(true);
+            showError("Password needs to be at least 8 characters");
             passwordField.setStyle("-fx-control-inner-background: #ffb3b3;");
         } else {
             errorLabel.setVisible(false);
@@ -269,8 +263,7 @@ public class RegistrationController implements Initializable {
             errorLabel.setVisible(false);
             repeatPasswordField.setStyle("-fx-control-inner-background: #cce6ff;");
         } else {
-            errorLabel.setText("Passwords don't match");
-            errorLabel.setVisible(true);
+            showError("Passwords don't match");
             repeatPasswordField.setStyle("-fx-control-inner-background: #ffb3b3;");
         }
     }
