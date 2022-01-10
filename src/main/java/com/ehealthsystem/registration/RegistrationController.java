@@ -61,7 +61,7 @@ public class RegistrationController implements Initializable {
     PasswordField repeatPasswordField;
 
     @FXML
-    CheckBox privateInsurancCheckBox;
+    CheckBox privateInsuranceCheckBox;
 
     @FXML
     Label errorLabel;
@@ -111,9 +111,9 @@ public class RegistrationController implements Initializable {
                                     numberTextField.getText(),
                                     Integer.parseInt(zipTextField.getText()),
                                     birthdayPicker.getValue(),
-                                    genderBox.getValue(),
+                                    (String) genderBox.getValue(),
                                     passwordField.getText(),
-                                    privateInsurancCheckBox.isSelected(),
+                                    privateInsuranceCheckBox.isSelected(),
                                     true);
             switchToLoginView(event);
         } else {

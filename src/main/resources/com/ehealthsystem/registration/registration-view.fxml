@@ -43,7 +43,7 @@
             <ChoiceBox fx:id="genderBox" layoutX="99.0" layoutY="296.0" prefHeight="25.0" prefWidth="250.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
                 <PasswordField fx:id="passwordField" layoutX="50.0" layoutY="330.0" onKeyTyped="#handlePassword" prefHeight="25.0" prefWidth="250.0" promptText="password" />
             <PasswordField fx:id="repeatPasswordField" layoutX="50.0" layoutY="365.0" onKeyTyped="#handleRepeatPassword" prefHeight="25.0" prefWidth="250.0" promptText="repeat password" />
-            <CheckBox fx:id="privateInsurancCheckBox" layoutX="50.0" layoutY="395.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="250.0" text="private insurance" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+            <CheckBox fx:id="privateInsuranceCheckBox" layoutX="50.0" layoutY="395.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="250.0" text="private insurance" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
                 <Button layoutX="50.0" layoutY="426.0" mnemonicParsing="false" onAction="#handleRegistrationButton" prefWidth="250.0" text="Create Account" />
                 <Separator layoutX="51.0" layoutY="473.0" prefHeight="0.0" prefWidth="250.0" />
                 <Rectangle fill="WHITE" height="12.0" layoutX="163.0" layoutY="468.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="21.0" />
