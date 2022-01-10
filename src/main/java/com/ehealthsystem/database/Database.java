@@ -274,6 +274,19 @@ public class Database {
     }
 
     /**
+     * Get a user object with all user's details loaded from the database
+     * @param email
+     * @return
+     */
+    public static User getUserFromEmail(String email) throws SQLException {
+        String query = "SELECT * FROM user WHERE email = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, email);
+        ResultSet rs = statement.executeQuery();
+        return loadUsersFromResultSetEmail(rs).get(0);
+    }
+
+    /**
      * Helper method to turn result set into array of user objects
      * @param rs resultSet after the query was executed
      * @return
@@ -285,6 +298,37 @@ public class Database {
         {
             String username = rs.getString("username");
             LocalDate birthDate = (username.equals("admin") ? null : LocalDate.of(rs.getInt("birthYear"), rs.getInt("birthMonth"), rs.getInt("birthDay"))); //admin doesn't have a stored birthdate
+
+            User user = new User(
+                    username,
+                    rs.getString("email"),
+                    rs.getString("first_name"),
+                    rs.getString("last_name"),
+                    rs.getString("street"),
+                    rs.getString("number"),
+                    rs.getInt("zip"),
+                    birthDate,
+                    rs.getString("sex"),
+                    rs.getString("password"),
+                    rs.getBoolean("private_insurance"),
+                    false
+            );
+            users.add(user);
+        }
+        return users;
+    }
+
+    private static ArrayList<User> loadUsersFromResultSetEmail(ResultSet rs) throws SQLException {
+        ArrayList<User> users = new ArrayList<>();
+        while (rs.next()) {
+            String username = rs.getString("username");
+            LocalDate birthDate;
+            if (username.equals("admin")) {
+                return null;    //admin doesn't have a stored birthdate
+            } else {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+                birthDate = LocalDate.parse(rs.getString("birthday"), formatter);
+            }
 
             User user = new User(
                     username,
