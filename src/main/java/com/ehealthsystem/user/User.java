@@ -6,6 +6,7 @@ import com.ehealthsystem.database.Database;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class User {
@@ -13,6 +14,10 @@ public class User {
     private int zipCode;
     private LocalDate birthDate;
     private boolean privateInsurance;
+
+    public User() {
+
+    }
 
     /**
      * Creates a new user object representing a row in the database
@@ -76,24 +81,24 @@ public class User {
      * @throws SQLException
      */
     public boolean changePassword(String currentPassword, String newPassword) throws SQLException {
-        if (!Database.checkPassword(username, currentPassword))
+        if (!Database.checkPassword(email, currentPassword))
             return false;
-        setPassword(username, newPassword);
+        setPassword(email, newPassword);
         return true;
     }
 
     /**
      * Set a user's password
      * Used as helper function but also by admin, which is why it's public
-     * @param username
+     * @param email
      * @param password
      * @throws SQLException
      */
-    public void setPassword(String username, String password) throws SQLException {
-        String query = "UPDATE users SET password = ? WHERE username = ?";
+    private void setPassword(String email, String password) throws SQLException {
+        String query = "UPDATE user SET password = ? WHERE email = ?";
         PreparedStatement statement = Database.connection.prepareStatement(query);
         statement.setString(1, Database.hashPassword(password));
-        statement.setString(2, username);
+        statement.setString(2, email);
         statement.execute();
     }
 
@@ -104,19 +109,29 @@ public class User {
      */
     private void update(Object[][] newValues) throws SQLException {
         Database.update(
-                "users",
+                "user",
                 newValues,
                 new Object[][]{{"username", username}}
         );
     }
 
+    public void setUsername(String username) throws SQLException {
+        update(new Object[][]{{"username", username}});
+        this.username = username;
+    }
+
+    public void setEmail(String email) throws SQLException {
+        update(new Object[][]{{"email", email}});
+        this.email = email;
+    }
+
     public void setFirstName(String firstName) throws SQLException {
-        update(new Object[][]{{"firstName", firstName}});
+        update(new Object[][]{{"first_name", firstName}});
         this.firstName = firstName;
     }
 
     public void setLastName(String lastName) throws SQLException {
-        update(new Object[][]{{"lastName", lastName}});
+        update(new Object[][]{{"last_name", lastName}});
         this.lastName = lastName;
     }
 
@@ -126,22 +141,29 @@ public class User {
     }
 
     public void setHouseNo(String houseNo) throws SQLException {
-        update(new Object[][]{{"houseNo", houseNo}});
+        update(new Object[][]{{"number", houseNo}});
         this.houseNo = houseNo;
     }
 
     public void setZipCode(int zipCode) throws SQLException {
-        update(new Object[][]{{"zipCode", zipCode}});
+        update(new Object[][]{{"zip", zipCode}});
         this.zipCode = zipCode;
     }
 
     public void setBirthDate(LocalDate birthDate) throws SQLException {
-        update(new Object[][]{{"birthYear", birthDate.getYear()}, {"birthMonth", birthDate.getMonthValue()}, {"birthDay", birthDate.getDayOfMonth()}});
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        String bd = birthDate.format(formatter);
+        update(new Object[][]{{"birthday", bd}});
         this.birthDate = birthDate;
     }
 
+    public void setGender(String gender) throws SQLException {
+        update(new Object[][]{{"sex", gender}});
+        this.gender = gender;
+    }
+
     public void setPrivateInsurance(boolean privateInsurance) throws SQLException {
-        update(new Object[][]{{"privateInsurance", privateInsurance}});
+        update(new Object[][]{{"private_insurance", privateInsurance}});
         this.privateInsurance = privateInsurance;
     }
 
