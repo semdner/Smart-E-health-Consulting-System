@@ -209,7 +209,7 @@
                               </ScrollPane>
                               <AnchorPane prefHeight="47.0" prefWidth="250.0">
                                  <children>
-                                    <Button fx:id="makeAppointmentButton2" layoutX="67.0" layoutY="11.0" mnemonicParsing="false" text="new appointment" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="10.0" />
+                                    <Button fx:id="makeAppointmentButton2" layoutX="67.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleMakeAppointmentButton" text="new appointment" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="10.0" />
                                  </children>
                               </AnchorPane>
                            </children>
