@@ -20,12 +20,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
-import java.net.URISyntaxException;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,7 +40,8 @@ public class LoginController {
     public Label errorLabel;
 
     /**
-     *
+     * Method called when Login Button is pressed.
+     * Used to validate the filled in information.
      * @param event event that triggered the login button
      * @throws IOException
      * @throws SQLException
@@ -56,6 +52,10 @@ public class LoginController {
             loadPrimaryWindow();
     }
 
+    /**
+     * Method to validate the email format.
+     * @return true if email format filled in matches pattern
+     */
     private boolean validateEmail() {
         String email = emailTextField.getText();
         Pattern emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -70,6 +70,10 @@ public class LoginController {
         }
     }
 
+    /**
+     * Method to validate the Password typed in.
+     * @return true if the password field is filled
+     */
     private boolean validatePasswordField() {
         if (passwordField.getText().isBlank()) {
             errorLabel.setText("Password cannot be blank.");
@@ -79,6 +83,10 @@ public class LoginController {
         return true;
     }
 
+    /**
+     * Method called to switch scene to primary window after successfully logged in.
+     * @throws IOException FXMLLOADER can't find file for switching scene
+     */
     private void loadPrimaryWindow() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-view.fxml"));
         Stage stage = (Stage)loginButton.getScene().getWindow();
@@ -87,12 +95,18 @@ public class LoginController {
         stage.setScene(primaryScene);
         stage.show();
 
+        // center window
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
         stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
     }
 
-    public boolean validateCredentials() throws IOException, SQLException {
+    /**
+     * Method to validate the email and password matches with the email and password in the database
+     * @return true if credentials match the credentials in the database
+     * @throws SQLException
+     */
+    public boolean validateCredentials() throws SQLException {
         if(Database.checkPassword(emailTextField.getText(), passwordField.getText())) {
             return true;
         } else {
@@ -102,7 +116,11 @@ public class LoginController {
         }
     }
 
-    @FXML
+    /**
+     * Method called to switch scene to registration form.
+     * @param event MouseEvent trigged the method
+     * @throws IOException if the FXMLLOADER can't find the scene
+     */
     public void handleRegistrationLabel(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/registration/registration-view.fxml"));
         Stage stage = (Stage)registrationLabel.getScene().getWindow();
@@ -110,7 +128,6 @@ public class LoginController {
         stage.setTitle("Create Account");
         stage.setScene(primaryScene);
         stage.show();
-
     }
 
 }
