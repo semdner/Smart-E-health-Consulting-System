@@ -169,6 +169,10 @@ public class User {
         return houseNo;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
     public int getZipCode() {
         return zipCode;
     }
