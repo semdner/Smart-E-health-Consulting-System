@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class PrimaryController implements Initializable{
+public class PrimaryController implements Initializable {
 
     @FXML
     Label usernameLabel;
@@ -123,7 +123,7 @@ public class PrimaryController implements Initializable{
     }
 
     public void setBirthdayLabel(LocalDate birthday) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         birthdayLabel.setText(birthday.format(formatter));
     }
 
@@ -154,7 +154,7 @@ public class PrimaryController implements Initializable{
         stage.show();
     }
 
-    public static void setString(String loginEmail) {
+    public static void setEmail(String loginEmail) {
         email = loginEmail;
     }
 }

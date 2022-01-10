@@ -1,7 +1,6 @@
 package com.ehealthsystem.login;
 
 import com.ehealthsystem.database.Database;
-import com.ehealthsystem.database.DatabaseController;
 import com.ehealthsystem.primary.PrimaryController;
 
 import javafx.event.ActionEvent;
@@ -88,7 +87,7 @@ public class LoginController {
      * @throws IOException FXMLLOADER can't find file for switching scene
      */
     private void loadPrimaryWindow() throws IOException {
-        PrimaryController.setString(emailTextField.getText());
+        PrimaryController.setEmail(emailTextField.getText());
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-view.fxml"));
         Stage stage = (Stage)loginButton.getScene().getWindow();
         Scene primaryScene = new Scene(root, 1000, 600);
