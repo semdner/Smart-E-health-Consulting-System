@@ -76,6 +76,12 @@ public class PrimaryEditController implements Initializable {
 
     static String email;
 
+    /**
+     * Method called when scene is switched.
+     * Used to set the ChoiceBox choices and to load the user information
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String[] choices = {"male", "female", "other"};
@@ -87,6 +93,12 @@ public class PrimaryEditController implements Initializable {
         }
     }
 
+    /**
+     * Method called when cancel button is pressed.
+     * Return to the primary window without saving edited user information
+     * @param event
+     * @throws IOException
+     */
     public void handleCancelButton(ActionEvent event) throws IOException {
         PrimaryController.setEmail(email);
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-view.fxml"));
@@ -97,6 +109,13 @@ public class PrimaryEditController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Method called when save button is pressed.
+     * Updates the edited user information in the DB
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     public void handleSaveButton(ActionEvent event) throws IOException, SQLException {
         if(oldPasswordField.getText().isBlank() && newPasswordField.getText().isBlank()) {
             updateUserInformation();
@@ -108,6 +127,11 @@ public class PrimaryEditController implements Initializable {
         }
     }
 
+    /**
+     * scene switch to primary scene
+     * @param event
+     * @throws IOException
+     */
     public void loadScene(ActionEvent event) throws IOException {
         PrimaryController.setEmail(emailTextField.getText());
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-view.fxml"));
@@ -118,6 +142,10 @@ public class PrimaryEditController implements Initializable {
         stage.show();
     }
 
+    /**
+     * update user information when save button is pressed
+     * @throws SQLException
+     */
     private void updateUserInformation() throws SQLException {
         updateUsername(usernameTextField.getText());
         updateEmail(emailTextField.getText());
@@ -131,6 +159,11 @@ public class PrimaryEditController implements Initializable {
         updatePrivateInsurance(privateInsuranceCheckBox.isSelected());
     }
 
+    /**
+     * update username when save button is pressed
+     * @param username
+     * @throws SQLException
+     */
     private void updateUsername(String username) throws SQLException {
         if(!usernameTextField.getText().isBlank()) {
             User updateUser = Database.getUserFromEmail(email);
@@ -138,6 +171,11 @@ public class PrimaryEditController implements Initializable {
         }
     }
 
+    /**
+     * update email when save button is pressed
+     * @param updateEmail
+     * @throws SQLException
+     */
     private void updateEmail(String updateEmail) throws SQLException {
         Pattern emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = emailPat.matcher(updateEmail);
@@ -149,6 +187,11 @@ public class PrimaryEditController implements Initializable {
         }
     }
 
+    /**
+     * Update first name when save button is pressed
+     * @param fristName
+     * @throws SQLException
+     */
     private void updateFirstName(String fristName) throws SQLException {
         if(!firstNameTextField.getText().isBlank()) {
             User updateUser = Database.getUserFromEmail(email);
@@ -156,6 +199,11 @@ public class PrimaryEditController implements Initializable {
         }
     }
 
+    /**
+     * Update last name when save button is pressed
+     * @param lastName
+     * @throws SQLException
+     */
     private void updateLastName(String lastName) throws SQLException {
         if(!firstNameTextField.getText().isBlank()) {
             User updateUser = Database.getUserFromEmail(email);
@@ -163,6 +211,11 @@ public class PrimaryEditController implements Initializable {
         }
     }
 
+    /**
+     * Update street when save button is pressed
+     * @param street
+     * @throws SQLException
+     */
     private void updateStreet(String street) throws SQLException {
         if(!streetTextField.getText().isBlank()) {
             User updateUser = Database.getUserFromEmail(email);
@@ -170,6 +223,11 @@ public class PrimaryEditController implements Initializable {
         }
     }
 
+    /**
+     * Update house number when save button is pressed
+     * @param houseNo
+     * @throws SQLException
+     */
     private void updateNumber(String houseNo) throws SQLException {
         if(!streetTextField.getText().isBlank()) {
             User updateUser = Database.getUserFromEmail(email);
@@ -177,6 +235,11 @@ public class PrimaryEditController implements Initializable {
         }
     }
 
+    /**
+     * Update zip when save button is pressed
+     * @param zip
+     * @throws SQLException
+     */
     private void updateZip(String zip) throws SQLException {
         if(!streetTextField.getText().isBlank()) {
             User updateUser = Database.getUserFromEmail(email);
@@ -184,6 +247,11 @@ public class PrimaryEditController implements Initializable {
         }
     }
 
+    /**
+     * Update birthday when save button is pressed
+     * @param birthday
+     * @throws SQLException
+     */
     private void updateBirthday(LocalDate birthday) throws SQLException {
         LocalDate today = LocalDate.now();
         Period period = Period.between(birthday, today);
@@ -193,6 +261,11 @@ public class PrimaryEditController implements Initializable {
         }
     }
 
+    /**
+     * Update gender when save button is pressed
+     * @param gender
+     * @throws SQLException
+     */
     private void updateGender(String gender) throws SQLException {
         if(!genderBox.getSelectionModel().isEmpty()) {
             User updateUser = Database.getUserFromEmail(email);
@@ -200,16 +273,31 @@ public class PrimaryEditController implements Initializable {
         }
     }
 
+    /**
+     * Update private insurance when save button is pressed
+     * @param privateInsurance
+     * @throws SQLException
+     */
     private void updatePrivateInsurance(boolean privateInsurance) throws SQLException {
         User updateUser = Database.getUserFromEmail(email);
         updateUser.setPrivateInsurance(privateInsurance);
     }
 
+    /**
+     * Update password when save button is pressed
+     * @param oldPassword
+     * @param newPassword
+     * @throws SQLException
+     */
     private void updatePassword(String oldPassword, String newPassword) throws SQLException {
         User updateUser = Database.getUserFromEmail(email);
         updateUser.changePassword(oldPassword, newPassword);
     }
 
+    /**
+     * Load user information when button is pressed
+     * @throws SQLException
+     */
     public void loadUser() throws SQLException {
         User currentUser = Database.getUserFromEmail(email);
         setUsernameTextField(currentUser.getUsername());
@@ -224,42 +312,82 @@ public class PrimaryEditController implements Initializable {
         setPrivateInsuranceTextField(currentUser.isPrivateInsurance());
     }
 
+    /**
+     * Set Username Text Field to user information in DB
+     * @param username
+     */
     private void setUsernameTextField(String username) {
         usernameTextField.setText(username);
     }
 
+    /**
+     * Set Email Text Field to user information in DB
+     * @param email
+     */
     private void setEmailTextField(String email) {
         emailTextField.setText(email);
     }
 
+    /**
+     * Set First Name Text Field to user information in DB
+     * @param firstName
+     */
     private void setFirstNameTextField(String firstName) {
         firstNameTextField.setText(firstName);
     }
 
+    /**
+     * Set Last Name Text Field to user information in DB
+     * @param lastName
+     */
     private void setLastNameTextField(String lastName) {
         lastNameTextField.setText(lastName);
     }
 
+    /**
+     * Set Street Text Field to user information in DB
+     * @param street
+     */
     private void setStreetTextField(String street) {
         streetTextField.setText(street);
     }
 
+    /**
+     * Set House Number Text Field to user information in DB
+     * @param houseNo
+     */
     private void setHouseNoTextField(String houseNo) {
         houseNoTextField.setText(houseNo);
     }
 
+    /**
+     * Set Zip Text Field to user information in DB
+     * @param zip
+     */
     private void setZipTextField(int zip) {
         zipTextField.setText(String.valueOf(zip));
     }
 
+    /**
+     * Set Date Picker to birthday in DB
+     * @param birthday
+     */
     private void setBirthdayTextField(LocalDate birthday) {
         birthdayPicker.setValue((LocalDate)birthday);
     }
 
+    /**
+     * Set Gender Text Field to user information in DB
+     * @param gender
+     */
     private void setGenderTextField(String gender) {
         genderBox.setValue(gender);
     }
 
+    /**
+     * Set private insurance Check Box to user information in DB
+     * @param privateInsurance
+     */
     private void setPrivateInsuranceTextField(boolean privateInsurance) {
         if(privateInsurance) {
             privateInsuranceCheckBox.setSelected(true);
@@ -268,6 +396,11 @@ public class PrimaryEditController implements Initializable {
         }
     }
 
+    /**
+     * Check if old password is correct
+     * @param event
+     * @throws SQLException
+     */
     public void handleOldPassword(KeyEvent event) throws SQLException {
         if(!Database.checkPassword(email, oldPasswordField.getText())) {
             errorLabel.setText("wrong password");
@@ -277,6 +410,11 @@ public class PrimaryEditController implements Initializable {
         }
     }
 
+    /**
+     * Checks if new password is correct while typing
+     * @param event
+     * @throws SQLException
+     */
     public void handleNewPassword(KeyEvent event) throws SQLException {
         if(!newPasswordField.getText().isBlank() && oldPasswordField.getText().isBlank()) {
             errorLabel.setText("type in old password");
@@ -289,7 +427,11 @@ public class PrimaryEditController implements Initializable {
         }
     }
 
-    public void handleEmailTextField() {
+    /**
+     * handle Keyboard input for Email Text Field.
+     * Check if Email format matches
+     */
+    public void handleEmailTextField(KeyEvent event) {
         String email = emailTextField.getText();
         Pattern emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = emailPat.matcher(email);
@@ -302,6 +444,10 @@ public class PrimaryEditController implements Initializable {
         }
     }
 
+    /**
+     * set mail when scene is changed
+     * @param loginEmail emailed used for login
+     */
     public static void setEmail(String loginEmail) {
         email = loginEmail;
     }
