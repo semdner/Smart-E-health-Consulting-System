@@ -65,10 +65,7 @@ public class RegistrationController implements Initializable {
 
     @FXML
     Label errorLabel;
-
-    @FXML
     Label loginLabel;
-
 
     /**
      * fist method called when scene is switched.
@@ -131,7 +128,6 @@ public class RegistrationController implements Initializable {
             showError("username cannot be blank");
             redBackground(usernameTextField);
         }
-
         if(usernameTextField.getText().length() < 5) {
             showError("username needs to be at least 5 characters long");
             redBackground(usernameTextField);
@@ -431,5 +427,4 @@ public class RegistrationController implements Initializable {
             return false;
         }
     }
-
 }

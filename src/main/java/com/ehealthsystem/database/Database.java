@@ -294,10 +294,6 @@ public class Database {
         ResultSet rs = statement.executeQuery();
         ArrayList<HealthInformation> healthList = new ArrayList<>();
         while (rs.next()) {
-            System.out.println("ICD: " + rs.getString("ICD"));
-            System.out.println("disease_name: " + rs.getString("disease_name"));
-            System.out.println("medication_name: " + rs.getString("medication_name"));
-
             HealthInformation healthInformation = new HealthInformation(
                     rs.getString("ICD"),
                     rs.getString("disease_name"),

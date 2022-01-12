@@ -31,8 +31,8 @@
                <children>
                   <ButtonBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0">
                     <buttons>
-                        <Button focusTraversable="false" mnemonicParsing="false" text="deselect all" />
-                      <Button focusTraversable="false" mnemonicParsing="false" text="select all" />
+                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#handleDeselectAllButton" text="unselect all" />
+                      <Button focusTraversable="false" mnemonicParsing="false" onAction="#handleSelectAllButton" text="select all" />
                     </buttons>
                   </ButtonBar>
                   <ScrollPane hbarPolicy="NEVER" prefHeight="445.0" prefWidth="980.0" vbarPolicy="ALWAYS">
