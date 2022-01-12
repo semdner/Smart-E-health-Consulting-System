@@ -1,8 +1,3 @@
-CREATE TABLE location(
-                         location_id INTEGER  NOT NULL PRIMARY KEY
-    ,zip         INTEGER
-    ,city        VARCHAR(30)
-);
 INSERT INTO location(location_id,zip,city) VALUES (1,NULL,NULL);
 INSERT INTO location(location_id,zip,city) VALUES (2,01067,'Dresden');
 INSERT INTO location(location_id,zip,city) VALUES (3,01069,'Dresden');
