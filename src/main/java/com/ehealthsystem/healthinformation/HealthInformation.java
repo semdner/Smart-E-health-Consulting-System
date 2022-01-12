@@ -1,31 +1,39 @@
 package com.ehealthsystem.healthinformation;
 
+import java.time.LocalDate;
+
 public class HealthInformation {
 
-    private String preExistingConditions, allergies, medications;
+    private String ICD, disease, medication;
 
-
-    /**
-     *
-     * @param preExistingConditions
-     * @param allergies
-     * @param medications
-     */
-    public HealthInformation(String preExistingConditions, String allergies, String medications) {
-        this.preExistingConditions = preExistingConditions;
-        this.allergies = allergies;
-        this.medications = medications;
+    public HealthInformation(String ICD, String disease, String medication) {
+        this.ICD = ICD;
+        this.disease = disease;
+        this.medication = medication;
     }
 
-    String getPreExistingConditions() {
-        return preExistingConditions;
+    public String getICD() {
+        return ICD;
     }
 
-    String getAllergies() {
-        return allergies;
+    public String getDisease() {
+        return disease;
     }
 
-    String getMedications() {
-        return medications;
+    public String getMedication() {
+        return medication;
     }
+
+    public void setICD(String ICD) {
+        this.ICD = ICD;
+    }
+
+    public void setDisease(String disease) {
+        this.disease = disease;
+    }
+
+    public void setMedication(String medication) {
+        this.medication = medication;
+    }
+
 }
