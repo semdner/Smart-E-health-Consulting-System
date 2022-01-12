@@ -1,9 +1,11 @@
 package com.ehealthsystem.database;
 
 import com.ehealthsystem.appointment.Appointment;
+import com.ehealthsystem.healthinformation.HealthInformation;
 import com.ehealthsystem.resourcereader.ResourceReader;
 import com.ehealthsystem.user.User;
 import org.mindrot.jbcrypt.BCrypt;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -284,6 +286,26 @@ public class Database {
         statement.setString(1, email);
         ResultSet rs = statement.executeQuery();
         return loadUsersFromResultSet(rs).get(0);
+    }
+
+    public static ArrayList<HealthInformation> getHealthInformation(String email) throws SQLException {
+        String query = "SELECT health_status.ICD, disease.disease_name, medication.medication_name FROM ((((health_status INNER JOIN disease on health_status.ICD = disease.ICD) INNER JOIN prescription on prescription.prescription_id = health_status.prescription_id) INNER JOIN medication on prescription.medication_id = medication.medication_id) INNER JOIN user on user.user_id = health_status.user_id) WHERE user.email = '" + email + "';";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+        ArrayList<HealthInformation> healthList = new ArrayList<>();
+        while (rs.next()) {
+            System.out.println("ICD: " + rs.getString("ICD"));
+            System.out.println("disease_name: " + rs.getString("disease_name"));
+            System.out.println("medication_name: " + rs.getString("medication_name"));
+
+            HealthInformation healthInformation = new HealthInformation(
+                    rs.getString("ICD"),
+                    rs.getString("disease_name"),
+                    rs.getString("medication_name")
+            );
+            healthList.add(healthInformation);
+        }
+        return healthList;
     }
 
     /**
