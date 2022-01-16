@@ -5,13 +5,18 @@ import com.ehealthsystem.doctor.FoundDoctorController;
 import com.ehealthsystem.map.DoctorDistance;
 import com.ehealthsystem.map.GeoCoder;
 import com.google.maps.errors.ApiException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -75,6 +80,15 @@ public class AppointmentFoundController implements Initializable {
             doctorGridPane.add(vbox, column++, row);
 
         }
+    }
+
+    public void handleBackButton(ActionEvent event) throws IOException {
+        AppointmentInformationController.setAppointment(newAppointment);
+        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointmentInformation-view.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene primaryScene = new Scene(root, 1000, 600);
+        stage.setTitle("make appointment");
+        stage.setScene(primaryScene);
     }
 
     public static void setAppointment(Appointment passedAppointment) {
