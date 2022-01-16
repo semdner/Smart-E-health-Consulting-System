@@ -34,10 +34,7 @@ public class AppointmentHealthController implements Initializable {
     @FXML
     Button backButton;
 
-    @FXML
-    Button selectAllButton;
-
-    static String email;
+    private static Appointment newAppointment;
     private ArrayList<HealthInformation> selectedHealthInformation = new ArrayList<>();
     private ArrayList<HealthInformation> allHealthInformation = new ArrayList<>();
     private ArrayList<CheckBox> numberOfCheckBoxes = new ArrayList<>();
@@ -52,6 +49,8 @@ public class AppointmentHealthController implements Initializable {
     }
 
     public void handleContinueButton(ActionEvent event) throws IOException {
+        newAppointment.setHealthInformation(selectedHealthInformation);
+        AppointmentInformationController.setAppointment(newAppointment);
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointmentInformation-view.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene primaryScene = new Scene(root, 1000, 600);
@@ -60,7 +59,7 @@ public class AppointmentHealthController implements Initializable {
     }
 
     public void handleBackButton(ActionEvent event) throws IOException {
-        AppointmentUserController.setEmail(email);
+        AppointmentUserController.setAppointment(newAppointment);
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointmentUser-view.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene primaryScene = new Scene(root, 1000, 600);
@@ -70,7 +69,7 @@ public class AppointmentHealthController implements Initializable {
     }
 
     private void loadHealthInformation() throws SQLException {
-        allHealthInformation = Database.getHealthInformation(email);
+        allHealthInformation = Database.getHealthInformation(newAppointment.getEmail());
         fillHealthTable(allHealthInformation);
     }
 
@@ -133,7 +132,7 @@ public class AppointmentHealthController implements Initializable {
         }
     }
 
-    public static void setEmail(String loginEmail) {
-        email = loginEmail;
+    public static void setAppointment(Appointment passedAppointment) {
+        newAppointment = passedAppointment;
     }
 }

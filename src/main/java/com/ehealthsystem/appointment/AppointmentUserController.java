@@ -57,16 +57,20 @@ public class AppointmentUserController implements Initializable {
     Button cancelButton;
 
     @FXML
-    Button backButton;
-
-    @FXML
     ProgressBar progressBar;
 
-    static String email;
+    private static Appointment newAppointment;
 
+    /**
+     * First method called when scene is switched.
+     * Used to laod the user information
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+
             loadUser();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -94,7 +98,7 @@ public class AppointmentUserController implements Initializable {
      * @throws IOException
      */
     public void handleContinueButton(ActionEvent event) throws IOException {
-        AppointmentHealthController.setEmail(email);
+        AppointmentHealthController.setAppointment(newAppointment);
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointmentHealth-view.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene primaryScene = new Scene(root, 1000, 600);
@@ -107,7 +111,7 @@ public class AppointmentUserController implements Initializable {
      * @throws SQLException
      */
     public void loadUser() throws SQLException {
-        User currentUser = Database.getUserFromEmail(email);
+        User currentUser = Database.getUserFromEmail(newAppointment.getEmail());
         setUsernameTextField(currentUser.getUsername());
         setEmailTextField(currentUser.getMail());
         setFirstNameTextField(currentUser.getFirstName());
@@ -205,12 +209,8 @@ public class AppointmentUserController implements Initializable {
         }
     }
 
-    /**
-     * set mail when scene is changed
-     * @param loginEmail emailed used for login
-     */
-    public static void setEmail(String loginEmail) {
-        email = loginEmail;
+    public static void setAppointment(Appointment passedAppointment) {
+        newAppointment = passedAppointment;
     }
 }
 
