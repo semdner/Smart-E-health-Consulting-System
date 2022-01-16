@@ -2,6 +2,6 @@ create table location
 (
     location_id     INTEGER,
     zip             INTEGER,
-    city            TEXT NOT NULL,
+    city            TEXT,
     PRIMARY KEY (location_id AUTOINCREMENT)
 );

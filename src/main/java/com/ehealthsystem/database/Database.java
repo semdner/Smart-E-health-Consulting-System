@@ -66,6 +66,10 @@ public class Database {
         statement.execute(ResourceReader.getResourceString("database/createTableAppointment.sql"));
 
         statement.execute(ResourceReader.getResourceString("database/insertIntoDisease.sql"));
+        statement.execute(ResourceReader.getResourceString("database/insertIntoHealthStatus.sql"));
+        statement.execute(ResourceReader.getResourceString("database/InsertIntoLocation.sql"));
+        statement.execute(ResourceReader.getResourceString("database/insertIntoMedication.sql"));
+        statement.execute(ResourceReader.getResourceString("database/insertIntoPrescription.sql"));
 
         //Insert admin user
         String query = "INSERT INTO user (username, password) VALUES ('admin', ?)";
