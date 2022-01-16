@@ -15,10 +15,6 @@ public class User {
     private LocalDate birthDate;
     private boolean privateInsurance;
 
-    public User() {
-
-    }
-
     /**
      * Creates a new user object representing a row in the database
      * @param username
@@ -212,7 +208,7 @@ public class User {
      * @return usersAppointments
      * @throws SQLException
      */
-    public ArrayList<Appointment> getAppointments() throws SQLException {
+    /*public ArrayList<Appointment> getAppointments() throws SQLException {
         return Database.getUsersAppointments(username);
-    }
+    }*/
 }
