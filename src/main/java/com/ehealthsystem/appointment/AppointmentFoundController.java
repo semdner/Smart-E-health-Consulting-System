@@ -47,7 +47,7 @@ public class AppointmentFoundController implements Initializable {
             if(doctorList.isEmpty()) {
                 errorLabel.setVisible(true);
             } else {
-                loadDoctors(doctorList);
+                loadDoctors(doctorList, userGeoData);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -60,7 +60,7 @@ public class AppointmentFoundController implements Initializable {
         }
     }
 
-    private void loadDoctors(ArrayList<DoctorDistance> doctorList) throws IOException {
+    private void loadDoctors(ArrayList<DoctorDistance> doctorList, String userGeoData) throws IOException {
         int row = 0;
         int column = 0;
         for(int i = 0; i<doctorList.size(); i++) {
@@ -70,7 +70,7 @@ public class AppointmentFoundController implements Initializable {
             VBox vbox = fxmlloader.load();
 
             FoundDoctorController doctor = fxmlloader.getController();
-            doctor.setData(doctorList.get(i));
+            doctor.setData(doctorList.get(i), doctorList.get(i).getGeoData(), userGeoData);
 
             if(column == 3) {
                 column = 0;
@@ -78,7 +78,6 @@ public class AppointmentFoundController implements Initializable {
             }
 
             doctorGridPane.add(vbox, column++, row);
-
         }
     }
 

@@ -4,6 +4,10 @@ public class Doctor {
     String firstName, lastName, street, number;
     int zip;
 
+    public Doctor() {
+
+    }
+
     public Doctor(String firstName, String lastName, String street, String number, int zip) {
         this.firstName = firstName;
         this.lastName = lastName;
