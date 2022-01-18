@@ -1,0 +1,17 @@
+create table user
+(
+    user_id             INTEGER,
+    username            TEXT NOT NULL UNIQUE,
+    email               TEXT UNIQUE,
+    first_name          TEXT,
+    last_name           TEXT,
+    street              TEXT,
+    number              TEXT,
+    zip                 INTEGER,
+    birthday            TEXT,
+    sex                 TEXT,
+    password	        TEXT NOT NULL,
+    private_insurance   BOOLEAN,
+    PRIMARY KEY (user_id AUTOINCREMENT),
+    FOREIGN KEY (zip) REFERENCES location(zip)
+);

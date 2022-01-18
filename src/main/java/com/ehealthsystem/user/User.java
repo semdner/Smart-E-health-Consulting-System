@@ -6,15 +6,13 @@ import com.ehealthsystem.database.Database;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class User {
-    private String username, firstName, lastName, mail, street, houseNo;
+    private String username, email, firstName, lastName, street, houseNo, gender;
     private int zipCode;
     private LocalDate birthDate;
-    private String preExistingConditions, allergies, pastTreatments, currentTreatments, medications;
-
-    private String insurance;
     private boolean privateInsurance;
 
     /**
@@ -24,35 +22,24 @@ public class User {
      * @param password
      * @param firstName
      * @param lastName
-     * @param mail
+     * @param email
      * @param street
      * @param houseNo
      * @param zipCode
      * @param birthDate
-     * @param preExistingConditions
-     * @param allergies
-     * @param pastTreatments
-     * @param currentTreatments
-     * @param medications
-     * @param insurance
      * @param privateInsurance
      * @throws SQLException
      */
-    public User(String username, boolean insertIntoDb, String password, String firstName, String lastName, String mail, String street, String houseNo, int zipCode, LocalDate birthDate, String preExistingConditions, String allergies, String pastTreatments, String currentTreatments, String medications, String insurance, boolean privateInsurance) throws SQLException {
+    public User(String username, String email, String firstName, String lastName, String street, String houseNo, int zipCode, LocalDate birthDate, String gender, String password, boolean privateInsurance, boolean insertIntoDb) throws SQLException {
         this.username = username;
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.mail = mail;
         this.street = street;
         this.houseNo = houseNo;
         this.zipCode = zipCode;
         this.birthDate = birthDate;
-        this.preExistingConditions = preExistingConditions;
-        this.allergies = allergies;
-        this.pastTreatments = pastTreatments;
-        this.currentTreatments = currentTreatments;
-        this.medications = medications;
-        this.insurance = insurance;
+        this.gender = gender;
         this.privateInsurance = privateInsurance;
         if (insertIntoDb)
             insertIntoDb(password);
@@ -67,25 +54,18 @@ public class User {
     private void insertIntoDb(String password) throws SQLException {
         Object[][] parameters = {
                 {"username", username},
-                {"password", Database.hashPassword(password)},
-                {"firstName", firstName},
-                {"lastName", lastName},
-                {"mail", mail},
+                {"email", email},
+                {"first_name", firstName},
+                {"last_name", lastName},
                 {"street", street},
-                {"houseNo", houseNo},
-                {"zipCode", zipCode},
-                {"birthYear", birthDate.getYear()},
-                {"birthMonth", birthDate.getMonthValue()},
-                {"birthDay", birthDate.getDayOfMonth()},
-                {"preExistingConditions", preExistingConditions},
-                {"allergies", allergies},
-                {"pastTreatments", pastTreatments},
-                {"currentTreatments", currentTreatments},
-                {"medications", medications},
-                {"insurance", insurance},
-                {"privateInsurance", privateInsurance},
+                {"number", houseNo},
+                {"zip", zipCode},
+                {"birthday", birthDate},
+                {"sex", gender},
+                {"password", Database.hashPassword(password)},
+                {"private_insurance", privateInsurance},
         };
-        Database.insert("users", parameters);
+        Database.insert("user", parameters);
     }
 
     /**
@@ -97,24 +77,24 @@ public class User {
      * @throws SQLException
      */
     public boolean changePassword(String currentPassword, String newPassword) throws SQLException {
-        if (!Database.checkPassword(username, currentPassword))
+        if (!Database.checkPassword(email, currentPassword))
             return false;
-        setPassword(username, newPassword);
+        setPassword(email, newPassword);
         return true;
     }
 
     /**
      * Set a user's password
      * Used as helper function but also by admin, which is why it's public
-     * @param username
+     * @param email
      * @param password
      * @throws SQLException
      */
-    public void setPassword(String username, String password) throws SQLException {
-        String query = "UPDATE users SET password = ? WHERE username = ?";
+    private void setPassword(String email, String password) throws SQLException {
+        String query = "UPDATE user SET password = ? WHERE email = ?";
         PreparedStatement statement = Database.connection.prepareStatement(query);
         statement.setString(1, Database.hashPassword(password));
-        statement.setString(2, username);
+        statement.setString(2, email);
         statement.execute();
     }
 
@@ -125,19 +105,29 @@ public class User {
      */
     private void update(Object[][] newValues) throws SQLException {
         Database.update(
-                "users",
+                "user",
                 newValues,
                 new Object[][]{{"username", username}}
         );
     }
 
+    public void setUsername(String username) throws SQLException {
+        update(new Object[][]{{"username", username}});
+        this.username = username;
+    }
+
+    public void setEmail(String email) throws SQLException {
+        update(new Object[][]{{"email", email}});
+        this.email = email;
+    }
+
     public void setFirstName(String firstName) throws SQLException {
-        update(new Object[][]{{"firstName", firstName}});
+        update(new Object[][]{{"first_name", firstName}});
         this.firstName = firstName;
     }
 
     public void setLastName(String lastName) throws SQLException {
-        update(new Object[][]{{"lastName", lastName}});
+        update(new Object[][]{{"last_name", lastName}});
         this.lastName = lastName;
     }
 
@@ -147,52 +137,29 @@ public class User {
     }
 
     public void setHouseNo(String houseNo) throws SQLException {
-        update(new Object[][]{{"houseNo", houseNo}});
+        update(new Object[][]{{"number", houseNo}});
         this.houseNo = houseNo;
     }
 
     public void setZipCode(int zipCode) throws SQLException {
-        update(new Object[][]{{"zipCode", zipCode}});
+        update(new Object[][]{{"zip", zipCode}});
         this.zipCode = zipCode;
     }
 
     public void setBirthDate(LocalDate birthDate) throws SQLException {
-        update(new Object[][]{{"birthYear", birthDate.getYear()}, {"birthMonth", birthDate.getMonthValue()}, {"birthDay", birthDate.getDayOfMonth()}});
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        String bd = birthDate.format(formatter);
+        update(new Object[][]{{"birthday", bd}});
         this.birthDate = birthDate;
     }
 
-    public void setPreExistingConditions(String preExistingConditions) throws SQLException {
-        update(new Object[][]{{"preExistingConditions", preExistingConditions}});
-        this.preExistingConditions = preExistingConditions;
-    }
-
-    public void setAllergies(String allergies) throws SQLException {
-        update(new Object[][]{{"allergies", allergies}});
-        this.allergies = allergies;
-    }
-
-    public void setPastTreatments(String pastTreatments) throws SQLException {
-        update(new Object[][]{{"pastTreatments", pastTreatments}});
-        this.pastTreatments = pastTreatments;
-    }
-
-    public void setCurrentTreatments(String currentTreatments) throws SQLException {
-        update(new Object[][]{{"currentTreatments", currentTreatments}});
-        this.currentTreatments = currentTreatments;
-    }
-
-    public void setMedications(String medications) throws SQLException {
-        update(new Object[][]{{"medications", medications}});
-        this.medications = medications;
-    }
-
-    public void setInsurance(String insurance) throws SQLException {
-        update(new Object[][]{{"insurance", insurance}});
-        this.insurance = insurance;
+    public void setGender(String gender) throws SQLException {
+        update(new Object[][]{{"sex", gender}});
+        this.gender = gender;
     }
 
     public void setPrivateInsurance(boolean privateInsurance) throws SQLException {
-        update(new Object[][]{{"privateInsurance", privateInsurance}});
+        update(new Object[][]{{"private_insurance", privateInsurance}});
         this.privateInsurance = privateInsurance;
     }
 
@@ -209,7 +176,7 @@ public class User {
     }
 
     public String getMail() {
-        return mail;
+        return email;
     }
 
     public String getStreet() {
@@ -220,36 +187,16 @@ public class User {
         return houseNo;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
     public int getZipCode() {
         return zipCode;
     }
 
     public LocalDate getBirthDate() {
         return birthDate;
-    }
-
-    public String getPreExistingConditions() {
-        return preExistingConditions;
-    }
-
-    public String getAllergies() {
-        return allergies;
-    }
-
-    public String getPastTreatments() {
-        return pastTreatments;
-    }
-
-    public String getCurrentTreatments() {
-        return currentTreatments;
-    }
-
-    public String getMedications() {
-        return medications;
-    }
-
-    public String getInsurance() {
-        return insurance;
     }
 
     public boolean isPrivateInsurance() {
@@ -261,7 +208,7 @@ public class User {
      * @return usersAppointments
      * @throws SQLException
      */
-    public ArrayList<Appointment> getAppointments() throws SQLException {
+    /*public ArrayList<Appointment> getAppointments() throws SQLException {
         return Database.getUsersAppointments(username);
-    }
+    }*/
 }

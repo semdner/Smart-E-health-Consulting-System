@@ -28,13 +28,13 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="emailTextField" layoutX="50.0" layoutY="50.0" prefHeight="25.0" prefWidth="250.0" promptText="e-mail" />
-            <PasswordField fx:id="passwordField" layoutX="50.0" layoutY="85.0" prefHeight="25.0" prefWidth="250.0" promptText="password" />
-            <Button fx:id="loginButton" layoutX="50.0" layoutY="118.0" mnemonicParsing="false" onAction="#handleLoginButton" prefWidth="250.0" text="Login" />
+            <TextField fx:id="emailTextField" focusTraversable="false" layoutX="50.0" layoutY="50.0" prefHeight="25.0" prefWidth="250.0" promptText="e-mail" />
+            <PasswordField fx:id="passwordField" focusTraversable="false" layoutX="50.0" layoutY="85.0" prefHeight="25.0" prefWidth="250.0" promptText="password" />
+            <Button fx:id="loginButton" focusTraversable="false" layoutX="50.0" layoutY="118.0" mnemonicParsing="false" onAction="#handleLoginButton" prefWidth="250.0" text="Login" />
             <Separator layoutX="51.0" layoutY="157.0" prefHeight="0.0" prefWidth="250.0" />
             <Rectangle fill="WHITE" height="12.0" layoutX="163.0" layoutY="151.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="21.0" />
             <Label alignment="CENTER" layoutX="162.0" layoutY="148.0" prefHeight="17.0" prefWidth="23.0" text="or" textFill="#cecece" />
-            <Label fx:id="registrationLabel" layoutX="135.0" layoutY="168.0" text="Create account" onMouseClicked="#handleRegistrationLabel">
+            <Label fx:id="registrationLabel" focusTraversable="false" layoutX="135.0" layoutY="168.0" onMouseClicked="#handleRegistrationLabel" text="Create account">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Label>

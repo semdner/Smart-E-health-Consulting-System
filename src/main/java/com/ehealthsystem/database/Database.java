@@ -1,11 +1,19 @@
 package com.ehealthsystem.database;
 
-import com.ehealthsystem.appointment.Appointment;
+import com.ehealthsystem.doctor.Doctor;
+import com.ehealthsystem.healthinformation.HealthInformation;
+import com.ehealthsystem.map.DoctorDistance;
+import com.ehealthsystem.map.GeoCoder;
+import com.ehealthsystem.map.GeoDistance;
 import com.ehealthsystem.resourcereader.ResourceReader;
 import com.ehealthsystem.user.User;
+import com.google.maps.errors.ApiException;
 import org.mindrot.jbcrypt.BCrypt;
+
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.sql.SQLException;
 
@@ -39,26 +47,32 @@ public class Database {
      * @param initialAdminPassword provided admin password desired by the user
      * @throws SQLException
      */
-
     public static void createDB(String initialAdminPassword) throws SQLException {
         init();
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
         //Create tables
-        statement.execute(ResourceReader.getResourceString("database/createTableUsers.sql"));
-        statement.execute(ResourceReader.getResourceString("database/createTableDoctors.sql"));
-        statement.execute(ResourceReader.getResourceString("database/createTableAppointments.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableMedication.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableDisease.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableLocation.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableCategory.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableDoctor.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableDoctorCategory.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableDoctorAppointment.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableUser.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTablePrescription.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableHealthStatus.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableAppointment.sql"));
 
-        statement.execute(ResourceReader.getResourceString("database/createTableProblems.sql"));
-        statement.execute(ResourceReader.getResourceString("database/createTableSpecializations.sql"));
-        statement.execute(ResourceReader.getResourceString("database/createTableSuitableSpecializations.sql"));
-        statement.execute(ResourceReader.getResourceString("database/insertIntoProblems.sql"));
-        statement.execute(ResourceReader.getResourceString("database/insertIntoSpecializations.sql"));
-        statement.execute(ResourceReader.getResourceString("database/insertIntoSuitableSpecializations.sql"));
+        statement.execute(ResourceReader.getResourceString("database/insertIntoDisease.sql"));
+        statement.execute(ResourceReader.getResourceString("database/insertIntoHealthStatus.sql"));
+        statement.execute(ResourceReader.getResourceString("database/InsertIntoLocation.sql"));
+        statement.execute(ResourceReader.getResourceString("database/insertIntoMedication.sql"));
+        statement.execute(ResourceReader.getResourceString("database/insertIntoPrescription.sql"));
 
         //Insert admin user
-        String query = "INSERT INTO users (username, password) VALUES ('admin', ?)";
+        String query = "INSERT INTO user (username, password) VALUES ('admin', ?)";
         PreparedStatement adminInsert = connection.prepareStatement(query);
         adminInsert.setString(1, hashPassword(initialAdminPassword));
         adminInsert.execute();
@@ -113,13 +127,13 @@ public class Database {
      * Check if user entered their correct password
      * Retrieves stored password and verifies that the entered one matches the stored hash
      * This method is not part of the User class because there isn't a user object during login yet
-     * @param username
+     * @param email
      * @param password in plain text
      * @return whether password is correct
      */
-    public static boolean checkPassword(String username, String password) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
-        statement.setString(1, username);
+    public static boolean checkPassword(String email, String password) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement("SELECT password FROM user WHERE email = ?");
+        statement.setString(1, email);
         ResultSet rs = statement.executeQuery();
 
         rs.next();
@@ -232,12 +246,17 @@ public class Database {
     }
 
     private static void insertValueIntoStatement(int i, Object value, PreparedStatement statement) throws SQLException {
-        if (value instanceof String)
+        if (value instanceof String) {
             statement.setString(i+1, (String)value);
-        else if (value instanceof Boolean)
+        } else if (value instanceof Boolean) {
             statement.setBoolean(i+1, (Boolean)value);
-        else
-            statement.setInt(i+1, (Integer)value);
+        } else if (value instanceof LocalDate) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            String date = ((LocalDate)value).format(formatter);
+            statement.setString(i+1, date);
+        } else {
+            statement.setInt(i+1, (Integer) value);
+        }
     }
 
     /**
@@ -266,6 +285,57 @@ public class Database {
     }
 
     /**
+     * Get a user object with all user's details loaded from the database
+     * @param email
+     * @return
+     */
+    public static User getUserFromEmail(String email) throws SQLException {
+        String query = "SELECT * FROM user WHERE email = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, email);
+        ResultSet rs = statement.executeQuery();
+        return loadUsersFromResultSet(rs).get(0);
+    }
+
+    public static ArrayList<HealthInformation> getHealthInformation(String email) throws SQLException {
+        String query = "SELECT health_status.ICD, disease.disease_name, medication.medication_name FROM ((((health_status INNER JOIN disease on health_status.ICD = disease.ICD) INNER JOIN prescription on prescription.prescription_id = health_status.prescription_id) INNER JOIN medication on prescription.medication_id = medication.medication_id) INNER JOIN user on user.user_id = health_status.user_id) WHERE user.email = '" + email + "';";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+        ArrayList<HealthInformation> healthList = new ArrayList<>();
+        while (rs.next()) {
+            HealthInformation healthInformation = new HealthInformation(
+                    rs.getString("ICD"),
+                    rs.getString("disease_name"),
+                    rs.getString("medication_name")
+            );
+            healthList.add(healthInformation);
+        }
+        return healthList;
+    }
+
+    public static String getAddress(String email) throws SQLException {
+        String query = "SELECT street, number FROM user WHERE email = '" + email + "';";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+        String address = null;
+        while(rs.next()) {
+            address = rs.getString("street") + " " + rs.getString("number");
+        }
+        return address;
+    }
+    
+    public static int getZip(String email) throws SQLException {
+        String query = "SELECT zip FROM user WHERE email = '" + email + "';";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+        int zip = 0;
+        while(rs.next()) {
+            zip = rs.getInt("zip");
+        }
+        return zip;
+    }
+
+    /**
      * Helper method to turn result set into array of user objects
      * @param rs resultSet after the query was executed
      * @return
@@ -276,30 +346,60 @@ public class Database {
         while (rs.next())
         {
             String username = rs.getString("username");
-            LocalDate birthDate = (username.equals("admin") ? null : LocalDate.of(rs.getInt("birthYear"), rs.getInt("birthMonth"), rs.getInt("birthDay"))); //admin doesn't have a stored birthdate
+            LocalDate birthDate;
+            if (username.equals("admin")) {
+                birthDate = null;    //admin doesn't have a stored birthdate
+            } else {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+                birthDate = LocalDate.parse(rs.getString("birthday"), formatter);
+            }
 
             User user = new User(
                     username,
-                    false,
-                    null,
-                    rs.getString("firstName"),
-                    rs.getString("lastName"),
-                    rs.getString("mail"),
+                    rs.getString("email"),
+                    rs.getString("first_name"),
+                    rs.getString("last_name"),
                     rs.getString("street"),
-                    rs.getString("houseNo"),
-                    rs.getInt("zipCode"),
+                    rs.getString("number"),
+                    rs.getInt("zip"),
                     birthDate,
-                    rs.getString("preExistingConditions"),
-                    rs.getString("allergies"),
-                    rs.getString("pastTreatments"),
-                    rs.getString("currentTreatments"),
-                    rs.getString("medications"),
-                    rs.getString("insurance"),
-                    rs.getBoolean("privateInsurance")
+                    rs.getString("sex"),
+                    rs.getString("password"),
+                    rs.getBoolean("private_insurance"),
+                    false
             );
             users.add(user);
         }
         return users;
+    }
+
+    public static ArrayList<DoctorDistance> getDoctorFromDistance(String userGeoData, double distance) throws SQLException, IOException, InterruptedException, ApiException {
+        String query = "SELECT * FROM doctor;";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+        ArrayList<DoctorDistance> doctorList = new ArrayList<>();
+        String address = null;
+        while(rs.next()) {
+            address = rs.getString("street") + rs.getString("number");
+            String doctorGeoData = GeoCoder.geocode(address, rs.getInt("zip"));
+            double resultDistance = GeoDistance.getDistance(userGeoData, doctorGeoData);
+            if(resultDistance <= distance) {
+                doctorList.add(new DoctorDistance(resultDistance, doctorGeoData, rs.getString("first_name"), rs.getString("last_name"), rs.getString("street"), rs.getString("number"), rs.getInt("zip")));
+            }
+        }
+        return doctorList;
+    }
+
+
+    public static ArrayList<String> loadSpecialization() throws SQLException {
+        String query = "SELECT * FROM category";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+        ArrayList<String> specialization = new ArrayList<>();
+        while (rs.next()) {
+            specialization.add(rs.getString("category"));
+        }
+        return specialization;
     }
 
     /**
@@ -308,7 +408,7 @@ public class Database {
      * @return
      * @throws SQLException
      */
-    public static ArrayList<Appointment> loadAppointmentsFromResultSet(ResultSet rs) throws SQLException {
+    /*public static ArrayList<Appointment> loadAppointmentsFromResultSet(ResultSet rs) throws SQLException {
         ArrayList<Appointment> appointments = new ArrayList<>();
         while (rs.next())
         {
@@ -326,7 +426,7 @@ public class Database {
             appointments.add(appointment);
         }
         return appointments;
-    }
+    }*/
 
     /**
      * Get appointments that a doctor already has within a range of days
@@ -335,7 +435,7 @@ public class Database {
      * @param toTime
      * @return doctorsAppointments
      */
-    public static ArrayList<Appointment> getDoctorsAppointments(int doctor, int fromTime, int toTime) throws SQLException {
+    /*public static ArrayList<Appointment> getDoctorsAppointments(int doctor, int fromTime, int toTime) throws SQLException {
         String query = "SELECT * FROM appointments WHERE doctor = ? AND timestamp BETWEEN ? AND ? ORDER BY timestamp"; //ordering not necessary but just convenient, e.g. if it will be displayed in a list to the doctor in the future
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, doctor);
@@ -343,7 +443,7 @@ public class Database {
         statement.setInt(3, toTime);
         ResultSet rs = statement.executeQuery();
         return loadAppointmentsFromResultSet(rs);
-    }
+    }*/
 
     /**
      * Get a user's past and future appointments, ordered by appointment time (newest first)
@@ -351,11 +451,11 @@ public class Database {
      * This method is not part of the User class because the content is so similar to DB.getDoctorsAppointments() and hence shall be next to it
      * @return usersAppointments
      */
-    public static ArrayList<Appointment> getUsersAppointments(String username) throws SQLException {
+    /*public static ArrayList<Appointment> getUsersAppointments(String username) throws SQLException {
         String query = "SELECT * FROM appointments WHERE user = ? ORDER BY timestamp DESC"; //ordering for display as list
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);
         ResultSet rs = statement.executeQuery();
         return loadAppointmentsFromResultSet(rs);
-    }
+    }*/
 }

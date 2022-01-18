@@ -1,0 +1,12 @@
+INSERT INTO doctor(doctor_id,first_name,last_name,street,number,zip) VALUES (1,'Nadine','Abahuni','Zeil',29,60313);
+INSERT INTO doctor(doctor_id,first_name,last_name,street,number,zip) VALUES (2,'Aiman','Akkad','Hochstrasse',43,60313);
+INSERT INTO doctor(doctor_id,first_name,last_name,street,number,zip) VALUES (3,'Gregor','Brueggemann','Goethestrasse',20,60313);
+INSERT INTO doctor(doctor_id,first_name,last_name,street,number,zip) VALUES (4,'Dieter','Elgert','Goethestrasse',22,60313);
+INSERT INTO doctor(doctor_id,first_name,last_name,street,number,zip) VALUES (5,'Maria','Goetzens','Klingerstrasse',8,60313);
+INSERT INTO doctor(doctor_id,first_name,last_name,street,number,zip) VALUES (6,'Susanne','Grandjean','Reineckstrasse',1,60313);
+INSERT INTO doctor(doctor_id,first_name,last_name,street,number,zip) VALUES (7,'Ingrid','Hahn','Schillerstrasse',10,60313);
+INSERT INTO doctor(doctor_id,first_name,last_name,street,number,zip) VALUES (8,'Sabine','Hauser-Hamm','Goethestrasse',22,60313);
+INSERT INTO doctor(doctor_id,first_name,last_name,street,number,zip) VALUES (9,'Johanna Barbara','Malek','Liebfrauenberg',37,60313);
+INSERT INTO doctor(doctor_id,first_name,last_name,street,number,zip) VALUES (10,'Hans-Stefan','Martin','Bockenheimer',44,60313);
+INSERT INTO doctor(doctor_id,first_name,last_name,street,number,zip) VALUES (11,'Sabine','Mueller','Liebfrauenberg',37,60313);
+INSERT INTO doctor(doctor_id,first_name,last_name,street,number,zip) VALUES (12,'Zlatko','Prister','Grosse Friedberger',33,60313);

@@ -1,0 +1,12 @@
+INSERT INTO doctor_category(doctor_id,category_id) VALUES (1,12);
+INSERT INTO doctor_category(doctor_id,category_id) VALUES (2,12);
+INSERT INTO doctor_category(doctor_id,category_id) VALUES (3,12);
+INSERT INTO doctor_category(doctor_id,category_id) VALUES (4,12);
+INSERT INTO doctor_category(doctor_id,category_id) VALUES (5,12);
+INSERT INTO doctor_category(doctor_id,category_id) VALUES (6,12);
+INSERT INTO doctor_category(doctor_id,category_id) VALUES (7,12);
+INSERT INTO doctor_category(doctor_id,category_id) VALUES (8,12);
+INSERT INTO doctor_category(doctor_id,category_id) VALUES (9,12);
+INSERT INTO doctor_category(doctor_id,category_id) VALUES (10,12);
+INSERT INTO doctor_category(doctor_id,category_id) VALUES (11,12);
+INSERT INTO doctor_category(doctor_id,category_id) VALUES (12,12);
