@@ -1,10 +1,8 @@
 package com.ehealthsystem.doctor;
 
-import com.ehealthsystem.appointment.AppointmentInformationController;
-import com.ehealthsystem.database.Database;
 import com.ehealthsystem.map.DoctorDistance;
+import com.google.maps.errors.ApiException;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,8 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -45,7 +41,7 @@ public class FoundDoctorController {
         this.doctorGeoData = doctorGeoData;
     }
 
-    public void handleShowMoreButton(ActionEvent event) throws IOException {
+    public void handleShowMoreButton(ActionEvent event) throws IOException, InterruptedException, ApiException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/ehealthsystem/doctor/foundDoctorFull-view.fxml"));
         Parent root = loader.load();
         FoundDoctorFullController controller = loader.getController();

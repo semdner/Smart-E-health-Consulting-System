@@ -1,13 +1,11 @@
 package com.ehealthsystem.doctor;
 
 import com.ehealthsystem.map.DoctorDistance;
+import com.google.maps.errors.ApiException;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
 
 public class FoundDoctorFullController {
 
@@ -18,7 +16,7 @@ public class FoundDoctorFullController {
     private String userGeoData;
     private String doctorGeoData;
 
-    public void start() {
+    public void start() throws IOException, InterruptedException, ApiException {
         loadPage(userGeoData, doctorGeoData);
         loadDoctorData();
     }
@@ -42,6 +40,4 @@ public class FoundDoctorFullController {
     private void loadPage(String userGeoData, String doctorGeoData) {
 
     }
-
-
 }

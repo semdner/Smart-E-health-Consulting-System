@@ -9,6 +9,7 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.errors.RequestDeniedException;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.GeocodingResult;
+import com.google.maps.model.LatLng;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONString;
@@ -27,12 +28,19 @@ public class GeoCoder {
         GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyCUFsJZUQjbl0_0o8DAhQzhMOvxhftI6KQ").build();
 
         // geocode address + zip
-        if(address != null || !(zip == 0)) {
+        if(!address.isEmpty() || !(zip == 0)) {
             GeocodingResult[] results = GeocodingApi.geocode(context,address + "," + zip).await();
             String formattedAddress = (String)results[0].formattedAddress;
             return formattedAddress;
         }
         return null;
+    }
+
+    public static LatLng geocodeToLatLng(String address) throws IOException, InterruptedException, ApiException {
+        // set API Key
+        GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyCUFsJZUQjbl0_0o8DAhQzhMOvxhftI6KQ").build();
+        GeocodingResult[] results = GeocodingApi.geocode(context,address).await();
+        return results[0].geometry.location;
     }
 }
 
