@@ -49,13 +49,7 @@ public class AppointmentFoundController implements Initializable {
             } else {
                 loadDoctors(doctorList, userGeoData);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ApiException e) {
+        } catch (SQLException | ApiException | InterruptedException | IOException e) {
             e.printStackTrace();
         }
     }
