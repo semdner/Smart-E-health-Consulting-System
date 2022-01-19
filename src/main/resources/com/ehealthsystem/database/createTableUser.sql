@@ -1,4 +1,4 @@
-create table user
+CREATE TABLE user
 (
     user_id             INTEGER,
     username            TEXT NOT NULL UNIQUE,

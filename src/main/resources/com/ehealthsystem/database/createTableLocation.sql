@@ -1,4 +1,4 @@
-create table location
+CREATE TABLE location
 (
     location_id     INTEGER,
     zip             INTEGER,
