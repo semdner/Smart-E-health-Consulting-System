@@ -1,34 +1,35 @@
-INSERT INTO category(category_id,category) VALUES (0,'Allergist');
-INSERT INTO category(category_id,category) VALUES (1,'Anesthesiologist');
-INSERT INTO category(category_id,category) VALUES (2,'Cardiologist');
-INSERT INTO category(category_id,category) VALUES (3,'Critical Care Medicine Specialist');
-INSERT INTO category(category_id,category) VALUES (4,'Dermatologist');
-INSERT INTO category(category_id,category) VALUES (5,'Endocrinologist');
-INSERT INTO category(category_id,category) VALUES (6,'Family Physician');
-INSERT INTO category(category_id,category) VALUES (7,'Gastroenterologist');
-INSERT INTO category(category_id,category) VALUES (8,'Geriatric Medicine Specialist');
-INSERT INTO category(category_id,category) VALUES (9,'Hematologist');
-INSERT INTO category(category_id,category) VALUES (10,'Hospice and Palliative Medicine Specialist');
-INSERT INTO category(category_id,category) VALUES (11,'Infectious Disease Specialist');
-INSERT INTO category(category_id,category) VALUES (12,'Internist');
-INSERT INTO category(category_id,category) VALUES (13,'Medical Geneticist');
-INSERT INTO category(category_id,category) VALUES (14,'Nephrologist');
-INSERT INTO category(category_id,category) VALUES (15,'Neurologist');
-INSERT INTO category(category_id,category) VALUES (16,'Obstetrician');
-INSERT INTO category(category_id,category) VALUES (17,'Oncologist');
-INSERT INTO category(category_id,category) VALUES (18,'Ophthalmologist');
-INSERT INTO category(category_id,category) VALUES (19,'Osteopath');
-INSERT INTO category(category_id,category) VALUES (20,'Otolaryngologist');
-INSERT INTO category(category_id,category) VALUES (21,'Pediatrician');
-INSERT INTO category(category_id,category) VALUES (22,'Physiatrist');
-INSERT INTO category(category_id,category) VALUES (23,'Plastic Surgeon');
-INSERT INTO category(category_id,category) VALUES (24,'Podiatrist');
-INSERT INTO category(category_id,category) VALUES (25,'Preventive Medicine Specialist');
-INSERT INTO category(category_id,category) VALUES (26,'Psychiatrist');
-INSERT INTO category(category_id,category) VALUES (27,'Pulmonologist');
-INSERT INTO category(category_id,category) VALUES (28,'Radiologist');
-INSERT INTO category(category_id,category) VALUES (29,'Rheumatologist');
-INSERT INTO category(category_id,category) VALUES (30,'Sleep Medicine Specialist');
-INSERT INTO category(category_id,category) VALUES (31,'Sports Medicine Specialist');
-INSERT INTO category(category_id,category) VALUES (32,'General Surgeon');
-INSERT INTO category(category_id,category) VALUES (33,'Urologist');
+INSERT INTO category(category_id,category) VALUES
+(0,'Allergist'),
+(1,'Anesthesiologist'),
+(2,'Cardiologist'),
+(3,'Critical Care Medicine Specialist'),
+(4,'Dermatologist'),
+(5,'Endocrinologist'),
+(6,'Family Physician'),
+(7,'Gastroenterologist'),
+(8,'Geriatric Medicine Specialist'),
+(9,'Hematologist'),
+(10,'Hospice and Palliative Medicine Specialist'),
+(11,'Infectious Disease Specialist'),
+(12,'Internist'),
+(13,'Medical Geneticist'),
+(14,'Nephrologist'),
+(15,'Neurologist'),
+(16,'Obstetrician'),
+(17,'Oncologist'),
+(18,'Ophthalmologist'),
+(19,'Osteopath'),
+(20,'Otolaryngologist'),
+(21,'Pediatrician'),
+(22,'Physiatrist'),
+(23,'Plastic Surgeon'),
+(24,'Podiatrist'),
+(25,'Preventive Medicine Specialist'),
+(26,'Psychiatrist'),
+(27,'Pulmonologist'),
+(28,'Radiologist'),
+(29,'Rheumatologist'),
+(30,'Sleep Medicine Specialist'),
+(31,'Sports Medicine Specialist'),
+(32,'General Surgeon'),
+(33,'Urologist');
