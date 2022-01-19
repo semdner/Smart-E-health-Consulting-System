@@ -19,11 +19,10 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class GeoCoder {
-    public static String geocode(String address, int zip) throws IOException, InterruptedException, ApiException, SQLException {
+    public static String geocode(String address, int zip) throws IOException, InterruptedException, ApiException {
         // set API Key
         GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyCUFsJZUQjbl0_0o8DAhQzhMOvxhftI6KQ").build();
 
