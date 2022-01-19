@@ -1,11 +1,7 @@
 package com.ehealthsystem.appointment;
 
-import com.ehealthsystem.database.Database;
 import com.ehealthsystem.healthinformation.HealthInformation;
 
-import java.sql.Array;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
