@@ -151,9 +151,11 @@ public class PrimaryEditController implements Initializable {
         updateEmail(emailTextField.getText());
         updateFirstName(firstNameTextField.getText());
         updateLastName(lastNameTextField.getText());
-        updateStreet(streetTextField.getText());
-        updateNumber(houseNoTextField.getText());
-        updateZip(zipTextField.getText());
+        if(!streetTextField.getText().isBlank()) {
+            updateStreet(streetTextField.getText());
+            updateNumber(houseNoTextField.getText());
+            updateZip(zipTextField.getText());
+        }
         updateBirthday(birthdayPicker.getValue());
         updateGender((String) genderBox.getValue());
         updatePrivateInsurance(privateInsuranceCheckBox.isSelected());
@@ -217,10 +219,8 @@ public class PrimaryEditController implements Initializable {
      * @throws SQLException
      */
     private void updateStreet(String street) throws SQLException {
-        if(!streetTextField.getText().isBlank()) {
-            User updateUser = Database.getUserFromEmail(email);
-            updateUser.setStreet(street);
-        }
+        User updateUser = Database.getUserFromEmail(email);
+        updateUser.setStreet(street);
     }
 
     /**
@@ -229,10 +229,8 @@ public class PrimaryEditController implements Initializable {
      * @throws SQLException
      */
     private void updateNumber(String houseNo) throws SQLException {
-        if(!streetTextField.getText().isBlank()) {
-            User updateUser = Database.getUserFromEmail(email);
-            updateUser.setHouseNo(houseNo);
-        }
+        User updateUser = Database.getUserFromEmail(email);
+        updateUser.setHouseNo(houseNo);
     }
 
     /**
@@ -241,10 +239,8 @@ public class PrimaryEditController implements Initializable {
      * @throws SQLException
      */
     private void updateZip(String zip) throws SQLException {
-        if(!streetTextField.getText().isBlank()) {
-            User updateUser = Database.getUserFromEmail(email);
-            updateUser.setZipCode(zip);
-        }
+        User updateUser = Database.getUserFromEmail(email);
+        updateUser.setZipCode(zip);
     }
 
     /**
