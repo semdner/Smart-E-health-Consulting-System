@@ -56,6 +56,9 @@ public class RegistrationController implements Initializable {
     PasswordField repeatPasswordField;
 
     @FXML
+    TextField insuranceNameTextField;
+
+    @FXML
     CheckBox privateInsuranceCheckBox;
 
     @FXML
@@ -126,7 +129,7 @@ public class RegistrationController implements Initializable {
      * @param event event the Button reacts to
      */
     public void handleRegistrationButton(ActionEvent event) throws IOException, SQLException {
-        if(validateUsername() && validateEmail() && validateFirstname() && validateLastname() && validateStreet() && validateNumber() && validateZip() && validateBirthday() && validateGender() && validatePassword() && validateRepeatPassword()) {
+        if(validateUsername() && validateEmail() && validateFirstname() && validateLastname() && validateStreet() && validateNumber() && validateZip() && validateBirthday() && validateGender() && validatePassword() && validateRepeatPassword() && validateInsuranceName()) {
             User newUser = new User(usernameTextField.getText(),
                                     emailTextField.getText(),
                                     firstNameTextField.getText(),
@@ -291,6 +294,20 @@ public class RegistrationController implements Initializable {
             return false;
         } else {
             hideError(numberTextField);
+            return true;
+        }
+    }
+
+    public void handleInsuranceName(KeyEvent keyEvent) {
+        validateInsuranceName();
+    }
+
+    private boolean validateInsuranceName() {
+        if(insuranceNameTextField.getText().isBlank()) {
+            fieldError(insuranceNameTextField, "Insurance name cannot be blank");
+            return false;
+        } else {
+            hideError(insuranceNameTextField);
             return true;
         }
     }
