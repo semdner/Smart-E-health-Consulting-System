@@ -311,8 +311,9 @@ public class Database {
                 " INNER JOIN prescription on prescription.prescription_id = health_status.prescription_id)" +
                 " INNER JOIN medication on prescription.medication_id = medication.medication_id)" +
                 " INNER JOIN user on user.user_id = health_status.user_id)" +
-                " WHERE user.email = '" + email + "';";
+                " WHERE user.email = ?;";
         PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, email);
         ResultSet rs = statement.executeQuery();
         ArrayList<HealthInformation> healthList = new ArrayList<>();
         while (rs.next()) {
