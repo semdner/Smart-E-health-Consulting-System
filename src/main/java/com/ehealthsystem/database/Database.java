@@ -141,7 +141,12 @@ public class Database {
         ResultSet rs = statement.executeQuery();
 
         rs.next();
-        String storedPassword = rs.getString("password");
+        String storedPassword = null;
+        try {
+            storedPassword = rs.getString("password");
+        } catch (SQLException e) {
+            return false;
+        }
 
         return BCrypt.checkpw(password, storedPassword);
     }
