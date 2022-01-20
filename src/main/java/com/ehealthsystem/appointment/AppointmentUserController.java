@@ -185,11 +185,7 @@ public class AppointmentUserController implements Initializable {
      * @param privateInsurance
      */
     private void setPrivateInsuranceTextField(boolean privateInsurance) {
-        if(privateInsurance) {
-            privateInsuranceLabel.setText("yes");
-        } else {
-            privateInsuranceLabel.setText("no");
-        }
+        privateInsuranceLabel.setText(privateInsurance ? "Yes" : "No");
     }
 
     public static void setAppointment(Appointment passedAppointment) {
