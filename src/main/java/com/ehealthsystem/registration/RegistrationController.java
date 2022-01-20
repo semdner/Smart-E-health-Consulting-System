@@ -279,8 +279,11 @@ public class RegistrationController implements Initializable {
             showError("Number cannot be blank");
             redBackground(numberTextField);
             return false;
+        } else {
+            errorLabel.setVisible(false);
+            normalBackground(numberTextField);
+            return true;
         }
-        return true;
     }
 
     /**
