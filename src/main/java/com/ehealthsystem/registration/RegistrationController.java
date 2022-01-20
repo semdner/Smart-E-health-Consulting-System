@@ -348,8 +348,10 @@ public class RegistrationController implements Initializable {
      */
     public boolean validateGender() {
         if(!genderBox.getSelectionModel().isEmpty()) {
+            errorLabel.setVisible(false);
             return true;
         } else {
+            showError("Please select your gender");
             return false;
         }
     }
