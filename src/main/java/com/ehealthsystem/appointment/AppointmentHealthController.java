@@ -56,39 +56,6 @@ public class AppointmentHealthController implements Initializable {
     private void loadHealthInformation() throws SQLException {
         allHealthInformation = Database.getHealthInformation(Session.user.getMail());
         fillHealthTable(allHealthInformation);
-        if (!Session.appointment.healthInformation.isEmpty()) {
-            restoreCheckBoxSelections();
-        }
-    }
-
-    private void restoreCheckBoxSelections() {
-        for (int i = 0; i < healthGridPane.getChildren().size(); i++) {
-            Node child = healthGridPane.getChildren().get(i);
-            if (child.isManaged()) {
-                Integer index = GridPane.getColumnIndex(child);
-                if(index == null || index != 0) {
-                    //System.out.println("Index is " + index + ", skipping");
-                    continue;
-                }
-                if (!(child instanceof Label)) {
-                    //System.out.println("Child not a label, skipping");
-                    continue;
-                }
-                //ALL THIS ONLY TO GET THE ICD!
-                String ICD = (((Label)child).getText());
-                String healthProblem = ((Label)(healthGridPane.getChildren().get(i+1))).getText();
-                String medication = ((Label)(healthGridPane.getChildren().get(i+2))).getText();
-                //^ accessing GridPane children is ugly
-                HealthInformation displayed = new HealthInformation(ICD, healthProblem, medication);
-
-                for (HealthInformation selected : Session.appointment.healthInformation) {
-                    if (healthInformationsMatch(displayed, selected)) {
-                        manuallySelect(((CheckBox)(healthGridPane.getChildren().get(i+3))), selected, true);
-                        break; //can't do more than to check this entry
-                    }
-                }
-            }
-        }
     }
 
     private void fillHealthTable(ArrayList<HealthInformation> allHealthInformation) {
@@ -99,6 +66,15 @@ public class AppointmentHealthController implements Initializable {
             CheckBox selection = new CheckBox();
             setStyle(ICD, health_problem, medication, selection);
             handleCheckBox(selection, allHealthInformation.get(i), i);
+
+            //Restore CheckBox selections
+            HealthInformation all_entry = allHealthInformation.get(i);
+            for (HealthInformation selected : Session.appointment.healthInformation) {
+                if (healthInformationsMatch(all_entry, selected)) {
+                    manuallySelect(selection, all_entry, true);
+                    break; //can't do more than to check this entry
+                }
+            }
 
             healthGridPane.add(ICD, 0, i+1);
             healthGridPane.add(health_problem, 1, i+1);
