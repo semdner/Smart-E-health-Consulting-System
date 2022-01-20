@@ -22,12 +22,12 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class GeoCoder {
-    public static String geocode(String address, int zip) throws IOException, InterruptedException, ApiException {
+    public static String geocode(String address, String zip) throws IOException, InterruptedException, ApiException {
         // set API Key
         GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyCUFsJZUQjbl0_0o8DAhQzhMOvxhftI6KQ").build();
 
         // geocode address + zip
-        if(!address.isEmpty() || !(zip == 0)) {
+        if(!address.isEmpty() || zip != null) {
             GeocodingResult[] results = GeocodingApi.geocode(context,address + "," + zip).await();
             String formattedAddress = (String)results[0].formattedAddress;
             return formattedAddress;

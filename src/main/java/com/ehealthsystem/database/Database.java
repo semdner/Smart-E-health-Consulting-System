@@ -338,13 +338,13 @@ public class Database {
         return address;
     }
     
-    public static int getZip(String email) throws SQLException {
+    public static String getZip(String email) throws SQLException {
         String query = "SELECT zip FROM user WHERE email = '" + email + "';";
         PreparedStatement statement = connection.prepareStatement(query);
         ResultSet rs = statement.executeQuery();
-        int zip = 0;
+        String zip = null;
         while(rs.next()) {
-            zip = rs.getInt("zip");
+            zip = rs.getString("zip");
         }
         return zip;
     }
@@ -395,7 +395,7 @@ public class Database {
         String address = null;
         while(rs.next()) {
             address = rs.getString("street") + rs.getString("number");
-            String doctorGeoData = GeoCoder.geocode(address, rs.getInt("zip"));
+            String doctorGeoData = GeoCoder.geocode(address, rs.getString("zip"));
             double resultDistance = GeoDistance.getDistance(userGeoData, doctorGeoData);
             if(resultDistance <= distance) {
                 doctorList.add(new DoctorDistance(resultDistance, doctorGeoData, rs.getString("first_name"), rs.getString("last_name"), rs.getString("street"), rs.getString("number"), rs.getInt("zip")));
