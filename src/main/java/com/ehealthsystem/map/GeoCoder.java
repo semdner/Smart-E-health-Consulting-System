@@ -1,25 +1,11 @@
 package com.ehealthsystem.map;
 
-import com.ehealthsystem.database.Database;
-import com.ehealthsystem.user.User;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.maps.*;
 import com.google.maps.errors.ApiException;
-import com.google.maps.errors.RequestDeniedException;
-import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.json.JSONString;
 
 import java.io.*;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 
 public class GeoCoder {
     /**
