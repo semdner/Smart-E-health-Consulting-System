@@ -3,6 +3,7 @@ package com.ehealthsystem.login;
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.primary.PrimaryController;
 
+import com.ehealthsystem.tools.SceneSwitch;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -90,13 +91,9 @@ public class LoginController {
      */
     private void loadPrimaryWindow(Event event) throws IOException {
         PrimaryController.setEmail(emailTextField.getText());
-        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-view.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene primaryScene = new Scene(root);
-        stage.setTitle("E-Health System");
-        stage.setScene(primaryScene);
-        stage.show();
 
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
         // center window
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
@@ -124,12 +121,7 @@ public class LoginController {
      * @throws IOException if the FXMLLOADER can't find the scene
      */
     public void handleRegistrationLabel(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/registration/registration-view.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene primaryScene = new Scene(root);
-        stage.setTitle("Create Account");
-        stage.setScene(primaryScene);
-        stage.show();
+        SceneSwitch.switchTo(event, "registration/registration-view.fxml", "Create Account");
     }
 
 }

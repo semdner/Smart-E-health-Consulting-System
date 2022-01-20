@@ -1,6 +1,7 @@
 package com.ehealthsystem;
 
 import com.ehealthsystem.map.GeoCoder;
+import com.ehealthsystem.tools.SceneSwitch;
 import com.google.maps.errors.ApiException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,22 +22,12 @@ public class MainController {
 
     @FXML
     public void handleLoginButton(ActionEvent event) throws IOException, InterruptedException, ApiException {
-        Parent root = FXMLLoader.load(getClass().getResource("login/login-view.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene loginScene = new Scene(root);
-        stage.setTitle("Login");
-        stage.setScene(loginScene);
-        stage.show();
+        SceneSwitch.switchTo(event, "login/login-view.fxml", "Login");
     }
 
     @FXML
     public void handleRegistrationButton(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("registration/registration-view.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene registrationScene = new Scene(root);
-        stage.setTitle("Create Account");
-        stage.setScene(registrationScene);
-        stage.show();
+        SceneSwitch.switchTo(event, "registration/registration-view.fxml", "Create Account");
     }
 
 }

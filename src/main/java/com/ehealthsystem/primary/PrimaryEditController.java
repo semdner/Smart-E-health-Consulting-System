@@ -2,6 +2,7 @@ package com.ehealthsystem.primary;
 
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.tools.BirthdayCheck;
+import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.user.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -102,12 +103,7 @@ public class PrimaryEditController implements Initializable {
      */
     public void handleCancelButton(ActionEvent event) throws IOException {
         PrimaryController.setEmail(email);
-        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-view.fxml"));
-        Stage stage = (Stage)cancelButton.getScene().getWindow();
-        Scene primaryScene = new Scene(root);
-        stage.setTitle("E-Health System");
-        stage.setScene(primaryScene);
-        stage.show();
+        SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
     }
 
     /**
@@ -135,12 +131,7 @@ public class PrimaryEditController implements Initializable {
      */
     public void loadScene(ActionEvent event) throws IOException {
         PrimaryController.setEmail(emailTextField.getText());
-        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-view.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene primaryScene = new Scene(root);
-        stage.setTitle("E-Health System");
-        stage.setScene(primaryScene);
-        stage.show();
+        SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
     }
 
     /**

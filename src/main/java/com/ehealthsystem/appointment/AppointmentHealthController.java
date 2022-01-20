@@ -2,6 +2,7 @@ package com.ehealthsystem.appointment;
 
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.healthinformation.HealthInformation;
+import com.ehealthsystem.tools.SceneSwitch;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -51,21 +52,12 @@ public class AppointmentHealthController implements Initializable {
     public void handleContinueButton(ActionEvent event) throws IOException {
         newAppointment.setHealthInformation(selectedHealthInformation);
         AppointmentInformationController.setAppointment(newAppointment);
-        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointmentInformation-view.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene primaryScene = new Scene(root);
-        stage.setTitle("make appointment");
-        stage.setScene(primaryScene);
+        SceneSwitch.switchTo(event, "appointment/appointmentInformation-view.fxml", "Make appointment");
     }
 
     public void handleBackButton(ActionEvent event) throws IOException {
         AppointmentUserController.setAppointment(newAppointment);
-        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointmentUser-view.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene primaryScene = new Scene(root);
-        stage.setTitle("make appointment");
-        stage.setScene(primaryScene);
-        stage.show();
+        SceneSwitch.switchTo(event, "appointment/appointmentUser-view.fxml", "Make appointment");
     }
 
     private void loadHealthInformation() throws SQLException {

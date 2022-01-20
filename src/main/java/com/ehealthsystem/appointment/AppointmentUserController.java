@@ -1,6 +1,7 @@
 package com.ehealthsystem.appointment;
 
 import com.ehealthsystem.database.Database;
+import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.user.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -84,11 +85,7 @@ public class AppointmentUserController implements Initializable {
      * @throws IOException if the FXMLLoader cant find .fxml file
      */
     public void handleCancelButton(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-view.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene primaryScene = new Scene(root);
-        stage.setTitle("E-Health-System");
-        stage.setScene(primaryScene);
+        SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
     }
 
     /**
@@ -99,11 +96,7 @@ public class AppointmentUserController implements Initializable {
      */
     public void handleContinueButton(ActionEvent event) throws IOException {
         AppointmentHealthController.setAppointment(newAppointment);
-        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointmentHealth-view.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene primaryScene = new Scene(root);
-        stage.setTitle("make appointment");
-        stage.setScene(primaryScene);
+        SceneSwitch.switchTo(event, "appointment/appointmentHealth-view.fxml", "Make appointment");
     }
 
     /**

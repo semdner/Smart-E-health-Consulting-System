@@ -1,6 +1,7 @@
 package com.ehealthsystem.appointment;
 
 import com.ehealthsystem.doctor.specialization.Specialization;
+import com.ehealthsystem.tools.SceneSwitch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,11 +54,7 @@ public class AppointmentInformationController implements Initializable {
             newAppointment.setDistance(searchDistanceSlider.getValue());
             newAppointment.setSpecialization(doctorChoiceBox.getValue().toString());
             AppointmentFoundController.setAppointment(newAppointment);
-            Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointmentFound-view.fxml"));
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene primaryScene = new Scene(root);
-            stage.setTitle("make appointment");
-            stage.setScene(primaryScene);
+            SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");
         } else {
             errorLabel.setVisible(true);
         }
@@ -65,12 +62,7 @@ public class AppointmentInformationController implements Initializable {
 
     public void handleBackButton(ActionEvent event) throws IOException {
         AppointmentHealthController.setAppointment(newAppointment);
-        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointmentHealth-view.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene primaryScene = new Scene(root);
-        stage.setTitle("make appointment");
-        stage.setScene(primaryScene);
-        stage.show();
+        SceneSwitch.switchTo(event, "appointment/appointmentHealth-view.fxml", "Make appointment");
     }
 
     public boolean validateDate() {

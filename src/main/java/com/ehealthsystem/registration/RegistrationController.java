@@ -2,6 +2,7 @@ package com.ehealthsystem.registration;
 
 import com.ehealthsystem.login.LoginController;
 import com.ehealthsystem.tools.BirthdayCheck;
+import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.user.User;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -422,11 +423,6 @@ public class RegistrationController implements Initializable {
     }
 
     private void switchToLoginView(Event event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/login/login-view.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene loginScene = new Scene(root);
-        stage.setTitle("Login");
-        stage.setScene(loginScene);
-        stage.show();
+        SceneSwitch.switchTo(event, "login/login-view.fxml", "Login");
     }
 }

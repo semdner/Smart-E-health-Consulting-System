@@ -2,6 +2,7 @@ package com.ehealthsystem.primary;
 
 import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.appointment.AppointmentUserController;
+import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.user.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -150,22 +151,12 @@ public class PrimaryController implements Initializable {
      */
     public void handleMakeAppointmentButton(ActionEvent event) throws IOException {
         AppointmentUserController.setAppointment(new Appointment(email));
-        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointmentUser-view.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene primaryScene = new Scene(root);
-        stage.setTitle("make appointment");
-        stage.setScene(primaryScene);
-        stage.show();
+        SceneSwitch.switchTo(event, "appointment/appointmentUser-view.fxml", "Make appointment");
     }
 
     public void handleEditButton(ActionEvent event) throws IOException {
         PrimaryEditController.setEmail(email);
-        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-edit-view.fxml"));
-        Stage stage = (Stage)makeAppointmentButton1.getScene().getWindow();
-        Scene primaryScene = new Scene(root);
-        stage.setTitle("make appointment");
-        stage.setScene(primaryScene);
-        stage.show();
+        SceneSwitch.switchTo(event, "primary/primary-edit-view.fxml", "Edit information");
     }
 
     public static void setEmail(String loginEmail) {

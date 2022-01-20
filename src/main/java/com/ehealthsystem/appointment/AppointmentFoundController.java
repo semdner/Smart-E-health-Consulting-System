@@ -4,6 +4,7 @@ import com.ehealthsystem.database.Database;
 import com.ehealthsystem.doctor.FoundDoctorController;
 import com.ehealthsystem.map.DoctorDistance;
 import com.ehealthsystem.map.GeoCoder;
+import com.ehealthsystem.tools.SceneSwitch;
 import com.google.maps.errors.ApiException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -77,11 +78,7 @@ public class AppointmentFoundController implements Initializable {
 
     public void handleBackButton(ActionEvent event) throws IOException {
         AppointmentInformationController.setAppointment(newAppointment);
-        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointmentInformation-view.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene primaryScene = new Scene(root);
-        stage.setTitle("make appointment");
-        stage.setScene(primaryScene);
+        SceneSwitch.switchTo(event, "appointment/appointmentInformation-view.fxml", "Make appointment");
     }
 
     public static void setAppointment(Appointment passedAppointment) {
