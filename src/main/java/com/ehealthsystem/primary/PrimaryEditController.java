@@ -100,14 +100,10 @@ public class PrimaryEditController implements Initializable {
      * @throws SQLException
      */
     public void handleSaveButton(ActionEvent event) throws IOException, SQLException {
-        if(oldPasswordField.getText().isBlank() && newPasswordField.getText().isBlank()) {
-            updateUserInformation();
-            loadScene(event);
-        } else {
-            updateUserInformation();
+        updateUserInformation();
+        if(oldPasswordField.getText().isBlank() && newPasswordField.getText().isBlank())
             updatePassword(oldPasswordField.getText(), newPasswordField.getText());
-            loadScene(event);
-        }
+        loadScene(event);
     }
 
     /**
