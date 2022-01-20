@@ -186,13 +186,7 @@ public class RegistrationController implements Initializable {
      * @param event KeyEvent the Textbox reacts to
      */
     public void handleFirstName(KeyEvent event) {
-        if(validateFirstname()) {
-            errorLabel.setVisible(false);
-            normalBackground(firstNameTextField);
-        } else {
-            showError("First name cannot be blank");
-            redBackground(firstNameTextField);
-        }
+        validateFirstname();
     }
 
     /**
@@ -202,8 +196,12 @@ public class RegistrationController implements Initializable {
      */
     public boolean validateFirstname() {
         if(!firstNameTextField.getText().isBlank()) {
+            errorLabel.setVisible(false);
+            normalBackground(firstNameTextField);
             return true;
         } else {
+            showError("First name cannot be blank");
+            redBackground(firstNameTextField);
             return false;
         }
     }
