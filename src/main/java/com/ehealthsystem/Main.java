@@ -28,8 +28,11 @@ public class Main extends Application {
         primaryStage.setTitle("Welcome");
         primaryStage.setScene(mainScene);
         primaryStage.show();
+    }
 
-        //Database.close();
+    @Override
+    public void stop(){
+        Database.close();
     }
 
     public static void main(String[] args) throws SQLException {
