@@ -19,7 +19,7 @@ public class Appointment {
     }
 
     public Appointment(ArrayList<HealthInformation> healthInformation) {
-        this.healthInformation.addAll(healthInformation);
+        this.healthInformation = healthInformation;
     }
 
     public void setEmail(String email) {
@@ -43,7 +43,7 @@ public class Appointment {
     }
 
     public void setHealthInformation(ArrayList<HealthInformation> healthInformation) {
-        this.healthInformation.addAll(healthInformation);
+        this.healthInformation = healthInformation;
     }
 
     public void setSpecialization(String specialization) {
