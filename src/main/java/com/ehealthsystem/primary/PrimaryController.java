@@ -136,11 +136,7 @@ public class PrimaryController implements Initializable {
     }
 
     private void setPrivateInsuranceLabel(boolean privateInsurance) {
-        if(privateInsurance) {
-            privateInsuranceLabel.setText("yes");
-        } else {
-            privateInsuranceLabel.setText("no");
-        }
+        privateInsuranceLabel.setText(privateInsurance ? "Yes" : "No");
     }
 
     /**
