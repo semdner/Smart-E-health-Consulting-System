@@ -76,8 +76,8 @@ public class AppointmentInformationController implements Initializable {
     public boolean validateDate() {
         LocalDate date;
         try {
-            date = datePicker.getValue();
-            if (date.isBefore(LocalDate.now())) {
+            date = datePicker.getValue(); //null if no date selected
+            if (date.isBefore(LocalDate.now())) { //throws NullPointerException if date is null
                 return false;
             } else {
                 return true;
