@@ -114,7 +114,9 @@ public class RegistrationController implements Initializable {
                                     true);
             switchToLoginView(event);
         } else {
-            showError("Sign up information wrong or missing");
+            //showError("Sign up information wrong or missing");
+            // Don't show this generic, not helpful error message,
+            // a more helpful, specific error message is set and shown by each validate function
         }
     }
 
