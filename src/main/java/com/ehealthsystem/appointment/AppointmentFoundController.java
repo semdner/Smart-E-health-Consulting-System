@@ -5,6 +5,7 @@ import com.ehealthsystem.doctor.FoundDoctorController;
 import com.ehealthsystem.map.DoctorDistance;
 import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.tools.SceneSwitch;
+import com.ehealthsystem.tools.Session;
 import com.google.maps.errors.ApiException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,7 +44,7 @@ public class AppointmentFoundController implements Initializable {
         String[] choices = {"10 minutes", "1 hour", "3 days", "1 week"};
         reminderComboBox.getItems().addAll(choices);
         try {
-            String userGeoData = GeoCoder.geocode(Database.getAddress(newAppointment.getEmail()), Database.getZip(newAppointment.getEmail()));
+            String userGeoData = GeoCoder.geocode(Session.user.getStreet() + " " + Session.user.getHouseNo(), Session.user.getZipCode());
             ArrayList<DoctorDistance> doctorList = Database.getDoctorFromDistance(userGeoData, newAppointment.getDistance());
             if(doctorList.isEmpty()) {
                 errorLabel.setVisible(true);

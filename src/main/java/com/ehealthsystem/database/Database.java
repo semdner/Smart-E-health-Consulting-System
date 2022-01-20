@@ -326,28 +326,6 @@ public class Database {
         return healthList;
     }
 
-    public static String getAddress(String email) throws SQLException {
-        String query = "SELECT street, number FROM user WHERE email = '" + email + "';";
-        PreparedStatement statement = connection.prepareStatement(query);
-        ResultSet rs = statement.executeQuery();
-        String address = null;
-        while(rs.next()) {
-            address = rs.getString("street") + " " + rs.getString("number");
-        }
-        return address;
-    }
-    
-    public static String getZip(String email) throws SQLException {
-        String query = "SELECT zip FROM user WHERE email = '" + email + "';";
-        PreparedStatement statement = connection.prepareStatement(query);
-        ResultSet rs = statement.executeQuery();
-        String zip = null;
-        while(rs.next()) {
-            zip = rs.getString("zip");
-        }
-        return zip;
-    }
-
     /**
      * Helper method to turn result set into array of user objects
      * @param rs resultSet after the query was executed
