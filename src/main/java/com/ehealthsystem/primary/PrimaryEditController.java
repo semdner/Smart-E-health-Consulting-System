@@ -160,11 +160,11 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Update first name when save button is pressed
-     * @param fristName
+     * @param firstName
      * @throws SQLException
      */
-    private void updateFirstName(String fristName) throws SQLException {
-        Session.user.setFirstName(fristName);
+    private void updateFirstName(String firstName) throws SQLException {
+        Session.user.setFirstName(firstName);
     }
 
     /**

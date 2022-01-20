@@ -72,7 +72,7 @@ public class AppointmentUserController implements Initializable {
      * Switch scene to primary
      *
      * @param event event triggered when cancel button is pressed
-     * @throws IOException if the FXMLLoader cant find .fxml file
+     * @throws IOException if the FXMLLoader can't find .fxml file
      */
     public void handleCancelButton(ActionEvent event) throws IOException {
         SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
