@@ -79,25 +79,46 @@ public class RegistrationController implements Initializable {
         genderBox.getItems().addAll(choices);
     }
 
+    /**
+     * Show the error label
+     * @param error
+     */
     private void showError(String error) {
         errorLabel.setText(error);
         errorLabel.setVisible(true);
     }
 
+    /**
+     * Set a fields background red
+     * @param field
+     */
     private void redBackground(TextField field) {
         field.setStyle("-fx-control-inner-background: #ffb3b3;");
     }
 
+    /**
+     * Set an error on a field. Field will be shown in red and the error will be displayed.
+     * @param field the field to show in red
+     * @param error the error to display
+     */
     private void fieldError(TextField field, String error) {
         redBackground(field);
         showError(error);
     }
 
+    /**
+     * Hide an error on a field. Field's color will be reset and error message will not be displayed.
+     * @param field
+     */
     private void hideError(TextField field) {
         errorLabel.setVisible(false);
         normalBackground(field);
     }
 
+    /**
+     * Reset a fields background
+     * @param field
+     */
     private void normalBackground(TextField field) {
         field.setStyle("-fx-control-inner-background: #cce6ff;");
     }
