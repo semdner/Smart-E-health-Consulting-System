@@ -38,7 +38,7 @@ public class AppointmentFoundController implements Initializable {
         String[] choices = {"10 minutes", "1 hour", "3 days", "1 week"};
         reminderComboBox.getItems().addAll(choices);
         try {
-            String userGeoData = GeoCoder.geocode(Session.user.getStreet() + " " + Session.user.getHouseNo(), Session.user.getZipCode());
+            String userGeoData = GeoCoder.geocodeToFormattedAddress(Session.user.getStreet() + " " + Session.user.getHouseNo(), Session.user.getZipCode());
             ArrayList<DoctorDistance> doctorList = Database.getDoctorFromDistance(userGeoData, Session.appointment.getDistance());
             if(doctorList.isEmpty()) {
                 errorLabel.setVisible(true);

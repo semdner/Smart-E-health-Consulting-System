@@ -374,7 +374,7 @@ public class Database {
         String address = null;
         while(rs.next()) {
             address = rs.getString("street") + rs.getString("number");
-            String doctorGeoData = GeoCoder.geocode(address, rs.getString("zip"));
+            String doctorGeoData = GeoCoder.geocodeToFormattedAddress(address, rs.getString("zip"));
             double resultDistance = GeoDistance.getDistance(userGeoData, doctorGeoData);
             if(resultDistance <= distance) {
                 doctorList.add(new DoctorDistance(resultDistance, doctorGeoData, rs.getString("first_name"), rs.getString("last_name"), rs.getString("street"), rs.getString("number"), rs.getInt("zip")));

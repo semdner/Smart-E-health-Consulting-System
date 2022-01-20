@@ -17,7 +17,7 @@ public class GeoCoder {
      * @throws InterruptedException
      * @throws ApiException
      */
-    public static String geocode(String address, String zip) throws IOException, InterruptedException, ApiException {
+    public static String geocodeToFormattedAddress(String address, String zip) throws IOException, InterruptedException, ApiException {
         // set API Key
         GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyCUFsJZUQjbl0_0o8DAhQzhMOvxhftI6KQ").build();
 
