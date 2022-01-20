@@ -214,17 +214,7 @@ public class RegistrationController implements Initializable {
      * @param event KeyEvent the Textbox reacts to
      */
     public void handleZip(KeyEvent event) {
-        String zip = zipTextField.getText();
-        Pattern zipPat = Pattern.compile("^[0-9]{5}$", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = zipPat.matcher(zip);
-
-        if(matcher.find()) {
-            errorLabel.setVisible(false);
-            normalBackground(zipTextField);
-        } else {
-            showError("Invalid zip format");
-            redBackground(zipTextField);
-        }
+        validateZip();
     }
 
     /**
@@ -365,9 +355,24 @@ public class RegistrationController implements Initializable {
      * @return true if zip is entered correctly
      */
     public boolean validateZip() {
-        if(!zipTextField.getText().isBlank()) {
+        String zip = zipTextField.getText();
+
+        if(zip.isBlank()) {
+            showError("Zip code cannot be blank");
+            redBackground(zipTextField);
+            return false;
+        }
+
+        Pattern zipPat = Pattern.compile("^[0-9]{5}$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = zipPat.matcher(zip);
+
+        if(matcher.find()) {
+            errorLabel.setVisible(false);
+            normalBackground(zipTextField);
             return true;
         } else {
+            showError("Invalid zip format");
+            redBackground(zipTextField);
             return false;
         }
     }
