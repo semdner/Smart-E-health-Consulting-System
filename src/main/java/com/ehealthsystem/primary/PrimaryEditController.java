@@ -50,6 +50,9 @@ public class PrimaryEditController implements Initializable {
     ChoiceBox genderBox;
 
     @FXML
+    TextField insuranceNameTextField;
+
+    @FXML
     CheckBox privateInsuranceCheckBox;
 
     @FXML
@@ -131,6 +134,7 @@ public class PrimaryEditController implements Initializable {
         }
         updateBirthday(birthdayPicker.getValue());
         updateGender((String) genderBox.getValue());
+        updateInsuranceName(insuranceNameTextField.getText());
         updatePrivateInsurance(privateInsuranceCheckBox.isSelected());
     }
 
@@ -223,6 +227,10 @@ public class PrimaryEditController implements Initializable {
         }
     }
 
+    private void updateInsuranceName(String text) throws SQLException {
+        Session.user.setInsuranceName(text);
+    }
+
     /**
      * Update private insurance when save button is pressed
      * @param privateInsurance
@@ -257,6 +265,7 @@ public class PrimaryEditController implements Initializable {
         setZipTextField(currentUser.getZipCode());
         setBirthdayTextField(currentUser.getBirthDate());
         setGenderTextField(currentUser.getGender());
+        setInsuranceNameTextField(currentUser.getInsuranceName());
         setPrivateInsuranceTextField(currentUser.isPrivateInsurance());
     }
 
@@ -330,6 +339,10 @@ public class PrimaryEditController implements Initializable {
      */
     private void setGenderTextField(String gender) {
         genderBox.setValue(gender);
+    }
+
+    private void setInsuranceNameTextField(String insuranceName) {
+        insuranceNameTextField.setText(insuranceName);
     }
 
     /**

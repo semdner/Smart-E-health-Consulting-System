@@ -47,6 +47,9 @@ public class PrimaryController implements Initializable {
     Label genderLabel;
 
     @FXML
+    Label insuranceNameLabel;
+
+    @FXML
     Label privateInsuranceLabel;
 
     @FXML
@@ -82,6 +85,7 @@ public class PrimaryController implements Initializable {
         setZipLabel(Session.user.getZipCode());
         setBirthdayLabel(Session.user.getBirthDate());
         setGenderLabel(Session.user.getGender());
+        setInsuranceNameLabel(Session.user.getInsuranceName());
         setPrivateInsuranceLabel(Session.user.isPrivateInsurance());
     }
 
@@ -120,6 +124,10 @@ public class PrimaryController implements Initializable {
 
     private void setGenderLabel(String gender) {
         genderLabel.setText(gender);
+    }
+
+    private void setInsuranceNameLabel(String insuranceName) {
+        insuranceNameLabel.setText(insuranceName);
     }
 
     private void setPrivateInsuranceLabel(boolean privateInsurance) {

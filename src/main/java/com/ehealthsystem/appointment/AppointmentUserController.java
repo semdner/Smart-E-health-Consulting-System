@@ -47,6 +47,9 @@ public class AppointmentUserController implements Initializable {
     Label genderLabel;
 
     @FXML
+    Label insuranceNameLabel;
+
+    @FXML
     Label privateInsuranceLabel;
 
     @FXML
@@ -104,6 +107,7 @@ public class AppointmentUserController implements Initializable {
         setZipTextField(currentUser.getZipCode());
         setBirthdayTextField(currentUser.getBirthDate());
         setGenderTextField(currentUser.getGender());
+        setInsuranceNameTextField(currentUser.getInsuranceName());
         setPrivateInsuranceTextField(currentUser.isPrivateInsurance());
     }
 
@@ -178,6 +182,10 @@ public class AppointmentUserController implements Initializable {
      */
     private void setGenderTextField(String gender) {
         genderLabel.setText(gender);
+    }
+
+    private void setInsuranceNameTextField(String insuranceName) {
+        insuranceNameLabel.setText(insuranceName);
     }
 
     /**

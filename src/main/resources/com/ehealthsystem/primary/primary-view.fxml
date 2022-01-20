@@ -58,6 +58,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label text="username">
@@ -150,12 +151,22 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="private insurance" GridPane.rowIndex="9">
+                  <Label text="private insurance" GridPane.rowIndex="10">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="privateInsuranceLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                  <Label fx:id="privateInsuranceLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="286.0" text="insurance name" GridPane.rowIndex="9">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="insuranceNameLabel" layoutX="375.0" layoutY="256.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="9">
                      <font>
                         <Font size="15.0" />
                      </font>
