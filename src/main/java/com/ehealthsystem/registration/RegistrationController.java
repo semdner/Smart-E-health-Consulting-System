@@ -88,6 +88,11 @@ public class RegistrationController implements Initializable {
         field.setStyle("-fx-control-inner-background: #ffb3b3;");
     }
 
+    private void hideError(TextField field) {
+        errorLabel.setVisible(false);
+        normalBackground(field);
+    }
+
     private void normalBackground(TextField field) {
         field.setStyle("-fx-control-inner-background: #cce6ff;");
     }
@@ -144,8 +149,7 @@ public class RegistrationController implements Initializable {
             redBackground(usernameTextField);
             return false;
         } else {
-            errorLabel.setVisible(false);
-            normalBackground(usernameTextField);
+            hideError(usernameTextField);
             return true;
         }
     }
@@ -170,8 +174,7 @@ public class RegistrationController implements Initializable {
         Matcher matcher = emailPat.matcher(email);
 
         if(matcher.find()) {
-            errorLabel.setVisible(false);
-            normalBackground(emailTextField);
+            hideError(emailTextField);
             return true;
         } else {
             showError("Invalid email format");
@@ -196,8 +199,7 @@ public class RegistrationController implements Initializable {
      */
     public boolean validateFirstname() {
         if(!firstNameTextField.getText().isBlank()) {
-            errorLabel.setVisible(false);
-            normalBackground(firstNameTextField);
+            hideError(firstNameTextField);
             return true;
         } else {
             showError("First name cannot be blank");
@@ -222,8 +224,7 @@ public class RegistrationController implements Initializable {
      */
     public boolean validateLastname() {
         if(!lastNameTextField.getText().isBlank()) {
-            errorLabel.setVisible(false);
-            normalBackground(lastNameTextField);
+            hideError(lastNameTextField);
             return true;
         } else {
             showError("Last name cannot be blank");
@@ -248,8 +249,7 @@ public class RegistrationController implements Initializable {
      */
     public boolean validateStreet() {
         if(!streetTextField.getText().isBlank()) {
-            errorLabel.setVisible(false);
-            normalBackground(streetTextField);
+            hideError(streetTextField);
             return true;
         } else {
             showError("Street cannot be blank");
@@ -278,8 +278,7 @@ public class RegistrationController implements Initializable {
             redBackground(numberTextField);
             return false;
         } else {
-            errorLabel.setVisible(false);
-            normalBackground(numberTextField);
+            hideError(numberTextField);
             return true;
         }
     }
@@ -311,8 +310,7 @@ public class RegistrationController implements Initializable {
         Matcher matcher = zipPat.matcher(zip);
 
         if(matcher.find()) {
-            errorLabel.setVisible(false);
-            normalBackground(zipTextField);
+            hideError(zipTextField);
             return true;
         } else {
             showError("Invalid zip format");
@@ -384,16 +382,14 @@ public class RegistrationController implements Initializable {
             redBackground(passwordField);
             return false;
         } else {
-            errorLabel.setVisible(false);
-            normalBackground(passwordField);
+            hideError(passwordField);
             return true;
         }
     }
 
     public boolean validateRepeatPassword() {
         if(repeatPasswordField.getText().equals(passwordField.getText())) {
-            errorLabel.setVisible(false);
-            normalBackground(repeatPasswordField);
+            hideError(repeatPasswordField);
             return true;
         } else {
             showError("Passwords don't match");
