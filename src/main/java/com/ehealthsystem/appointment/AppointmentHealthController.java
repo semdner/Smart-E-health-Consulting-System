@@ -53,7 +53,7 @@ public class AppointmentHealthController implements Initializable {
         AppointmentInformationController.setAppointment(newAppointment);
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointmentInformation-view.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene primaryScene = new Scene(root, 1000, 600);
+        Scene primaryScene = new Scene(root);
         stage.setTitle("make appointment");
         stage.setScene(primaryScene);
     }
@@ -62,7 +62,7 @@ public class AppointmentHealthController implements Initializable {
         AppointmentUserController.setAppointment(newAppointment);
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointmentUser-view.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene primaryScene = new Scene(root, 1000, 600);
+        Scene primaryScene = new Scene(root);
         stage.setTitle("make appointment");
         stage.setScene(primaryScene);
         stage.show();

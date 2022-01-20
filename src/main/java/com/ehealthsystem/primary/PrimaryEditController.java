@@ -103,7 +103,7 @@ public class PrimaryEditController implements Initializable {
         PrimaryController.setEmail(email);
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-view.fxml"));
         Stage stage = (Stage)cancelButton.getScene().getWindow();
-        Scene primaryScene = new Scene(root, 1000, 600);
+        Scene primaryScene = new Scene(root);
         stage.setTitle("E-Health System");
         stage.setScene(primaryScene);
         stage.show();
@@ -136,7 +136,7 @@ public class PrimaryEditController implements Initializable {
         PrimaryController.setEmail(emailTextField.getText());
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-view.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene primaryScene = new Scene(root, 1000, 600);
+        Scene primaryScene = new Scene(root);
         stage.setTitle("E-Health System");
         stage.setScene(primaryScene);
         stage.show();

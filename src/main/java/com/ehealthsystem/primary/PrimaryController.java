@@ -152,7 +152,7 @@ public class PrimaryController implements Initializable {
         AppointmentUserController.setAppointment(new Appointment(email));
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/appointment/appointmentUser-view.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene primaryScene = new Scene(root, 1000, 600);
+        Scene primaryScene = new Scene(root);
         stage.setTitle("make appointment");
         stage.setScene(primaryScene);
         stage.show();
@@ -162,7 +162,7 @@ public class PrimaryController implements Initializable {
         PrimaryEditController.setEmail(email);
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/primary/primary-edit-view.fxml"));
         Stage stage = (Stage)makeAppointmentButton1.getScene().getWindow();
-        Scene primaryScene = new Scene(root, 1000, 600);
+        Scene primaryScene = new Scene(root);
         stage.setTitle("make appointment");
         stage.setScene(primaryScene);
         stage.show();

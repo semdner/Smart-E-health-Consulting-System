@@ -50,7 +50,7 @@ public class FoundDoctorController {
         controller.setUserGeoData(userGeoData);
         controller.start();
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene primaryScene = new Scene(root, 1000, 600);
+        Scene primaryScene = new Scene(root);
         stage.setTitle("make appointment");
         stage.setScene(primaryScene);
     }
