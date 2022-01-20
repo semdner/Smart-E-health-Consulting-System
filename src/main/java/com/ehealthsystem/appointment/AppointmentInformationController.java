@@ -53,6 +53,7 @@ public class AppointmentInformationController implements Initializable {
             Session.appointment.setDate(datePicker.getValue());
             Session.appointment.setDistance(searchDistanceSlider.getValue());
             Session.appointment.setSpecialization(doctorChoiceBox.getValue().toString());
+            Session.appointment.setHealthProblem(healthProblemField.getText());
             SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");
         } else {
             errorLabel.setVisible(true);
