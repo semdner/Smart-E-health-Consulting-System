@@ -3,6 +3,7 @@ package com.ehealthsystem.primary;
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.tools.BirthdayCheck;
 import com.ehealthsystem.tools.SceneSwitch;
+import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.user.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -87,6 +88,7 @@ public class PrimaryEditController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String[] choices = {"male", "female", "other"};
+        email = Session.user.getMail();
         genderBox.getItems().addAll(choices);
         try {
             loadUser();
@@ -420,13 +422,5 @@ public class PrimaryEditController implements Initializable {
             errorLabel.setText("Invalid email format");
             errorLabel.setVisible(true);
         }
-    }
-
-    /**
-     * set mail when scene is changed
-     * @param loginEmail emailed used for login
-     */
-    public static void setEmail(String loginEmail) {
-        email = loginEmail;
     }
 }

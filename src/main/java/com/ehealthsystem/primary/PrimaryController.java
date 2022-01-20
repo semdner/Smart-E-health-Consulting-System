@@ -138,7 +138,6 @@ public class PrimaryController implements Initializable {
     }
 
     public void handleEditButton(ActionEvent event) throws IOException {
-        PrimaryEditController.setEmail(Session.user.getMail());
         SceneSwitch.switchTo(event, "primary/primary-edit-view.fxml", "Edit information");
     }
 }
