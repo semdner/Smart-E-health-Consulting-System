@@ -126,17 +126,7 @@ public class RegistrationController implements Initializable {
      * @param event KeyEvent the Textbox reacts to
      */
     public void handleUsername(KeyEvent event) {
-        if(usernameTextField.getText().isBlank()) {
-            showError("username cannot be blank");
-            redBackground(usernameTextField);
-        }
-        if(usernameTextField.getText().length() < 5) {
-            showError("username needs to be at least 5 characters long");
-            redBackground(usernameTextField);
-        } else {
-            errorLabel.setVisible(false);
-            normalBackground(usernameTextField);
-        }
+        validateUsername();
     }
 
     /**
@@ -145,10 +135,19 @@ public class RegistrationController implements Initializable {
      * @return true if username is entered correctly
      */
     public boolean validateUsername() {
-        if(!usernameTextField.getText().isBlank() && usernameTextField.getText().length() >= 5) {
-            return true;
-        } else {
+        if(usernameTextField.getText().isBlank()) {
+            showError("username cannot be blank");
+            redBackground(usernameTextField);
             return false;
+        }
+        if(usernameTextField.getText().length() < 5) {
+            showError("username needs to be at least 5 characters long");
+            redBackground(usernameTextField);
+            return false;
+        } else {
+            errorLabel.setVisible(false);
+            normalBackground(usernameTextField);
+            return true;
         }
     }
 
