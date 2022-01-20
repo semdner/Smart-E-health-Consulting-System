@@ -6,6 +6,8 @@ CREATE TABLE doctor
     street	    TEXT NOT NULL,
     number	    TEXT NOT NULL,
     zip 	    TEXT NOT NULL,
+    latitude    NUMERIC NOT NULL,
+    longitude   NUMERIC NOT NULL,
     PRIMARY KEY(doctor_id AUTOINCREMENT),
     FOREIGN KEY (zip) REFERENCES location(zip)
 );
