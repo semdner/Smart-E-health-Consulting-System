@@ -63,7 +63,7 @@ public class AppointmentUserController implements Initializable {
 
     /**
      * First method called when scene is switched.
-     * Used to laod the user information
+     * Used to load the user information
      * @param url
      * @param resourceBundle
      */

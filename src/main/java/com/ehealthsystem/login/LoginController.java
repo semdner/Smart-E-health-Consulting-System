@@ -86,7 +86,7 @@ public class LoginController {
 
     /**
      * Method called to switch scene to primary window after successfully logged in.
-     * @throws IOException FXMLLOADER can't find file for switching scene
+     * @throws IOException FXMLLoader can't find file for switching scene
      */
     private void loadPrimaryWindow(Event event) throws IOException {
         PrimaryController.setEmail(emailTextField.getText());
