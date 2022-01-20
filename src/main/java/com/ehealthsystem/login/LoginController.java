@@ -1,9 +1,8 @@
 package com.ehealthsystem.login;
 
 import com.ehealthsystem.database.Database;
-import com.ehealthsystem.primary.PrimaryController;
-
 import com.ehealthsystem.tools.SceneSwitch;
+import com.ehealthsystem.tools.Session;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -85,8 +84,8 @@ public class LoginController {
      * Method called to switch scene to primary window after successfully logged in.
      * @throws IOException FXMLLoader can't find file for switching scene
      */
-    private void loadPrimaryWindow(Event event) throws IOException {
-        PrimaryController.setEmail(emailTextField.getText());
+    private void loadPrimaryWindow(Event event) throws IOException, SQLException {
+        Session.loginUser(emailTextField.getText());
 
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");

@@ -3,7 +3,7 @@ package com.ehealthsystem.primary;
 import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.appointment.AppointmentUserController;
 import com.ehealthsystem.tools.SceneSwitch;
-import com.ehealthsystem.user.User;
+import com.ehealthsystem.tools.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -72,30 +72,24 @@ public class PrimaryController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            loadUser(email);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        loadUserDetails();
     }
 
     /**
      *
-     * @param email
      * @throws SQLException
      */
-    private void loadUser(String email) throws SQLException {
-        User currentUser = Database.getUserFromEmail(email);
-        setUsernameLabel(currentUser.getUsername());
-        setEmailLabel(currentUser.getMail());
-        setFirstNameLabel(currentUser.getFirstName());
-        setLastNameLabel(currentUser.getLastName());
-        setStreetLabel(currentUser.getStreet());
-        setHouseNoLabel(currentUser.getHouseNo());
-        setZipLabel(currentUser.getZipCode());
-        setBirthdayLabel(currentUser.getBirthDate());
-        setGenderLabel(currentUser.getGender());
-        setPrivateInsuranceLabel(currentUser.isPrivateInsurance());
+    private void loadUserDetails() {
+        setUsernameLabel(Session.user.getUsername());
+        setEmailLabel(Session.user.getMail());
+        setFirstNameLabel(Session.user.getFirstName());
+        setLastNameLabel(Session.user.getLastName());
+        setStreetLabel(Session.user.getStreet());
+        setHouseNoLabel(Session.user.getHouseNo());
+        setZipLabel(Session.user.getZipCode());
+        setBirthdayLabel(Session.user.getBirthDate());
+        setGenderLabel(Session.user.getGender());
+        setPrivateInsuranceLabel(Session.user.isPrivateInsurance());
     }
 
     private void setUsernameLabel(String username) {
