@@ -218,36 +218,6 @@ public class RegistrationController implements Initializable {
     }
 
     /**
-     * Method called when Key is pressed and Password PasswordField is selected.
-     * Used to check if information are right/wrong while typing.
-     * @param event KeyEvent the Textbox reacts to
-     */
-    public void handlePassword(KeyEvent event) {
-        if(passwordField.getText().length() < 8) {
-            showError("Password needs to be at least 8 characters");
-            redBackground(passwordField);
-        } else {
-            errorLabel.setVisible(false);
-            normalBackground(passwordField);
-        }
-    }
-
-    /**
-     * Method called when Key is pressed and Reapted Password PasswordField is selected.
-     * Used to check if information are right/wrong while typing.
-     * @param event KeyEvent the Textbox reacts to
-     */
-    public void handleRepeatPassword(KeyEvent event) {
-        if(repeatPasswordField.getText().equals(passwordField.getText())) {
-            errorLabel.setVisible(false);
-            normalBackground(repeatPasswordField);
-        } else {
-            showError("Passwords don't match");
-            redBackground(repeatPasswordField);
-        }
-    }
-
-    /**
      * Method called when Login Label is pressed.
      * Used to check to switch the scene to the login screen.
      * @param event
@@ -404,6 +374,36 @@ public class RegistrationController implements Initializable {
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * Method called when Key is pressed and Password PasswordField is selected.
+     * Used to check if information are right/wrong while typing.
+     * @param event KeyEvent the Textbox reacts to
+     */
+    public void handlePassword(KeyEvent event) {
+        if(passwordField.getText().length() < 8) {
+            showError("Password needs to be at least 8 characters");
+            redBackground(passwordField);
+        } else {
+            errorLabel.setVisible(false);
+            normalBackground(passwordField);
+        }
+    }
+
+    /**
+     * Method called when Key is pressed and Reapted Password PasswordField is selected.
+     * Used to check if information are right/wrong while typing.
+     * @param event KeyEvent the Textbox reacts to
+     */
+    public void handleRepeatPassword(KeyEvent event) {
+        if(repeatPasswordField.getText().equals(passwordField.getText())) {
+            errorLabel.setVisible(false);
+            normalBackground(repeatPasswordField);
+        } else {
+            showError("Passwords don't match");
+            redBackground(repeatPasswordField);
         }
     }
 
