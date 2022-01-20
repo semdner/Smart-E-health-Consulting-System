@@ -3,6 +3,7 @@ package com.ehealthsystem.registration;
 import com.ehealthsystem.login.LoginController;
 import com.ehealthsystem.tools.BirthdayCheck;
 import com.ehealthsystem.tools.SceneSwitch;
+import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.user.User;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -146,7 +147,8 @@ public class RegistrationController implements Initializable {
                                     passwordField.getText(),
                                     privateInsuranceCheckBox.isSelected(),
                                     true);
-            switchToLoginView(event);
+            Session.user = newUser;
+            SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
         } else {
             //showError("Sign up information wrong or missing");
             // Don't show this generic, not helpful error message,
