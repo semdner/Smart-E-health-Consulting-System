@@ -56,6 +56,39 @@ public class AppointmentHealthController implements Initializable {
     private void loadHealthInformation() throws SQLException {
         allHealthInformation = Database.getHealthInformation(Session.user.getMail());
         fillHealthTable(allHealthInformation);
+        if (!Session.appointment.healthInformation.isEmpty()) {
+            restoreCheckBoxSelections();
+        }
+    }
+
+    private void restoreCheckBoxSelections() {
+        for (int i = 0; i < healthGridPane.getChildren().size(); i++) {
+            Node child = healthGridPane.getChildren().get(i);
+            if (child.isManaged()) {
+                Integer index = GridPane.getColumnIndex(child);
+                if(index == null || index != 0) {
+                    //System.out.println("Index is " + index + ", skipping");
+                    continue;
+                }
+                if (!(child instanceof Label)) {
+                    //System.out.println("Child not a label, skipping");
+                    continue;
+                }
+                //ALL THIS ONLY TO GET THE ICD!
+                String ICD = (((Label)child).getText());
+                String healthProblem = ((Label)(healthGridPane.getChildren().get(i+1))).getText();
+                String medication = ((Label)(healthGridPane.getChildren().get(i+2))).getText();
+                //^ accessing GridPane children is ugly
+                HealthInformation displayed = new HealthInformation(ICD, healthProblem, medication);
+
+                for (HealthInformation selected : Session.appointment.healthInformation) {
+                    if (healthInformationsMatch(displayed, selected)) {
+                        manuallySelect(((CheckBox)(healthGridPane.getChildren().get(i+3))), selected, true);
+                        break; //can't do more than to check this entry
+                    }
+                }
+            }
+        }
     }
 
     private void fillHealthTable(ArrayList<HealthInformation> allHealthInformation) {
@@ -89,10 +122,26 @@ public class AppointmentHealthController implements Initializable {
                 if(selection.isSelected()) {
                     selectedHealthInformation.add(selectedRow);
                 } else {
-                    selectedHealthInformation.remove(selectedRow);
+                    removeMatchingHealthInformation(selectedRow);
                 }
             }
         });
+    }
+
+    //Compare the data instead of the object because the object is a different one when switching scenes
+    private void removeMatchingHealthInformation(HealthInformation c) {
+        for (int i = 0; i < selectedHealthInformation.size(); i++) {
+            HealthInformation e = selectedHealthInformation.get(i);
+            if (healthInformationsMatch(c, e))
+                selectedHealthInformation.remove(i--);
+        }
+    }
+
+    private boolean healthInformationsMatch(HealthInformation a, HealthInformation b) {
+        return (a.getICD().equals(b.getICD()) &&
+                a.getDisease().equals(b.getDisease()) &&
+                (a.getMedication() == null && b.getMedication() == null || (a.getMedication() != null && b.getMedication() != null && a.getMedication().equals(b.getMedication())) )
+        );
     }
 
     public void handleSelectAllButton(ActionEvent event) {
@@ -100,8 +149,7 @@ public class AppointmentHealthController implements Initializable {
             if(numberOfCheckBoxes.get(i).isSelected()) {
                 continue;
             } else {
-                numberOfCheckBoxes.get(i).setSelected(true);
-                selectedHealthInformation.add(allHealthInformation.get(i));
+                manuallySelect(numberOfCheckBoxes.get(i), allHealthInformation.get(i), true);
             }
         }
     }
@@ -109,11 +157,19 @@ public class AppointmentHealthController implements Initializable {
     public void handleDeselectAllButton(ActionEvent event) {
         for (int i = 0; i < numberOfCheckBoxes.size(); i++) {
             if(numberOfCheckBoxes.get(i).isSelected()) {
-                numberOfCheckBoxes.get(i).setSelected(false);
-                selectedHealthInformation.remove(allHealthInformation.get(i));
+                manuallySelect(numberOfCheckBoxes.get(i), allHealthInformation.get(i), false);
             } else {
                 continue;
             }
         }
+    }
+
+    private void manuallySelect(CheckBox c, HealthInformation h, boolean selected) {
+        if (c.isSelected() == selected) return;
+        c.setSelected(selected);
+        if (selected)
+            selectedHealthInformation.add(h);
+        else
+            removeMatchingHealthInformation(h);
     }
 }
