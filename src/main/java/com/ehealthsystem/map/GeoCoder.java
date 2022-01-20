@@ -22,6 +22,15 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class GeoCoder {
+    /**
+     * Verifies an address
+     * @param address consisting of street and optionally including number
+     * @param zip the zip code
+     * @return if address was found: the entered address, properly formatted
+     * @throws IOException
+     * @throws InterruptedException
+     * @throws ApiException
+     */
     public static String geocode(String address, String zip) throws IOException, InterruptedException, ApiException {
         // set API Key
         GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyCUFsJZUQjbl0_0o8DAhQzhMOvxhftI6KQ").build();
