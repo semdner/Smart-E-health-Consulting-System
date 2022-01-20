@@ -203,23 +203,7 @@ public class RegistrationController implements Initializable {
      * @param event KeyEvent the Textbox reacts to
      */
     public void handleNumber(KeyEvent event) {
-        String number = numberTextField.getText();
-        Pattern numberPat = Pattern.compile("^[0-9]{1,4}$", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = numberPat.matcher(number);
-
-        if(numberTextField.getText().isBlank()) {
-            showError("number cannot be blank");
-            redBackground(numberTextField);
-            return;
-        }
-
-        if(matcher.find()) {
-            errorLabel.setVisible(false);
-            normalBackground(numberTextField);
-        } else {
-            showError("invalid house number");
-            redBackground(numberTextField);
-        }
+        validateNumber();
     }
 
     /**
@@ -365,9 +349,23 @@ public class RegistrationController implements Initializable {
      * @return true if house number is entered correctly
      */
     public boolean validateNumber() {
-        if(!numberTextField.getText().isBlank()) {
+        String number = numberTextField.getText();
+        Pattern numberPat = Pattern.compile("^[0-9]{1,4}$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = numberPat.matcher(number);
+
+        if(numberTextField.getText().isBlank()) {
+            showError("number cannot be blank");
+            redBackground(numberTextField);
+            return false;
+        }
+
+        if(matcher.find()) {
+            errorLabel.setVisible(false);
+            normalBackground(numberTextField);
             return true;
         } else {
+            showError("invalid house number");
+            redBackground(numberTextField);
             return false;
         }
     }
