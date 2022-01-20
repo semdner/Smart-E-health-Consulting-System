@@ -102,7 +102,6 @@ public class PrimaryEditController implements Initializable {
      * @throws IOException
      */
     public void handleCancelButton(ActionEvent event) throws IOException {
-        PrimaryController.setEmail(email);
         SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
     }
 
@@ -130,7 +129,6 @@ public class PrimaryEditController implements Initializable {
      * @throws IOException
      */
     public void loadScene(ActionEvent event) throws IOException {
-        PrimaryController.setEmail(emailTextField.getText());
         SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
     }
 

@@ -133,16 +133,12 @@ public class PrimaryController implements Initializable {
      * @throws IOException
      */
     public void handleMakeAppointmentButton(ActionEvent event) throws IOException {
-        AppointmentUserController.setAppointment(new Appointment(email));
+        AppointmentUserController.setAppointment(new Appointment(Session.user.getMail()));
         SceneSwitch.switchTo(event, "appointment/appointmentUser-view.fxml", "Make appointment");
     }
 
     public void handleEditButton(ActionEvent event) throws IOException {
-        PrimaryEditController.setEmail(email);
+        PrimaryEditController.setEmail(Session.user.getMail());
         SceneSwitch.switchTo(event, "primary/primary-edit-view.fxml", "Edit information");
-    }
-
-    public static void setEmail(String loginEmail) {
-        email = loginEmail;
     }
 }
