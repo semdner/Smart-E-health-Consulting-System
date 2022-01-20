@@ -156,13 +156,7 @@ public class RegistrationController implements Initializable {
      * @param event KeyEvent the Textbox reacts to
      */
     public void handleEmail(KeyEvent event) {
-        if(validateEmail()) {
-            errorLabel.setVisible(false);
-            normalBackground(emailTextField);
-        } else {
-            showError("Invalid email format");
-            redBackground(emailTextField);
-        }
+        validateEmail();
     }
 
     /**
@@ -176,8 +170,12 @@ public class RegistrationController implements Initializable {
         Matcher matcher = emailPat.matcher(email);
 
         if(matcher.find()) {
+            errorLabel.setVisible(false);
+            normalBackground(emailTextField);
             return true;
         } else {
+            showError("Invalid email format");
+            redBackground(emailTextField);
             return false;
         }
     }
