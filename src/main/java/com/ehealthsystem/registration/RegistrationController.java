@@ -427,7 +427,7 @@ public class RegistrationController implements Initializable {
     private void switchToLoginView(Event event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/login/login-view.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene loginScene = new Scene(root, 350, 450);
+        Scene loginScene = new Scene(root);
         stage.setTitle("Login");
         stage.setScene(loginScene);
         stage.show();

@@ -23,7 +23,7 @@ public class MainController {
     public void handleLoginButton(ActionEvent event) throws IOException, InterruptedException, ApiException {
         Parent root = FXMLLoader.load(getClass().getResource("login/login-view.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene loginScene = new Scene(root, 350, 450);
+        Scene loginScene = new Scene(root);
         stage.setTitle("Login");
         stage.setScene(loginScene);
         stage.show();
