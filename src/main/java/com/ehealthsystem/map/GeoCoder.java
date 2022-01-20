@@ -27,12 +27,13 @@ public class GeoCoder {
         GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyCUFsJZUQjbl0_0o8DAhQzhMOvxhftI6KQ").build();
 
         // geocode address + zip
-        if(!address.isEmpty() || zip != null) {
-            GeocodingResult[] results = GeocodingApi.geocode(context,address + "," + zip).await();
-            String formattedAddress = results[0].formattedAddress;
-            return formattedAddress;
+        if(address.isBlank() && zip.isBlank()) {
+            return null;
         }
-        return null;
+
+        GeocodingResult[] results = GeocodingApi.geocode(context,address + "," + zip).await();
+        String formattedAddress = results[0].formattedAddress;
+        return formattedAddress;
     }
 
     public static LatLng geocodeToLatLng(String address) throws IOException, InterruptedException, ApiException {
