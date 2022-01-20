@@ -140,6 +140,19 @@ public class RegistrationController implements Initializable {
     }
 
     /**
+     * Helper method for the handleRegistrationButton method.
+     * Used to validate the username correctness.
+     * @return true if username is entered correctly
+     */
+    public boolean validateUsername() {
+        if(!usernameTextField.getText().isBlank() && usernameTextField.getText().length() >= 5) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * Method called when Key is pressed and Email Textbox is selected.
      * Used to check if information are right/wrong while typing.
      * @param event KeyEvent the Textbox reacts to
@@ -151,101 +164,6 @@ public class RegistrationController implements Initializable {
         } else {
             showError("Invalid email format");
             redBackground(emailTextField);
-        }
-    }
-
-    /**
-     * Method called when Key is pressed and First Name Textbox is selected.
-     * Used to check if information are right/wrong while typing.
-     * @param event KeyEvent the Textbox reacts to
-     */
-    public void handleFirstName(KeyEvent event) {
-        if(validateFirstname()) {
-            errorLabel.setVisible(false);
-            normalBackground(firstNameTextField);
-        } else {
-            showError("first name cannot be blank");
-            redBackground(firstNameTextField);
-        }
-    }
-
-    /**
-     * Method called when Key is pressed and Last Name Textbox is selected.
-     * Used to check if information are right/wrong while typing.
-     * @param event KeyEvent the Textbox reacts to
-     */
-    public void handleLastName(KeyEvent event) {
-        if(validateLastname()) {
-            errorLabel.setVisible(false);
-            normalBackground(lastNameTextField);
-        } else {
-            showError("last name cannot be blank");
-            redBackground(lastNameTextField);
-        }
-    }
-
-    /**
-     * Method called when Key is pressed and Street Textbox is selected.
-     * Used to check if information are right/wrong while typing.
-     * @param event KeyEvent the Textbox reacts to
-     */
-    public void handleStreet(KeyEvent event) {
-        if(validateStreet()) {
-            errorLabel.setVisible(false);
-            normalBackground(streetTextField);
-        } else {
-            showError("street cannot be blank");
-            redBackground(streetTextField);
-        }
-    }
-
-    /**
-     * Method called when Key is pressed and Number Textbox is selected.
-     * Used to check if information are right/wrong while typing.
-     * @param event KeyEvent the Textbox reacts to
-     */
-    public void handleNumber(KeyEvent event) {
-        validateNumber();
-    }
-
-    /**
-     * Method called when Key is pressed and Zip Textbox is selected.
-     * Used to check if information are right/wrong while typing.
-     * @param event KeyEvent the Textbox reacts to
-     */
-    public void handleZip(KeyEvent event) {
-        validateZip();
-    }
-
-    /**
-     * Method called when Login Label is pressed.
-     * Used to check to switch the scene to the login screen.
-     * @param event
-     * @throws IOException
-     */
-    public void handleLoginLabel(MouseEvent event) throws IOException  {
-        switchToLoginView(event);
-    }
-
-    private void switchToLoginView(Event event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/login/login-view.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene loginScene = new Scene(root, 350, 450);
-        stage.setTitle("Login");
-        stage.setScene(loginScene);
-        stage.show();
-    }
-
-    /**
-     * Helper method for the handleRegistrationButton method.
-     * Used to validate the username correctness.
-     * @return true if username is entered correctly
-     */
-    public boolean validateUsername() {
-        if(!usernameTextField.getText().isBlank() && usernameTextField.getText().length() >= 5) {
-            return true;
-        } else {
-            return false;
         }
     }
 
@@ -267,6 +185,21 @@ public class RegistrationController implements Initializable {
     }
 
     /**
+     * Method called when Key is pressed and First Name Textbox is selected.
+     * Used to check if information are right/wrong while typing.
+     * @param event KeyEvent the Textbox reacts to
+     */
+    public void handleFirstName(KeyEvent event) {
+        if(validateFirstname()) {
+            errorLabel.setVisible(false);
+            normalBackground(firstNameTextField);
+        } else {
+            showError("first name cannot be blank");
+            redBackground(firstNameTextField);
+        }
+    }
+
+    /**
      * Helper method for the handleRegistrationButton method.
      * Used to validate the first name correctness.
      * @return true if first name is entered correctly
@@ -276,6 +209,21 @@ public class RegistrationController implements Initializable {
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * Method called when Key is pressed and Last Name Textbox is selected.
+     * Used to check if information are right/wrong while typing.
+     * @param event KeyEvent the Textbox reacts to
+     */
+    public void handleLastName(KeyEvent event) {
+        if(validateLastname()) {
+            errorLabel.setVisible(false);
+            normalBackground(lastNameTextField);
+        } else {
+            showError("last name cannot be blank");
+            redBackground(lastNameTextField);
         }
     }
 
@@ -293,6 +241,21 @@ public class RegistrationController implements Initializable {
     }
 
     /**
+     * Method called when Key is pressed and Street Textbox is selected.
+     * Used to check if information are right/wrong while typing.
+     * @param event KeyEvent the Textbox reacts to
+     */
+    public void handleStreet(KeyEvent event) {
+        if(validateStreet()) {
+            errorLabel.setVisible(false);
+            normalBackground(streetTextField);
+        } else {
+            showError("street cannot be blank");
+            redBackground(streetTextField);
+        }
+    }
+
+    /**
      * Helper method for the handleRegistrationButton method.
      * Used to validate the street correctness.
      * @return true if street is entered correctly
@@ -303,6 +266,15 @@ public class RegistrationController implements Initializable {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Method called when Key is pressed and Number Textbox is selected.
+     * Used to check if information are right/wrong while typing.
+     * @param event KeyEvent the Textbox reacts to
+     */
+    public void handleNumber(KeyEvent event) {
+        validateNumber();
     }
 
     /**
@@ -317,6 +289,15 @@ public class RegistrationController implements Initializable {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Method called when Key is pressed and Zip Textbox is selected.
+     * Used to check if information are right/wrong while typing.
+     * @param event KeyEvent the Textbox reacts to
+     */
+    public void handleZip(KeyEvent event) {
+        validateZip();
     }
 
     /**
@@ -422,5 +403,24 @@ public class RegistrationController implements Initializable {
             redBackground(repeatPasswordField);
             return false;
         }
+    }
+
+    /**
+     * Method called when Login Label is pressed.
+     * Used to check to switch the scene to the login screen.
+     * @param event
+     * @throws IOException
+     */
+    public void handleLoginLabel(MouseEvent event) throws IOException  {
+        switchToLoginView(event);
+    }
+
+    private void switchToLoginView(Event event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/ehealthsystem/login/login-view.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene loginScene = new Scene(root, 350, 450);
+        stage.setTitle("Login");
+        stage.setScene(loginScene);
+        stage.show();
     }
 }
