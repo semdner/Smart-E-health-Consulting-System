@@ -351,25 +351,12 @@ public class RegistrationController implements Initializable {
      * @return true if house number is entered correctly
      */
     public boolean validateNumber() {
-        String number = numberTextField.getText();
-        Pattern numberPat = Pattern.compile("^[0-9]{1,4}$", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = numberPat.matcher(number);
-
         if(numberTextField.getText().isBlank()) {
-            showError("number cannot be blank");
+            showError("Number cannot be blank");
             redBackground(numberTextField);
             return false;
         }
-
-        if(matcher.find()) {
-            errorLabel.setVisible(false);
-            normalBackground(numberTextField);
-            return true;
-        } else {
-            showError("invalid house number");
-            redBackground(numberTextField);
-            return false;
-        }
+        return true;
     }
 
     /**
