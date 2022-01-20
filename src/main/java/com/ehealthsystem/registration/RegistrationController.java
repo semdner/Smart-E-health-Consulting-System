@@ -99,7 +99,7 @@ public class RegistrationController implements Initializable {
      * @param event event the Button reacts to
      */
     public void handleRegistrationButton(ActionEvent event) throws IOException, SQLException {
-        if(validateUsername() && validateEmail() && validateFirstname() && validateLastname() && validateStreet() && validateNumber() && validateZip() && validateBirthday() && validateGender() && validatePasswords()) {
+        if(validateUsername() && validateEmail() && validateFirstname() && validateLastname() && validateStreet() && validateNumber() && validateZip() && validateBirthday() && validateGender() && validatePassword() && validateRepeatPassword()) {
             User newUser = new User(usernameTextField.getText(),
                                     emailTextField.getText(),
                                     firstNameTextField.getText(),
@@ -383,13 +383,7 @@ public class RegistrationController implements Initializable {
      * @param event KeyEvent the Textbox reacts to
      */
     public void handlePassword(KeyEvent event) {
-        if(passwordField.getText().length() < 8) {
-            showError("Password needs to be at least 8 characters");
-            redBackground(passwordField);
-        } else {
-            errorLabel.setVisible(false);
-            normalBackground(passwordField);
-        }
+        validatePassword();
     }
 
     /**
@@ -398,13 +392,7 @@ public class RegistrationController implements Initializable {
      * @param event KeyEvent the Textbox reacts to
      */
     public void handleRepeatPassword(KeyEvent event) {
-        if(repeatPasswordField.getText().equals(passwordField.getText())) {
-            errorLabel.setVisible(false);
-            normalBackground(repeatPasswordField);
-        } else {
-            showError("Passwords don't match");
-            redBackground(repeatPasswordField);
-        }
+        validateRepeatPassword();
     }
 
     /**
@@ -412,10 +400,26 @@ public class RegistrationController implements Initializable {
      * Used to validate the password correctness.
      * @return true if password and repeated password match
      */
-    public boolean validatePasswords() {
-        if(!passwordField.getText().isBlank() && !repeatPasswordField.getText().isBlank() && repeatPasswordField.getText().equals(passwordField.getText())) {
+    public boolean validatePassword() {
+        if(passwordField.getText().length() < 8) {
+            showError("Password needs to be at least 8 characters");
+            redBackground(passwordField);
+            return false;
+        } else {
+            errorLabel.setVisible(false);
+            normalBackground(passwordField);
+            return true;
+        }
+    }
+
+    public boolean validateRepeatPassword() {
+        if(repeatPasswordField.getText().equals(passwordField.getText())) {
+            errorLabel.setVisible(false);
+            normalBackground(repeatPasswordField);
             return true;
         } else {
+            showError("Passwords don't match");
+            redBackground(repeatPasswordField);
             return false;
         }
     }
