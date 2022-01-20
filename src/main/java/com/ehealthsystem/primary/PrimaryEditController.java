@@ -149,8 +149,10 @@ public class PrimaryEditController implements Initializable {
     private void updateUserInformation() throws SQLException {
         updateUsername(usernameTextField.getText());
         updateEmail(emailTextField.getText());
-        updateFirstName(firstNameTextField.getText());
-        updateLastName(lastNameTextField.getText());
+        if(!firstNameTextField.getText().isBlank()) {
+            updateFirstName(firstNameTextField.getText());
+            updateLastName(lastNameTextField.getText());
+        }
         if(!streetTextField.getText().isBlank()) {
             updateStreet(streetTextField.getText());
             updateNumber(houseNoTextField.getText());
@@ -195,10 +197,8 @@ public class PrimaryEditController implements Initializable {
      * @throws SQLException
      */
     private void updateFirstName(String fristName) throws SQLException {
-        if(!firstNameTextField.getText().isBlank()) {
-            User updateUser = Database.getUserFromEmail(email);
-            updateUser.setFirstName(fristName);
-        }
+        User updateUser = Database.getUserFromEmail(email);
+        updateUser.setFirstName(fristName);
     }
 
     /**
@@ -207,10 +207,8 @@ public class PrimaryEditController implements Initializable {
      * @throws SQLException
      */
     private void updateLastName(String lastName) throws SQLException {
-        if(!firstNameTextField.getText().isBlank()) {
-            User updateUser = Database.getUserFromEmail(email);
-            updateUser.setLastName(lastName);
-        }
+        User updateUser = Database.getUserFromEmail(email);
+        updateUser.setLastName(lastName);
     }
 
     /**
