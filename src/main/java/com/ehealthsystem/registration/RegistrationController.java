@@ -65,6 +65,7 @@ public class RegistrationController implements Initializable {
 
     @FXML
     Label errorLabel;
+    @FXML
     Label loginLabel;
 
     /**
