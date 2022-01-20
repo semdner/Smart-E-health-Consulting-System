@@ -1,19 +1,14 @@
 package com.ehealthsystem.appointment;
 
-import com.ehealthsystem.database.Database;
 import com.ehealthsystem.tools.SceneSwitch;
+import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.user.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -70,12 +65,7 @@ public class AppointmentUserController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-
-            loadUser();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        loadUserDetails();
     }
 
     /**
@@ -103,8 +93,8 @@ public class AppointmentUserController implements Initializable {
      * Load user information when button is pressed
      * @throws SQLException
      */
-    public void loadUser() throws SQLException {
-        User currentUser = Database.getUserFromEmail(newAppointment.getEmail());
+    public void loadUserDetails() {
+        User currentUser = Session.user;
         setUsernameTextField(currentUser.getUsername());
         setEmailTextField(currentUser.getMail());
         setFirstNameTextField(currentUser.getFirstName());
