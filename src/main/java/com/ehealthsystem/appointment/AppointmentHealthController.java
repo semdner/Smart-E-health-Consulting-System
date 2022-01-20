@@ -55,6 +55,7 @@ public class AppointmentHealthController implements Initializable {
     }
 
     public void handleBackButton(ActionEvent event) throws IOException {
+        Session.appointment.setHealthInformation(selectedHealthInformation);
         SceneSwitch.switchTo(event, "appointment/appointmentUser-view.fxml", "Make appointment");
     }
 
