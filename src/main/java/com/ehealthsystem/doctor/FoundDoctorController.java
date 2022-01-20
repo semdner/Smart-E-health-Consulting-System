@@ -44,11 +44,13 @@ public class FoundDoctorController {
     public void handleShowMoreButton(ActionEvent event) throws IOException, InterruptedException, ApiException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/ehealthsystem/doctor/foundDoctorFull-view.fxml"));
         Parent root = loader.load();
+
         FoundDoctorFullController controller = loader.getController();
         controller.setDoctor(doctor);
         controller.setDoctorGeoData(doctorGeoData);
         controller.setUserGeoData(userGeoData);
         controller.start();
+
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene primaryScene = new Scene(root);
         stage.setTitle("make appointment");
