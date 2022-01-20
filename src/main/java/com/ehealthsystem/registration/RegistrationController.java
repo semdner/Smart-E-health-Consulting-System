@@ -1,6 +1,7 @@
 package com.ehealthsystem.registration;
 
 import com.ehealthsystem.login.LoginController;
+import com.ehealthsystem.tools.BirthdayCheck;
 import com.ehealthsystem.user.User;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -343,15 +344,11 @@ public class RegistrationController implements Initializable {
      * @return true if birthday is entered correctly
      */
     public boolean validateBirthday() {
-        LocalDate today = LocalDate.now();
-        LocalDate birthday = birthdayPicker.getValue();
-        Period period = Period.between(birthday, today);
-
-        if(period.getYears() >= 18) {
+        if(BirthdayCheck.isOldEnough(birthdayPicker.getValue())) {
             errorLabel.setVisible(false);
             return true;
         } else {
-            showError("You need to be at least 18 years old");
+            showError("You need to be at least " + BirthdayCheck.MINIMUM_AGE + " years old");
             return false;
         }
     }

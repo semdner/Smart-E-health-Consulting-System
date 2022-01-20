@@ -1,6 +1,7 @@
 package com.ehealthsystem.primary;
 
 import com.ehealthsystem.database.Database;
+import com.ehealthsystem.tools.BirthdayCheck;
 import com.ehealthsystem.user.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -247,9 +248,7 @@ public class PrimaryEditController implements Initializable {
      * @throws SQLException
      */
     private void updateBirthday(LocalDate birthday) throws SQLException {
-        LocalDate today = LocalDate.now();
-        Period period = Period.between(birthday, today);
-        if(period.getYears() >= 18) {
+        if(BirthdayCheck.isOldEnough(birthday)) {
             User updateUser = Database.getUserFromEmail(email);
             updateUser.setBirthDate(birthday);
         }
