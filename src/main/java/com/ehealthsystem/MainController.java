@@ -33,7 +33,7 @@ public class MainController {
     public void handleRegistrationButton(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("registration/registration-view.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene registrationScene = new Scene(root, 350, 700);
+        Scene registrationScene = new Scene(root);
         stage.setTitle("Create Account");
         stage.setScene(registrationScene);
         stage.show();
