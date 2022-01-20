@@ -88,6 +88,11 @@ public class RegistrationController implements Initializable {
         field.setStyle("-fx-control-inner-background: #ffb3b3;");
     }
 
+    private void fieldError(TextField field, String error) {
+        redBackground(field);
+        showError(error);
+    }
+
     private void hideError(TextField field) {
         errorLabel.setVisible(false);
         normalBackground(field);
@@ -141,12 +146,10 @@ public class RegistrationController implements Initializable {
      */
     public boolean validateUsername() {
         if (usernameTextField.getText().isBlank()) {
-            showError("Username cannot be blank");
-            redBackground(usernameTextField);
+            fieldError(usernameTextField, "Username cannot be blank");
             return false;
         } else if (usernameTextField.getText().length() < 5) {
-            showError("Username needs to be at least 5 characters long");
-            redBackground(usernameTextField);
+            fieldError(usernameTextField, "Username needs to be at least 5 characters long");
             return false;
         } else {
             hideError(usernameTextField);
@@ -177,8 +180,7 @@ public class RegistrationController implements Initializable {
             hideError(emailTextField);
             return true;
         } else {
-            showError("Invalid email format");
-            redBackground(emailTextField);
+            fieldError(emailTextField, "Invalid email format");
             return false;
         }
     }
@@ -202,8 +204,7 @@ public class RegistrationController implements Initializable {
             hideError(firstNameTextField);
             return true;
         } else {
-            showError("First name cannot be blank");
-            redBackground(firstNameTextField);
+            fieldError(firstNameTextField, "First name cannot be blank");
             return false;
         }
     }
@@ -227,8 +228,7 @@ public class RegistrationController implements Initializable {
             hideError(lastNameTextField);
             return true;
         } else {
-            showError("Last name cannot be blank");
-            redBackground(lastNameTextField);
+            fieldError(lastNameTextField, "Last name cannot be blank");
             return false;
         }
     }
@@ -252,8 +252,7 @@ public class RegistrationController implements Initializable {
             hideError(streetTextField);
             return true;
         } else {
-            showError("Street cannot be blank");
-            redBackground(streetTextField);
+            fieldError(streetTextField, "Street cannot be blank");
             return false;
         }
     }
@@ -274,8 +273,7 @@ public class RegistrationController implements Initializable {
      */
     public boolean validateNumber() {
         if(numberTextField.getText().isBlank()) {
-            showError("Number cannot be blank");
-            redBackground(numberTextField);
+            fieldError(numberTextField, "Number cannot be blank");
             return false;
         } else {
             hideError(numberTextField);
@@ -301,8 +299,7 @@ public class RegistrationController implements Initializable {
         String zip = zipTextField.getText();
 
         if(zip.isBlank()) {
-            showError("Zip code cannot be blank");
-            redBackground(zipTextField);
+            fieldError(zipTextField, "Zip code cannot be blank");
             return false;
         }
 
@@ -313,8 +310,7 @@ public class RegistrationController implements Initializable {
             hideError(zipTextField);
             return true;
         } else {
-            showError("Invalid zip format");
-            redBackground(zipTextField);
+            fieldError(zipTextField, "Invalid zip format");
             return false;
         }
     }
@@ -378,8 +374,7 @@ public class RegistrationController implements Initializable {
      */
     public boolean validatePassword() {
         if(passwordField.getText().length() < 8) {
-            showError("Password needs to have at least 8 characters");
-            redBackground(passwordField);
+            fieldError(passwordField, "Password needs to have at least 8 characters");
             return false;
         } else {
             hideError(passwordField);
@@ -392,8 +387,7 @@ public class RegistrationController implements Initializable {
             hideError(repeatPasswordField);
             return true;
         } else {
-            showError("Passwords don't match");
-            redBackground(repeatPasswordField);
+            fieldError(repeatPasswordField, "Passwords don't match");
             return false;
         }
     }
