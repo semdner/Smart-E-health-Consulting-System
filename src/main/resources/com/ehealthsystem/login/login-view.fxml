@@ -28,8 +28,8 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="emailTextField" focusTraversable="false" layoutX="50.0" layoutY="50.0" prefHeight="25.0" prefWidth="250.0" promptText="e-mail" />
-            <PasswordField fx:id="passwordField" focusTraversable="false" layoutX="50.0" layoutY="85.0" prefHeight="25.0" prefWidth="250.0" promptText="password" />
+            <TextField fx:id="emailTextField" layoutX="51.0" layoutY="35.0" prefHeight="25.0" prefWidth="250.0" />
+            <PasswordField fx:id="passwordField" layoutX="50.0" layoutY="83.0" prefHeight="25.0" prefWidth="250.0" />
             <Button fx:id="loginButton" focusTraversable="false" layoutX="50.0" layoutY="118.0" mnemonicParsing="false" onAction="#handleLoginButton" prefWidth="250.0" text="Login" />
             <Separator layoutX="51.0" layoutY="157.0" prefHeight="0.0" prefWidth="250.0" />
             <Rectangle fill="WHITE" height="12.0" layoutX="163.0" layoutY="151.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="21.0" />
@@ -39,6 +39,8 @@
                   <Cursor fx:constant="HAND" />
                </cursor></Label>
             <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="25.0" text="Invalid email format. Please try again" textFill="RED" visible="false" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+            <Label layoutX="51.0" layoutY="18.0" text="E-Mail" />
+            <Label layoutX="50.0" layoutY="67.0" text="Password" />
          </children>
       </AnchorPane>
    </center>
