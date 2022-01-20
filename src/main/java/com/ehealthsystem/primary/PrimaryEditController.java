@@ -147,8 +147,7 @@ public class PrimaryEditController implements Initializable {
      */
     private void updateUsername(String username) throws SQLException {
         if(!usernameTextField.getText().isBlank()) {
-            User updateUser = Database.getUserFromEmail(email);
-            updateUser.setUsername(username);
+            Session.user.setUsername(username);
         }
     }
 
@@ -162,9 +161,7 @@ public class PrimaryEditController implements Initializable {
         Matcher matcher = emailPat.matcher(updateEmail);
 
         if(matcher.find() && !emailTextField.getText().isBlank()) {
-            User updateUser = Database.getUserFromEmail(email);
-            updateUser.setEmail(updateEmail);
-            setEmail(updateEmail);
+            Session.user.setEmail(updateEmail);
         }
     }
 
@@ -174,8 +171,7 @@ public class PrimaryEditController implements Initializable {
      * @throws SQLException
      */
     private void updateFirstName(String fristName) throws SQLException {
-        User updateUser = Database.getUserFromEmail(email);
-        updateUser.setFirstName(fristName);
+        Session.user.setFirstName(fristName);
     }
 
     /**
@@ -184,8 +180,7 @@ public class PrimaryEditController implements Initializable {
      * @throws SQLException
      */
     private void updateLastName(String lastName) throws SQLException {
-        User updateUser = Database.getUserFromEmail(email);
-        updateUser.setLastName(lastName);
+        Session.user.setLastName(lastName);
     }
 
     /**
@@ -194,8 +189,7 @@ public class PrimaryEditController implements Initializable {
      * @throws SQLException
      */
     private void updateStreet(String street) throws SQLException {
-        User updateUser = Database.getUserFromEmail(email);
-        updateUser.setStreet(street);
+        Session.user.setStreet(street);
     }
 
     /**
@@ -204,8 +198,7 @@ public class PrimaryEditController implements Initializable {
      * @throws SQLException
      */
     private void updateNumber(String houseNo) throws SQLException {
-        User updateUser = Database.getUserFromEmail(email);
-        updateUser.setHouseNo(houseNo);
+        Session.user.setHouseNo(houseNo);
     }
 
     /**
@@ -214,8 +207,7 @@ public class PrimaryEditController implements Initializable {
      * @throws SQLException
      */
     private void updateZip(String zip) throws SQLException {
-        User updateUser = Database.getUserFromEmail(email);
-        updateUser.setZipCode(zip);
+        Session.user.setZipCode(zip);
     }
 
     /**
@@ -225,8 +217,7 @@ public class PrimaryEditController implements Initializable {
      */
     private void updateBirthday(LocalDate birthday) throws SQLException {
         if(BirthdayCheck.isOldEnough(birthday)) {
-            User updateUser = Database.getUserFromEmail(email);
-            updateUser.setBirthDate(birthday);
+            Session.user.setBirthDate(birthday);
         }
     }
 
@@ -237,8 +228,7 @@ public class PrimaryEditController implements Initializable {
      */
     private void updateGender(String gender) throws SQLException {
         if(!genderBox.getSelectionModel().isEmpty()) {
-            User updateUser = Database.getUserFromEmail(email);
-            updateUser.setGender(gender);
+            Session.user.setGender(gender);
         }
     }
 
@@ -248,8 +238,7 @@ public class PrimaryEditController implements Initializable {
      * @throws SQLException
      */
     private void updatePrivateInsurance(boolean privateInsurance) throws SQLException {
-        User updateUser = Database.getUserFromEmail(email);
-        updateUser.setPrivateInsurance(privateInsurance);
+        Session.user.setPrivateInsurance(privateInsurance);
     }
 
     /**
@@ -259,8 +248,7 @@ public class PrimaryEditController implements Initializable {
      * @throws SQLException
      */
     private void updatePassword(String oldPassword, String newPassword) throws SQLException {
-        User updateUser = Database.getUserFromEmail(email);
-        updateUser.changePassword(oldPassword, newPassword);
+        Session.user.changePassword(oldPassword, newPassword);
     }
 
     /**
