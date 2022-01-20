@@ -2,6 +2,7 @@ package com.ehealthsystem.primary;
 
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.tools.BirthdayCheck;
+import com.ehealthsystem.tools.EmailCheck;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.user.User;
@@ -150,10 +151,7 @@ public class PrimaryEditController implements Initializable {
      * @throws SQLException
      */
     private void updateEmail(String updateEmail) throws SQLException {
-        Pattern emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = emailPat.matcher(updateEmail);
-
-        if(matcher.find() && !emailTextField.getText().isBlank()) {
+        if(EmailCheck.isValidEmailAddress(emailTextField.getText())) {
             Session.user.setEmail(updateEmail);
         }
     }
@@ -378,11 +376,7 @@ public class PrimaryEditController implements Initializable {
      * Check if Email format matches
      */
     public void handleEmailTextField(KeyEvent event) {
-        String email = emailTextField.getText();
-        Pattern emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = emailPat.matcher(email);
-
-        if(matcher.find()) {
+        if(EmailCheck.isValidEmailAddress(emailTextField.getText())) {
            errorLabel.setVisible(false);
         } else {
             errorLabel.setText("Invalid email format");

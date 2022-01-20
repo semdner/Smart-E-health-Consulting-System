@@ -1,6 +1,7 @@
 package com.ehealthsystem.login;
 
 import com.ehealthsystem.database.Database;
+import com.ehealthsystem.tools.EmailCheck;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import javafx.event.ActionEvent;
@@ -54,11 +55,7 @@ public class LoginController {
      * @return true if email format filled in matches pattern
      */
     private boolean validateEmail() {
-        String email = emailTextField.getText();
-        Pattern emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = emailPat.matcher(email);
-
-        if(matcher.find()) {
+        if(EmailCheck.isValidEmailAddress(emailTextField.getText())) {
             return true;
         } else {
             errorLabel.setText("Invalid email format. Please try again");

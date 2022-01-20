@@ -2,6 +2,7 @@ package com.ehealthsystem.registration;
 
 import com.ehealthsystem.login.LoginController;
 import com.ehealthsystem.tools.BirthdayCheck;
+import com.ehealthsystem.tools.EmailCheck;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.user.User;
@@ -198,11 +199,7 @@ public class RegistrationController implements Initializable {
      * @return true if email is entered correctly
      */
     public boolean validateEmail() {
-        String email = emailTextField.getText();
-        Pattern emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = emailPat.matcher(email);
-
-        if(matcher.find()) {
+        if(EmailCheck.isValidEmailAddress(emailTextField.getText())) {
             hideError(emailTextField);
             return true;
         } else {
