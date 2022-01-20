@@ -40,7 +40,7 @@ public class GeoCoder {
             return null;
         }
 
-        GeocodingResult[] results = GeocodingApi.geocode(context,address + "," + zip).await();
+        GeocodingResult[] results = GeocodingApi.geocode(context,address + "," + zip).language("de-DE").await();
         String formattedAddress = results[0].formattedAddress;
         return formattedAddress;
     }
@@ -48,7 +48,7 @@ public class GeoCoder {
     public static LatLng geocodeToLatLng(String address) throws IOException, InterruptedException, ApiException {
         // set API Key
         GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyCUFsJZUQjbl0_0o8DAhQzhMOvxhftI6KQ").build();
-        GeocodingResult[] results = GeocodingApi.geocode(context,address).await();
+        GeocodingResult[] results = GeocodingApi.geocode(context,address).language("de-DE").await();
         return results[0].geometry.location;
     }
 }
