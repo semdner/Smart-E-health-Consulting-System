@@ -78,6 +78,7 @@ public class AppointmentInformationController implements Initializable {
         try {
             date = datePicker.getValue(); //null if no date selected
             if (date.isBefore(LocalDate.now())) { //throws NullPointerException if date is null
+                errorLabel.setText("You can't make appointments for the past. Please use a date in the future or today.");
                 return false;
             } else {
                 return true;
@@ -90,6 +91,7 @@ public class AppointmentInformationController implements Initializable {
 
     public boolean validateHealthProblem() {
         if(healthProblemField.getText().isBlank()) {
+            errorLabel.setText("Please describe your health problem.");
             return false;
         } else {
             return true;
@@ -98,6 +100,7 @@ public class AppointmentInformationController implements Initializable {
 
     public boolean validateSpecialization() {
         if(doctorChoiceBox.getValue() == null) {
+            errorLabel.setText("Please choose a doctor specialization.");
             return false;
         } else {
             return true;
