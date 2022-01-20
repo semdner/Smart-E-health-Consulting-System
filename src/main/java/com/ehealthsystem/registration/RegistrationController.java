@@ -136,11 +136,11 @@ public class RegistrationController implements Initializable {
      */
     public boolean validateUsername() {
         if (usernameTextField.getText().isBlank()) {
-            showError("username cannot be blank");
+            showError("Username cannot be blank");
             redBackground(usernameTextField);
             return false;
         } else if (usernameTextField.getText().length() < 5) {
-            showError("username needs to be at least 5 characters long");
+            showError("Username needs to be at least 5 characters long");
             redBackground(usernameTextField);
             return false;
         } else {
@@ -192,7 +192,7 @@ public class RegistrationController implements Initializable {
             errorLabel.setVisible(false);
             normalBackground(firstNameTextField);
         } else {
-            showError("first name cannot be blank");
+            showError("First name cannot be blank");
             redBackground(firstNameTextField);
         }
     }
@@ -220,7 +220,7 @@ public class RegistrationController implements Initializable {
             errorLabel.setVisible(false);
             normalBackground(lastNameTextField);
         } else {
-            showError("last name cannot be blank");
+            showError("Last name cannot be blank");
             redBackground(lastNameTextField);
         }
     }
@@ -248,7 +248,7 @@ public class RegistrationController implements Initializable {
             errorLabel.setVisible(false);
             normalBackground(streetTextField);
         } else {
-            showError("street cannot be blank");
+            showError("Street cannot be blank");
             redBackground(streetTextField);
         }
     }
@@ -381,7 +381,7 @@ public class RegistrationController implements Initializable {
      */
     public boolean validatePassword() {
         if(passwordField.getText().length() < 8) {
-            showError("Password needs to be at least 8 characters");
+            showError("Password needs to have at least 8 characters");
             redBackground(passwordField);
             return false;
         } else {
