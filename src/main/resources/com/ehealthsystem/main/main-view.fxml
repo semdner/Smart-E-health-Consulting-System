@@ -23,8 +23,8 @@
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="loginButton" focusTraversable="false" layoutX="50.0" layoutY="118.0" mnemonicParsing="false" onAction="#handleLoginButton" prefWidth="250.0" text="Login" />
-                <Button fx:id="registrationButton" focusTraversable="false" layoutX="50.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleRegistrationButton" prefWidth="250.0" text="Create Account" />
+                <Button fx:id="loginButton" layoutX="50.0" layoutY="118.0" mnemonicParsing="false" onAction="#handleLoginButton" prefWidth="250.0" text="Login" />
+                <Button fx:id="registrationButton" layoutX="50.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleRegistrationButton" prefWidth="250.0" text="Create Account" />
             </children>
         </AnchorPane>
     </center>
