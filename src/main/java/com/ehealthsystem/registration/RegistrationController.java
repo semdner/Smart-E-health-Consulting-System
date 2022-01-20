@@ -108,7 +108,7 @@ public class RegistrationController implements Initializable {
                                     numberTextField.getText(),
                                     zipTextField.getText(),
                                     birthdayPicker.getValue(),
-                                    (String) genderBox.getValue(),
+                                    genderBox.getValue(),
                                     passwordField.getText(),
                                     privateInsuranceCheckBox.isSelected(),
                                     true);
