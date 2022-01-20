@@ -212,13 +212,7 @@ public class RegistrationController implements Initializable {
      * @param event KeyEvent the Textbox reacts to
      */
     public void handleLastName(KeyEvent event) {
-        if(validateLastname()) {
-            errorLabel.setVisible(false);
-            normalBackground(lastNameTextField);
-        } else {
-            showError("Last name cannot be blank");
-            redBackground(lastNameTextField);
-        }
+        validateLastname();
     }
 
     /**
@@ -228,8 +222,12 @@ public class RegistrationController implements Initializable {
      */
     public boolean validateLastname() {
         if(!lastNameTextField.getText().isBlank()) {
+            errorLabel.setVisible(false);
+            normalBackground(lastNameTextField);
             return true;
         } else {
+            showError("Last name cannot be blank");
+            redBackground(lastNameTextField);
             return false;
         }
     }
