@@ -1,6 +1,5 @@
 package com.ehealthsystem.database;
 
-import com.ehealthsystem.doctor.Doctor;
 import com.ehealthsystem.healthinformation.HealthInformation;
 import com.ehealthsystem.map.DoctorDistance;
 import com.ehealthsystem.map.GeoCoder;

@@ -29,7 +29,7 @@ public class GeoCoder {
         // geocode address + zip
         if(!address.isEmpty() || zip != null) {
             GeocodingResult[] results = GeocodingApi.geocode(context,address + "," + zip).await();
-            String formattedAddress = (String)results[0].formattedAddress;
+            String formattedAddress = results[0].formattedAddress;
             return formattedAddress;
         }
         return null;
