@@ -357,7 +357,7 @@ public class PrimaryEditController implements Initializable {
      * @param birthday
      */
     private void setBirthdayTextField(LocalDate birthday) {
-        birthdayPicker.setValue((LocalDate)birthday);
+        birthdayPicker.setValue(birthday);
     }
 
     /**
@@ -373,11 +373,7 @@ public class PrimaryEditController implements Initializable {
      * @param privateInsurance
      */
     private void setPrivateInsuranceTextField(boolean privateInsurance) {
-        if(privateInsurance) {
-            privateInsuranceCheckBox.setSelected(true);
-        } else {
-            privateInsuranceCheckBox.setSelected(false);
-        }
+        privateInsuranceCheckBox.setSelected(privateInsurance);
     }
 
     /**
