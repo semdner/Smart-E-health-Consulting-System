@@ -66,8 +66,6 @@ public class PrimaryEditController implements Initializable {
     @FXML
     Button saveButton;
 
-    static String email;
-
     /**
      * Method called when scene is switched.
      * Used to set the ChoiceBox choices and to load the user information
@@ -77,7 +75,6 @@ public class PrimaryEditController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String[] choices = {"male", "female", "other"};
-        email = Session.user.getMail();
         genderBox.getItems().addAll(choices);
         loadUserDetails();
     }
@@ -351,7 +348,7 @@ public class PrimaryEditController implements Initializable {
      * @throws SQLException
      */
     public void handleOldPassword(KeyEvent event) throws SQLException {
-        if(!Database.checkPassword(email, oldPasswordField.getText())) {
+        if(!Database.checkPassword(Session.user.getMail(), oldPasswordField.getText())) {
             errorLabel.setText("wrong password");
             errorLabel.setVisible(true);
         } else {
@@ -368,7 +365,7 @@ public class PrimaryEditController implements Initializable {
         if(!newPasswordField.getText().isBlank() && oldPasswordField.getText().isBlank()) {
             errorLabel.setText("type in old password");
             errorLabel.setVisible(true);
-        } else if(Database.checkPassword(email, newPasswordField.getText())) {
+        } else if(Database.checkPassword(Session.user.getMail(), newPasswordField.getText())) {
             errorLabel.setText("old password cannot be new password");
             errorLabel.setVisible(true);
         } else {
