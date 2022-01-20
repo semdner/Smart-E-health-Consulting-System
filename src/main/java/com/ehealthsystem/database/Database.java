@@ -4,7 +4,7 @@ import com.ehealthsystem.healthinformation.HealthInformation;
 import com.ehealthsystem.map.DoctorDistance;
 import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.map.GeoDistance;
-import com.ehealthsystem.resourcereader.ResourceReader;
+import com.ehealthsystem.tools.ResourceReader;
 import com.ehealthsystem.user.User;
 import com.google.maps.errors.ApiException;
 import org.mindrot.jbcrypt.BCrypt;

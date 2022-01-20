@@ -1,4 +1,4 @@
-package com.ehealthsystem.resourcereader;
+package com.ehealthsystem.tools;
 
 import com.ehealthsystem.Main;
 import com.google.common.base.Charsets;

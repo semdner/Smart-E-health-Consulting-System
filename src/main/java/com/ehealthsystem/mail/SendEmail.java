@@ -1,6 +1,6 @@
 package com.ehealthsystem.mail;
 
-import com.ehealthsystem.resourcereader.ResourceReader;
+import com.ehealthsystem.tools.ResourceReader;
 
 import java.util.Properties;
 import javax.mail.Authenticator;
