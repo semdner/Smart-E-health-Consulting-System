@@ -238,13 +238,7 @@ public class RegistrationController implements Initializable {
      * @param event KeyEvent the Textbox reacts to
      */
     public void handleStreet(KeyEvent event) {
-        if(validateStreet()) {
-            errorLabel.setVisible(false);
-            normalBackground(streetTextField);
-        } else {
-            showError("Street cannot be blank");
-            redBackground(streetTextField);
-        }
+        validateStreet();
     }
 
     /**
@@ -254,8 +248,12 @@ public class RegistrationController implements Initializable {
      */
     public boolean validateStreet() {
         if(!streetTextField.getText().isBlank()) {
+            errorLabel.setVisible(false);
+            normalBackground(streetTextField);
             return true;
         } else {
+            showError("Street cannot be blank");
+            redBackground(streetTextField);
             return false;
         }
     }
