@@ -11,6 +11,7 @@ CREATE TABLE user
     birthday            TEXT,
     sex                 TEXT,
     password	        TEXT NOT NULL,
+    insurance_name      TEXT,
     private_insurance   BOOLEAN,
     PRIMARY KEY (user_id AUTOINCREMENT),
     FOREIGN KEY (zip) REFERENCES location(zip)

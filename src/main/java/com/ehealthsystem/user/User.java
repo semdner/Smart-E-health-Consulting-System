@@ -13,6 +13,7 @@ public class User {
     private String username, email, firstName, lastName, street, houseNo, gender;
     private String zipCode;
     private LocalDate birthDate;
+    private String insuranceName;
     private boolean privateInsurance;
 
     /**
@@ -30,7 +31,7 @@ public class User {
      * @param privateInsurance
      * @throws SQLException
      */
-    public User(String username, String email, String firstName, String lastName, String street, String houseNo, String zipCode, LocalDate birthDate, String gender, String password, boolean privateInsurance, boolean insertIntoDb) throws SQLException {
+    public User(String username, String email, String firstName, String lastName, String street, String houseNo, String zipCode, LocalDate birthDate, String gender, String password, String insuranceName, boolean privateInsurance, boolean insertIntoDb) throws SQLException {
         this.username = username;
         this.email = email;
         this.firstName = firstName;
@@ -40,6 +41,7 @@ public class User {
         this.zipCode = zipCode;
         this.birthDate = birthDate;
         this.gender = gender;
+        this.insuranceName = insuranceName;
         this.privateInsurance = privateInsurance;
         if (insertIntoDb)
             insertIntoDb(password);
@@ -63,6 +65,7 @@ public class User {
                 {"birthday", birthDate},
                 {"sex", gender},
                 {"password", Database.hashPassword(password)},
+                {"insurance_name", insuranceName},
                 {"private_insurance", privateInsurance},
         };
         Database.insert("user", parameters);
@@ -158,6 +161,11 @@ public class User {
         this.gender = gender;
     }
 
+    public void setInsuranceName(String insuranceName) throws SQLException {
+        update(new Object[][]{{"insurance_name", insuranceName}});
+        this.insuranceName = insuranceName;
+    }
+
     public void setPrivateInsurance(boolean privateInsurance) throws SQLException {
         update(new Object[][]{{"private_insurance", privateInsurance}});
         this.privateInsurance = privateInsurance;
@@ -189,6 +197,10 @@ public class User {
 
     public String getGender() {
         return gender;
+    }
+
+    public String getInsuranceName() {
+        return insuranceName;
     }
 
     public String getZipCode() {

@@ -140,6 +140,7 @@ public class RegistrationController implements Initializable {
                                     birthdayPicker.getValue(),
                                     genderBox.getValue(),
                                     passwordField.getText(),
+                                    insuranceNameTextField.getText(),
                                     privateInsuranceCheckBox.isSelected(),
                                     true);
             Session.user = newUser;

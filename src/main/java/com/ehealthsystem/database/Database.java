@@ -357,6 +357,7 @@ public class Database {
                     birthDate,
                     rs.getString("sex"),
                     rs.getString("password"),
+                    rs.getString("insurance_name"),
                     rs.getBoolean("private_insurance"),
                     false
             );
