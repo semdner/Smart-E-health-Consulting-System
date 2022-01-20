@@ -141,6 +141,7 @@ public class PrimaryController implements Initializable {
      * @throws IOException
      */
     public void handleMakeAppointmentButton(ActionEvent event) throws IOException {
+        Session.appointment = new Appointment(Session.user.getMail());
         SceneSwitch.switchTo(event, "appointment/appointmentUser-view.fxml", "Make appointment");
     }
 
