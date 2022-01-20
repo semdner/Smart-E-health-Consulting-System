@@ -121,8 +121,8 @@ public class PrimaryController implements Initializable {
         houseNoLabel.setText(houseNo);
     }
 
-    private void setZipLabel(int zip) {
-        zipLabel.setText(String.valueOf(zip));
+    private void setZipLabel(String zip) {
+        zipLabel.setText(zip);
     }
 
     private void setBirthdayLabel(LocalDate birthday) {

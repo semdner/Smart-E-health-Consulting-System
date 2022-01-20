@@ -243,7 +243,7 @@ public class PrimaryEditController implements Initializable {
     private void updateZip(String zip) throws SQLException {
         if(!streetTextField.getText().isBlank()) {
             User updateUser = Database.getUserFromEmail(email);
-            updateUser.setZipCode(Integer.parseInt(zip));
+            updateUser.setZipCode(zip);
         }
     }
 
@@ -364,8 +364,8 @@ public class PrimaryEditController implements Initializable {
      * Set Zip Text Field to user information in DB
      * @param zip
      */
-    private void setZipTextField(int zip) {
-        zipTextField.setText(String.valueOf(zip));
+    private void setZipTextField(String zip) {
+        zipTextField.setText(zip);
     }
 
     /**

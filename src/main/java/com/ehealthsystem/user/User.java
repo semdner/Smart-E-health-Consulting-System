@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class User {
     private String username, email, firstName, lastName, street, houseNo, gender;
-    private int zipCode;
+    private String zipCode;
     private LocalDate birthDate;
     private boolean privateInsurance;
 
@@ -30,7 +30,7 @@ public class User {
      * @param privateInsurance
      * @throws SQLException
      */
-    public User(String username, String email, String firstName, String lastName, String street, String houseNo, int zipCode, LocalDate birthDate, String gender, String password, boolean privateInsurance, boolean insertIntoDb) throws SQLException {
+    public User(String username, String email, String firstName, String lastName, String street, String houseNo, String zipCode, LocalDate birthDate, String gender, String password, boolean privateInsurance, boolean insertIntoDb) throws SQLException {
         this.username = username;
         this.email = email;
         this.firstName = firstName;
@@ -141,7 +141,7 @@ public class User {
         this.houseNo = houseNo;
     }
 
-    public void setZipCode(int zipCode) throws SQLException {
+    public void setZipCode(String zipCode) throws SQLException {
         update(new Object[][]{{"zip", zipCode}});
         this.zipCode = zipCode;
     }
@@ -191,7 +191,7 @@ public class User {
         return gender;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 

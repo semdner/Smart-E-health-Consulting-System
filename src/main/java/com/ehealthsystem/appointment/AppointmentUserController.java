@@ -176,8 +176,8 @@ public class AppointmentUserController implements Initializable {
      * Set Zip Text Field to user information in DB
      * @param zip
      */
-    private void setZipTextField(int zip) {
-        zipCodeLabel.setText(String.valueOf(zip));
+    private void setZipTextField(String zip) {
+        zipCodeLabel.setText(zip);
     }
 
     /**

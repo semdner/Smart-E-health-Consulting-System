@@ -106,7 +106,7 @@ public class RegistrationController implements Initializable {
                                     lastNameTextField.getText(),
                                     streetTextField.getText(),
                                     numberTextField.getText(),
-                                    Integer.parseInt(zipTextField.getText()),
+                                    zipTextField.getText(),
                                     birthdayPicker.getValue(),
                                     (String) genderBox.getValue(),
                                     passwordField.getText(),

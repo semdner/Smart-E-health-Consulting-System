@@ -7,7 +7,7 @@ CREATE TABLE user
     last_name           TEXT,
     street              TEXT,
     number              TEXT,
-    zip                 INTEGER,
+    zip                 TEXT,
     birthday            TEXT,
     sex                 TEXT,
     password	        TEXT NOT NULL,

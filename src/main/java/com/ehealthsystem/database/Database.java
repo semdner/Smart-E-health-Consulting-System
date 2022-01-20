@@ -375,7 +375,7 @@ public class Database {
                     rs.getString("last_name"),
                     rs.getString("street"),
                     rs.getString("number"),
-                    rs.getInt("zip"),
+                    rs.getString("zip"),
                     birthDate,
                     rs.getString("sex"),
                     rs.getString("password"),
