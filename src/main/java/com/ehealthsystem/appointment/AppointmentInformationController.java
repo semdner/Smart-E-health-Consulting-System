@@ -2,6 +2,7 @@ package com.ehealthsystem.appointment;
 
 import com.ehealthsystem.doctor.specialization.Specialization;
 import com.ehealthsystem.tools.SceneSwitch;
+import com.ehealthsystem.tools.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,8 +36,6 @@ public class AppointmentInformationController implements Initializable {
     @FXML
     Label errorLabel;
 
-    static Appointment newAppointment;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -51,10 +50,9 @@ public class AppointmentInformationController implements Initializable {
 
     public void handleContinueButton(ActionEvent event) throws IOException {
         if(validateDate() && validateHealthProblem() && validateSpecialization()) {
-            newAppointment.setDate(datePicker.getValue());
-            newAppointment.setDistance(searchDistanceSlider.getValue());
-            newAppointment.setSpecialization(doctorChoiceBox.getValue().toString());
-            AppointmentFoundController.setAppointment(newAppointment);
+            Session.appointment.setDate(datePicker.getValue());
+            Session.appointment.setDistance(searchDistanceSlider.getValue());
+            Session.appointment.setSpecialization(doctorChoiceBox.getValue().toString());
             SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");
         } else {
             errorLabel.setVisible(true);
@@ -62,7 +60,6 @@ public class AppointmentInformationController implements Initializable {
     }
 
     public void handleBackButton(ActionEvent event) throws IOException {
-        AppointmentHealthController.setAppointment(newAppointment);
         SceneSwitch.switchTo(event, "appointment/appointmentHealth-view.fxml", "Make appointment");
     }
 
@@ -98,9 +95,5 @@ public class AppointmentInformationController implements Initializable {
         } else {
             return true;
         }
-    }
-
-    public static void setAppointment(Appointment passedAppointment) {
-        newAppointment = passedAppointment;
     }
 }

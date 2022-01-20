@@ -37,15 +37,13 @@ public class AppointmentFoundController implements Initializable {
     @FXML
     GridPane doctorGridPane;
 
-    static Appointment newAppointment;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String[] choices = {"10 minutes", "1 hour", "3 days", "1 week"};
         reminderComboBox.getItems().addAll(choices);
         try {
             String userGeoData = GeoCoder.geocode(Session.user.getStreet() + " " + Session.user.getHouseNo(), Session.user.getZipCode());
-            ArrayList<DoctorDistance> doctorList = Database.getDoctorFromDistance(userGeoData, newAppointment.getDistance());
+            ArrayList<DoctorDistance> doctorList = Database.getDoctorFromDistance(userGeoData, Session.appointment.getDistance());
             if(doctorList.isEmpty()) {
                 errorLabel.setVisible(true);
             } else {
@@ -78,11 +76,6 @@ public class AppointmentFoundController implements Initializable {
     }
 
     public void handleBackButton(ActionEvent event) throws IOException {
-        AppointmentInformationController.setAppointment(newAppointment);
         SceneSwitch.switchTo(event, "appointment/appointmentInformation-view.fxml", "Make appointment");
-    }
-
-    public static void setAppointment(Appointment passedAppointment) {
-        newAppointment = passedAppointment;
     }
 }

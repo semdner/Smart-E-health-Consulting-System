@@ -58,8 +58,6 @@ public class AppointmentUserController implements Initializable {
     @FXML
     ProgressBar progressBar;
 
-    private static Appointment newAppointment;
-
     /**
      * First method called when scene is switched.
      * Used to load the user information
@@ -88,7 +86,6 @@ public class AppointmentUserController implements Initializable {
      * @throws IOException
      */
     public void handleContinueButton(ActionEvent event) throws IOException {
-        AppointmentHealthController.setAppointment(newAppointment);
         SceneSwitch.switchTo(event, "appointment/appointmentHealth-view.fxml", "Make appointment");
     }
 
@@ -194,10 +191,6 @@ public class AppointmentUserController implements Initializable {
      */
     private void setPrivateInsuranceTextField(boolean privateInsurance) {
         privateInsuranceLabel.setText(privateInsurance ? "Yes" : "No");
-    }
-
-    public static void setAppointment(Appointment passedAppointment) {
-        newAppointment = passedAppointment;
     }
 }
 

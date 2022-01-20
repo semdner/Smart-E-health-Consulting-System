@@ -36,7 +36,6 @@ public class AppointmentHealthController implements Initializable {
     @FXML
     Button backButton;
 
-    private static Appointment newAppointment;
     private ArrayList<HealthInformation> selectedHealthInformation = new ArrayList<>();
     private ArrayList<HealthInformation> allHealthInformation = new ArrayList<>();
     private ArrayList<CheckBox> numberOfCheckBoxes = new ArrayList<>();
@@ -51,13 +50,11 @@ public class AppointmentHealthController implements Initializable {
     }
 
     public void handleContinueButton(ActionEvent event) throws IOException {
-        newAppointment.setHealthInformation(selectedHealthInformation);
-        AppointmentInformationController.setAppointment(newAppointment);
+        Session.appointment.setHealthInformation(selectedHealthInformation);
         SceneSwitch.switchTo(event, "appointment/appointmentInformation-view.fxml", "Make appointment");
     }
 
     public void handleBackButton(ActionEvent event) throws IOException {
-        AppointmentUserController.setAppointment(newAppointment);
         SceneSwitch.switchTo(event, "appointment/appointmentUser-view.fxml", "Make appointment");
     }
 
@@ -123,9 +120,5 @@ public class AppointmentHealthController implements Initializable {
                 continue;
             }
         }
-    }
-
-    public static void setAppointment(Appointment passedAppointment) {
-        newAppointment = passedAppointment;
     }
 }
