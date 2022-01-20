@@ -337,8 +337,10 @@ public class RegistrationController implements Initializable {
         Period period = Period.between(birthday, today);
 
         if(period.getYears() >= 18) {
+            errorLabel.setVisible(false);
             return true;
         } else {
+            showError("You need to be at least 18 years old");
             return false;
         }
     }
