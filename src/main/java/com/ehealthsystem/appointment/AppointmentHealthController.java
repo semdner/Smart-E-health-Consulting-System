@@ -3,6 +3,7 @@ package com.ehealthsystem.appointment;
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.healthinformation.HealthInformation;
 import com.ehealthsystem.tools.SceneSwitch;
+import com.ehealthsystem.tools.Session;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -61,7 +62,7 @@ public class AppointmentHealthController implements Initializable {
     }
 
     private void loadHealthInformation() throws SQLException {
-        allHealthInformation = Database.getHealthInformation(newAppointment.getEmail());
+        allHealthInformation = Database.getHealthInformation(Session.user.getMail());
         fillHealthTable(allHealthInformation);
     }
 
