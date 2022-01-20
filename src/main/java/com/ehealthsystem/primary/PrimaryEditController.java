@@ -7,25 +7,14 @@ import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.user.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Screen;
-import javafx.stage.Stage;
-import javafx.util.StringConverter;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -90,11 +79,7 @@ public class PrimaryEditController implements Initializable {
         String[] choices = {"male", "female", "other"};
         email = Session.user.getMail();
         genderBox.getItems().addAll(choices);
-        try {
-            loadUser();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        loadUserDetails();
     }
 
     /**
@@ -282,8 +267,8 @@ public class PrimaryEditController implements Initializable {
      * Load user information when button is pressed
      * @throws SQLException
      */
-    public void loadUser() throws SQLException {
-        User currentUser = Database.getUserFromEmail(email);
+    public void loadUserDetails() {
+        User currentUser = Session.user;
         setUsernameTextField(currentUser.getUsername());
         setEmailTextField(currentUser.getMail());
         setFirstNameTextField(currentUser.getFirstName());
