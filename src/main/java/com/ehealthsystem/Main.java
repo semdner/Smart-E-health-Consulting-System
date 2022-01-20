@@ -25,7 +25,7 @@ public class Main extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("main/main-view.fxml"));
         Scene mainScene = new Scene(root);
-        primaryStage.setTitle("welcome");
+        primaryStage.setTitle("Welcome");
         primaryStage.setScene(mainScene);
         primaryStage.show();
 
