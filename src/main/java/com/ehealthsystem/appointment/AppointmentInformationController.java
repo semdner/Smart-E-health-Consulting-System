@@ -43,6 +43,7 @@ public class AppointmentInformationController implements Initializable {
             Specialization specialization = new Specialization();
             String[] categories = specialization.getSpecializationList().toArray(new String[0]);
             doctorChoiceBox.getItems().setAll(categories);
+            datePicker.setValue(LocalDate.now());
         } catch (SQLException e) {
             e.printStackTrace();
         }
