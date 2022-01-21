@@ -1,6 +1,5 @@
 package com.ehealthsystem.primary;
 
-import com.ehealthsystem.appointment.AppointmentUserController;
 import com.ehealthsystem.appointment.AppointmentInCreation;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;

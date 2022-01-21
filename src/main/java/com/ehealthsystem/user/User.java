@@ -1,13 +1,11 @@
 package com.ehealthsystem.user;
 
-import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.database.Database;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public class User {
     private String username, email, firstName, lastName, street, houseNo, gender;
