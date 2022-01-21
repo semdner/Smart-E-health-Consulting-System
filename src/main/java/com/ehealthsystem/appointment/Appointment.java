@@ -7,23 +7,18 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Appointment {
-    String email, healthProblem;
+    String healthProblem;
     LocalDate date;
     LocalTime time;
     double distance;
     String specialization;
     ArrayList<HealthInformation> healthInformation = new ArrayList<>();
 
-    public Appointment(String email) {
-        this.email = email;
+    public Appointment() {
     }
 
     public Appointment(ArrayList<HealthInformation> healthInformation) {
         this.healthInformation = healthInformation;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public void setDate(LocalDate date) {
@@ -48,10 +43,6 @@ public class Appointment {
 
     public void setSpecialization(String specialization) {
         this.specialization = specialization;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public LocalDate getDate() {
