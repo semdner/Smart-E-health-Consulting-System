@@ -37,7 +37,15 @@ public class AppointmentInformationController implements Initializable {
             Specialization specialization = new Specialization();
             String[] categories = specialization.getSpecializationList().toArray(new String[0]);
             doctorChoiceBox.getItems().setAll(categories);
-            datePicker.setValue(LocalDate.now());
+
+            datePicker.setValue(Session.appointment.getDate() != null ? Session.appointment.getDate() : LocalDate.now());
+            if (Session.appointment.getDistance() != 0) {
+                searchDistanceSlider.setValue(Session.appointment.getDistance());
+            }
+            healthProblemField.setText(Session.appointment.healthProblem);
+            if (Session.appointment.specialization != null) {
+                doctorChoiceBox.setValue(Session.appointment.specialization);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
