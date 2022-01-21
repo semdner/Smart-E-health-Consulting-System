@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class Appointment {
+public class AppointmentInCreation {
     String healthProblem;
     LocalDate date;
     LocalTime time;
@@ -14,10 +14,10 @@ public class Appointment {
     String specialization;
     ArrayList<HealthInformation> healthInformation = new ArrayList<>();
 
-    public Appointment() {
+    public AppointmentInCreation() {
     }
 
-    public Appointment(ArrayList<HealthInformation> healthInformation) {
+    public AppointmentInCreation(ArrayList<HealthInformation> healthInformation) {
         this.healthInformation = healthInformation;
     }
 

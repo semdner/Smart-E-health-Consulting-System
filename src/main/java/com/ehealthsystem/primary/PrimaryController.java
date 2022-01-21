@@ -1,7 +1,7 @@
 package com.ehealthsystem.primary;
 
-import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.appointment.AppointmentUserController;
+import com.ehealthsystem.appointment.AppointmentInCreation;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import javafx.event.ActionEvent;
@@ -141,7 +141,7 @@ public class PrimaryController implements Initializable {
      * @throws IOException
      */
     public void handleMakeAppointmentButton(ActionEvent event) throws IOException {
-        Session.appointment = new Appointment();
+        Session.appointment = new AppointmentInCreation();
         SceneSwitch.switchTo(event, "appointment/appointmentUser-view.fxml", "Make appointment");
     }
 
