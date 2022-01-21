@@ -63,6 +63,8 @@ public class AppointmentInformationController implements Initializable {
     }
 
     public void handleBackButton(ActionEvent event) throws IOException {
+        //Don't save data here because healthProblemField and doctorChoiceBox are empty by default
+        //hence not accepted by validateHealthProblem() and validateSpecialization() respectively
         SceneSwitch.switchTo(event, "appointment/appointmentHealth-view.fxml", "Make appointment");
     }
 
