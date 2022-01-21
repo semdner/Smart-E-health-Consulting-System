@@ -44,14 +44,21 @@ public class AppointmentInformationController implements Initializable {
     }
 
     public void handleContinueButton(ActionEvent event) throws IOException {
+        if (saveData()) {
+            SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");
+        }
+    }
+
+    private boolean saveData() {
         if(validateDate() && validateHealthProblem() && validateSpecialization()) {
             Session.appointment.setDate(datePicker.getValue());
             Session.appointment.setDistance(searchDistanceSlider.getValue());
             Session.appointment.setSpecialization(doctorChoiceBox.getValue().toString());
             Session.appointment.setHealthProblem(healthProblemField.getText());
-            SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");
+            return true;
         } else {
             errorLabel.setVisible(true);
+            return false;
         }
     }
 
