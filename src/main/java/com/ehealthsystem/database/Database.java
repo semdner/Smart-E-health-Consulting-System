@@ -1,7 +1,7 @@
 package com.ehealthsystem.database;
 
 import com.ehealthsystem.doctor.Doctor;
-import com.ehealthsystem.doctor.DoctorAppointment;
+import com.ehealthsystem.doctor.DoctorTimeSlot;
 import com.ehealthsystem.healthinformation.HealthInformation;
 import com.ehealthsystem.map.DoctorDistance;
 import com.ehealthsystem.map.GeoCoder;
@@ -401,7 +401,7 @@ public class Database {
         return specialization;
     }
 
-    public static ArrayList<DoctorAppointment> loadDoctorAppointments(Doctor doctor, LocalDate selectedDate) throws SQLException {
+    public static ArrayList<DoctorTimeSlot> loadDoctorAppointments(Doctor doctor, LocalDate selectedDate) throws SQLException {
         DateTimeFormatter DateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         String dateStr = selectedDate.format(DateFormatter);
 
@@ -414,12 +414,12 @@ public class Database {
         statement.setInt(2, doctor.getId());
         ResultSet rs = statement.executeQuery();
 
-        ArrayList<DoctorAppointment> appointments = new ArrayList<>();
+        ArrayList<DoctorTimeSlot> appointments = new ArrayList<>();
         DateTimeFormatter TimeFormatter = DateTimeFormatter.ofPattern("H:mm");
         while(rs.next()) {
             LocalDate date = LocalDate.parse(rs.getString("date"), DateFormatter);
             LocalTime time = LocalTime.parse(rs.getString("time"), TimeFormatter);
-            appointments.add(new DoctorAppointment(date, time, rs.getBoolean("free")));
+            appointments.add(new DoctorTimeSlot(date, time, rs.getBoolean("free")));
         }
         return appointments;
     }

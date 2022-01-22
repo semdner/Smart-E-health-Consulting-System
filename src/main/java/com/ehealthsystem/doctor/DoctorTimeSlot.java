@@ -3,12 +3,12 @@ package com.ehealthsystem.doctor;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class DoctorAppointment {
+public class DoctorTimeSlot {
     private LocalDate date;
     private LocalTime time;
     private boolean free;
 
-    public DoctorAppointment(LocalDate date, LocalTime time, boolean free) {
+    public DoctorTimeSlot(LocalDate date, LocalTime time, boolean free) {
         this.date = date;
         this.time = time;
         this.free = free;

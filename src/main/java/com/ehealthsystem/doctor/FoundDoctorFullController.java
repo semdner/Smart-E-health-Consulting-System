@@ -1,8 +1,6 @@
 package com.ehealthsystem.doctor;
 
-import com.ehealthsystem.appointment.AppointmentInCreation;
 import com.ehealthsystem.database.Database;
-import com.ehealthsystem.healthinformation.HealthInformation;
 import com.ehealthsystem.map.DoctorDistance;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
@@ -10,20 +8,15 @@ import com.google.maps.errors.ApiException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebView;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Time;
-import java.time.DateTimeException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -86,15 +79,15 @@ public class FoundDoctorFullController {
     }
 
     private void loadSchedule() throws SQLException {
-        ArrayList<DoctorAppointment> doctorAppointmentList = Database.loadDoctorAppointments(doctor.getDoctor(), Session.appointment.getDate());
+        ArrayList<DoctorTimeSlot> doctorTimeSlotList = Database.loadDoctorAppointments(doctor.getDoctor(), Session.appointment.getDate());
         dateLabel.setText(Session.appointment.getDate().toString());
         int column = 0;
         int row = 1;
-        for(int i = 0; i<doctorAppointmentList.size(); i++, column++) {
+        for(int i = 0; i< doctorTimeSlotList.size(); i++, column++) {
             //Prepare UI
-            Label time = new Label(doctorAppointmentList.get(i).getTime().toString());
+            Label time = new Label(doctorTimeSlotList.get(i).getTime().toString());
             Button timeButton = new Button();
-            if(doctorAppointmentList.get(i).getFree()) {
+            if(doctorTimeSlotList.get(i).getFree()) {
                 handleTimeButton(time, timeButton);
                 setStyle(time, timeButton);
             } else {
@@ -109,7 +102,7 @@ public class FoundDoctorFullController {
 
             //Add to UI
             scheduleGridPane.add(time, column, row);
-            if(doctorAppointmentList.get(i).getFree()) {
+            if(doctorTimeSlotList.get(i).getFree()) {
                 scheduleGridPane.add(timeButton, column, row);
             }
         }
