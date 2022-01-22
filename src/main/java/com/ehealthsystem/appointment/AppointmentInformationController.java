@@ -94,7 +94,7 @@ public class AppointmentInformationController implements Initializable {
     }
 
     public boolean validateHealthProblem() {
-        if(healthProblemField.getText() != null) {
+        if(healthProblemField.getText() == null || healthProblemField.getText().isBlank()) {
             errorLabel.setText("Please describe your health problem.");
             return false;
         } else {
