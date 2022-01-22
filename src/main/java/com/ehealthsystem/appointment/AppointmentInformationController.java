@@ -58,21 +58,33 @@ public class AppointmentInformationController implements Initializable {
     }
 
     private boolean saveData() {
-        if(validateDate() && validateHealthProblem() && validateSpecialization()) {
+        boolean okay = true;
+        Session.appointment.setDistance(searchDistanceSlider.getValue());
+
+        if(validateDate()) {
             Session.appointment.setDate(datePicker.getValue());
-            Session.appointment.setDistance(searchDistanceSlider.getValue());
-            Session.appointment.setSpecialization(doctorChoiceBox.getValue().toString());
-            Session.appointment.setHealthProblem(healthProblemField.getText());
-            return true;
         } else {
-            errorLabel.setVisible(true);
-            return false;
+            Session.appointment.setDate(null);
+            okay = false;
         }
+
+        if(validateSpecialization()) {
+            Session.appointment.setSpecialization(doctorChoiceBox.getValue().toString());
+        } else {
+            okay = false;
+        }
+
+        if(validateHealthProblem()) {
+            Session.appointment.setHealthProblem(healthProblemField.getText());
+        } else {
+            okay = false;
+        }
+
+        return okay;
     }
 
     public void handleBackButton(ActionEvent event) throws IOException {
-        //Don't save data here because healthProblemField and doctorChoiceBox are empty by default
-        //hence not accepted by validateHealthProblem() and validateSpecialization() respectively
+        saveData();
         SceneSwitch.switchTo(event, "appointment/appointmentHealth-view.fxml", "Make appointment");
     }
 
@@ -88,6 +100,7 @@ public class AppointmentInformationController implements Initializable {
             }
         } catch (NullPointerException e) {
             errorLabel.setText("You didn't select a date.");
+            errorLabel.setVisible(true);
             return false;
 
         }
@@ -96,6 +109,7 @@ public class AppointmentInformationController implements Initializable {
     public boolean validateHealthProblem() {
         if(healthProblemField.getText() == null || healthProblemField.getText().isBlank()) {
             errorLabel.setText("Please describe your health problem.");
+            errorLabel.setVisible(true);
             return false;
         } else {
             return true;
@@ -105,6 +119,7 @@ public class AppointmentInformationController implements Initializable {
     public boolean validateSpecialization() {
         if(doctorChoiceBox.getValue() == null) {
             errorLabel.setText("Please choose a doctor specialization.");
+            errorLabel.setVisible(true);
             return false;
         } else {
             return true;
