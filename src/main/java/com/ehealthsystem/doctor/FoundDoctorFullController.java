@@ -22,6 +22,8 @@ import javafx.scene.web.WebView;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.time.DateTimeException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -44,12 +46,16 @@ public class FoundDoctorFullController {
     GridPane scheduleGridPane;
 
     @FXML
+    Label errorLabel;
+
+    @FXML
     private WebView mapWebView;
 
     private DoctorDistance doctor = new DoctorDistance();
     private String userGeoData;
     private String doctorGeoData;
     private ArrayList<Label> timeLabelList = new ArrayList<>();
+    private LocalTime selectedTime;
 
     public void start() throws IOException, InterruptedException, ApiException, SQLException {
         loadPage(userGeoData, doctorGeoData);
@@ -85,17 +91,29 @@ public class FoundDoctorFullController {
         int column = 0;
         int row = 1;
         for(int i = 0; i<doctorAppointmentList.size(); i++) {
-            Label time = new Label(doctorAppointmentList.get(i).getTime().toString());
-            Button timeButton = new Button();
-            handleTimeButton(time, timeButton);
-            setStyle(time, timeButton);
-            if(i % 2 == 0 && i != 0) {
-                column = 0;
-                row++;
+            if(doctorAppointmentList.get(i).getFree()) {
+                Label time = new Label(doctorAppointmentList.get(i).getTime().toString());
+                Button timeButton = new Button();
+                handleTimeButton(time, timeButton);
+                setStyle(time, timeButton);
+                if(i % 2 == 0 && i != 0) {
+                    column = 0;
+                    row++;
+                }
+                scheduleGridPane.add(time, column, row);
+                scheduleGridPane.add(timeButton, column, row);
+                column++;
+            } else {
+                Label time = new Label(doctorAppointmentList.get(i).getTime().toString());
+                setStyle(time);
+                if(i % 2 == 0 && i != 0) {
+                    column = 0;
+                    row++;
+                }
+                scheduleGridPane.add(time, column, row);
+                column++;
             }
-            scheduleGridPane.add(time, column, row);
-            scheduleGridPane.add(timeButton, column, row);
-            column++;
+
         }
     }
 
@@ -109,12 +127,15 @@ public class FoundDoctorFullController {
                     timeLabelList.get(i).setTextFill(Color.web("#000000"));
                 }
                 DateTimeFormatter TimeFormatter = DateTimeFormatter.ofPattern("H:mm");
-                LocalTime setTime = LocalTime.parse(timeStr, TimeFormatter);
-                Session.appointment.setTime(setTime);
+                selectedTime = LocalTime.parse(timeStr, TimeFormatter);
                 time.setTextFill(Color.web("#FF0000"));
-                System.out.println(Session.appointment.getTime());
             }
         });
+    }
+
+    private void setStyle(Label time) {
+        time.setStyle("-fx-font-size: 15px;");
+        time.setTextFill(Color.web("#999999"));
     }
 
     private void setStyle(Label time, Button timeButton) {
@@ -125,5 +146,23 @@ public class FoundDoctorFullController {
 
     public void handleBackButton(ActionEvent event) throws IOException {
         SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");;
+    }
+
+    public void handleSelectButton(ActionEvent event) throws IOException {
+        Session.appointment.setTime(selectedTime);
+        if(Session.appointment.getTime() != null) {
+            SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");
+        } else {
+            errorLabel.setVisible(true);
+        }
+        /*
+        try {
+            DateTimeFormatter TimeFormatter = DateTimeFormatter.ofPattern("H:mm");
+            String time = Session.appointment.getTime().format(TimeFormatter);
+            Session.appointment.setTime(selectedTime);
+        } catch (NullPointerException e) {
+            errorLabel.setVisible(true);
+        }
+        */
     }
 }
