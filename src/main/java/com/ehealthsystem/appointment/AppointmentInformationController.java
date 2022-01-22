@@ -79,6 +79,7 @@ public class AppointmentInformationController implements Initializable {
         if(validateHealthProblem()) {
             Session.appointment.setHealthProblem(healthProblemField.getText());
         } else {
+            Session.appointment.setHealthProblem(null);
             okay = false;
         }
 
