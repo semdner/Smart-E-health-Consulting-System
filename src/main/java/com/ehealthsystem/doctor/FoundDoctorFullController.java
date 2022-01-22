@@ -90,30 +90,28 @@ public class FoundDoctorFullController {
         dateLabel.setText(Session.appointment.getDate().toString());
         int column = 0;
         int row = 1;
-        for(int i = 0; i<doctorAppointmentList.size(); i++) {
+        for(int i = 0; i<doctorAppointmentList.size(); i++, column++) {
+            //Prepare UI
+            Label time = new Label(doctorAppointmentList.get(i).getTime().toString());
+            Button timeButton = new Button();
             if(doctorAppointmentList.get(i).getFree()) {
-                Label time = new Label(doctorAppointmentList.get(i).getTime().toString());
-                Button timeButton = new Button();
                 handleTimeButton(time, timeButton);
                 setStyle(time, timeButton);
-                if(i % 2 == 0 && i != 0) {
-                    column = 0;
-                    row++;
-                }
-                scheduleGridPane.add(time, column, row);
-                scheduleGridPane.add(timeButton, column, row);
-                column++;
             } else {
-                Label time = new Label(doctorAppointmentList.get(i).getTime().toString());
                 setStyle(time);
-                if(i % 2 == 0 && i != 0) {
-                    column = 0;
-                    row++;
-                }
-                scheduleGridPane.add(time, column, row);
-                column++;
             }
 
+            if(i % 2 == 0 && i != 0) {
+                //Go to next row
+                column = 0;
+                row++;
+            }
+
+            //Add to UI
+            scheduleGridPane.add(time, column, row);
+            if(doctorAppointmentList.get(i).getFree()) {
+                scheduleGridPane.add(timeButton, column, row);
+            }
         }
     }
 
