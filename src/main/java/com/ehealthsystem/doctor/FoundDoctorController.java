@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class FoundDoctorController {
 
@@ -41,7 +42,7 @@ public class FoundDoctorController {
         this.doctorGeoData = doctorGeoData;
     }
 
-    public void handleShowMoreButton(ActionEvent event) throws IOException, InterruptedException, ApiException {
+    public void handleShowMoreButton(ActionEvent event) throws IOException, InterruptedException, ApiException, SQLException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/ehealthsystem/doctor/foundDoctorFull-view.fxml"));
         Parent root = loader.load();
 
