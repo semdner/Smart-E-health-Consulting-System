@@ -404,8 +404,14 @@ public class Database {
         DateTimeFormatter DateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         String dateStr = selectedDate.format(DateFormatter);
 
-        String query = "SELECT da.date, da.time, da.free FROM doctor_appointment AS da LEFT JOIN doctor AS d ON da.doctor_id = d.doctor_id WHERE da.date = '" + dateStr + "' AND d.first_name = '" + firstName + "' AND d.last_name = '" + lastName + "';";
+        String query = "SELECT da.date, da.time, da.free" +
+                " FROM doctor_appointment AS da" +
+                " LEFT JOIN doctor AS d ON da.doctor_id = d.doctor_id" +
+                " WHERE da.date = ? AND d.first_name = ? AND d.last_name = ?;";
         PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, dateStr);
+        statement.setString(2, firstName);
+        statement.setString(3, lastName);
         ResultSet rs = statement.executeQuery();
 
         ArrayList<DoctorAppointment> appointments = new ArrayList<>();
