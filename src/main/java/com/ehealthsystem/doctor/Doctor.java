@@ -2,7 +2,7 @@ package com.ehealthsystem.doctor;
 
 public class Doctor {
     String firstName, lastName, street, number;
-    String[] specilization;
+    String[] specialization;
     int zip;
 
     public Doctor() {
