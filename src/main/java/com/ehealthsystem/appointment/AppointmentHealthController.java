@@ -69,7 +69,7 @@ public class AppointmentHealthController implements Initializable {
 
             //Restore CheckBox selections
             HealthInformation all_entry = allHealthInformation.get(i);
-            for (HealthInformation selected : Session.appointment.healthInformation) {
+            for (HealthInformation selected : Session.appointment.getHealthInformation()) {
                 if (healthInformationsMatch(all_entry, selected)) {
                     manuallySelect(selection, all_entry, true);
                     break; //can't do more than to check this entry

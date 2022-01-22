@@ -43,10 +43,10 @@ public class AppointmentInformationController implements Initializable {
                 searchDistanceSlider.setValue(Session.appointment.getDistance());
             }
 
-            healthProblemField.setText(Session.appointment.healthProblem);
+            healthProblemField.setText(Session.appointment.getHealthProblem());
 
-            if (Session.appointment.specialization != null) {
-                doctorChoiceBox.setValue(Session.appointment.specialization);
+            if (Session.appointment.getSpecialization() != null) {
+                doctorChoiceBox.setValue(Session.appointment.getSpecialization());
             }
         } catch (SQLException e) {
             e.printStackTrace();

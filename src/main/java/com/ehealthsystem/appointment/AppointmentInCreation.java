@@ -7,12 +7,12 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class AppointmentInCreation {
-    String healthProblem;
-    LocalDate date;
-    LocalTime time;
-    double distance = -1;
-    String specialization;
-    ArrayList<HealthInformation> healthInformation = new ArrayList<>();
+    private String healthProblem;
+    private LocalDate date;
+    private LocalTime time;
+    private double distance = -1;
+    private String specialization;
+    private ArrayList<HealthInformation> healthInformation = new ArrayList<>();
 
     public AppointmentInCreation() {
     }
@@ -33,12 +33,24 @@ public class AppointmentInCreation {
         this.healthProblem = healthProblem;
     }
 
+    public String getHealthProblem() {
+        return healthProblem;
+    }
+
+    public String getSpecialization() {
+        return specialization;
+    }
+
     public void setDistance(double distance) {
         this.distance = distance;
     }
 
     public void setHealthInformation(ArrayList<HealthInformation> healthInformation) {
         this.healthInformation = healthInformation;
+    }
+
+    public ArrayList<HealthInformation> getHealthInformation() {
+        return healthInformation;
     }
 
     public void setSpecialization(String specialization) {
