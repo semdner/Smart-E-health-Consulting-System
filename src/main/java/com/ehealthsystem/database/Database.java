@@ -400,7 +400,7 @@ public class Database {
         return specialization;
     }
 
-    public static ArrayList<DoctorAppointment>loadDoctorAppointments(String firstName, String lastName, LocalDate selectedDate) throws SQLException {
+    public static ArrayList<DoctorAppointment> loadDoctorAppointments(String firstName, String lastName, LocalDate selectedDate) throws SQLException {
         DateTimeFormatter DateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         String dateStr = selectedDate.format(DateFormatter);
 
