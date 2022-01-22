@@ -10,7 +10,7 @@ public class AppointmentInCreation {
     String healthProblem;
     LocalDate date;
     LocalTime time;
-    double distance;
+    double distance = -1;
     String specialization;
     ArrayList<HealthInformation> healthInformation = new ArrayList<>();
 

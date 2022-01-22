@@ -39,7 +39,7 @@ public class AppointmentInformationController implements Initializable {
             doctorChoiceBox.getItems().setAll(categories);
 
             datePicker.setValue(Session.appointment.getDate() != null ? Session.appointment.getDate() : LocalDate.now());
-            if (Session.appointment.getDistance() != 0) {
+            if (Session.appointment.getDistance() != -1) {
                 searchDistanceSlider.setValue(Session.appointment.getDistance());
             }
 
