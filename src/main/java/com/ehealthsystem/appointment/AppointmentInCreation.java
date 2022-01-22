@@ -7,9 +7,12 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class AppointmentInCreation {
+    //Data that will be stored in the final appointment
     private String healthProblem;
     private LocalDate date;
     private LocalTime time;
+
+    //Data that is only used to save the creation progress
     private double distance = -1;
     private String specialization;
     private ArrayList<HealthInformation> healthInformation = new ArrayList<>();
