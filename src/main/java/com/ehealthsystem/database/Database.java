@@ -76,6 +76,7 @@ public class Database {
         statement.execute(ResourceReader.getResourceString("database/insertIntoCategory.sql"));
         statement.execute(ResourceReader.getResourceString("database/insertIntoDoctor.sql"));
         statement.execute(ResourceReader.getResourceString("database/insertIntoDoctorCategory.sql"));
+        statement.execute(ResourceReader.getResourceString("database/insertIntoDoctorAppointment.sql"));
 
         //Insert admin user
         String query = "INSERT INTO user (username, password) VALUES ('admin', ?)";
