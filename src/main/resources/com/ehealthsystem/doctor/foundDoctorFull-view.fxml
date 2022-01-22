@@ -140,8 +140,13 @@
    <bottom>
       <AnchorPane prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="936.0" layoutY="8.0" mnemonicParsing="false" prefWidth="50.0" text="select" AnchorPane.bottomAnchor="7.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.5" />
+            <Button layoutX="936.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleSelectButton" prefWidth="50.0" text="select" AnchorPane.bottomAnchor="7.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.5" />
             <Button layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleBackButton" prefWidth="50.0" text="back" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="7.5" />
+            <Label fx:id="errorLabel" layoutX="817.0" layoutY="10.0" text="no time selected" textFill="RED" visible="false">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </bottom>
