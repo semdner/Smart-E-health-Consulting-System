@@ -1,5 +1,6 @@
 package com.ehealthsystem.database;
 
+import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.doctor.Doctor;
 import com.ehealthsystem.doctor.DoctorTimeSlot;
 import com.ehealthsystem.healthinformation.HealthInformation;
@@ -430,7 +431,7 @@ public class Database {
      * @return
      * @throws SQLException
      */
-    /*public static ArrayList<Appointment> loadAppointmentsFromResultSet(ResultSet rs) throws SQLException {
+    public static ArrayList<Appointment> loadAppointmentsFromResultSet(ResultSet rs) throws SQLException {
         ArrayList<Appointment> appointments = new ArrayList<>();
         while (rs.next())
         {
@@ -448,7 +449,7 @@ public class Database {
             appointments.add(appointment);
         }
         return appointments;
-    }*/
+    }
 
     /**
      * Get appointments that a doctor already has within a range of days
@@ -457,7 +458,7 @@ public class Database {
      * @param toTime
      * @return doctorsAppointments
      */
-    /*public static ArrayList<Appointment> getDoctorsAppointments(int doctor, int fromTime, int toTime) throws SQLException {
+    public static ArrayList<Appointment> getDoctorsAppointments(int doctor, int fromTime, int toTime) throws SQLException {
         String query = "SELECT * FROM appointments WHERE doctor = ? AND timestamp BETWEEN ? AND ? ORDER BY timestamp"; //ordering not necessary but just convenient, e.g. if it will be displayed in a list to the doctor in the future
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, doctor);
@@ -465,7 +466,7 @@ public class Database {
         statement.setInt(3, toTime);
         ResultSet rs = statement.executeQuery();
         return loadAppointmentsFromResultSet(rs);
-    }*/
+    }
 
     /**
      * Get a user's past and future appointments, ordered by appointment time (newest first)
@@ -473,11 +474,11 @@ public class Database {
      * This method is not part of the User class because the content is so similar to DB.getDoctorsAppointments() and hence shall be next to it
      * @return usersAppointments
      */
-    /*public static ArrayList<Appointment> getUsersAppointments(String username) throws SQLException {
+    public static ArrayList<Appointment> getUsersAppointments(String username) throws SQLException {
         String query = "SELECT * FROM appointments WHERE user = ? ORDER BY timestamp DESC"; //ordering for display as list
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);
         ResultSet rs = statement.executeQuery();
         return loadAppointmentsFromResultSet(rs);
-    }*/
+    }
 }
