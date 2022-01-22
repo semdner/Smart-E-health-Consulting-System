@@ -147,20 +147,11 @@ public class FoundDoctorFullController {
     }
 
     public void handleSelectButton(ActionEvent event) throws IOException {
-        Session.appointment.setTime(selectedTime);
-        if(Session.appointment.getTime() != null) {
+        if(selectedTime != null) {
+            Session.appointment.setTime(selectedTime);
             SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");
         } else {
             errorLabel.setVisible(true);
         }
-        /*
-        try {
-            DateTimeFormatter TimeFormatter = DateTimeFormatter.ofPattern("H:mm");
-            String time = Session.appointment.getTime().format(TimeFormatter);
-            Session.appointment.setTime(selectedTime);
-        } catch (NullPointerException e) {
-            errorLabel.setVisible(true);
-        }
-        */
     }
 }
