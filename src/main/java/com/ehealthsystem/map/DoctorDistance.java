@@ -11,10 +11,10 @@ public class DoctorDistance {
 
     }
 
-    public DoctorDistance(double distance, String geodata, String firstName, String lastName, String street, String number, int zip) {
+    public DoctorDistance(double distance, String geodata, int doctorId, String firstName, String lastName, String street, String number, int zip) {
         this.distance = distance;
         this.geoData = geodata;
-        this.doctor = new Doctor(firstName, lastName, street, number, zip);
+        this.doctor = new Doctor(doctorId, firstName, lastName, street, number, zip);
     }
 
     public double getDistance() {

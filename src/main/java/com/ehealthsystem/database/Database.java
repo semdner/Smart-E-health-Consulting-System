@@ -382,7 +382,7 @@ public class Database {
             String doctorGeoData = GeoCoder.geocodeToFormattedAddress(address, rs.getString("zip"));
             double resultDistance = GeoDistance.getDistance(userGeoData, doctorGeoData);
             if(resultDistance <= distance) {
-                doctorList.add(new DoctorDistance(resultDistance, doctorGeoData, rs.getString("first_name"), rs.getString("last_name"), rs.getString("street"), rs.getString("number"), rs.getInt("zip")));
+                doctorList.add(new DoctorDistance(resultDistance, doctorGeoData, rs.getInt("doctor_id"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("street"), rs.getString("number"), rs.getInt("zip")));
             }
         }
         return doctorList;
@@ -400,18 +400,17 @@ public class Database {
         return specialization;
     }
 
-    public static ArrayList<DoctorAppointment> loadDoctorAppointments(String firstName, String lastName, LocalDate selectedDate) throws SQLException {
+    public static ArrayList<DoctorAppointment> loadDoctorAppointments(Doctor doctor, LocalDate selectedDate) throws SQLException {
         DateTimeFormatter DateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         String dateStr = selectedDate.format(DateFormatter);
 
         String query = "SELECT da.date, da.time, da.free" +
                 " FROM doctor_appointment AS da" +
                 " LEFT JOIN doctor AS d ON da.doctor_id = d.doctor_id" +
-                " WHERE da.date = ? AND d.first_name = ? AND d.last_name = ?;";
+                " WHERE da.date = ? AND d.doctor_id = ?;";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, dateStr);
-        statement.setString(2, firstName);
-        statement.setString(3, lastName);
+        statement.setInt(2, doctor.getId());
         ResultSet rs = statement.executeQuery();
 
         ArrayList<DoctorAppointment> appointments = new ArrayList<>();

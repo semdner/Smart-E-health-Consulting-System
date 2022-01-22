@@ -86,7 +86,7 @@ public class FoundDoctorFullController {
     }
 
     private void loadSchedule() throws SQLException {
-        ArrayList<DoctorAppointment> doctorAppointmentList = Database.loadDoctorAppointments(doctor.getDoctor().getFirstName(), doctor.getDoctor().getLastName(), Session.appointment.getDate());
+        ArrayList<DoctorAppointment> doctorAppointmentList = Database.loadDoctorAppointments(doctor.getDoctor(), Session.appointment.getDate());
         dateLabel.setText(Session.appointment.getDate().toString());
         int column = 0;
         int row = 1;

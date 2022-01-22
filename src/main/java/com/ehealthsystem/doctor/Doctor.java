@@ -1,6 +1,7 @@
 package com.ehealthsystem.doctor;
 
 public class Doctor {
+    int id;
     String firstName, lastName, street, number;
     String[] specialization;
     int zip;
@@ -9,12 +10,17 @@ public class Doctor {
 
     }
 
-    public Doctor(String firstName, String lastName, String street, String number, int zip) {
+    public Doctor(int id, String firstName, String lastName, String street, String number, int zip) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.street = street;
         this.number = number;
         this.zip = zip;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getFirstName() {
