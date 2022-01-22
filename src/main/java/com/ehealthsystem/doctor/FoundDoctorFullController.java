@@ -124,9 +124,9 @@ public class FoundDoctorFullController {
                 for (int i = 0; i<timeLabelList.size(); i++) {
                     timeLabelList.get(i).setTextFill(Color.web("#000000"));
                 }
+                time.setTextFill(Color.web("#FF0000"));
                 DateTimeFormatter TimeFormatter = DateTimeFormatter.ofPattern("H:mm");
                 selectedTime = LocalTime.parse(timeStr, TimeFormatter);
-                time.setTextFill(Color.web("#FF0000"));
             }
         });
     }
