@@ -227,25 +227,27 @@ public class FoundDoctorFullController {
     }
 
     public void editRoute() throws IOException, InterruptedException, ApiException {
-        String newSearch = "displayRoute(\"" + doctorGeoData + "\",\"" + userGeoData + "\", directionsService, directionsRenderer);";
+        String newSearch = "    displayRoute(\"" + userGeoData + "\",\"" + doctorGeoData + "\", directionsService, directionsRenderer);";
         System.out.println(doctorGeoData);
-        System.out.print(userGeoData);
+        System.out.println(userGeoData + "\n");
 
         File jsFile = new File("src\\main\\resources\\com\\ehealthsystem\\map\\index.js");
         BufferedReader reader = new BufferedReader(new FileReader(jsFile));
         String line = reader.readLine();
         String content = "";
-        String regex = "displayRoute\\(\" \\);";
 
         while(line != null) {
+            if(line.startsWith("    displayRoute(")) {
+                content += newSearch + System.lineSeparator();
+                line = reader.readLine();
+                continue;
+            }
             content += line + System.lineSeparator();
             line = reader.readLine();
         }
 
-        String modifiedContent = content.replaceAll(regex, newSearch);
         BufferedWriter writer = new BufferedWriter(new FileWriter(jsFile));
-
-        writer.write(modifiedContent);
+        writer.write(content);
         reader.close();
         writer.close();
     }
