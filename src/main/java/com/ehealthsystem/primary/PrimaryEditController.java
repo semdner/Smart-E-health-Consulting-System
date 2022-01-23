@@ -131,6 +131,7 @@ public class PrimaryEditController implements Initializable {
             updateStreet(streetTextField.getText());
             updateNumber(houseNoTextField.getText());
             updateZip(zipTextField.getText());
+            Session.userGeo = null;
         }
         updateBirthday(birthdayPicker.getValue());
         updateGender((String) genderBox.getValue());

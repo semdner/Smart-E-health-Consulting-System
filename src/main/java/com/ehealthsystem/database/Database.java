@@ -1,7 +1,8 @@
 package com.ehealthsystem.database;
 
+import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.doctor.Doctor;
-import com.ehealthsystem.doctor.DoctorAppointment;
+import com.ehealthsystem.doctor.DoctorTimeSlot;
 import com.ehealthsystem.healthinformation.HealthInformation;
 import com.ehealthsystem.map.DoctorDistance;
 import com.ehealthsystem.map.GeoCoder;
@@ -9,6 +10,7 @@ import com.ehealthsystem.map.GeoDistance;
 import com.ehealthsystem.tools.ResourceReader;
 import com.ehealthsystem.user.User;
 import com.google.maps.errors.ApiException;
+import com.google.maps.model.GeocodingResult;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
@@ -76,6 +78,7 @@ public class Database {
         statement.execute(ResourceReader.getResourceString("database/insertIntoCategory.sql"));
         statement.execute(ResourceReader.getResourceString("database/insertIntoDoctor.sql"));
         statement.execute(ResourceReader.getResourceString("database/insertIntoDoctorCategory.sql"));
+        statement.execute(ResourceReader.getResourceString("database/insertIntoDoctorAppointment.sql"));
 
         //Insert admin user
         String query = "INSERT INTO user (username, password) VALUES ('admin', ?)";
@@ -379,10 +382,11 @@ public class Database {
 
         while(rs.next()) {
             address = rs.getString("street") + rs.getString("number");
-            String doctorGeoData = GeoCoder.geocodeToFormattedAddress(address, rs.getString("zip"));
+            GeocodingResult doctorGeo = GeoCoder.geocode(address, rs.getString("zip"));
+            String doctorGeoData = doctorGeo.formattedAddress;
             double resultDistance = GeoDistance.getDistance(userGeoData, doctorGeoData);
             if(resultDistance <= distance) {
-                doctorList.add(new DoctorDistance(resultDistance, doctorGeoData, rs.getString("first_name"), rs.getString("last_name"), rs.getString("street"), rs.getString("number"), rs.getInt("zip")));
+                doctorList.add(new DoctorDistance(resultDistance, doctorGeo.geometry.location, doctorGeoData, rs.getInt("doctor_id"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("street"), rs.getString("number"), rs.getInt("zip")));
             }
         }
         return doctorList;
@@ -400,20 +404,25 @@ public class Database {
         return specialization;
     }
 
-    public static ArrayList<DoctorAppointment>loadDoctorAppointments(String firstName, String lastName, LocalDate selectedDate) throws SQLException {
+    public static ArrayList<DoctorTimeSlot> loadDoctorAppointments(Doctor doctor, LocalDate selectedDate) throws SQLException {
         DateTimeFormatter DateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         String dateStr = selectedDate.format(DateFormatter);
 
-        String query = "SELECT da.date, da.time, da.free FROM doctor_appointment AS da LEFT JOIN doctor AS d ON da.doctor_id = d.doctor_id WHERE da.date = '" + dateStr + "' AND d.first_name = '" + firstName + "' AND d.last_name = '" + lastName + "';";
+        String query = "SELECT da.date, da.time, da.free" +
+                " FROM doctor_appointment AS da" +
+                " LEFT JOIN doctor AS d ON da.doctor_id = d.doctor_id" +
+                " WHERE da.date = ? AND d.doctor_id = ?;";
         PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, dateStr);
+        statement.setInt(2, doctor.getId());
         ResultSet rs = statement.executeQuery();
 
-        ArrayList<DoctorAppointment> appointments = new ArrayList<>();
+        ArrayList<DoctorTimeSlot> appointments = new ArrayList<>();
         DateTimeFormatter TimeFormatter = DateTimeFormatter.ofPattern("H:mm");
         while(rs.next()) {
             LocalDate date = LocalDate.parse(rs.getString("date"), DateFormatter);
             LocalTime time = LocalTime.parse(rs.getString("time"), TimeFormatter);
-            appointments.add(new DoctorAppointment(date, time, rs.getBoolean("free")));
+            appointments.add(new DoctorTimeSlot(date, time, rs.getBoolean("free")));
         }
         return appointments;
     }
@@ -424,7 +433,7 @@ public class Database {
      * @return
      * @throws SQLException
      */
-    /*public static ArrayList<Appointment> loadAppointmentsFromResultSet(ResultSet rs) throws SQLException {
+    public static ArrayList<Appointment> loadAppointmentsFromResultSet(ResultSet rs) throws SQLException {
         ArrayList<Appointment> appointments = new ArrayList<>();
         while (rs.next())
         {
@@ -442,7 +451,7 @@ public class Database {
             appointments.add(appointment);
         }
         return appointments;
-    }*/
+    }
 
     /**
      * Get appointments that a doctor already has within a range of days
@@ -451,7 +460,7 @@ public class Database {
      * @param toTime
      * @return doctorsAppointments
      */
-    /*public static ArrayList<Appointment> getDoctorsAppointments(int doctor, int fromTime, int toTime) throws SQLException {
+    public static ArrayList<Appointment> getDoctorsAppointments(int doctor, int fromTime, int toTime) throws SQLException {
         String query = "SELECT * FROM appointments WHERE doctor = ? AND timestamp BETWEEN ? AND ? ORDER BY timestamp"; //ordering not necessary but just convenient, e.g. if it will be displayed in a list to the doctor in the future
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, doctor);
@@ -459,7 +468,7 @@ public class Database {
         statement.setInt(3, toTime);
         ResultSet rs = statement.executeQuery();
         return loadAppointmentsFromResultSet(rs);
-    }*/
+    }
 
     /**
      * Get a user's past and future appointments, ordered by appointment time (newest first)
@@ -467,11 +476,11 @@ public class Database {
      * This method is not part of the User class because the content is so similar to DB.getDoctorsAppointments() and hence shall be next to it
      * @return usersAppointments
      */
-    /*public static ArrayList<Appointment> getUsersAppointments(String username) throws SQLException {
+    public static ArrayList<Appointment> getUsersAppointments(String username) throws SQLException {
         String query = "SELECT * FROM appointments WHERE user = ? ORDER BY timestamp DESC"; //ordering for display as list
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);
         ResultSet rs = statement.executeQuery();
         return loadAppointmentsFromResultSet(rs);
-    }*/
+    }
 }

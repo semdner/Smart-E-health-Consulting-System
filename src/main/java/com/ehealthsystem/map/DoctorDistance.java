@@ -1,9 +1,11 @@
 package com.ehealthsystem.map;
 
 import com.ehealthsystem.doctor.Doctor;
+import com.google.maps.model.LatLng;
 
 public class DoctorDistance {
     double distance;
+    LatLng location;
     String geoData;
     Doctor doctor;
 
@@ -11,14 +13,19 @@ public class DoctorDistance {
 
     }
 
-    public DoctorDistance(double distance, String geodata, String firstName, String lastName, String street, String number, int zip) {
+    public DoctorDistance(double distance, LatLng location, String geodata, int doctorId, String firstName, String lastName, String street, String number, int zip) {
         this.distance = distance;
+        this.location = location;
         this.geoData = geodata;
-        this.doctor = new Doctor(firstName, lastName, street, number, zip);
+        this.doctor = new Doctor(doctorId, firstName, lastName, street, number, zip);
     }
 
     public double getDistance() {
         return distance;
+    }
+
+    public LatLng getLocation() {
+        return location;
     }
 
     public String getGeoData() {
