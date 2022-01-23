@@ -200,7 +200,7 @@ public class FoundDoctorFullController {
         double lng = latlng.lng;
         String newSearch = "center: new google.maps.LatLng(" + lat + "," + lng + ")";
 
-        File htmlFile = new File("src\\main\\resources\\com\\ehealthsystem\\map\\map.html");
+        File htmlFile = new File("src/main/resources/com/ehealthsystem/map/map.html");
         BufferedReader reader = new BufferedReader(new FileReader(htmlFile));
         System.out.println(htmlFile);
         String line = reader.readLine();
