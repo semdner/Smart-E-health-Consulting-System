@@ -64,11 +64,13 @@ public class FoundDoctorFullController {
     }
 
     public void setUserGeoData(String userGeoData) {
+        String uGD = userGeoData.replaceAll("ß", "ss");
         this.userGeoData = userGeoData;
     }
 
     public void setDoctorGeoData(String doctorGeoData) {
-        this.doctorGeoData = doctorGeoData;
+        String dGD = doctorGeoData.replaceAll("ß", "ss");
+        this.doctorGeoData = dGD;
     }
 
     private void loadOsmMap() {
