@@ -61,7 +61,6 @@ public class FoundDoctorFullController {
         loadSchedule();
     }
 
-
     public void setDoctor(DoctorDistance doctor) {
         this.doctor = doctor;
     }
@@ -137,7 +136,7 @@ public class FoundDoctorFullController {
                 setStyle(time);
             }
 
-            if(i % 2 == 0 && i != 0) {
+            if(i % 5 == 0 && i != 0) {
                 //Go to next row
                 column = 0;
                 row++;
@@ -198,24 +197,53 @@ public class FoundDoctorFullController {
     }
 
     public void editFile() throws IOException, InterruptedException, ApiException{
+        editCenter();
+        editRoute();
+    }
+
+    public void editCenter() throws IOException, InterruptedException, ApiException {
         LatLng latlng = GeoCoder.geocodeToLatLng(doctorGeoData);
         double lat = latlng.lat;
         double lng = latlng.lng;
-        String newSearch = "center: new google.maps.LatLng(" + lat + "," + lng + ")";
+        String newSearch = "center: { lat: " + lat + ", lng: " + lng + " },";
 
-        File htmlFile = new File("src\\main\\resources\\com\\ehealthsystem\\map\\map.html");
-        BufferedReader reader = new BufferedReader(new FileReader(htmlFile));
-        System.out.println(htmlFile);
+        File jsFile = new File("src\\main\\resources\\com\\ehealthsystem\\map\\index.js");
+        BufferedReader reader = new BufferedReader(new FileReader(jsFile));
         String line = reader.readLine();
         String content = "";
+        String regex = "center: \\{ lat: \\d+.\\d+, lng: \\d+.\\d+ },";
 
         while(line != null) {
             content += line + System.lineSeparator();
             line = reader.readLine();
         }
 
-        String modifiedContent = content.replace("center: new google.maps.LatLng()", newSearch);
-        BufferedWriter writer = new BufferedWriter(new FileWriter(htmlFile));
+        String modifiedContent = content.replaceAll(regex, newSearch);
+        BufferedWriter writer = new BufferedWriter(new FileWriter(jsFile));
+
+        writer.write(modifiedContent);
+        reader.close();
+        writer.close();
+    }
+
+    public void editRoute() throws IOException, InterruptedException, ApiException {
+        String newSearch = "displayRoute(\"" + doctorGeoData + "\",\"" + userGeoData + "\", directionsService, directionsRenderer);";
+        System.out.println(doctorGeoData);
+        System.out.print(userGeoData);
+
+        File jsFile = new File("src\\main\\resources\\com\\ehealthsystem\\map\\index.js");
+        BufferedReader reader = new BufferedReader(new FileReader(jsFile));
+        String line = reader.readLine();
+        String content = "";
+        String regex = "displayRoute\\(\" \\);";
+
+        while(line != null) {
+            content += line + System.lineSeparator();
+            line = reader.readLine();
+        }
+
+        String modifiedContent = content.replaceAll(regex, newSearch);
+        BufferedWriter writer = new BufferedWriter(new FileWriter(jsFile));
 
         writer.write(modifiedContent);
         reader.close();
