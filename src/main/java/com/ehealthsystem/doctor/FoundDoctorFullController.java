@@ -5,6 +5,7 @@ import com.ehealthsystem.map.DoctorDistance;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.google.maps.errors.ApiException;
+import com.google.maps.model.LatLng;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 import java.io.IOException;
@@ -70,7 +72,45 @@ public class FoundDoctorFullController {
     }
 
     private void loadPage(String userGeoData, String doctorGeoData) {
+        LatLng user = Session.userGeo.geometry.location;
+        LatLng[] bounds = getBoundsForImage(user, doctor.getLocation());
+        WebEngine e = mapWebView.getEngine();
+        e.load("https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=" +
+                //mapWebView: can't get the current size (width, height) because too complicated
+                mapWebView.getPrefWidth() +
+                "&height=" +
+                mapWebView.getPrefHeight() +
+                "&area=rect:" +
+                bounds[0].lng + "," + bounds[0].lat +
+                "," +
+                bounds[1].lng + "," + bounds[1].lat +
+                "&marker=" +
+                "lonlat:" +
+                user.lng +
+                "," +
+                user.lat +
+                ";type:material;color:red;icon:home;icontype:awesome" +
+                "|" +
+                "lonlat:" +
+                doctor.getLocation().lng +
+                "," +
+                doctor.getLocation().lat +
+                ";type:material;color:red;icon:plus-square;icontype:awesome" +
+                "&apiKey=00cdf1a2d7324db996a8706d774a9469");
+    }
 
+    private LatLng[] getBoundsForImage(LatLng l1, LatLng l2) {
+        //lat = y, lon = x
+        LatLng topLeftBound = new LatLng(Math.max(l1.lat, l2.lat), Math.min(l1.lng, l2.lng));
+        LatLng bottomRightBound = new LatLng(Math.min(l1.lat, l2.lat), Math.max(l1.lng, l2.lng));
+
+        double latSpacing = Math.abs(topLeftBound.lat - bottomRightBound.lat)/10/2;
+        double lngSpacing = Math.abs(topLeftBound.lng - bottomRightBound.lng)/10/2;
+        topLeftBound.lat += 3*latSpacing; //factor in more spacing so that the top marker can be seen
+        topLeftBound.lng -= lngSpacing;
+        bottomRightBound.lat -= latSpacing;
+        bottomRightBound.lng += lngSpacing;
+        return new LatLng[]{topLeftBound, bottomRightBound};
     }
 
     private void loadDoctorData() {

@@ -10,6 +10,7 @@ import com.ehealthsystem.map.GeoDistance;
 import com.ehealthsystem.tools.ResourceReader;
 import com.ehealthsystem.user.User;
 import com.google.maps.errors.ApiException;
+import com.google.maps.model.GeocodingResult;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
@@ -381,10 +382,11 @@ public class Database {
 
         while(rs.next()) {
             address = rs.getString("street") + rs.getString("number");
-            String doctorGeoData = GeoCoder.geocodeToFormattedAddress(address, rs.getString("zip"));
+            GeocodingResult doctorGeo = GeoCoder.geocode(address, rs.getString("zip"));
+            String doctorGeoData = doctorGeo.formattedAddress;
             double resultDistance = GeoDistance.getDistance(userGeoData, doctorGeoData);
             if(resultDistance <= distance) {
-                doctorList.add(new DoctorDistance(resultDistance, doctorGeoData, rs.getInt("doctor_id"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("street"), rs.getString("number"), rs.getInt("zip")));
+                doctorList.add(new DoctorDistance(resultDistance, doctorGeo.geometry.location, doctorGeoData, rs.getInt("doctor_id"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("street"), rs.getString("number"), rs.getInt("zip")));
             }
         }
         return doctorList;

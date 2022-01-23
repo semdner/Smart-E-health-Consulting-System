@@ -17,7 +17,7 @@ public class GeoCoder {
      * @throws InterruptedException
      * @throws ApiException
      */
-    public static String geocodeToFormattedAddress(String address, String zip) throws IOException, InterruptedException, ApiException {
+    public static GeocodingResult geocode(String address, String zip) throws IOException, InterruptedException, ApiException {
         // set API Key
         GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyCUFsJZUQjbl0_0o8DAhQzhMOvxhftI6KQ").build();
 
@@ -27,8 +27,7 @@ public class GeoCoder {
         }
 
         GeocodingResult[] results = GeocodingApi.geocode(context,address + "," + zip).language("de-DE").await();
-        String formattedAddress = results[0].formattedAddress;
-        return formattedAddress;
+        return results[0];
     }
 
     public static LatLng geocodeToLatLng(String address) throws IOException, InterruptedException, ApiException {
