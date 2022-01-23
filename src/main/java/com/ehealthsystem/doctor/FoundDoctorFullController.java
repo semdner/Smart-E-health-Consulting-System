@@ -56,11 +56,10 @@ public class FoundDoctorFullController {
     private LocalTime selectedTime;
 
     public void start() throws IOException, InterruptedException, ApiException, SQLException {
-        loadMap();
+        loadGMap();
         loadDoctorData();
         loadSchedule();
     }
-
 
     public void setDoctor(DoctorDistance doctor) {
         this.doctor = doctor;
@@ -74,7 +73,7 @@ public class FoundDoctorFullController {
         this.doctorGeoData = doctorGeoData;
     }
 
-    private void loadPage() {
+    private void loadOsmMap() {
         LatLng user = Session.userGeo.geometry.location;
         LatLng[] bounds = getBoundsForImage(user, doctor.getLocation());
         WebEngine e = mapWebView.getEngine();
@@ -191,7 +190,7 @@ public class FoundDoctorFullController {
         }
     }
 
-    public void loadMap() throws IOException, InterruptedException, ApiException {
+    public void loadGMap() throws IOException, InterruptedException, ApiException {
         editFile();
         WebEngine engine = mapWebView.getEngine();
         engine.load(getClass().getResource("/com/ehealthsystem/map/map.html").toString());
