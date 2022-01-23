@@ -54,7 +54,7 @@ public class FoundDoctorController {
 
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene primaryScene = new Scene(root);
-        stage.setTitle("make appointment");
+        stage.setTitle("Make appointment");
         stage.setScene(primaryScene);
     }
 }
