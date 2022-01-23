@@ -19,8 +19,6 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.sql.SQLException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -56,7 +54,7 @@ public class FoundDoctorFullController {
     private LocalTime selectedTime;
 
     public void start() throws IOException, InterruptedException, ApiException, SQLException {
-        loadMap();
+        loadGMap();
         loadDoctorData();
         loadSchedule();
     }
@@ -73,7 +71,7 @@ public class FoundDoctorFullController {
         this.doctorGeoData = doctorGeoData;
     }
 
-    private void loadPage(String userGeoData, String doctorGeoData) {
+    private void loadOsmMap() {
         LatLng user = Session.userGeo.geometry.location;
         LatLng[] bounds = getBoundsForImage(user, doctor.getLocation());
         WebEngine e = mapWebView.getEngine();
@@ -190,7 +188,7 @@ public class FoundDoctorFullController {
         }
     }
 
-    public void loadMap() throws IOException, InterruptedException, ApiException {
+    public void loadGMap() throws IOException, InterruptedException, ApiException {
         editFile();
         WebEngine engine = mapWebView.getEngine();
         engine.load(getClass().getResource("/com/ehealthsystem/map/map.html").toString());
@@ -206,7 +204,6 @@ public class FoundDoctorFullController {
         double lat = latlng.lat;
         double lng = latlng.lng;
         String newSearch = "center: { lat: " + lat + ", lng: " + lng + " },";
-
         File jsFile = new File("src\\main\\resources\\com\\ehealthsystem\\map\\index.js");
         BufferedReader reader = new BufferedReader(new FileReader(jsFile));
         String line = reader.readLine();
@@ -230,7 +227,6 @@ public class FoundDoctorFullController {
         String newSearch = "    displayRoute(\"" + userGeoData + "\",\"" + doctorGeoData + "\", directionsService, directionsRenderer);";
         System.out.println(doctorGeoData);
         System.out.println(userGeoData + "\n");
-
         File jsFile = new File("src\\main\\resources\\com\\ehealthsystem\\map\\index.js");
         BufferedReader reader = new BufferedReader(new FileReader(jsFile));
         String line = reader.readLine();
