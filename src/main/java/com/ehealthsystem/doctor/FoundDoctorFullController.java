@@ -204,7 +204,7 @@ public class FoundDoctorFullController {
         double lat = latlng.lat;
         double lng = latlng.lng;
         String newSearch = "center: { lat: " + lat + ", lng: " + lng + " },";
-        File jsFile = new File("src\\main\\resources\\com\\ehealthsystem\\map\\index.js");
+        File jsFile = new File("src/main/resources/com/ehealthsystem/map/index.js");
         BufferedReader reader = new BufferedReader(new FileReader(jsFile));
         String line = reader.readLine();
         String content = "";
@@ -225,9 +225,7 @@ public class FoundDoctorFullController {
 
     public void editRoute() throws IOException, InterruptedException, ApiException {
         String newSearch = "    displayRoute(\"" + userGeoData + "\",\"" + doctorGeoData + "\", directionsService, directionsRenderer);";
-        System.out.println(doctorGeoData);
-        System.out.println(userGeoData + "\n");
-        File jsFile = new File("src\\main\\resources\\com\\ehealthsystem\\map\\index.js");
+        File jsFile = new File("src/main/resources/com/ehealthsystem/map/index.js");
         BufferedReader reader = new BufferedReader(new FileReader(jsFile));
         String line = reader.readLine();
         String content = "";
