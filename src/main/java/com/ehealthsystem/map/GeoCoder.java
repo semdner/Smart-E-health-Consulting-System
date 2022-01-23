@@ -38,6 +38,3 @@ public class GeoCoder {
         return results[0].geometry.location;
     }
 }
-
-// https://maps.googleapis.com/maps/api/distancematrix/json?origins=KarbenerWeg61184Karben&destinations=Gartenstra%C3%9Fe61184Karben&mode=bicycling&language=de-DE&key=AIzaSyCUFsJZUQjbl0_0o8DAhQzhMOvxhftI6KQ
-// https://maps.googleapis.com/maps/api/distancematrix/json?origins=40.6655101%2C-73.89188969999998&destinations=40.659569%2C-73.933783&key=AIzaSyCUFsJZUQjbl0_0o8DAhQzhMOvxhftI6KQ

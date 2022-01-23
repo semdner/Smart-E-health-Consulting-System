@@ -89,7 +89,6 @@ public class AppointmentInformationController implements Initializable {
         } catch (NullPointerException e) {
             errorLabel.setText("You didn't select a date.");
             return false;
-
         }
     }
 

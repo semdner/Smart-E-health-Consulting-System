@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -32,6 +33,9 @@ public class AppointmentFoundController implements Initializable {
 
     @FXML
     GridPane doctorGridPane;
+
+    @FXML
+    Button makeAppointmentButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -73,5 +77,20 @@ public class AppointmentFoundController implements Initializable {
 
     public void handleBackButton(ActionEvent event) throws IOException {
         SceneSwitch.switchTo(event, "appointment/appointmentInformation-view.fxml", "Make appointment");
+    }
+
+    public void handleMakeAppointmentButton(ActionEvent event) {
+        if(validateTime()) {
+            // Database.makeAppointment();
+        }
+    }
+
+    public boolean validateTime() {
+        if(Session.appointment.getTime() == null) {
+            errorLabel.setVisible(true);
+            return false;
+        } else {
+            return true;
+        }
     }
 }
