@@ -74,7 +74,7 @@ public class FoundDoctorFullController {
         this.doctorGeoData = doctorGeoData;
     }
 
-    private void loadPage(String userGeoData, String doctorGeoData) {
+    private void loadPage() {
         LatLng user = Session.userGeo.geometry.location;
         LatLng[] bounds = getBoundsForImage(user, doctor.getLocation());
         WebEngine e = mapWebView.getEngine();
