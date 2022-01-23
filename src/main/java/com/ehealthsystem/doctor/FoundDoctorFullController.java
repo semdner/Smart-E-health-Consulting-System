@@ -4,9 +4,11 @@ import com.ehealthsystem.appointment.AppointmentInCreation;
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.healthinformation.HealthInformation;
 import com.ehealthsystem.map.DoctorDistance;
+import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.google.maps.errors.ApiException;
+import com.google.maps.model.LatLng;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,9 +20,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.time.DateTimeException;
@@ -49,7 +54,7 @@ public class FoundDoctorFullController {
     Label errorLabel;
 
     @FXML
-    private WebView mapWebView;
+    private WebView mapWebView = new WebView();
 
     private DoctorDistance doctor = new DoctorDistance();
     private String userGeoData;
@@ -58,7 +63,7 @@ public class FoundDoctorFullController {
     private LocalTime selectedTime;
 
     public void start() throws IOException, InterruptedException, ApiException, SQLException {
-        loadPage(userGeoData, doctorGeoData);
+        loadMap();
         loadDoctorData();
         loadSchedule();
     }
@@ -74,10 +79,6 @@ public class FoundDoctorFullController {
 
     public void setDoctorGeoData(String doctorGeoData) {
         this.doctorGeoData = doctorGeoData;
-    }
-
-    private void loadPage(String userGeoData, String doctorGeoData) {
-
     }
 
     private void loadDoctorData() {
@@ -155,14 +156,36 @@ public class FoundDoctorFullController {
         } else {
             errorLabel.setVisible(true);
         }
-        /*
-        try {
-            DateTimeFormatter TimeFormatter = DateTimeFormatter.ofPattern("H:mm");
-            String time = Session.appointment.getTime().format(TimeFormatter);
-            Session.appointment.setTime(selectedTime);
-        } catch (NullPointerException e) {
-            errorLabel.setVisible(true);
+    }
+
+    public void loadMap() throws IOException, InterruptedException, ApiException {
+        editFile();
+        WebEngine engine = mapWebView.getEngine();
+        engine.load(getClass().getResource("/com/ehealthsystem/map/map.html").toString());
+    }
+
+    public void editFile() throws IOException, InterruptedException, ApiException{
+        LatLng latlng = GeoCoder.geocodeToLatLng(doctorGeoData);
+        double lat = latlng.lat;
+        double lng = latlng.lng;
+        String newSearch = "center: new google.maps.LatLng(" + lat + "," + lng + ")";
+
+        File htmlFile = new File("src\\main\\resources\\com\\ehealthsystem\\map\\map.html");
+        BufferedReader reader = new BufferedReader(new FileReader(htmlFile));
+        System.out.println(htmlFile);
+        String line = reader.readLine();
+        String content = "";
+
+        while(line != null) {
+            content += line + System.lineSeparator();
+            line = reader.readLine();
         }
-        */
+
+        String modifiedContent = content.replace("center: new google.maps.LatLng()", newSearch);
+        BufferedWriter writer = new BufferedWriter(new FileWriter(htmlFile));
+
+        writer.write(modifiedContent);
+        reader.close();
+        writer.close();
     }
 }
