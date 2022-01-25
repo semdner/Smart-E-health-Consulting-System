@@ -2,6 +2,7 @@ package com.ehealthsystem.doctor;
 
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.map.DoctorDistance;
+import com.ehealthsystem.tools.ResourceReader;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.google.maps.errors.ApiException;
@@ -16,6 +17,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebErrorEvent;
+import javafx.scene.web.WebEvent;
 import javafx.scene.web.WebView;
 
 import java.io.*;
@@ -192,16 +195,28 @@ public class FoundDoctorFullController {
 
     public void loadGMap() throws IOException, InterruptedException, ApiException {
         WebEngine engine = mapWebView.getEngine();
-
-        engine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> { //https://stackoverflow.com/a/30178571
-            if (newState == Worker.State.SUCCEEDED) {
-                // new page has loaded, process:
-                LatLng docLoc = doctor.getLocation();
-
-                engine.executeScript("setData(%s,%s,\"%s\",\"%s\",15)".formatted(docLoc.lat, docLoc.lng, userGeoData, doctorGeoData));
+        engine.setOnAlert(new EventHandler<WebEvent<String>>() {
+            @Override
+            public void handle(WebEvent<String> event) {
+                System.out.println(event.getData());
             }
         });
 
-        engine.load(getClass().getResource("/com/ehealthsystem/map/map.html").toString());
+        engine.setOnError(new EventHandler<WebErrorEvent>() {
+            @Override
+            public void handle(WebErrorEvent event) {
+                System.out.println(event.toString());
+            }
+        });
+
+        LatLng docLoc = doctor.getLocation();
+        String file = ResourceReader.getResourceString("map/map.html")
+                .replace("let originAddress = \"\";", "let originAddress = \"%s\";".formatted("Laerchenstr. 24, 65779"))
+                .replace("let destinationAddress = \"\";", "let destinationAddress = \"%s\";".formatted(doctorGeoData))
+                .replace("let centerLat = 0.0;", "let centerLat = %s;".formatted(docLoc.lat))
+                .replace("let centerLng = 0.0;", "let centerLng = %s;".formatted(docLoc.lng));
+
+        System.out.println(file);
+        engine.loadContent(file);
     }
 }

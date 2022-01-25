@@ -15,9 +15,15 @@
     </div>
 </div>
 
+<script>
+    let originAddress = "";
+    let destinationAddress = "";
+    let centerLat = 0.0;
+    let centerLng = 0.0;
+</script>
 <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
 <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUFsJZUQjbl0_0o8DAhQzhMOvxhftI6KQ&callback=mapCallback&v=weekly"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUFsJZUQjbl0_0o8DAhQzhMOvxhftI6KQ&callback=initMap&v=weekly"
         async
 ></script>
 </body>

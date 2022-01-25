@@ -1,36 +1,6 @@
-let mapReady = false;
-let dataReady = false;
-let mapLoaded = false;
-let originAddress = "";
-let destinationAddress = "";
-let centerLat = 0.0;
-let centerLng = 0.0;
-let zoomLevel = 4;
-
-function mapCallback() {
-    mapReady = true;
-    if (dataReady && !mapLoaded)
-        initMap();
-}
-
-function setData(cLat, cLng, origin, destination, zoom) {
-    centerLat = cLat;
-    centerLng = cLng;
-
-    originAddress = origin;
-    destinationAddress = destination;
-
-    zoomLevel = zoom;
-
-    dataReady = true;
-    if (mapReady && !mapLoaded)
-        initMap();
-}
-
 function initMap() {
-    mapLoaded = true;
     const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: zoomLevel,
+        zoom: 15,
         center: { lat: centerLat, lng: centerLng },
     });
     const directionsService = new google.maps.DirectionsService();
