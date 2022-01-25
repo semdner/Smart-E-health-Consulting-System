@@ -1,7 +1,37 @@
+let mapReady = false;
+let dataReady = false;
+let mapLoaded = false;
+let originAddress = "";
+let destinationAddress = "";
+let centerLat = 0.0;
+let centerLng = 0.0;
+let zoomLevel = 4;
+
+function mapCallback() {
+    mapReady = true;
+    if (dataReady && !mapLoaded)
+        initMap();
+}
+
+function setData(cLat, cLng, origin, destination, zoom) {
+    centerLat = cLat;
+    centerLng = cLng;
+
+    originAddress = origin;
+    destinationAddress = destination;
+
+    zoomLevel = zoom;
+
+    dataReady = true;
+    if (mapReady && !mapLoaded)
+        initMap();
+}
+
 function initMap() {
+    mapLoaded = true;
     const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 4,
-        center: { lat: 50.11409399999999, lng: 8.6744586 },
+        zoom: zoomLevel,
+        center: { lat: centerLat, lng: centerLng },
     });
     const directionsService = new google.maps.DirectionsService();
     const directionsRenderer = new google.maps.DirectionsRenderer({
@@ -17,7 +47,7 @@ function initMap() {
             computeTotalDistance(directions);
         }
     });
-    displayRoute("Karbener Weg 23, 61184 Karben, Deutschland","Zeil 29, 60313 Frankfurt am Main, Deutschland", directionsService, directionsRenderer);
+    displayRoute(originAddress,destinationAddress, directionsService, directionsRenderer);
 }
 
 function displayRoute(origin, destination, service, display) {

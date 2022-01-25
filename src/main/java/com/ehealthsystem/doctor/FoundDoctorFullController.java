@@ -2,11 +2,11 @@ package com.ehealthsystem.doctor;
 
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.map.DoctorDistance;
-import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.LatLng;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -191,60 +191,17 @@ public class FoundDoctorFullController {
     }
 
     public void loadGMap() throws IOException, InterruptedException, ApiException {
-        editFile();
         WebEngine engine = mapWebView.getEngine();
-        engine.load(getClass().getResource("/com/ehealthsystem/map/map.html").toString());
-    }
 
-    public void editFile() throws IOException, InterruptedException, ApiException{
-        editCenter();
-        editRoute();
-    }
+        engine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> { //https://stackoverflow.com/a/30178571
+            if (newState == Worker.State.SUCCEEDED) {
+                // new page has loaded, process:
+                LatLng docLoc = doctor.getLocation();
 
-    public void editCenter() throws IOException, InterruptedException, ApiException {
-        LatLng latlng = doctor.getLocation();
-        double lat = latlng.lat;
-        double lng = latlng.lng;
-        String newSearch = "center: { lat: " + lat + ", lng: " + lng + " },";
-        File jsFile = new File("src/main/resources/com/ehealthsystem/map/index.js");
-        BufferedReader reader = new BufferedReader(new FileReader(jsFile));
-        String line = reader.readLine();
-        String content = "";
-        String regex = "center: \\{ lat: \\d+.\\d+, lng: \\d+.\\d+ },";
-
-        while(line != null) {
-            content += line + System.lineSeparator();
-            line = reader.readLine();
-        }
-
-        String modifiedContent = content.replaceAll(regex, newSearch);
-        BufferedWriter writer = new BufferedWriter(new FileWriter(jsFile));
-
-        writer.write(modifiedContent);
-        reader.close();
-        writer.close();
-    }
-
-    public void editRoute() throws IOException, InterruptedException, ApiException {
-        String newSearch = "    displayRoute(\"" + userGeoData + "\",\"" + doctorGeoData + "\", directionsService, directionsRenderer);";
-        File jsFile = new File("src/main/resources/com/ehealthsystem/map/index.js");
-        BufferedReader reader = new BufferedReader(new FileReader(jsFile));
-        String line = reader.readLine();
-        String content = "";
-
-        while(line != null) {
-            if(line.startsWith("    displayRoute(")) {
-                content += newSearch + System.lineSeparator();
-                line = reader.readLine();
-                continue;
+                engine.executeScript("setData(%s,%s,\"%s\",\"%s\",15)".formatted(docLoc.lat, docLoc.lng, userGeoData, doctorGeoData));
             }
-            content += line + System.lineSeparator();
-            line = reader.readLine();
-        }
+        });
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter(jsFile));
-        writer.write(content);
-        reader.close();
-        writer.close();
+        engine.load(getClass().getResource("/com/ehealthsystem/map/map.html").toString());
     }
 }
