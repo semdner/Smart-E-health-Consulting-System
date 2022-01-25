@@ -19,6 +19,7 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -64,13 +65,11 @@ public class FoundDoctorFullController {
     }
 
     public void setUserGeoData(String userGeoData) {
-        String uGD = userGeoData.replaceAll("ß", "ss");
-        this.userGeoData = uGD;
+        this.userGeoData = userGeoData;
     }
 
     public void setDoctorGeoData(String doctorGeoData) {
-        String dGD = doctorGeoData.replaceAll("ß", "ss");
-        this.doctorGeoData = dGD;
+        this.doctorGeoData = doctorGeoData;
     }
 
     private void loadOsmMap() {
@@ -242,7 +241,7 @@ public class FoundDoctorFullController {
             line = reader.readLine();
         }
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter(jsFile));
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(jsFile), StandardCharsets.UTF_8));
         writer.write(content);
         reader.close();
         writer.close();
