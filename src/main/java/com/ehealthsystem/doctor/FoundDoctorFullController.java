@@ -65,7 +65,7 @@ public class FoundDoctorFullController {
 
     public void setUserGeoData(String userGeoData) {
         String uGD = userGeoData.replaceAll("ß", "ss");
-        this.userGeoData = userGeoData;
+        this.userGeoData = uGD;
     }
 
     public void setDoctorGeoData(String doctorGeoData) {
