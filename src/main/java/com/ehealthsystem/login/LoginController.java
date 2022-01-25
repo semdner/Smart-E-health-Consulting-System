@@ -86,7 +86,7 @@ public class LoginController {
 
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
-        // center window
+        // center window (works on Windows, not on Chrome OS)
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
         stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
