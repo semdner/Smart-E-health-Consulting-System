@@ -202,7 +202,7 @@ public class FoundDoctorFullController {
     }
 
     public void editCenter() throws IOException, InterruptedException, ApiException {
-        LatLng latlng = GeoCoder.geocodeToLatLng(doctorGeoData);
+        LatLng latlng = doctor.getLocation();
         double lat = latlng.lat;
         double lng = latlng.lng;
         String newSearch = "center: { lat: " + lat + ", lng: " + lng + " },";
