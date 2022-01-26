@@ -5,7 +5,6 @@ import com.google.maps.model.LatLng;
 
 public class DoctorDistance {
     double distance;
-    LatLng location;
     String geoData;
     Doctor doctor;
 
@@ -13,19 +12,14 @@ public class DoctorDistance {
 
     }
 
-    public DoctorDistance(double distance, LatLng location, String geodata, Doctor doctor) {
+    public DoctorDistance(double distance, String geodata, Doctor doctor) {
         this.distance = distance;
-        this.location = location;
         this.geoData = geodata;
         this.doctor = doctor;
     }
 
     public double getDistance() {
         return distance;
-    }
-
-    public LatLng getLocation() {
-        return location;
     }
 
     public String getGeoData() {

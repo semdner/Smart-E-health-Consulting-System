@@ -105,7 +105,7 @@ public class FoundDoctorFullController {
 
     private void loadOsmMap() {
         LatLng user = Session.userGeo.geometry.location;
-        LatLng[] bounds = getBoundsForImage(user, doctor.getLocation());
+        LatLng[] bounds = getBoundsForImage(user, doctor.getDoctor().getLocation());
         WebEngine e = mapWebView.getEngine();
         e.load("https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=" +
                 //mapWebView: can't get the current size (width, height) because too complicated
@@ -124,9 +124,9 @@ public class FoundDoctorFullController {
                 ";type:material;color:red;icon:home;icontype:awesome" +
                 "|" +
                 "lonlat:" +
-                doctor.getLocation().lng +
+                doctor.getDoctor().getLocation().lng +
                 "," +
-                doctor.getLocation().lat +
+                doctor.getDoctor().getLocation().lat +
                 ";type:material;color:red;icon:plus-square;icontype:awesome" +
                 "&apiKey=00cdf1a2d7324db996a8706d774a9469");
     }
@@ -259,7 +259,7 @@ public class FoundDoctorFullController {
         engine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> { //https://stackoverflow.com/a/30178571
             if (newState == Worker.State.SUCCEEDED) {
                 // new page has loaded, process:
-                LatLng docLoc = doctor.getLocation();
+                LatLng docLoc = doctor.getDoctor().getLocation();
 
                 engine.executeScript("setData(%s,%s,\"%s\",\"%s\",15)".formatted(docLoc.lat, docLoc.lng, userGeoData, doctorGeoData));
             }

@@ -387,7 +387,6 @@ public class Database {
             if(resultDistance <= distance) {
                 doctorList.add(new DoctorDistance(
                         resultDistance,
-                        new LatLng(rs.getDouble("latitude"), rs.getDouble("longitude")),
                         address,
                         new Doctor(
                                 rs.getInt("doctor_id"),
@@ -395,7 +394,8 @@ public class Database {
                                 rs.getString("last_name"),
                                 rs.getString("street"),
                                 rs.getString("number"),
-                                rs.getString("zip")
+                                rs.getString("zip"),
+                                new LatLng(rs.getDouble("latitude"), rs.getDouble("longitude"))
                         )
                 ));
             }
