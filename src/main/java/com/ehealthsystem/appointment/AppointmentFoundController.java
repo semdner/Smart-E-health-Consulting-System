@@ -1,6 +1,5 @@
 package com.ehealthsystem.appointment;
 
-import com.ehealthsystem.database.Database;
 import com.ehealthsystem.doctor.FoundDoctorController;
 import com.ehealthsystem.map.DoctorDistance;
 import com.ehealthsystem.map.GeoCoder;
@@ -8,13 +7,10 @@ import com.ehealthsystem.map.GeoDistance;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.google.maps.errors.ApiException;
-import com.google.maps.model.GeocodingResult;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
