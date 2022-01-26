@@ -9,13 +9,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class GeoDistance {
-    public static double getDistance(String userGeoData, String doctorGeoData) throws SQLException, IOException, InterruptedException, ApiException {
-        System.out.println("GeoDistance: " + userGeoData + " <-> " + doctorGeoData);
+    public static double getDistances(String userGeoData, String[] doctorGeoData) throws SQLException, IOException, InterruptedException, ApiException {
         String[] user = {userGeoData};
-        String[] doctor = {doctorGeoData};
+        String[] doctors = doctorGeoData;
 
         // make API request for distance matrix
-        DistanceMatrix request = DistanceMatrixApi.getDistanceMatrix(Context.getContext(), user, doctor).await();
+        DistanceMatrix request = DistanceMatrixApi.getDistanceMatrix(Context.getContext(), user, doctors).await();
         return (double)request.rows[0].elements[0].distance.inMeters/1000;
     }
 }
