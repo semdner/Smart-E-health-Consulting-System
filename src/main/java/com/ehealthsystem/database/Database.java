@@ -310,6 +310,31 @@ public class Database {
         return loadUsersFromResultSet(rs).get(0);
     }
 
+    public static ArrayList<Doctor> getDoctors() throws SQLException {
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);  // set timeout to 30 sec.
+        ResultSet rs = statement.executeQuery("SELECT * FROM doctor");
+        return loadDoctorsFromResultSet(rs);
+    }
+
+    private static ArrayList<Doctor> loadDoctorsFromResultSet(ResultSet rs) throws SQLException {
+        ArrayList<Doctor> doctors = new ArrayList<>();
+        while (rs.next())
+        {
+            Doctor doctor = new Doctor(
+                    rs.getInt("doctor_id"),
+                    rs.getString("first_name"),
+                    rs.getString("last_name"),
+                    rs.getString("street"),
+                    rs.getString("number"),
+                    rs.getString("zip"),
+                    new LatLng(rs.getDouble("latitude"), rs.getDouble("longitude"))
+            );
+            doctors.add(doctor);
+        }
+        return doctors;
+    }
+
     public static ArrayList<HealthInformation> getHealthInformation(String email) throws SQLException {
         String query = "SELECT health_status.ICD, disease.disease_name, medication.medication_name" +
                 " FROM ((((health_status INNER JOIN disease on health_status.ICD = disease.ICD)" +
