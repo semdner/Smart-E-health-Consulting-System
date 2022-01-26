@@ -2,6 +2,7 @@ package com.ehealthsystem.map;
 
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.doctor.Doctor;
+import com.ehealthsystem.tools.Session;
 import com.google.maps.DistanceMatrixApi;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.DistanceMatrix;
@@ -64,6 +65,24 @@ public class GeoDistance {
             else
                 a++;
 
+        }
+
+        return result;
+    }
+
+    public static ArrayList<DoctorDistance> getDoctorsInRangeWithLocalCalculation() throws SQLException {
+        double range = Session.appointment.getDistance();
+        ArrayList<Doctor> doctors = Database.getDoctors(); //get doctors
+        ArrayList<DoctorDistance> result = new ArrayList<>();
+
+        for (Doctor d : doctors) { //loop through them
+            double distance = Haversine.distance(d.getLocation(), Session.userGeo.geometry.location);
+            if (distance <= range) //in range
+                result.add(new DoctorDistance(
+                        distance,
+                        "%s %s, %s".formatted(d.getStreet(), d.getNumber(), d.getZip()),
+                        d
+                ));
         }
 
         return result;
