@@ -28,9 +28,4 @@ public class GeoCoder {
         GeocodingResult[] results = GeocodingApi.geocode(Context.getContext(), address + "," + zip).language("de-DE").await();
         return results[0];
     }
-
-    public static LatLng geocodeToLatLng(String address) throws IOException, InterruptedException, ApiException {
-        GeocodingResult[] results = GeocodingApi.geocode(Context.getContext(), address).language("de-DE").await();
-        return results[0].geometry.location;
-    }
 }
