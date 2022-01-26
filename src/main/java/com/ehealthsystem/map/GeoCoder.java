@@ -11,15 +11,15 @@ public class GeoCoder {
 
     /**
      * Verifies an address
+     * At least one parameter must be non-empty
      * @param address consisting of street and optionally including number
      * @param zip the zip code
-     * @return if address was found: the entered address, properly formatted
+     * @return if address was found: the entered address as GeocodingResult
      * @throws IOException
      * @throws InterruptedException
      * @throws ApiException
      */
     public static GeocodingResult geocode(String address, String zip) throws IOException, InterruptedException, ApiException {
-        // geocode address + zip
         if(address.isBlank() && zip.isBlank()) {
             return null;
         }
