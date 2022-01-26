@@ -4,13 +4,13 @@ public class Doctor {
     int id;
     String firstName, lastName, street, number;
     String[] specialization;
-    int zip;
+    String zip;
 
     public Doctor() {
 
     }
 
-    public Doctor(int id, String firstName, String lastName, String street, String number, int zip) {
+    public Doctor(int id, String firstName, String lastName, String street, String number, String zip) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -39,7 +39,7 @@ public class Doctor {
         return number;
     }
 
-    public int getZip() {
+    public String getZip() {
         return zip;
     }
 }

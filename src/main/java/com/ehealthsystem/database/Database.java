@@ -385,7 +385,7 @@ public class Database {
             double resultDistance = GeoDistance.getDistances(userGeoData, new String[]{address});
 
             if(resultDistance <= distance) {
-                doctorList.add(new DoctorDistance(resultDistance, new LatLng(rs.getDouble("latitude"), rs.getDouble("longitude")), address, rs.getInt("doctor_id"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("street"), rs.getString("number"), rs.getInt("zip")));
+                doctorList.add(new DoctorDistance(resultDistance, new LatLng(rs.getDouble("latitude"), rs.getDouble("longitude")), address, rs.getInt("doctor_id"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("street"), rs.getString("number"), rs.getString("zip")));
             }
         }
         return doctorList;
