@@ -13,6 +13,7 @@ public class GeoDistance {
         // set API Key
         GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyCUFsJZUQjbl0_0o8DAhQzhMOvxhftI6KQ").build();
 
+        System.out.println("GeoDistance: " + userGeoData + " " + doctorGeoData);
         String[] user = {userGeoData};
         String[] doctor = {doctorGeoData};
 
