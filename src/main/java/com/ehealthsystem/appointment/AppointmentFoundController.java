@@ -4,6 +4,7 @@ import com.ehealthsystem.database.Database;
 import com.ehealthsystem.doctor.FoundDoctorController;
 import com.ehealthsystem.map.DoctorDistance;
 import com.ehealthsystem.map.GeoCoder;
+import com.ehealthsystem.map.GeoDistance;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.google.maps.errors.ApiException;
@@ -42,7 +43,7 @@ public class AppointmentFoundController implements Initializable {
         try {
             Session.userGeo = GeoCoder.geocode(Session.user.getStreet() + " " + Session.user.getHouseNo(), Session.user.getZipCode());
             String userGeoData = Session.userGeo.formattedAddress;
-            ArrayList<DoctorDistance> doctorList = Database.getDoctorFromDistance(userGeoData, Session.appointment.getDistance());
+            ArrayList<DoctorDistance> doctorList = GeoDistance.getDoctorsInRange(userGeoData, Session.appointment.getDistance());
             if(doctorList.isEmpty()) {
                 errorLabel.setVisible(true);
             } else {
