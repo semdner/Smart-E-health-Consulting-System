@@ -32,6 +32,11 @@ public class AppointmentFoundController implements Initializable {
     @FXML
     GridPane doctorGridPane;
 
+    /**
+     * get the doctors in the selected distance in to an arraylist
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -48,6 +53,12 @@ public class AppointmentFoundController implements Initializable {
         }
     }
 
+    /**
+     * dynamically load the doctors in the gridpane
+     * @param doctorList the list of all doctors which matches the distance
+     * @param userGeoData
+     * @throws IOException
+     */
     private void loadDoctors(ArrayList<DoctorDistance> doctorList, String userGeoData) throws IOException {
         int row = 0;
         int column = 0;
@@ -69,6 +80,11 @@ public class AppointmentFoundController implements Initializable {
         }
     }
 
+    /**
+     * event handler for back button
+     * @param event
+     * @throws IOException
+     */
     public void handleBackButton(ActionEvent event) throws IOException {
         SceneSwitch.switchTo(event, "appointment/appointmentInformation-view.fxml", "Make appointment");
     }

@@ -34,6 +34,11 @@ public class AppointmentHealthController implements Initializable {
     private ArrayList<HealthInformation> allHealthInformation = new ArrayList<>();
     private ArrayList<CheckBox> numberOfCheckBoxes = new ArrayList<>();
 
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -43,21 +48,39 @@ public class AppointmentHealthController implements Initializable {
         }
     }
 
+    /**
+     * load the next scene
+     * @param event
+     * @throws IOException
+     */
     public void handleContinueButton(ActionEvent event) throws IOException {
         Session.appointment.setHealthInformation(selectedHealthInformation);
         SceneSwitch.switchTo(event, "appointment/appointmentInformation-view.fxml", "Make appointment");
     }
 
+    /**
+     * load the previous scene
+     * @param event
+     * @throws IOException
+     */
     public void handleBackButton(ActionEvent event) throws IOException {
         Session.appointment.setHealthInformation(selectedHealthInformation);
         SceneSwitch.switchTo(event, "appointment/appointmentUser-view.fxml", "Make appointment");
     }
 
+    /**
+     * load the health information of the user from the database
+     * @throws SQLException
+     */
     private void loadHealthInformation() throws SQLException {
         allHealthInformation = Database.getHealthInformation(Session.user.getMail());
         fillHealthTable(allHealthInformation);
     }
 
+    /**
+     * fill the gridpane with the loaded healthinformation
+     * @param allHealthInformation
+     */
     private void fillHealthTable(ArrayList<HealthInformation> allHealthInformation) {
         for(int i = 0; i<allHealthInformation.size(); i++) {
             Label ICD = new Label(allHealthInformation.get(i).getICD());
@@ -65,6 +88,7 @@ public class AppointmentHealthController implements Initializable {
             Label medication = new Label(allHealthInformation.get(i).getMedication());
             CheckBox selection = new CheckBox();
             setStyle(ICD, health_problem, medication, selection);
+            // add eventhandler
             handleCheckBox(selection, allHealthInformation.get(i), i);
 
             //Restore CheckBox selections
@@ -83,6 +107,13 @@ public class AppointmentHealthController implements Initializable {
         }
     }
 
+    /**
+     * set the style for labels and buttons
+     * @param ICD
+     * @param health_problem
+     * @param medication
+     * @param selection
+     */
     private void setStyle(Label ICD, Label health_problem, Label medication, CheckBox selection) {
         ICD.setStyle("-fx-font-size: 15px;");
         health_problem.setStyle("-fx-font-size: 15px;");
@@ -90,6 +121,12 @@ public class AppointmentHealthController implements Initializable {
         selection.setFocusTraversable(false);
     }
 
+    /**
+     * dynamically added eventhandler for checkbox
+     * @param selection
+     * @param selectedRow
+     * @param row
+     */
     private void handleCheckBox(CheckBox selection, HealthInformation selectedRow, int row) {
         numberOfCheckBoxes.add(selection);
         selection.setOnMouseClicked(new EventHandler<MouseEvent>() {

@@ -61,6 +61,13 @@ public class FoundDoctorFullController {
     private ArrayList<Label> timeLabelList = new ArrayList<>();
     private LocalTime selectedTime;
 
+    /**
+     * sets reminder times, loads the map, doctor data and the doctors schedule
+     * @throws IOException
+     * @throws InterruptedException
+     * @throws ApiException
+     * @throws SQLException
+     */
     public void start() throws IOException, InterruptedException, ApiException, SQLException {
         String[] choices = {"10 minutes", "1 hour", "3 days", "1 week"};
         reminderComboBox.getItems().addAll(choices);
@@ -69,16 +76,30 @@ public class FoundDoctorFullController {
         loadSchedule();
     }
 
+
+    /**
+     * set the doctor selected in the scene before
+     * @param doctor
+     */
     public void setDoctor(DoctorDistance doctor) {
         this.doctor = doctor;
     }
 
+    /**
+     * set the users geodata for map
+     * @param userGeoData
+     */
     public void setUserGeoData(String userGeoData) {
         String uGD = userGeoData.replaceAll("ß", "ss");
         this.userGeoData = uGD;
     }
 
+    /**
+     * set the doctor geodata for map
+     * @param doctorGeoData
+     */
     public void setDoctorGeoData(String doctorGeoData) {
+        // parse address if it contains 'ß'
         String dGD = doctorGeoData.replaceAll("ß", "ss");
         this.doctorGeoData = dGD;
     }
@@ -125,11 +146,18 @@ public class FoundDoctorFullController {
         return new LatLng[]{topLeftBound, bottomRightBound};
     }
 
+    /**
+     * load the doctor data into the Labels
+     */
     private void loadDoctorData() {
         doctorLabel.setText("Dr. " + doctor.getDoctor().getFirstName() + " " + doctor.getDoctor().getLastName());
         addressLabel.setText(doctorGeoData);
     }
 
+    /**
+     * dynamically laod the doctors schedule
+     * @throws SQLException
+     */
     private void loadSchedule() throws SQLException {
         ArrayList<DoctorTimeSlot> doctorTimeSlotList = Database.loadDoctorAppointments(doctor.getDoctor(), Session.appointment.getDate());
         dateLabel.setText(Session.appointment.getDate().toString());
@@ -163,6 +191,7 @@ public class FoundDoctorFullController {
     private void handleTimeButton(Label time, Button timeButton) {
         timeLabelList.add(time);
         String timeStr = time.getText();
+        // dynamically add the eventhandler for the buttons
         timeButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -176,22 +205,41 @@ public class FoundDoctorFullController {
         });
     }
 
+    /**
+     * set the style for the not free appointment labels
+     * @param time
+     */
     private void setStyle(Label time) {
         time.setStyle("-fx-font-size: 15px;");
         time.setTextFill(Color.web("#999999"));
     }
 
+    /**
+     * set style for the free appointment labels and the buttons
+     * @param time
+     * @param timeButton
+     */
     private void setStyle(Label time, Button timeButton) {
         time.setStyle("-fx-font-size: 15px;");
         timeButton.setStyle("-fx-opacity: 0%");
         timeButton.setPrefWidth(100);
     }
 
+    /**
+     * method to load to previous scene
+     * @param event
+     * @throws IOException
+     */
     public void handleBackButton(ActionEvent event) throws IOException {
         SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");;
     }
 
-    public void handleSelectButton(ActionEvent event) throws IOException {
+    /**
+     * method to handle the event when trying to make an appointment
+     * @param event
+     * @throws IOException
+     */
+    public void handleMakeAppiontmentButton(ActionEvent event) throws IOException {
         if(selectedTime != null) {
             Session.appointment.setTime(selectedTime);
             SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");
@@ -200,6 +248,12 @@ public class FoundDoctorFullController {
         }
     }
 
+    /**
+     * loads the map into the scene via webengine and webview
+     * @throws IOException
+     * @throws InterruptedException
+     * @throws ApiException
+     */
     public void loadGMap() throws IOException, InterruptedException, ApiException {
         WebEngine engine = mapWebView.getEngine();
 

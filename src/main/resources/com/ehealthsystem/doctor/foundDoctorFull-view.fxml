@@ -37,7 +37,7 @@
    <bottom>
       <AnchorPane prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="makeAppointmentButton" layoutX="841.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleSelectButton" prefHeight="26.0" prefWidth="120.0" text="make appointment" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="8.0" />
+            <Button fx:id="makeAppointmentButton" layoutX="841.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleMakeAppiontmentButton" prefHeight="26.0" prefWidth="120.0" text="make appointment" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="8.0" />
             <Button layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleBackButton" prefWidth="50.0" text="back" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="7.5" />
             <Label fx:id="errorLabel" layoutX="817.0" layoutY="10.0" text="no time selected" textFill="RED" visible="false" AnchorPane.leftAnchor="80.0">
                <font>
