@@ -37,7 +37,7 @@ public class GeoDistance {
         for (Doctor d : doctors) {
             //Two ways of giving the doctors location to Google Maps, time to response is the same
             docAddresses[i++] = "%s %s, %s".formatted(d.getStreet(), d.getNumber(), d.getZip()); //saved address
-            //docAddresses[i++] = "%s, %s".formatted(d.getLocation().lat, d.getLocation().lng); //coordinates
+            //docAddresses[i++] = "%s, %s".formatted(d.getLocation().lat, d.getLocation().lng); //coordinates //Only for testing as this string is also used for the DoctorDistance object
         }
 
         DistanceMatrix d = getDistances(userGeoData, docAddresses);
