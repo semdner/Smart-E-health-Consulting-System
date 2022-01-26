@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class GeoDistance {
     public static double getDistance(String userGeoData, String doctorGeoData) throws SQLException, IOException, InterruptedException, ApiException {
-        System.out.println("GeoDistance: " + userGeoData + " " + doctorGeoData);
+        System.out.println("GeoDistance: " + userGeoData + " <-> " + doctorGeoData);
         String[] user = {userGeoData};
         String[] doctor = {doctorGeoData};
 
