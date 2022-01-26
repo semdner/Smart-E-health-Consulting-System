@@ -382,7 +382,7 @@ public class Database {
         while(rs.next()) {
             address = rs.getString("street") + " " + rs.getString("number") + ", " + rs.getString("zip");
 
-            double resultDistance = GeoDistance.getDistances(userGeoData, new String[]{address});
+            double resultDistance = (double)GeoDistance.getDistances(userGeoData, new String[]{address}).rows[0].elements[0].distance.inMeters/1000;
 
             if(resultDistance <= distance) {
                 doctorList.add(new DoctorDistance(resultDistance, new LatLng(rs.getDouble("latitude"), rs.getDouble("longitude")), address, rs.getInt("doctor_id"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("street"), rs.getString("number"), rs.getString("zip")));

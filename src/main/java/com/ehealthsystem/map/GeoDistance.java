@@ -8,12 +8,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class GeoDistance {
-    public static double getDistances(String userGeoData, String[] doctorGeoData) throws SQLException, IOException, InterruptedException, ApiException {
+    public static DistanceMatrix getDistances(String userGeoData, String[] doctorGeoData) throws SQLException, IOException, InterruptedException, ApiException {
         String[] user = {userGeoData};
         String[] doctors = doctorGeoData;
 
         // make API request for distance matrix
-        DistanceMatrix request = DistanceMatrixApi.getDistanceMatrix(Context.getContext(), user, doctors).await();
-        return (double)request.rows[0].elements[0].distance.inMeters/1000;
+        return DistanceMatrixApi.getDistanceMatrix(Context.getContext(), user, doctors).await();
     }
 }
