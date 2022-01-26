@@ -2,6 +2,7 @@ package com.ehealthsystem.doctor;
 
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.map.DoctorDistance;
+import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.google.maps.errors.ApiException;
@@ -11,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -45,6 +47,12 @@ public class FoundDoctorFullController {
     Label errorLabel;
 
     @FXML
+    ComboBox reminderComboBox;
+
+    @FXML
+    Button makeAppointmentButton;
+
+    @FXML
     private WebView mapWebView = new WebView();
 
     private DoctorDistance doctor = new DoctorDistance();
@@ -54,6 +62,8 @@ public class FoundDoctorFullController {
     private LocalTime selectedTime;
 
     public void start() throws IOException, InterruptedException, ApiException, SQLException {
+        String[] choices = {"10 minutes", "1 hour", "3 days", "1 week"};
+        reminderComboBox.getItems().addAll(choices);
         loadGMap();
         loadDoctorData();
         loadSchedule();

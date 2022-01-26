@@ -27,21 +27,13 @@ import java.util.ResourceBundle;
 public class AppointmentFoundController implements Initializable {
 
     @FXML
-    ComboBox reminderComboBox;
-
-    @FXML
     Label errorLabel;
 
     @FXML
     GridPane doctorGridPane;
 
-    @FXML
-    Button makeAppointmentButton;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String[] choices = {"10 minutes", "1 hour", "3 days", "1 week"};
-        reminderComboBox.getItems().addAll(choices);
         try {
             Session.userGeo = GeoCoder.geocode(Session.user.getStreet() + " " + Session.user.getHouseNo(), Session.user.getZipCode());
             String userGeoData = Session.userGeo.formattedAddress;
@@ -79,20 +71,5 @@ public class AppointmentFoundController implements Initializable {
 
     public void handleBackButton(ActionEvent event) throws IOException {
         SceneSwitch.switchTo(event, "appointment/appointmentInformation-view.fxml", "Make appointment");
-    }
-
-    public void handleMakeAppointmentButton(ActionEvent event) {
-        if(validateTime()) {
-            // Database.makeAppointment();
-        }
-    }
-
-    public boolean validateTime() {
-        if(Session.appointment.getTime() == null) {
-            errorLabel.setVisible(true);
-            return false;
-        } else {
-            return true;
-        }
     }
 }
