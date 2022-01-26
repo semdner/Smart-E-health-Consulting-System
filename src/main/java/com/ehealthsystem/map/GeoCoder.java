@@ -8,6 +8,9 @@ import com.google.maps.model.LatLng;
 import java.io.*;
 
 public class GeoCoder {
+
+    static GeoApiContext context = null;
+
     /**
      * Verifies an address
      * @param address consisting of street and optionally including number
@@ -18,8 +21,7 @@ public class GeoCoder {
      * @throws ApiException
      */
     public static GeocodingResult geocode(String address, String zip) throws IOException, InterruptedException, ApiException {
-        // set API Key
-        GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyCUFsJZUQjbl0_0o8DAhQzhMOvxhftI6KQ").build();
+        setupContext();
 
         // geocode address + zip
         if(address.isBlank() && zip.isBlank()) {
@@ -31,9 +33,16 @@ public class GeoCoder {
         return results[0];
     }
 
-    public static LatLng geocodeToLatLng(String address) throws IOException, InterruptedException, ApiException {
+    private static void setupContext() {
+        if (context != null)
+            return;
+
         // set API Key
-        GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyCUFsJZUQjbl0_0o8DAhQzhMOvxhftI6KQ").build();
+        context = new GeoApiContext.Builder().apiKey("AIzaSyCUFsJZUQjbl0_0o8DAhQzhMOvxhftI6KQ").queryRateLimit(1000).build();
+    }
+
+    public static LatLng geocodeToLatLng(String address) throws IOException, InterruptedException, ApiException {
+        setupContext();
         GeocodingResult[] results = GeocodingApi.geocode(context,address).language("de-DE").await();
         return results[0].geometry.location;
     }
