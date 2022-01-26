@@ -44,6 +44,9 @@ public class GeoDistance {
 
         ArrayList<DoctorDistance> result = new ArrayList<>();
         //Apply filtering
+        //j = current index for element in distance matrix
+        //a = current index for doctor in doctors list
+        //    could be merged with j but eases algorithm refactoring for potential future merging of classes Doctor and DoctorDistance
         for (int j = 0, a = 0; j < d.rows[0].elements.length; j++) {
             DistanceMatrixElement e = d.rows[0].elements[j];
             double distance = (double)e.distance.inMeters/1000;
