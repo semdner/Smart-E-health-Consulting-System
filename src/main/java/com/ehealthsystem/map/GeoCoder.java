@@ -26,6 +26,7 @@ public class GeoCoder {
             return null;
         }
 
+        System.out.println(address + "," + zip);
         GeocodingResult[] results = GeocodingApi.geocode(context,address + "," + zip).language("de-DE").await();
         return results[0];
     }
