@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class GeoDistance {
-    public static DistanceMatrix getDistances(String userGeoData, String[] doctorGeoData) throws SQLException, IOException, InterruptedException, ApiException {
+    public static DistanceMatrix getDistances(String userGeoData, String[] doctorGeoData) throws IOException, InterruptedException, ApiException {
         String[] user = {userGeoData};
         String[] doctors = doctorGeoData;
 
