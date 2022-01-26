@@ -2,7 +2,6 @@ package com.ehealthsystem.doctor;
 
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.map.DoctorDistance;
-import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.google.maps.errors.ApiException;
