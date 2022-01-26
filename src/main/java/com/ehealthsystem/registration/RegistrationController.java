@@ -144,7 +144,7 @@ public class RegistrationController implements Initializable {
                                     privateInsuranceCheckBox.isSelected(),
                                     true);
             Session.user = newUser;
-            SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
+            SceneSwitch.switchToCentered(event, "primary/primary-view.fxml", "E-Health System");
         } else {
             //showError("Sign up information wrong or missing");
             // Don't show this generic, not helpful error message,
