@@ -27,7 +27,7 @@ public class MainController {
 
     @FXML
     public void handleRegistrationButton(ActionEvent event) throws IOException {
-        SceneSwitch.switchTo(event, "registration/registration-view.fxml", "Create Account");
+        SceneSwitch.switchToCentered(event, "registration/registration-view.fxml", "Create Account");
     }
 
 }

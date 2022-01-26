@@ -105,7 +105,7 @@ public class LoginController {
      * @throws IOException if the FXMLLoader can't find the scene
      */
     public void handleRegistrationLabel(MouseEvent event) throws IOException {
-        SceneSwitch.switchTo(event, "registration/registration-view.fxml", "Create Account");
+        SceneSwitch.switchToCentered(event, "registration/registration-view.fxml", "Create Account");
     }
 
 }
