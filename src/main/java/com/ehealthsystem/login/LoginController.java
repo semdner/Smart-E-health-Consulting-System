@@ -7,14 +7,12 @@ import com.ehealthsystem.tools.Session;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -83,13 +81,7 @@ public class LoginController {
      */
     private void loadPrimaryWindow(Event event) throws IOException, SQLException {
         Session.loginUser(emailTextField.getText());
-
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
-        // center window (works on Windows, not on Chrome OS)
-        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-        stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
-        stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
+        SceneSwitch.switchToCentered(event, "primary/primary-view.fxml", "E-Health System");
     }
 
     /**
