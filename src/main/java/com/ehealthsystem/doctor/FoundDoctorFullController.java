@@ -239,7 +239,7 @@ public class FoundDoctorFullController {
      * @param event
      * @throws IOException
      */
-    public void handleMakeAppiontmentButton(ActionEvent event) throws IOException {
+    public void handleMakeAppointmentButton(ActionEvent event) throws IOException {
         if(selectedTime != null) {
             Session.appointment.setTime(selectedTime);
             SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");
