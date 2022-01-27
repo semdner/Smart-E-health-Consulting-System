@@ -12,6 +12,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class SceneSwitch {
+    /**
+     * Switch to another scene
+     * @param event the JavaFX event from the controller's handler method for the trigger (e.g. button)
+     * @param file the FXML file for the next scene
+     * @param title the window title to display
+     * @throws IOException if the file was not found
+     */
     public static void switchTo(Event event, String file, String title) throws IOException {
         Parent root = FXMLLoader.load(SceneSwitch.class.getResource("/com/ehealthsystem/" + file));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -21,11 +28,22 @@ public class SceneSwitch {
         stage.show();
     }
 
+    /**
+     * Switch to another scene and centering the window
+     * @param event the JavaFX event from the controller's handler method for the trigger (e.g. button)
+     * @param file the FXML file for the next scene
+     * @param title the window title to display
+     * @throws IOException if the file was not found
+     */
     public static void switchToCentered(Event event, String file, String title) throws IOException {
         switchTo(event, file, title);
         centerWindow(event);
     }
 
+    /**
+     * Center the window
+     * @param event the JavaFX event from the controller's handler method for the trigger (e.g. button)
+     */
     public static void centerWindow(Event event) {
         // center window (works on Windows, not on Chrome OS)
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();

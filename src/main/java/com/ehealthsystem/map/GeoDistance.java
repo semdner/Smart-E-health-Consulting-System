@@ -13,6 +13,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class GeoDistance {
+    /**
+     * Calculate driving distance from one source to several destinations using Google Maps DistanceMatrix API
+     * @param userGeoData source address, can be as textual address or in coordinates
+     * @param doctorGeoData array of destinations to determine distances to
+     * @return the requested distances
+     * @throws IOException see await()
+     * @throws InterruptedException see await()
+     * @throws ApiException see await()
+     */
     public static DistanceMatrix getDistances(String userGeoData, String[] doctorGeoData) throws IOException, InterruptedException, ApiException {
         String[] user = {userGeoData};
         String[] doctors = doctorGeoData;
@@ -22,11 +31,14 @@ public class GeoDistance {
     }
 
     /**
-     *
-     * @param userGeoData
-     * @param range in km
-     * @return
-     * @throws SQLException
+     * Get doctors that are in a specific range from the user, determining the distance using Google Maps DistanceMatrix API
+     * @param userGeoData user location
+     * @param range maximum distance, in km
+     * @return a list of doctors that are in the range
+     * @throws SQLException see getDoctors()
+     * @throws IOException see getDistances()
+     * @throws InterruptedException see getDistances()
+     * @throws ApiException see getDistances()
      */
     public static ArrayList<DoctorDistance> getDoctorsInRange(String userGeoData, double range) throws SQLException, IOException, InterruptedException, ApiException {
         ArrayList<Doctor> doctors = Database.getDoctors();
@@ -70,6 +82,11 @@ public class GeoDistance {
         return result;
     }
 
+    /**
+     * Get doctors that are in a specific range from the user, determining the distance using local calculation (Haversine formula)
+     * @return a list of doctors that are in the range
+     * @throws SQLException see getDoctors()
+     */
     public static ArrayList<DoctorDistance> getDoctorsInRangeWithLocalCalculation() throws SQLException {
         double range = Session.appointment.getDistance();
         ArrayList<Doctor> doctors = Database.getDoctors(); //get doctors

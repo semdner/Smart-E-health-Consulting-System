@@ -3,6 +3,12 @@ package com.ehealthsystem.map;
 import com.google.maps.model.LatLng;
 
 public class Haversine {
+    /**
+     * Calculate the distance between to location points given as coordinates using the Haversine formula
+     * @param loc1 location point 1/A
+     * @param loc2 location point 2/B
+     * @return distance in kilometers
+     */
     public static double distance(LatLng loc1, LatLng loc2) {
         double lat1 = loc1.lat;
         double lon1 = loc1.lng;

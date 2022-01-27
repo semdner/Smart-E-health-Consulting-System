@@ -258,6 +258,13 @@ public class Database {
         statement.execute();
     }
 
+    /**
+     * General method for setting a value for a placeholder in a prepared statement
+     * @param i index of the placeholder
+     * @param value the value to set for the placeholder
+     * @param statement the query to apply the operation to
+     * @throws SQLException see the called methods
+     */
     private static void insertValueIntoStatement(int i, Object value, PreparedStatement statement) throws SQLException {
         if (value instanceof String) {
             statement.setString(i+1, (String)value);
@@ -274,6 +281,7 @@ public class Database {
 
     /**
      * Get all rows of users table from the database
+     * For admin GUI
      * @return all users
      * @throws SQLException
      */
@@ -310,6 +318,11 @@ public class Database {
         return loadUsersFromResultSet(rs).get(0);
     }
 
+    /**
+     * Get all doctors from the database as objects of class Doctor
+     * @return all doctors
+     * @throws SQLException if query fails
+     */
     public static ArrayList<Doctor> getDoctors() throws SQLException {
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);  // set timeout to 30 sec.
@@ -317,6 +330,12 @@ public class Database {
         return loadDoctorsFromResultSet(rs);
     }
 
+    /**
+     * Helper method to turn result set into array of Doctor objects
+     * @param rs resultSet after the query was executed
+     * @return Doctor objects
+     * @throws SQLException if reading an attribute fails
+     */
     private static ArrayList<Doctor> loadDoctorsFromResultSet(ResultSet rs) throws SQLException {
         ArrayList<Doctor> doctors = new ArrayList<>();
         while (rs.next())
@@ -358,10 +377,10 @@ public class Database {
     }
 
     /**
-     * Helper method to turn result set into array of user objects
+     * Helper method to turn result set into array of User objects
      * @param rs resultSet after the query was executed
-     * @return
-     * @throws SQLException
+     * @return User objects
+     * @throws SQLException if reading an attribute fails
      */
     private static ArrayList<User> loadUsersFromResultSet(ResultSet rs) throws SQLException {
         ArrayList<User> users = new ArrayList<>();
