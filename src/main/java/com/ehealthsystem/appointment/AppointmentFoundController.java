@@ -39,7 +39,7 @@ public class AppointmentFoundController implements Initializable {
         try {
             Session.userGeo = GeoCoder.geocode(Session.user.getStreet() + " " + Session.user.getHouseNo(), Session.user.getZipCode());
             String userGeoData = Session.userGeo.formattedAddress;
-            ArrayList<DoctorDistance> doctorList = GeoDistance.getDoctorsInRange(userGeoData, Session.appointment.getDistance());
+            ArrayList<DoctorDistance> doctorList = GeoDistance.getDoctorsInRangeWithLocalCalculation();
             if(doctorList.isEmpty()) {
                 errorLabel.setVisible(true);
             } else {
