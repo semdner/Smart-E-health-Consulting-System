@@ -202,7 +202,7 @@ public class FoundDoctorFullController {
     private void handleTimeButton(Label time, Button timeButton) {
         timeLabelList.add(time);
         String timeStr = time.getText();
-        // dynamically add the eventhandler for the buttons
+        // dynamically add the event handler for the buttons
         timeButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
