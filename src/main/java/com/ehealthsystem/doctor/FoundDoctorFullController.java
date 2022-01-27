@@ -170,7 +170,7 @@ public class FoundDoctorFullController {
      * @throws SQLException
      */
     private void loadSchedule() throws SQLException {
-        ArrayList<DoctorTimeSlot> doctorTimeSlotList = Database.loadDoctorAppointments(doctor.getDoctor(), Session.appointment.getDate());
+        ArrayList<DoctorTimeSlot> doctorTimeSlotList = Database.getDoctorsFreeTimes(doctor.getDoctor(), Session.appointment.getDate());
         dateLabel.setText(Session.appointment.getDate().toString());
         int column = 0;
         int row = 1;

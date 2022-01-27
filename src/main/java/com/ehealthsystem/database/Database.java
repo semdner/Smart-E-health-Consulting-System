@@ -459,7 +459,7 @@ public class Database {
         return specialization;
     }
 
-    public static ArrayList<DoctorTimeSlot> loadDoctorAppointments(Doctor doctor, LocalDate selectedDate) throws SQLException {
+    public static ArrayList<DoctorTimeSlot> getDoctorsFreeTimes(Doctor doctor, LocalDate selectedDate) throws SQLException {
         DateTimeFormatter DateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         String dateStr = selectedDate.format(DateFormatter);
 
