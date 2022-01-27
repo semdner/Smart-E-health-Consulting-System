@@ -103,6 +103,9 @@ public class FoundDoctorFullController {
         this.doctorGeoData = dGD;
     }
 
+    /**
+     * Load a static map image using OpenStreetMap data into the webview
+     */
     private void loadOsmMap() {
         LatLng user = Session.userGeo.geometry.location;
         LatLng[] bounds = getBoundsForImage(user, doctor.getDoctor().getLocation());
@@ -131,6 +134,14 @@ public class FoundDoctorFullController {
                 "&apiKey=00cdf1a2d7324db996a8706d774a9469");
     }
 
+    /**
+     * Algorithm to determine bounds to display a map image with two locations as markers
+     * Adds spacing so that the map markers are not directly at the edge but within the displayed area/frame
+     * Adds spacing on top of the map because marker is represented by a bubble above the actual location
+     * @param l1 coordinates 1
+     * @param l2 coordinates 2
+     * @return
+     */
     private LatLng[] getBoundsForImage(LatLng l1, LatLng l2) {
         //lat = y, lon = x
         LatLng topLeftBound = new LatLng(Math.max(l1.lat, l2.lat), Math.min(l1.lng, l2.lng));
@@ -154,7 +165,7 @@ public class FoundDoctorFullController {
     }
 
     /**
-     * dynamically laod the doctors schedule
+     * dynamically load the doctors schedule
      * @throws SQLException
      */
     private void loadSchedule() throws SQLException {

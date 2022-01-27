@@ -12,6 +12,11 @@ public class Session {
     public static AppointmentInCreation appointment; //an appointment that is currently created
     public static GeocodingResult userGeo;
 
+    /**
+     * To be called on login to load user object for the user to be called by further methods
+     * @param email the email of the user to log in
+     * @throws SQLException
+     */
     public static void loginUser(String email) throws SQLException {
         user = Database.getUserFromEmail(email);
     }

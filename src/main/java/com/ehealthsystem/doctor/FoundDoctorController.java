@@ -42,6 +42,14 @@ public class FoundDoctorController {
         this.doctorGeoData = doctorGeoData;
     }
 
+    /**
+     * Load the scene that shows detailed information for the selected doctor
+     * @param event button click event
+     * @throws IOException
+     * @throws InterruptedException
+     * @throws ApiException
+     * @throws SQLException
+     */
     public void handleShowMoreButton(ActionEvent event) throws IOException, InterruptedException, ApiException, SQLException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/ehealthsystem/doctor/foundDoctorFull-view.fxml"));
         Parent root = loader.load();
