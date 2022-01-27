@@ -1,11 +1,13 @@
-CREATE TABLE appointment
+CREATE TABLE "appointment"
 (
-	doctor_id       INTEGER,
-	user_id         INTEGER,
-	date            TEXT NOT NULL,
-	time            TEXT NOT NULL,
-	health_problem  TEXT,
-	PRIMARY KEY (doctor_id, user_id, date, time),
-	FOREIGN KEY (doctor_id) REFERENCES doctor(doctor_id),
-	FOREIGN KEY (user_id) REFERENCES user(user_id)
+    "id" INTEGER,
+    "doctor_id"	INTEGER,
+    "user"	TEXT,
+    "healthProblemDescription"	TEXT,
+    "timestamp"	INTEGER CHECK("timestamp" >= 0),
+    "minutesBeforeReminder"	INTEGER CHECK("minutesBeforeReminder" IN (10, 60, 4320, 10080)),
+    PRIMARY KEY("id" AUTOINCREMENT),
+    UNIQUE (doctor_id, user, timestamp),
+    FOREIGN KEY("user") REFERENCES "user"("username") ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY("doctor_id") REFERENCES "doctor"("doctor_id") ON UPDATE CASCADE ON DELETE CASCADE
 );

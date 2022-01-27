@@ -496,7 +496,7 @@ public class Database {
                     false,
                     rs.getInt("id"),
                     rs.getString("user"),
-                    rs.getInt("doctor"),
+                    rs.getInt("doctor_id"),
                     rs.getInt("healthProblem"),
                     rs.getString("healthProblemDescription"),
                     rs.getInt("timestamp"),
@@ -516,7 +516,7 @@ public class Database {
      * @return doctorsAppointments
      */
     public static ArrayList<Appointment> getDoctorsAppointments(int doctor, int fromTime, int toTime) throws SQLException {
-        String query = "SELECT * FROM appointments WHERE doctor = ? AND timestamp BETWEEN ? AND ? ORDER BY timestamp"; //ordering not necessary but just convenient, e.g. if it will be displayed in a list to the doctor in the future
+        String query = "SELECT * FROM appointment WHERE doctor_id = ? AND timestamp BETWEEN ? AND ? ORDER BY timestamp"; //ordering not necessary but just convenient, e.g. if it will be displayed in a list to the doctor in the future
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, doctor);
         statement.setInt(2, fromTime);
@@ -532,7 +532,7 @@ public class Database {
      * @return usersAppointments
      */
     public static ArrayList<Appointment> getUsersAppointments(String username) throws SQLException {
-        String query = "SELECT * FROM appointments WHERE user = ? ORDER BY timestamp DESC"; //ordering for display as list
+        String query = "SELECT * FROM appointment WHERE user = ? ORDER BY timestamp DESC"; //ordering for display as list
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);
         ResultSet rs = statement.executeQuery();

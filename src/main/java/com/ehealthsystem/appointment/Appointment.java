@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Appointment {
-    private int id, doctor, healthProblem, timestamp, minutesBeforeReminder, duration;
+    private int id, doctor, timestamp, minutesBeforeReminder, duration;
     private String user, healthProblemDescription;
 
     /**
@@ -15,7 +15,6 @@ public class Appointment {
      * @param id ignored when insertToDb is true (to be precise, it is saved but overwritten after successful insert)
      * @param user
      * @param doctor
-     * @param healthProblem
      * @param healthProblemDescription
      * @param timestamp
      * @param minutesBeforeReminder
@@ -26,7 +25,6 @@ public class Appointment {
         this.id = id;
         this.user = user;
         this.doctor = doctor;
-        this.healthProblem = healthProblem;
         this.healthProblemDescription = healthProblemDescription;
         this.timestamp = timestamp;
         this.minutesBeforeReminder = minutesBeforeReminder;
@@ -43,8 +41,7 @@ public class Appointment {
     private void insertIntoDb() throws SQLException {
         Object[][] parameters = {
                 {"user", user},
-                {"doctor", doctor},
-                {"healthProblem", healthProblem},
+                {"doctor_id", doctor},
                 {"healthProblemDescription", healthProblemDescription},
                 {"timestamp", timestamp},
                 {"minutesBeforeReminder", minutesBeforeReminder},
@@ -59,10 +56,6 @@ public class Appointment {
 
     public int getDoctor() {
         return doctor;
-    }
-
-    public int getHealthProblem() {
-        return healthProblem;
     }
 
     public int getTimestamp() {
@@ -104,7 +97,7 @@ public class Appointment {
      * @return whether deletion succeeded
      */
     public boolean delete() throws SQLException {
-        String query = "DELETE FROM appointments WHERE id = ?";
+        String query = "DELETE FROM appointment WHERE id = ?";
         PreparedStatement statement = Database.connection.prepareStatement(query);
         statement.setInt(1, id);
         return statement.executeUpdate() == 1;
