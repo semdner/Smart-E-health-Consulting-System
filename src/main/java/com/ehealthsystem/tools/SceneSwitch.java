@@ -36,17 +36,17 @@ public class SceneSwitch {
      * @throws IOException if the file was not found
      */
     public static void switchToCentered(Event event, String file, String title) throws IOException {
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow(); //grab current stage before it's replaced at scene switch
         switchTo(event, file, title);
-        centerWindow(event);
+        centerWindow(stage);
     }
 
     /**
      * Center the window
-     * @param event the JavaFX event from the controller's handler method for the trigger (e.g. button)
+     * @param stage the JavaFX window to center
      */
-    public static void centerWindow(Event event) {
+    public static void centerWindow(Stage stage) {
         // center window (works on Windows, not on Chrome OS)
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
         stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
