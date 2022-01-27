@@ -122,7 +122,7 @@ public class Database {
     public static ArrayList<String> getUsernames() throws SQLException {
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);  // set timeout to 30 sec.
-        ResultSet rs = statement.executeQuery("SELECT username FROM users");
+        ResultSet rs = statement.executeQuery("SELECT username FROM user");
 
         ArrayList<String> usernames = new ArrayList<>();
         while (rs.next())
@@ -288,7 +288,7 @@ public class Database {
     public static ArrayList<User> getAllUsers() throws SQLException {
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);  // set timeout to 30 sec.
-        ResultSet rs = statement.executeQuery("SELECT * FROM users");
+        ResultSet rs = statement.executeQuery("SELECT * FROM user");
         return loadUsersFromResultSet(rs);
     }
 
@@ -298,7 +298,7 @@ public class Database {
      * @return
      */
     public static User getUser(String username) throws SQLException {
-        String query = "SELECT * FROM users WHERE username = ?";
+        String query = "SELECT * FROM user WHERE username = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);
         ResultSet rs = statement.executeQuery();
