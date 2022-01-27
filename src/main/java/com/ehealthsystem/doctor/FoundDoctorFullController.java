@@ -89,6 +89,7 @@ public class FoundDoctorFullController {
      * @param userGeoData
      */
     public void setUserGeoData(String userGeoData) {
+        // parse address if it contains 'ß'
         String uGD = userGeoData.replaceAll("ß", "ss");
         this.userGeoData = uGD;
     }
