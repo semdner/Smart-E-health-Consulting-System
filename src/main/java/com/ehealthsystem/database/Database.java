@@ -463,8 +463,8 @@ public class Database {
     }
 
     public static ArrayList<DoctorTimeSlot> getDoctorsFreeTimes(Doctor doctor, LocalDate selectedDate) throws SQLException {
-        DateTimeFormatter DateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        String dateStr = selectedDate.format(DateFormatter);
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(datePatternAppointment);
+        String dateStr = selectedDate.format(dateFormatter);
 
         String query = "SELECT da.date, da.time, da.free" +
                 " FROM doctor_appointment AS da" +
@@ -476,10 +476,10 @@ public class Database {
         ResultSet rs = statement.executeQuery();
 
         ArrayList<DoctorTimeSlot> appointments = new ArrayList<>();
-        DateTimeFormatter TimeFormatter = DateTimeFormatter.ofPattern("H:mm");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Database.timePatternAppointment);
         while(rs.next()) {
-            LocalDate date = LocalDate.parse(rs.getString("date"), DateFormatter);
-            LocalTime time = LocalTime.parse(rs.getString("time"), TimeFormatter);
+            LocalDate date = LocalDate.parse(rs.getString("date"), dateFormatter);
+            LocalTime time = LocalTime.parse(rs.getString("time"), timeFormatter);
             appointments.add(new DoctorTimeSlot(date, time, rs.getBoolean("free")));
         }
         return appointments;
