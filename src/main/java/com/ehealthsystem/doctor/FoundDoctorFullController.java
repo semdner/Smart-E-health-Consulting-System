@@ -218,8 +218,8 @@ public class FoundDoctorFullController {
                     timeLabelList.get(i).setTextFill(Color.web("#000000"));
                 }
                 time.setTextFill(Color.web("#FF0000"));
-                DateTimeFormatter TimeFormatter = DateTimeFormatter.ofPattern(Session.timePatternUI);
-                selectedTime = LocalTime.parse(timeStr, TimeFormatter);
+                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Session.timePatternUI);
+                selectedTime = LocalTime.parse(timeStr, timeFormatter);
             }
         });
     }
