@@ -24,7 +24,7 @@ public class Database {
 
     public static Connection connection = null;
     public static final String fileName = "ehealth.sqlite3";
-    public static final String datePatternAppointment = "YYYY-MM-DD"; //date pattern used for appointment table
+    public static final String datePatternAppointment = "yyyy-MM-dd"; //date pattern used for appointment table
     public static final String datePatternUser = "dd.MM.yyyy"; //date pattern used for user table
     public static final String timePatternAppointment = "HH:mm"; //time pattern used for user appointment
 
