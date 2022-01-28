@@ -3,6 +3,7 @@ package com.ehealthsystem.doctor;
 import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.map.DoctorDistance;
+import com.ehealthsystem.tools.ReminderTime;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.google.maps.errors.ApiException;
@@ -70,8 +71,7 @@ public class FoundDoctorFullController {
      * @throws SQLException
      */
     public void start() throws IOException, InterruptedException, ApiException, SQLException {
-        String[] choices = {"10 minutes", "1 hour", "3 days", "1 week"};
-        reminderComboBox.getItems().addAll(choices);
+        reminderComboBox.getItems().setAll(ReminderTime.values());
         loadGMap();
         loadDoctorData();
         loadSchedule();
