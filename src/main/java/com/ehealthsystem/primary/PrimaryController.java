@@ -117,7 +117,7 @@ public class PrimaryController implements Initializable {
     }
 
     private void setBirthdayLabel(LocalDate birthday) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
         birthdayLabel.setText(birthday.format(formatter));
     }
 

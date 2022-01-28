@@ -148,7 +148,7 @@ public class User {
     }
 
     public void setBirthDate(LocalDate birthDate) throws SQLException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Database.datePatternUser);
         String bd = birthDate.format(formatter);
         update(new Object[][]{{"birthday", bd}});
         this.birthDate = birthDate;

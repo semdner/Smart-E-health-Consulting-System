@@ -24,6 +24,9 @@ public class Database {
 
     public static Connection connection = null;
     public static final String fileName = "ehealth.sqlite3";
+    public static final String datePatternAppointment = "YYYY-MM-DD"; //date pattern used for appointment table
+    public static final String datePatternUser = "dd.MM.yyyy"; //date pattern used for user table
+    public static final String timePatternAppointment = "HH:mm"; //time pattern used for user appointment
 
     /**
      * To be called on application start.
@@ -271,7 +274,7 @@ public class Database {
         } else if (value instanceof Boolean) {
             statement.setBoolean(i+1, (Boolean)value);
         } else if (value instanceof LocalDate) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePatternAppointment);
             String date = ((LocalDate)value).format(formatter);
             statement.setString(i+1, date);
         } else {
@@ -391,7 +394,7 @@ public class Database {
             if (username.equals("admin")) {
                 birthDate = null;    //admin doesn't have a stored birthdate
             } else {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePatternUser);
                 birthDate = LocalDate.parse(rs.getString("birthday"), formatter);
             }
 
