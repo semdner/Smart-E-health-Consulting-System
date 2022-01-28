@@ -273,7 +273,7 @@ public class FoundDoctorFullController {
                     ((ReminderTime) reminderComboBox.getValue()).getMinutes(), //no need for validation of combobox selection since default value is valid
                     0
                     );
-            SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");
+            SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
         } else {
             errorLabel.setVisible(true);
         }
