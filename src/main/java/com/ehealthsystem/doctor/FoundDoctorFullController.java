@@ -258,9 +258,21 @@ public class FoundDoctorFullController {
      * @param event
      * @throws IOException
      */
-    public void handleMakeAppointmentButton(ActionEvent event) throws IOException {
+    public void handleMakeAppointmentButton(ActionEvent event) throws IOException, SQLException {
         if(selectedTime != null) {
             Session.appointment.setTime(selectedTime);
+            reminderComboBox.getSelectionModel().getSelectedIndex(); //TODO validate selection (index = -1 if nothing selected)
+            new Appointment(
+                    true,
+                    0,
+                    Session.user.getUsername(),
+                    doctor.getDoctor().getId(),
+                    Session.appointment.getHealthProblem(),
+                    Session.appointment.getDate(),
+                    Session.appointment.getTime(),
+                    10, //TODO read from validated combobox value
+                    0
+                    );
             SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");
         } else {
             errorLabel.setVisible(true);
