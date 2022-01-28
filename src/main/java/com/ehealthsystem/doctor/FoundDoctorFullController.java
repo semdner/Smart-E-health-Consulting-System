@@ -175,6 +175,11 @@ public class FoundDoctorFullController {
         dateLabel.setText(Session.appointment.getDate().toString());
         int column = 0;
         int row = 1;
+        if (doctorTimeSlotList.size() == 0) {
+            errorLabel.setText("This doctor has no free appointments during the specified time range");
+            errorLabel.setVisible(true);
+            return;
+        }
         for(int i = 0; i< doctorTimeSlotList.size(); i++, column++) {
             //Prepare UI
             Label time = new Label(doctorTimeSlotList.get(i).getTime().toString());
