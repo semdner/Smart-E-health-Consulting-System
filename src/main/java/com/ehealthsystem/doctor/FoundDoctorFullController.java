@@ -72,6 +72,7 @@ public class FoundDoctorFullController {
      */
     public void start() throws IOException, InterruptedException, ApiException, SQLException {
         reminderComboBox.getItems().setAll(ReminderTime.values());
+        reminderComboBox.setValue(ReminderTime.THREE_DAYS); //no need for validation if default value is valid
         loadGMap();
         loadDoctorData();
         loadSchedule();
@@ -261,7 +262,6 @@ public class FoundDoctorFullController {
     public void handleMakeAppointmentButton(ActionEvent event) throws IOException, SQLException {
         if(selectedTime != null) {
             Session.appointment.setTime(selectedTime);
-            reminderComboBox.getSelectionModel().getSelectedIndex(); //TODO validate selection (index = -1 if nothing selected)
             new Appointment(
                     true,
                     0,
@@ -270,7 +270,7 @@ public class FoundDoctorFullController {
                     Session.appointment.getHealthProblem(),
                     Session.appointment.getDate(),
                     Session.appointment.getTime(),
-                    10, //TODO read from validated combobox value
+                    10, //TODO read from combobox value //no need for validation of combobox selection since default value is valid
                     0
                     );
             SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");
