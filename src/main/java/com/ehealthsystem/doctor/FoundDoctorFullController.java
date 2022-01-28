@@ -251,7 +251,7 @@ public class FoundDoctorFullController {
      * @throws IOException
      */
     public void handleBackButton(ActionEvent event) throws IOException {
-        SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");;
+        SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");
     }
 
     /**
