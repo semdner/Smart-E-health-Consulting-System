@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Appointment {
+    public final String tableName = "appointment";
     private int id, doctor, minutesBeforeReminder, duration;
     private String user, healthProblemDescription;
     private LocalDate date;
@@ -54,7 +55,7 @@ public class Appointment {
                 {"minutesBeforeReminder", minutesBeforeReminder},
                 {"duration", duration},
         };
-        id = Database.insert("appointments", parameters);
+        id = Database.insert(tableName, parameters);
     }
 
     public int getId() {
@@ -96,7 +97,7 @@ public class Appointment {
      */
     private void update(Object[][] newValues) throws SQLException {
         Database.update(
-                "appointments",
+                tableName,
                 newValues,
                 new Object[][]{{"id", id}}
         );
