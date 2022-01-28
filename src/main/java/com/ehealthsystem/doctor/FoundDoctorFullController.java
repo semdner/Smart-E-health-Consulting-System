@@ -270,7 +270,7 @@ public class FoundDoctorFullController {
                     Session.appointment.getHealthProblem(),
                     Session.appointment.getDate(),
                     Session.appointment.getTime(),
-                    10, //TODO read from combobox value //no need for validation of combobox selection since default value is valid
+                    ((ReminderTime) reminderComboBox.getValue()).getMinutes(), //no need for validation of combobox selection since default value is valid
                     0
                     );
             SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");
