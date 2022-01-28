@@ -95,24 +95,24 @@ public class AppointmentUserController implements Initializable {
      */
     public void loadUserDetails() {
         User currentUser = Session.user;
-        setUsernameTextField(currentUser.getUsername());
-        setEmailTextField(currentUser.getMail());
-        setFirstNameTextField(currentUser.getFirstName());
-        setLastNameTextField(currentUser.getLastName());
-        setStreetTextField(currentUser.getStreet());
-        setHouseNoTextField(currentUser.getHouseNo());
-        setZipTextField(currentUser.getZipCode());
-        setBirthdayTextField(currentUser.getBirthDate());
-        setGenderTextField(currentUser.getGender());
-        setInsuranceNameTextField(currentUser.getInsuranceName());
-        setPrivateInsuranceTextField(currentUser.isPrivateInsurance());
+        loadUsername(currentUser.getUsername());
+        loadEmail(currentUser.getMail());
+        loadFirstName(currentUser.getFirstName());
+        loadLastName(currentUser.getLastName());
+        loadStreet(currentUser.getStreet());
+        loadHouseNo(currentUser.getHouseNo());
+        loadZip(currentUser.getZipCode());
+        loadBirthday(currentUser.getBirthDate());
+        loadGender(currentUser.getGender());
+        loadInsuranceName(currentUser.getInsuranceName());
+        loadPrivateInsurance(currentUser.isPrivateInsurance());
     }
 
     /**
      * Set Username Text Field to user information in DB
      * @param username
      */
-    private void setUsernameTextField(String username) {
+    private void loadUsername(String username) {
         usernameLabel.setText(username);
     }
 
@@ -120,7 +120,7 @@ public class AppointmentUserController implements Initializable {
      * Set Email Text Field to user information in DB
      * @param email
      */
-    private void setEmailTextField(String email) {
+    private void loadEmail(String email) {
         emailLabel.setText(email);
     }
 
@@ -128,7 +128,7 @@ public class AppointmentUserController implements Initializable {
      * Set First Name Text Field to user information in DB
      * @param firstName
      */
-    private void setFirstNameTextField(String firstName) {
+    private void loadFirstName(String firstName) {
         firstNameLabel.setText(firstName);
     }
 
@@ -136,7 +136,7 @@ public class AppointmentUserController implements Initializable {
      * Set Last Name Text Field to user information in DB
      * @param lastName
      */
-    private void setLastNameTextField(String lastName) {
+    private void loadLastName(String lastName) {
         lastNameLabel.setText(lastName);
     }
 
@@ -144,7 +144,7 @@ public class AppointmentUserController implements Initializable {
      * Set Street Text Field to user information in DB
      * @param street
      */
-    private void setStreetTextField(String street) {
+    private void loadStreet(String street) {
         streetLabel.setText(street);
     }
 
@@ -152,7 +152,7 @@ public class AppointmentUserController implements Initializable {
      * Set House Number Text Field to user information in DB
      * @param houseNo
      */
-    private void setHouseNoTextField(String houseNo) {
+    private void loadHouseNo(String houseNo) {
         houseNumberLabel.setText(houseNo);
     }
 
@@ -160,7 +160,7 @@ public class AppointmentUserController implements Initializable {
      * Set Zip Text Field to user information in DB
      * @param zip
      */
-    private void setZipTextField(String zip) {
+    private void loadZip(String zip) {
         zipCodeLabel.setText(zip);
     }
 
@@ -168,7 +168,7 @@ public class AppointmentUserController implements Initializable {
      * Set Date Picker to birthday in DB
      * @param birthday
      */
-    private void setBirthdayTextField(LocalDate birthday) {
+    private void loadBirthday(LocalDate birthday) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
         birthdayLabel.setText(birthday.format(formatter));
     }
@@ -177,11 +177,11 @@ public class AppointmentUserController implements Initializable {
      * Set Gender Text Field to user information in DB
      * @param gender
      */
-    private void setGenderTextField(String gender) {
+    private void loadGender(String gender) {
         genderLabel.setText(gender);
     }
 
-    private void setInsuranceNameTextField(String insuranceName) {
+    private void loadInsuranceName(String insuranceName) {
         insuranceNameLabel.setText(insuranceName);
     }
 
@@ -189,7 +189,7 @@ public class AppointmentUserController implements Initializable {
      * Set private insurance Check Box to user information in DB
      * @param privateInsurance
      */
-    private void setPrivateInsuranceTextField(boolean privateInsurance) {
+    private void loadPrivateInsurance(boolean privateInsurance) {
         privateInsuranceLabel.setText(privateInsurance ? "Yes" : "No");
     }
 }

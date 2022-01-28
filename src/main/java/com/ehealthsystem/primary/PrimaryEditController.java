@@ -262,7 +262,7 @@ public class PrimaryEditController implements Initializable {
         setStreetTextField(currentUser.getStreet());
         setHouseNoTextField(currentUser.getHouseNo());
         setZipTextField(currentUser.getZipCode());
-        setBirthdayTextField(currentUser.getBirthDate());
+        loadBirthday(currentUser.getBirthDate());
         setGenderTextField(currentUser.getGender());
         setInsuranceNameTextField(currentUser.getInsuranceName());
         setPrivateInsuranceTextField(currentUser.isPrivateInsurance());
@@ -328,7 +328,7 @@ public class PrimaryEditController implements Initializable {
      * Set Date Picker to birthday in DB
      * @param birthday
      */
-    private void setBirthdayTextField(LocalDate birthday) {
+    private void loadBirthday(LocalDate birthday) {
         birthdayPicker.setValue(birthday);
     }
 
