@@ -1,6 +1,8 @@
 package com.ehealthsystem.primary;
 
+import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.appointment.AppointmentInCreation;
+import com.ehealthsystem.database.Database;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import javafx.event.ActionEvent;
@@ -14,6 +16,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class PrimaryController implements Initializable {
@@ -68,6 +71,16 @@ public class PrimaryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadUserDetails();
+        try {
+            loadUserAppointments();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadUserAppointments() throws SQLException {
+        ArrayList<Appointment> appointments = Database.getUsersAppointments(Session.user.getUsername());
+        System.out.println("Users appointments: " + appointments.size());
     }
 
     /**
