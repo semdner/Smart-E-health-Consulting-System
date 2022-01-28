@@ -39,6 +39,7 @@ public class Database {
         try
         {
             connection = DriverManager.getConnection("jdbc:sqlite:" + fileName); //creates file if it doesn't exist
+            connection.createStatement().execute("PRAGMA foreign_keys = ON;"); //require foreign key integrity checks //needs to run on every driver setup (session only preference)
         }
         catch(SQLException e)
         {
@@ -194,7 +195,7 @@ public class Database {
         }
 
         //https://stackoverflow.com/a/1915197
-        int affectedRows = statement.executeUpdate(); //this for some reason doesn't fail whereas if you execute the query manually, you get "FOREIGN KEY constraint failed"
+        int affectedRows = statement.executeUpdate();
 
         if (affectedRows == 0) {
             throw new SQLException("Inserting row failed, no rows affected.");
