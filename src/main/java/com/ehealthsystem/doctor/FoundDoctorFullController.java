@@ -105,6 +105,7 @@ public class FoundDoctorFullController {
     }
 
     /**
+     * DEPRECATED: replaced by interactive route display: loadGMap()
      * Load a static map image using OpenStreetMap data into the webview
      */
     private void loadOsmMap() {
