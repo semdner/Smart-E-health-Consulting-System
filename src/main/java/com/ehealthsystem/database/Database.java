@@ -274,7 +274,7 @@ public class Database {
         } else if (value instanceof Boolean) {
             statement.setBoolean(i+1, (Boolean)value);
         } else if (value instanceof LocalDate) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePatternAppointment);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePatternAppointment); //TODO user has different date pattern -> unify
             String date = ((LocalDate)value).format(formatter);
             statement.setString(i+1, date);
         } else {
