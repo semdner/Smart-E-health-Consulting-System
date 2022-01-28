@@ -85,7 +85,7 @@ public class FoundDoctorFullController {
     }
 
     /**
-     * set the users geodata for map
+     * set the user's geodata for map
      * @param userGeoData
      */
     public void setUserGeoData(String userGeoData) {
