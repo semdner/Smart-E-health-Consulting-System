@@ -277,6 +277,10 @@ public class Database {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePatternAppointment); //TODO user has different date pattern -> unify
             String date = ((LocalDate)value).format(formatter);
             statement.setString(i+1, date);
+        } else if (value instanceof LocalTime) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(timePatternAppointment);
+            String time = ((LocalTime)value).format(formatter);
+            statement.setString(i+1, time);
         } else {
             statement.setInt(i+1, (Integer) value);
         }
@@ -462,6 +466,13 @@ public class Database {
         return specialization;
     }
 
+    /**
+     * DEPRECATED: FoundDoctorFullController.getFreeTimeSlots() is used instead
+     * @param doctor
+     * @param selectedDate
+     * @return
+     * @throws SQLException
+     */
     public static ArrayList<DoctorTimeSlot> getDoctorsFreeTimes(Doctor doctor, LocalDate selectedDate) throws SQLException {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(datePatternAppointment);
         String dateStr = selectedDate.format(dateFormatter);
@@ -493,6 +504,9 @@ public class Database {
      */
     public static ArrayList<Appointment> loadAppointmentsFromResultSet(ResultSet rs) throws SQLException {
         ArrayList<Appointment> appointments = new ArrayList<>();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Database.datePatternAppointment);
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Database.timePatternAppointment);
+
         while (rs.next())
         {
             Appointment appointment = new Appointment(
@@ -500,9 +514,9 @@ public class Database {
                     rs.getInt("id"),
                     rs.getString("user"),
                     rs.getInt("doctor_id"),
-                    rs.getInt("healthProblem"),
                     rs.getString("healthProblemDescription"),
-                    rs.getInt("timestamp"),
+                    LocalDate.parse(rs.getString("date"), dateFormatter),
+                    LocalTime.parse(rs.getString("time"), timeFormatter),
                     rs.getInt("minutesBeforeReminder"),
                     rs.getInt("duration")
             );
@@ -514,16 +528,18 @@ public class Database {
     /**
      * Get appointments that a doctor already has within a range of days
      * To be used to display a doctor's timetable to the patient, to find a free time for their appointment
-     * @param fromTime
-     * @param toTime
+     * @param doctor
+     * @param date
      * @return doctorsAppointments
+     * @throws SQLException
      */
-    public static ArrayList<Appointment> getDoctorsAppointments(int doctor, int fromTime, int toTime) throws SQLException {
-        String query = "SELECT * FROM appointment WHERE doctor_id = ? AND timestamp BETWEEN ? AND ? ORDER BY timestamp"; //ordering not necessary but just convenient, e.g. if it will be displayed in a list to the doctor in the future
+    public static ArrayList<Appointment> getDoctorsAppointments(int doctor, LocalDate date) throws SQLException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePatternAppointment);
+
+        String query = "SELECT * FROM appointment WHERE doctor_id = ? AND date = ? ORDER BY date, time"; //ordering not necessary but just convenient, e.g. if it will be displayed in a list to the doctor in the future
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, doctor);
-        statement.setInt(2, fromTime);
-        statement.setInt(3, toTime);
+        statement.setString(2, date.format(formatter));
         ResultSet rs = statement.executeQuery();
         return loadAppointmentsFromResultSet(rs);
     }

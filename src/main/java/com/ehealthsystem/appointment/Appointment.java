@@ -4,10 +4,14 @@ import com.ehealthsystem.database.Database;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Appointment {
-    private int id, doctor, timestamp, minutesBeforeReminder, duration;
+    private int id, doctor, minutesBeforeReminder, duration;
     private String user, healthProblemDescription;
+    private LocalDate date;
+    private LocalTime time;
 
     /**
      *
@@ -16,17 +20,19 @@ public class Appointment {
      * @param user
      * @param doctor
      * @param healthProblemDescription
-     * @param timestamp
+     * @param date
+     * @param time
      * @param minutesBeforeReminder
      * @param duration
      * @throws SQLException
      */
-    public Appointment(boolean insertIntoDb, int id, String user, int doctor, int healthProblem, String healthProblemDescription, int timestamp, int minutesBeforeReminder, int duration) throws SQLException {
+    public Appointment(boolean insertIntoDb, int id, String user, int doctor, String healthProblemDescription, LocalDate date, LocalTime time, int minutesBeforeReminder, int duration) throws SQLException {
         this.id = id;
         this.user = user;
         this.doctor = doctor;
         this.healthProblemDescription = healthProblemDescription;
-        this.timestamp = timestamp;
+        this.date = date;
+        this.time = time;
         this.minutesBeforeReminder = minutesBeforeReminder;
         this.duration = duration;
         if (insertIntoDb)
@@ -43,7 +49,8 @@ public class Appointment {
                 {"user", user},
                 {"doctor_id", doctor},
                 {"healthProblemDescription", healthProblemDescription},
-                {"timestamp", timestamp},
+                {"date", date},
+                {"time", time},
                 {"minutesBeforeReminder", minutesBeforeReminder},
                 {"duration", duration},
         };
@@ -58,8 +65,12 @@ public class Appointment {
         return doctor;
     }
 
-    public int getTimestamp() {
-        return timestamp;
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public LocalTime getTime() {
+        return time;
     }
 
     public int getMinutesBeforeReminder() {
