@@ -3,6 +3,8 @@ package com.ehealthsystem.primary;
 import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.appointment.AppointmentInCreation;
 import com.ehealthsystem.database.Database;
+import com.ehealthsystem.pdf.CreatePDF;
+import com.ehealthsystem.pdf.fileChooserSave;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import javafx.event.ActionEvent;
