@@ -26,7 +26,7 @@
                   <Menu mnemonicParsing="false" text="Export">
                     <items>
                       <MenuItem mnemonicParsing="false" text=".txt" />
-                    <MenuItem mnemonicParsing="false" text=".pdf" />
+                    <MenuItem fx:id="pdfButton" mnemonicParsing="false" onAction="#handlepdfButton" text=".pdf" />
                     </items>
                   </Menu>
             </items>
