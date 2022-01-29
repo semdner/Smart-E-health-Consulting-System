@@ -72,11 +72,11 @@ public class CreatePDF {
         Table table5 = new Table(col3);
 
         // Adding Data into Table
-        PersonalData1(table1, con);
-        PersonalData2(table2, con);
+        PersonalData1(table1);
+        PersonalData2(table2);
         Disease(table3, con);
         //Allergies(table4, con);
-        InsuranceData(table5, con);
+        InsuranceData(table5);
 
         // Headline
         document.add(CenteredParagraph(title, width));
@@ -114,77 +114,14 @@ public class CreatePDF {
         return output;
     }
 
-    private static void PersonalData1(Table table, Connection con) throws SQLException {
-        Paragraph fn1 = null;
-        Paragraph fn2 = null;
-        ResultSet rs1;
-        ResultSet rs2;
-        PreparedStatement st1 = null;
-        PreparedStatement st2 = null;
-        String sql1 = "select first_name from user where user_id = ?";
-        String sql2 = "select last_name from user where user_id = ?";
-
-        st1 = con.prepareStatement(sql1);
-        st1.setString(1, String.valueOf(3));
-        rs1 = st1.executeQuery();
-
-        while(rs1.next()){
-            fn1 = new Paragraph(rs1.getString("first_name"));
-        }
-
-        st2 = con.prepareStatement(sql2);
-        st2.setString(1, "3" );
-        rs2 = st2.executeQuery();
-
-        while(rs2.next()){
-            fn2 = new Paragraph(rs2.getString("last_name"));
-        }
-
+    private static void PersonalData1(Table table) {
         table.addCell(new Cell().add("First Name: ").setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(Session.user.getFirstName()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add("Last Name: ").setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(Session.user.getLastName()).setBorder(Border.NO_BORDER));
     }
 
-    private static void PersonalData2(Table table, Connection con) throws SQLException {
-        Paragraph fn1 = null;
-        Paragraph fn2 = null;
-        Paragraph fn3 = null;
-        ResultSet rs1;
-        ResultSet rs2;
-        ResultSet rs3;
-        PreparedStatement st1 = null;
-        PreparedStatement st2 = null;
-        PreparedStatement st3 = null;
-        String sql1 = "select street from user where user_id = ?";
-        String sql2 = "select number from user where user_id = ?";
-        String sql3 = "select birthday from user where user_id = ?";
-
-        st1 = con.prepareStatement(sql1);
-        st1.setString(1, "3" );
-        rs1 = st1.executeQuery();
-
-        while(rs1.next()){
-            fn1 = new Paragraph(rs1.getString("street"));
-        }
-
-        st2 = con.prepareStatement(sql2);
-        st2.setString(1, "3" );
-        rs2 = st2.executeQuery();
-
-        while(rs2.next()){
-            fn2 = new Paragraph(rs2.getString("number"));
-        }
-
-        st3 = con.prepareStatement(sql3);
-        st3.setString(1, "3" );
-        rs3 = st3.executeQuery();
-
-        while(rs3.next()){
-            fn3 = new Paragraph(rs3.getString("birthday"));
-        }
-
-
+    private static void PersonalData2(Table table) {
         table.addCell(new Cell().add("Adress: ").setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(Session.user.getStreet()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(Session.user.getHouseNo()).setBorder(Border.NO_BORDER));
@@ -237,32 +174,7 @@ public class CreatePDF {
 
     }
 
-    private static void InsuranceData(Table table, Connection con) throws SQLException {
-        /*Paragraph fn1 = null;
-        Paragraph fn2 = null;
-        ResultSet rs1;
-        ResultSet rs2;
-        PreparedStatement st1 = null;
-        PreparedStatement st2 = null;
-        String sql1 = "select insurance_name from user where user_id = ?";
-        String sql2 = "select private_insurance from user where user_id = ?";
-        boolean z = true;
-
-        st1 = con.prepareStatement(sql1);
-        st1.setString(1, "3" );
-        rs1 = st1.executeQuery();
-
-        while(rs1.next()){
-            fn1 = new Paragraph(rs1.getString("insurance_name"));
-        }
-
-        st2 = con.prepareStatement(sql2);
-        st2.setString(1, "3" );
-        rs2 = st2.executeQuery();
-
-        while(rs2.next()){
-            z = rs2.getBoolean("private_insurance");
-        } */
+    private static void InsuranceData(Table table) {
         String x = null;
         if(!Session.user.isPrivateInsurance()) x = "No";
         else x = "Yes";
