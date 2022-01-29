@@ -160,4 +160,9 @@ public class PrimaryController implements Initializable {
     public void handleEditButton(ActionEvent event) throws IOException {
         SceneSwitch.switchTo(event, "primary/primary-edit-view.fxml", "Edit information");
     }
+    
+    public void handlepdfButton(ActionEvent actionEvent) throws SQLException, IOException {
+        String dest = fileChooserSave.chooseDest();
+        CreatePDF.create_Pdf(dest);
+    }
 }
