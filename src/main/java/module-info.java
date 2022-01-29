@@ -11,6 +11,10 @@ module Smart.E.health.Consulting.System {
     requires java.mail;
     requires org.json;
     requires activation;
+    requires layout;
+    requires kernel;
+    requires io;
+    requires java.desktop;
 
     opens com.ehealthsystem.appointment to javafx.fxml;
     opens com.ehealthsystem.login to javafx.fxml;
