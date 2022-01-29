@@ -175,13 +175,11 @@ public class CreatePDF {
     }
 
     private static void InsuranceData(Table table) {
-        String x = null;
-        if(!Session.user.isPrivateInsurance()) x = "No";
-        else x = "Yes";
+        String insuranceType = Session.user.isPrivateInsurance() ? "Private" : "Public";
 
         table.addCell(new Cell().add("Insurance Name:").setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(Session.user.getInsuranceName()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add("Type: ").setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(x).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(insuranceType).setBorder(Border.NO_BORDER));
     }
 }
