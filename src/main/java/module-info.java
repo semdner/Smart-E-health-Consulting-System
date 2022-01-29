@@ -10,6 +10,7 @@ module Smart.E.health.Consulting.System {
     requires com.google.gson;
     requires java.mail;
     requires org.json;
+    requires activation;
 
     opens com.ehealthsystem.appointment to javafx.fxml;
     opens com.ehealthsystem.login to javafx.fxml;

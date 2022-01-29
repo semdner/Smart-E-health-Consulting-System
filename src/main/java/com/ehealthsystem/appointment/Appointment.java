@@ -1,6 +1,7 @@
 package com.ehealthsystem.appointment;
 
 import com.ehealthsystem.database.Database;
+import com.ehealthsystem.mail.SendEmail;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
