@@ -122,7 +122,7 @@ public class CreatePDF {
     }
 
     private static void PersonalData2(Table table) {
-        table.addCell(new Cell().add("Adress: ").setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add("Address: ").setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(Session.user.getStreet()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(Session.user.getHouseNo()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add("Birthday: ").setBorder(Border.NO_BORDER));
