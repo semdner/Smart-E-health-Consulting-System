@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main extends Application {
+    static Stage primaryStage;
+
     /**
      *  Required method to run and open the first JavaFX window of an application.
      *
@@ -21,6 +23,7 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws IOException, SQLException {
+        this.primaryStage = primaryStage;
         initDB();
 
         Parent root = FXMLLoader.load(getClass().getResource("main/main-view.fxml"));
@@ -64,5 +67,9 @@ public class Main extends Application {
         in.close();
 
         return password;
+    }
+
+    public static Stage getPrimaryStage() {
+        return primaryStage;
     }
 }
