@@ -457,8 +457,9 @@ public class Database {
     }
 
     public static Doctor loadDoctorFromId(int doctorId) throws SQLException {
-        String query = "SELECT * FROM doctor WHERE doctor_id =" + doctorId;
+        String query = "SELECT * FROM doctor WHERE doctor_id = ?";
         PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, doctorId);
         ResultSet rs = statement.executeQuery();
         double lat = Double.parseDouble(rs.getString("latitude"));
         double lng = Double.parseDouble(rs.getString("longitude"));
