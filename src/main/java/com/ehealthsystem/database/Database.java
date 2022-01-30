@@ -73,10 +73,12 @@ public class Database {
         statement.execute(ResourceReader.getResourceString("database/createTableAppointment.sql"));
 
         statement.execute(ResourceReader.getResourceString("database/insertIntoDisease.sql"));
-        statement.execute(ResourceReader.getResourceString("database/insertIntoHealthStatus.sql"));
         statement.execute(ResourceReader.getResourceString("database/InsertIntoLocation.sql"));
         statement.execute(ResourceReader.getResourceString("database/insertIntoMedication.sql"));
-        statement.execute(ResourceReader.getResourceString("database/insertIntoPrescription.sql"));
+
+        //dummy data
+        //statement.execute(ResourceReader.getResourceString("database/insertIntoPrescription.sql"));
+        //statement.execute(ResourceReader.getResourceString("database/insertIntoHealthStatus.sql"));
 
         statement.execute(ResourceReader.getResourceString("database/insertIntoCategory.sql"));
         statement.execute(ResourceReader.getResourceString("database/insertIntoDoctor.sql"));
