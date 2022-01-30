@@ -3,8 +3,11 @@ package com.ehealthsystem.mail;
 import com.ehealthsystem.registration.RegistrationController;
 import com.ehealthsystem.tools.ResourceReader;
 
-import javafx.event.ActionEvent;
+import com.ehealthsystem.tools.SceneSwitch;
 import javafx.event.Event;
+
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Properties;
 import javax.activation.FileDataSource;
 import javax.activation.DataHandler;
@@ -20,7 +23,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import javax.sql.DataSource;
 
 public class SendEmail {
     public static Message prepareMessage(Session session, String myAccount, String recipient, String subject, String textContent) throws MessagingException {
@@ -85,11 +87,18 @@ public class SendEmail {
         }
         String validation = a.toString();
         SendEmail.sendMail(recipient,"Validation Email", validation);
-        // Hier ein neues Fenster aufmachen und Validierungscode abfragen
-        //TODO 
-        if(validation == validation){
-            
-        }
+        /*
+        //TODO Hier ein neues Fenster aufmachen und Validierungscode abfragen
+        public void openValidation{
+            if(validation == validation){
+                private void loadPrimaryWindow(Event event) throws IOException, SQLException {
+                    com.ehealthsystem.tools.Session.loginUser(emailTextField.getText());
+                    SceneSwitch.switchToCentered(event, "primary/primary-view.fxml", "E-Health System");
+                }
+                }else{
+                //TODO Erneut abfragen oder Email neu senden???
+            }
+        }*/
     }
         // Prepare Message with Attachment to send pdf of Health Informations
     public static Message prepareMessageWithAttachment(Session session, String myAccount, String recipient, String subject, String textContent, String filename ) throws MessagingException {
