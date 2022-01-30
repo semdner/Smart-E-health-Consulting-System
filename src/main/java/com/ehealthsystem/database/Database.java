@@ -456,6 +456,13 @@ public class Database {
         return doctorList;
     }
 
+    public static String loadDoctorFromId(int doctorId) throws SQLException {
+        String query = "SELECT last_name FROM doctor WHERE doctor_id =" + doctorId;
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+        return rs.getString("last_name");
+    }
+
 
     public static ArrayList<String> loadSpecialization() throws SQLException {
         String query = "SELECT * FROM category";
