@@ -570,7 +570,7 @@ public class Database {
      * @return usersAppointments
      */
     public static ArrayList<Appointment> getUsersAppointments(String username) throws SQLException {
-        String query = "SELECT * FROM appointment WHERE user = ? ORDER BY date, time DESC"; //ordering for display as list
+        String query = "SELECT * FROM appointment WHERE user = ? ORDER BY date, time"; //ordering for display as list
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);
         ResultSet rs = statement.executeQuery();
