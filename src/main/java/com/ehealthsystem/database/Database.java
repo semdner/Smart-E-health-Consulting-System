@@ -366,7 +366,7 @@ public class Database {
     public static ArrayList<HealthInformation> getHealthInformation(String email) throws SQLException {
         String query = "SELECT health_status.ICD, disease.disease_name, medication.medication_name" +
                 " FROM ((((health_status INNER JOIN disease on health_status.ICD = disease.ICD)" +
-                " LEFT JOIN prescription on prescription.prescription_id = health_status.prescription_id)" +
+                " LEFT JOIN prescription on prescription.health_status = health_status.id)" +
                 " LEFT JOIN medication on prescription.medication_id = medication.medication_id)" +
                 " INNER JOIN user on user.user_id = health_status.user_id)" +
                 " WHERE user.email = ?;";
