@@ -13,6 +13,6 @@ CREATE TABLE user
     password	        TEXT NOT NULL,
     insurance_name      TEXT,
     private_insurance   BOOLEAN,
-    PRIMARY KEY (user_id AUTOINCREMENT),
-    FOREIGN KEY (zip) REFERENCES location(zip)
+    PRIMARY KEY (user_id AUTOINCREMENT)
+    -- FOREIGN KEY (zip) REFERENCES location(zip)
 );

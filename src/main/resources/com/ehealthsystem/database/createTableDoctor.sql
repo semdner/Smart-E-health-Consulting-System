@@ -8,6 +8,6 @@ CREATE TABLE doctor
     zip 	    TEXT NOT NULL,
     latitude    NUMERIC NOT NULL,
     longitude   NUMERIC NOT NULL,
-    PRIMARY KEY(doctor_id AUTOINCREMENT),
-    FOREIGN KEY (zip) REFERENCES location(zip)
+    PRIMARY KEY(doctor_id AUTOINCREMENT)
+    -- FOREIGN KEY (zip) REFERENCES location(zip)
 );
