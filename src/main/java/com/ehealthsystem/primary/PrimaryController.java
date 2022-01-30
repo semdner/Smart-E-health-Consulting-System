@@ -98,6 +98,8 @@ public class PrimaryController implements Initializable {
 
     private void loadUserAppointments() throws SQLException, IOException {
         ArrayList<Appointment> appointments = Database.getUsersAppointments(Session.user.getUsername());
+        int pastRow = 0;
+        int upcomingRow = 0;
         for (int i = 0; i<appointments.size(); i++) {
             FXMLLoader fxmlloader = new FXMLLoader();
             fxmlloader.setLocation(getClass().getResource("/com/ehealthsystem/appointment/appointment-view.fxml"));
@@ -107,9 +109,11 @@ public class PrimaryController implements Initializable {
             AppointmentController appointment = fxmlloader.getController();
             appointment.setData(appointments.get(i));
             if(appointments.get(i).getDate().isBefore(LocalDate.now())) {
-                appointmentGridPane2.add(vbox, 0, i);
+                appointmentGridPane2.add(vbox, 0, pastRow);
+                pastRow++;
             } else {
-                appointmentGridPane1.add(vbox, 0, i);
+                appointmentGridPane1.add(vbox, 0, upcomingRow);
+                upcomingRow++;
             }
         }
         System.out.println("Users appointments: " + appointments.size());
