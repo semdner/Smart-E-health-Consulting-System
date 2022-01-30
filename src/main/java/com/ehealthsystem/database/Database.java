@@ -24,8 +24,7 @@ public class Database {
 
     public static Connection connection = null;
     public static final String fileName = "ehealth.sqlite3";
-    public static final String datePatternAppointment = "yyyy-MM-dd"; //date pattern used for appointment table
-    public static final String datePatternUser = "dd.MM.yyyy"; //date pattern used for user table
+    public static final String datePattern = "yyyy-MM-dd"; //date pattern used for tables (e.g. appointment, user)
     public static final String timePatternAppointment = "HH:mm"; //time pattern used for user appointment
 
     /**
@@ -277,7 +276,7 @@ public class Database {
         } else if (value instanceof Boolean) {
             statement.setBoolean(i+1, (Boolean)value);
         } else if (value instanceof LocalDate) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePatternAppointment); //TODO user has different date pattern -> unify
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePattern);
             String date = ((LocalDate)value).format(formatter);
             statement.setString(i+1, date);
         } else if (value instanceof LocalTime) {
@@ -401,7 +400,7 @@ public class Database {
             if (username.equals("admin")) {
                 birthDate = null;    //admin doesn't have a stored birthdate
             } else {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePatternUser);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePattern);
                 birthDate = LocalDate.parse(rs.getString("birthday"), formatter);
             }
 
@@ -477,7 +476,7 @@ public class Database {
      * @throws SQLException
      */
     public static ArrayList<DoctorTimeSlot> getDoctorsFreeTimes(Doctor doctor, LocalDate selectedDate) throws SQLException {
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(datePatternAppointment);
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(datePattern);
         String dateStr = selectedDate.format(dateFormatter);
 
         String query = "SELECT da.date, da.time, da.free" +
@@ -507,7 +506,7 @@ public class Database {
      */
     public static ArrayList<Appointment> loadAppointmentsFromResultSet(ResultSet rs) throws SQLException {
         ArrayList<Appointment> appointments = new ArrayList<>();
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Database.datePatternAppointment);
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Database.datePattern);
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Database.timePatternAppointment);
 
         while (rs.next())
@@ -537,7 +536,7 @@ public class Database {
      * @throws SQLException
      */
     public static ArrayList<Appointment> getDoctorsAppointments(int doctor, LocalDate date) throws SQLException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePatternAppointment);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePattern);
 
         String query = "SELECT * FROM appointment WHERE doctor_id = ? AND date = ? ORDER BY date, time"; //ordering not necessary but just convenient, e.g. if it will be displayed in a list to the doctor in the future
         PreparedStatement statement = connection.prepareStatement(query);

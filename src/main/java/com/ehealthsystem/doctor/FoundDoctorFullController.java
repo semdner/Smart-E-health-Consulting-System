@@ -302,7 +302,7 @@ public class FoundDoctorFullController {
 
     private ArrayList<DoctorTimeSlot> getFreeTimeSlots(LocalDate date) throws SQLException {
         ArrayList<Appointment> appointments = Database.getDoctorsAppointments(doctor.getDoctor().getId(), date);
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Database.datePatternAppointment);
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Database.datePattern);
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Database.timePatternAppointment);
 
         //Generate times
