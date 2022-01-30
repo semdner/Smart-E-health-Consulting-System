@@ -35,7 +35,7 @@ public class AppointmentController {
         dateLabel.setText(loadedAppointment.getDate().format(dateTimeFormatter));
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
         timeLabel.setText(loadedAppointment.getTime().format(timeFormatter));
-        Doctor doctor = Database.loadDoctorFromId(loadedAppointment.getDoctor());
+        Doctor doctor = loadedAppointment.getDoctor();
         doctorLabel.setText(doctor.getLastName());
     }
 

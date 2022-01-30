@@ -1,6 +1,7 @@
 package com.ehealthsystem.appointment;
 
 import com.ehealthsystem.database.Database;
+import com.ehealthsystem.doctor.Doctor;
 import com.ehealthsystem.mail.SendEmail;
 
 import java.sql.PreparedStatement;
@@ -63,8 +64,8 @@ public class Appointment {
         return id;
     }
 
-    public int getDoctor() {
-        return doctor;
+    public Doctor getDoctor() throws SQLException {
+        return Database.loadDoctorFromId(doctor); //lazy-load and also don't store
     }
 
     public LocalDate getDate() {
