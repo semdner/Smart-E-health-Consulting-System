@@ -5,7 +5,6 @@ import com.google.maps.model.LatLng;
 public class Doctor {
     int id;
     String firstName, lastName, street, number;
-    String[] specialization;
     String zip;
     LatLng location;
 

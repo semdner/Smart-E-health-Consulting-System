@@ -72,7 +72,7 @@
    <bottom>
       <AnchorPane prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="backButton" layoutX="7.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleBackButton" text="&lt;" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="7.5" />
+            <Button fx:id="backButton" layoutX="7.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleBackButton" text="&lt;" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="7.5" />
             <Button fx:id="continueButton" layoutX="961.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleContinueButton" text="&gt;" AnchorPane.bottomAnchor="7.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.5" />
             <ProgressBar fx:id="progressBar" layoutX="366.0" layoutY="13.0" prefHeight="15.0" prefWidth="268.0" progress="0.75" AnchorPane.bottomAnchor="12.0" AnchorPane.topAnchor="13.0" />
             <Label fx:id="errorLabel" layoutX="717.0" layoutY="12.0" text="missing information, please fill in to continue" textFill="RED" visible="false" />

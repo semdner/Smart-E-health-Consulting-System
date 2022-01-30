@@ -456,11 +456,21 @@ public class Database {
         return doctorList;
     }
 
-    public static String loadDoctorFromId(int doctorId) throws SQLException {
-        String query = "SELECT last_name FROM doctor WHERE doctor_id =" + doctorId;
+    public static Doctor loadDoctorFromId(int doctorId) throws SQLException {
+        String query = "SELECT * FROM doctor WHERE doctor_id =" + doctorId;
         PreparedStatement statement = connection.prepareStatement(query);
         ResultSet rs = statement.executeQuery();
-        return rs.getString("last_name");
+        double lat = Double.parseDouble(rs.getString("latitude"));
+        double lng = Double.parseDouble(rs.getString("longitude"));
+        LatLng location = new LatLng(lat, lng);
+        Doctor doctor = new Doctor(rs.getInt("doctor_id"),
+                rs.getString("first_name"),
+                rs.getString("last_name"),
+                rs.getString("street"),
+                rs.getString("zip"),
+                rs.getString("number"),
+                location);
+        return doctor;
     }
 
 
