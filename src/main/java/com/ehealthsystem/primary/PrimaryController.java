@@ -24,6 +24,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class PrimaryController implements Initializable {
@@ -93,6 +94,7 @@ public class PrimaryController implements Initializable {
         ArrayList<Appointment> appointments = Database.getUsersAppointments(Session.user.getUsername());
         int pastRow = 0;
         int upcomingRow = 0;
+        ArrayList<VBox> pastAppointmentBoxes = new ArrayList<>();
         for (int i = 0; i<appointments.size(); i++) {
             FXMLLoader fxmlloader = new FXMLLoader();
             fxmlloader.setLocation(getClass().getResource("/com/ehealthsystem/appointment/appointment-view.fxml"));
@@ -102,13 +104,19 @@ public class PrimaryController implements Initializable {
             AppointmentController appointment = fxmlloader.getController();
             appointment.setData(appointments.get(i));
             if(appointments.get(i).getDate().isBefore(LocalDate.now())) {
-                appointmentGridPane2.add(vbox, 0, pastRow);
-                pastRow++;
+                pastAppointmentBoxes.add(vbox);
             } else {
                 appointmentGridPane1.add(vbox, 0, upcomingRow);
                 upcomingRow++;
             }
         }
+
+        Collections.reverse(pastAppointmentBoxes); //show past appointments in reverse order (i.e. the latest one first, the oldest one last)
+        for (VBox pastAppointmentBox : pastAppointmentBoxes) {
+            appointmentGridPane2.add(pastAppointmentBox, 0, pastRow);
+            pastRow++;
+        }
+
         System.out.println("Users appointments: " + appointments.size());
     }
 
