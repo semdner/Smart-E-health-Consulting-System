@@ -62,8 +62,6 @@ public class PrimaryController implements Initializable {
     @FXML
     Button makeAppointmentButton2;
 
-    static String email;
-
     /**
      * First method called when scene is switched.
      * Used to set the user information form the database.
