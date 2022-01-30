@@ -195,7 +195,7 @@
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="235.0">
                                        <children>
-                                          <GridPane fx:id="appointmentGridPane1" layoutX="14.0" layoutY="14.0" prefWidth="225.0" AnchorPane.bottomAnchor="395.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                          <GridPane fx:id="upcomingAppointmentsGridPane" layoutX="14.0" layoutY="14.0" prefWidth="225.0" AnchorPane.bottomAnchor="395.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                             <columnConstraints>
                                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="225.0" prefWidth="225.0" />
                                             </columnConstraints>
@@ -227,7 +227,7 @@
                                  <content>
                                     <AnchorPane prefHeight="500.0" prefWidth="235.0">
                                        <children>
-                                          <GridPane fx:id="appointmentGridPane2" prefWidth="225.0" AnchorPane.bottomAnchor="395.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                          <GridPane fx:id="pastAppointmentsGridPane" prefWidth="225.0" AnchorPane.bottomAnchor="395.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                              <columnConstraints>
                                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="225.0" prefWidth="225.0" />
                                              </columnConstraints>

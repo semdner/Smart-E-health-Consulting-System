@@ -69,10 +69,10 @@ public class PrimaryController implements Initializable {
     Button makeAppointmentButton2;
 
     @FXML
-    GridPane appointmentGridPane1;
+    GridPane upcomingAppointmentsGridPane;
 
     @FXML
-    GridPane appointmentGridPane2;
+    GridPane pastAppointmentsGridPane;
 
     /**
      * First method called when scene is switched.
@@ -106,14 +106,14 @@ public class PrimaryController implements Initializable {
             if(appointments.get(i).getDate().isBefore(LocalDate.now())) {
                 pastAppointmentBoxes.add(vbox);
             } else {
-                appointmentGridPane1.add(vbox, 0, upcomingRow);
+                upcomingAppointmentsGridPane.add(vbox, 0, upcomingRow);
                 upcomingRow++;
             }
         }
 
         Collections.reverse(pastAppointmentBoxes); //show past appointments in reverse order (i.e. the latest one first, the oldest one last)
         for (VBox pastAppointmentBox : pastAppointmentBoxes) {
-            appointmentGridPane2.add(pastAppointmentBox, 0, pastRow);
+            pastAppointmentsGridPane.add(pastAppointmentBox, 0, pastRow);
             pastRow++;
         }
 
