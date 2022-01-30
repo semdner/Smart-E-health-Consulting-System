@@ -185,7 +185,7 @@
    <right>
       <TabPane prefHeight="575.0" prefWidth="250.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab text="upcoming">
+          <Tab fx:id="upcomingAppointments" text="upcoming">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -193,14 +193,14 @@
                            <children>
                               <ScrollPane hbarPolicy="NEVER" prefHeight="625.0" prefWidth="250.0" vbarPolicy="ALWAYS">
                                 <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="235.0">
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="235.0">
                                        <children>
-                                          <GridPane fx:id="appointmentGridPane" layoutX="14.0" layoutY="14.0" prefHeight="100.0" prefWidth="225.0" AnchorPane.bottomAnchor="395.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                          <GridPane fx:id="appointmentGridPane1" layoutX="14.0" layoutY="14.0" prefWidth="225.0" AnchorPane.bottomAnchor="395.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                             <columnConstraints>
-                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="225.0" prefWidth="225.0" />
                                             </columnConstraints>
                                             <rowConstraints>
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                           </GridPane>
                                        </children></AnchorPane>
@@ -217,7 +217,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="past appointments">
+          <Tab fx:id="pastAppointments" text="past appointments">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -225,7 +225,17 @@
                            <children>
                               <ScrollPane hbarPolicy="NEVER" prefHeight="625.0" prefWidth="250.0" vbarPolicy="ALWAYS">
                                  <content>
-                                    <AnchorPane prefHeight="500.0" prefWidth="235.0" />
+                                    <AnchorPane prefHeight="500.0" prefWidth="235.0">
+                                       <children>
+                                          <GridPane fx:id="appointmentGridPane2" prefWidth="225.0" AnchorPane.bottomAnchor="395.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="225.0" prefWidth="225.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                          </GridPane>
+                                       </children></AnchorPane>
                                  </content>
                               </ScrollPane>
                               <AnchorPane prefHeight="47.0" prefWidth="250.0">

@@ -75,7 +75,10 @@ public class PrimaryController implements Initializable {
     Button makeAppointmentButton2;
 
     @FXML
-    GridPane appointmentGridPane;
+    GridPane appointmentGridPane1;
+
+    @FXML
+    GridPane appointmentGridPane2;
 
     /**
      * First method called when scene is switched.
@@ -103,7 +106,11 @@ public class PrimaryController implements Initializable {
 
             AppointmentController appointment = fxmlloader.getController();
             appointment.setData(appointments.get(i));
-            appointmentGridPane.add(vbox, 0, 0);
+            if(appointments.get(i).getDate().isBefore(LocalDate.now())) {
+                appointmentGridPane2.add(vbox, 0, i);
+            } else {
+                appointmentGridPane1.add(vbox, 0, i);
+            }
         }
         System.out.println("Users appointments: " + appointments.size());
     }
