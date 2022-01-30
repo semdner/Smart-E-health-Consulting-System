@@ -2,20 +2,27 @@ package com.ehealthsystem.primary;
 
 import com.ehealthsystem.Main;
 import com.ehealthsystem.appointment.Appointment;
+import com.ehealthsystem.appointment.AppointmentController;
 import com.ehealthsystem.appointment.AppointmentInCreation;
 import com.ehealthsystem.database.Database;
+import com.ehealthsystem.doctor.FoundDoctorController;
 import com.ehealthsystem.pdf.CreatePDF;
 import com.ehealthsystem.pdf.fileChooserSave;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -67,6 +74,9 @@ public class PrimaryController implements Initializable {
     @FXML
     Button makeAppointmentButton2;
 
+    @FXML
+    GridPane appointmentGridPane;
+
     /**
      * First method called when scene is switched.
      * Used to set the user information form the database.
@@ -78,13 +88,23 @@ public class PrimaryController implements Initializable {
         loadUserDetails();
         try {
             loadUserAppointments();
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void loadUserAppointments() throws SQLException {
+    private void loadUserAppointments() throws SQLException, IOException {
         ArrayList<Appointment> appointments = Database.getUsersAppointments(Session.user.getUsername());
+        for (int i = 0; i<appointments.size(); i++) {
+            FXMLLoader fxmlloader = new FXMLLoader();
+            fxmlloader.setLocation(getClass().getResource("/com/ehealthsystem/appointment/appointment-view.fxml"));
+
+            VBox vbox = fxmlloader.load();
+
+            AppointmentController appointment = fxmlloader.getController();
+            appointment.setData(appointments.get(i));
+            appointmentGridPane.add(vbox, 0, 0);
+        }
         System.out.println("Users appointments: " + appointments.size());
     }
 
