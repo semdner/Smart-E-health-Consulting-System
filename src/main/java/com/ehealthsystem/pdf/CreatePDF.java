@@ -24,7 +24,7 @@ import java.util.List;
 public class CreatePDF {
 
     public static void create_Pdf(String dest) throws IOException, SQLException {
-        if(dest == " "){
+        if(dest.isBlank()){
             System.out.println("Saving PDFFile was cancelled!"); return;
         }
 

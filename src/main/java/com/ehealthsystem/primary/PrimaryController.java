@@ -1,5 +1,6 @@
 package com.ehealthsystem.primary;
 
+import com.ehealthsystem.Main;
 import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.appointment.AppointmentInCreation;
 import com.ehealthsystem.database.Database;
@@ -10,8 +11,12 @@ import com.ehealthsystem.tools.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -161,8 +166,8 @@ public class PrimaryController implements Initializable {
         SceneSwitch.switchTo(event, "primary/primary-edit-view.fxml", "Edit information");
     }
     
-    public void handlepdfButton(ActionEvent actionEvent) throws SQLException, IOException {
-        String dest = fileChooserSave.chooseDest();
+    public void handlepdfButton(ActionEvent event) throws SQLException, IOException {
+        String dest = fileChooserSave.chooseDest(Main.getPrimaryStage());
         CreatePDF.create_Pdf(dest);
     }
 }
