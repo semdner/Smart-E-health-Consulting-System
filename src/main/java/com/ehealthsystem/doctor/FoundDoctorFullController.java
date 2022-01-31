@@ -3,6 +3,7 @@ package com.ehealthsystem.doctor;
 import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.map.DoctorDistance;
+import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.tools.ReminderTime;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
@@ -165,9 +166,9 @@ public class FoundDoctorFullController {
     /**
      * load the doctor data into the Labels
      */
-    private void loadDoctorData() throws SQLException {
+    private void loadDoctorData() throws SQLException, IOException, InterruptedException, ApiException {
         doctorLabel.setText("Dr. " + doctor.getDoctor().getFirstName() + " " + doctor.getDoctor().getLastName());
-        addressLabel.setText(doctorGeoData);
+        addressLabel.setText(GeoCoder.geocode(doctorGeoData).formattedAddress);
         specializationsLabel.setText(StringEnumerator.enumerate(doctor.getDoctor().getSpecializations()));
     }
 
