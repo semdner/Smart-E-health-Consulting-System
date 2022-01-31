@@ -1,6 +1,7 @@
 package com.ehealthsystem.mail;
 
 import com.ehealthsystem.registration.RegistrationController;
+import com.ehealthsystem.registration.RegistrationValidationController;
 import com.ehealthsystem.tools.ResourceReader;
 
 import com.ehealthsystem.tools.SceneSwitch;
@@ -92,6 +93,7 @@ public class SendEmail {
 
         String validation = String.valueOf(code);
         SendEmail.sendMail(recipient,"Validation Email", validation);
+        RegistrationValidationController.setValidation(validation);
         /*
         //TODO Hier ein neues Fenster aufmachen und Validierungscode abfragen
         public void openValidation{

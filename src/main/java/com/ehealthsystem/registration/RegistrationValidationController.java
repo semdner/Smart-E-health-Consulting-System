@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 
 public class RegistrationValidationController {
 
-    String validation;
+    static String validation2;
 
     @FXML
     TextField codeTextField;
@@ -16,6 +16,8 @@ public class RegistrationValidationController {
     User newUser;
 
     public void start(User user) {
+        System.out.println(validation2);
+
         newUser = user;
     }
 
@@ -24,15 +26,15 @@ public class RegistrationValidationController {
     }
 
     public boolean validateCode() {
-        if(codeTextField.getText().equals(validation)) {
+        if(codeTextField.getText().equals(validation2)) {
             return true;
         } else {
             return false;
         }
     }
 
-    public void getValidation() {
-
+    public static void setValidation(String validation) {
+        validation2 = validation;
     }
 
 }
