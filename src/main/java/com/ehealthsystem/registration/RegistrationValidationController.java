@@ -1,6 +1,7 @@
 package com.ehealthsystem.registration;
 
 import com.ehealthsystem.database.Database;
+import com.ehealthsystem.mail.SendEmail;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.user.User;
@@ -8,7 +9,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -48,6 +51,14 @@ public class RegistrationValidationController {
         } else {
             return false;
         }
+    }
+
+    public void handleResendLabel(MouseEvent event) throws MessagingException {
+        SendEmail.validateEmail(newUser.getMail());
+    }
+
+    public void handleBackLabel(ActionEvent event) throws IOException {
+        SceneSwitch.switchToCentered(event, "registration/registration-view.fxml", "E-Health System");
     }
 
     public static void setValidation(String validation) {

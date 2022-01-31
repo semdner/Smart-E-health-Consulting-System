@@ -151,7 +151,6 @@ public class RegistrationController implements Initializable {
                                     insuranceNameTextField.getText(),
                                     privateInsuranceCheckBox.isSelected(),
                                     false);
-            System.out.println(newUser.getMail());
             SendEmail.validateEmail(newUser.getMail());
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/ehealthsystem/registration/registrationValidation-view.fxml"));

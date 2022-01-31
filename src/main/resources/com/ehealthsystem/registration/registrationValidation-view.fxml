@@ -40,12 +40,8 @@
                </cursor>
             </Label>
             <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="23.0" text="Invalid email format. Please try again" textFill="RED" visible="false" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
-            <Label layoutX="50.0" layoutY="100.0" text="Code" />
-            <Label fx:id="resendLabel" layoutX="247.0" layoutY="105.0" text="Resend code">
-               <font>
-                  <Font size="8.0" />
-               </font>
-            </Label>
+            <Label layoutX="50.0" layoutY="100.0" text="Code" AnchorPane.bottomAnchor="183.0" />
+            <Label fx:id="resendLabel" layoutX="216.0" layoutY="101.0" onMouseClicked="#handleResendLabel" text="Resend code" textFill="#949494" AnchorPane.bottomAnchor="183.0" />
          </children>
       </AnchorPane>
    </center>
