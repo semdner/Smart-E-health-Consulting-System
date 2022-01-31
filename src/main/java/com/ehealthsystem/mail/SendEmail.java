@@ -83,8 +83,6 @@ public class SendEmail {
     }
 
     public static void validateEmail(String recipient) throws MessagingException {
-        int[] a = new int[8]; //Größe natürlich beliebig
-        int oberGrenze = 10; //kannst wählen wie du willst
 
         int minimum = (int) Math.pow(10, 8 - 1); // minimum value with 2 digits is 10 (10^1)
         int maximum = (int) Math.pow(10, 8) - 1; // maximum value with 2 digits is 99 (10^2 - 1)
