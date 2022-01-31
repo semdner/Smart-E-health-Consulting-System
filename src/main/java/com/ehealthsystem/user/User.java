@@ -17,7 +17,7 @@ public class User {
     /**
      * Creates a new user object representing a row in the database
      * @param username
-     * @param insertIntoDb     
+     * @param insertIntoDb
      * true if this is a new user that is inserted to the database,
      * false if the object shall solely represent a user that is already saved in the database
      * or also false if object is for bridging the step from registration to email validation
