@@ -2,11 +2,13 @@ package com.ehealthsystem.appointment;
 
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.map.GeoCoder;
+import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import javafx.concurrent.Worker;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.web.WebEngine;
@@ -95,18 +97,20 @@ public class AppointmentMadeController {
                     String userFormattedAddress = GeoCoder.geocode(Session.user.getStreet() + ", " + Session.user.getHouseNo(), Session.user.getZipCode()).formattedAddress;
                     System.out.print(doctorGeoData);
                     engine.executeScript("setData(%s,%s,\"%s\",\"%s\",15)".formatted(loadedAppointment.getDoctor().getLocation().lat, loadedAppointment.getDoctor().getLocation().lng, userFormattedAddress, doctorGeoData));
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ApiException e) {
+                } catch (SQLException | InterruptedException | IOException | ApiException e) {
                     e.printStackTrace();
                 }
             }
         });
 
         engine.load(getClass().getResource("/com/ehealthsystem/map/map.html").toString());
+    }
+
+    public void handleShiftAppointmentButton() {
+
+    }
+
+    public void handleBackButton(ActionEvent event) throws IOException {
+        SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
     }
 }
