@@ -92,10 +92,7 @@ public class AppointmentMadeController {
             if (newState == Worker.State.SUCCEEDED) {
                 // new page has loaded, process:
                 try {
-                    System.out.println(loadedAppointment.getDoctor().getLocation().lat);
-                    System.out.println(loadedAppointment.getDoctor().getLocation().lng);
                     String userFormattedAddress = GeoCoder.geocode(Session.user.getStreet() + ", " + Session.user.getHouseNo(), Session.user.getZipCode()).formattedAddress;
-                    System.out.print(doctorGeoData);
                     engine.executeScript("setData(%s,%s,\"%s\",\"%s\",15)".formatted(loadedAppointment.getDoctor().getLocation().lat, loadedAppointment.getDoctor().getLocation().lng, userFormattedAddress, doctorGeoData));
                 } catch (SQLException | InterruptedException | IOException | ApiException e) {
                     e.printStackTrace();
