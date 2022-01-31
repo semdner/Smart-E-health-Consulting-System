@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 
 public class RegistrationValidationController {
@@ -53,7 +54,7 @@ public class RegistrationValidationController {
         }
     }
 
-    public void handleResendLabel(MouseEvent event) throws MessagingException {
+    public void handleResendLabel(MouseEvent event) throws MessagingException, UnsupportedEncodingException {
         SendEmail.validateEmail(newUser.getMail());
     }
 
