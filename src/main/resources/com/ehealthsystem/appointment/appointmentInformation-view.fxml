@@ -63,7 +63,7 @@
                   <DatePicker fx:id="datePicker" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="105.0" showWeekNumbers="true" GridPane.columnIndex="1" />
                   <Slider fx:id="searchDistanceSlider" focusTraversable="false" max="150.0" prefWidth="365.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="25.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="healthProblemField" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <ComboBox fx:id="doctorChoiceBox" focusTraversable="false" prefHeight="25.0" prefWidth="164.0" promptText="choose specializazion" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <ComboBox fx:id="doctorChoiceBox" focusTraversable="false" prefHeight="25.0" prefWidth="164.0" promptText="choose specialization" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
          </children>
