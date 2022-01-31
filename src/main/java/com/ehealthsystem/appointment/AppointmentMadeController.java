@@ -69,7 +69,7 @@ public class AppointmentMadeController {
 
     private String loadDoctorGeoData() throws SQLException, IOException, InterruptedException, ApiException {
         GeocodingResult doctorGeoData = GeoCoder.geocode(loadedAppointment.getDoctor().getStreet() + ", " + loadedAppointment.getDoctor().getNumber(), loadedAppointment.getDoctor().getZip());
-        return doctorGeoData.formattedAddress.toString();
+        return doctorGeoData.formattedAddress;
     }
 
     private void loadGMap() {
