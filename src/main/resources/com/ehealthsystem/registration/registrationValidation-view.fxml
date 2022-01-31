@@ -14,7 +14,7 @@
    <top>
       <AnchorPane prefHeight="150.0" prefWidth="350.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="79.0" layoutY="23.0" text="E-HEALTH&#10;SYSTEM" textAlignment="CENTER">
+            <Label layoutX="79.0" layoutY="23.0" text="E-HEALTH&#10;SYSTEM" textAlignment="CENTER" AnchorPane.leftAnchor="79.0" AnchorPane.rightAnchor="49.0">
                <font>
                   <Font name="System Bold" size="40.0" />
                </font>
@@ -26,7 +26,7 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="codeTextField" layoutX="50.0" layoutY="116.0" prefHeight="25.0" prefWidth="250.0" />
-            <Button fx:id="ContinueButton" layoutX="50.0" layoutY="151.0" mnemonicParsing="false" onAction="#handleLoginButton" prefWidth="250.0" text="Continue" />
+            <Button fx:id="ContinueButton" layoutX="50.0" layoutY="151.0" mnemonicParsing="false" onAction="#handleLoginButton" prefWidth="250.0" text="Registration" />
             <AnchorPane layoutX="51.0" layoutY="181.0">
                <children>
                   <Separator layoutY="9.0" prefHeight="0.0" prefWidth="250.0" />
@@ -34,14 +34,14 @@
                   <Label alignment="CENTER" layoutX="111.0" prefHeight="17.0" prefWidth="23.0" text="or" textFill="#cecece" />
                </children>
             </AnchorPane>
-            <Label fx:id="registrationLabel" layoutX="125.0" layoutY="201.0" onMouseClicked="#handleRegistrationLabel" text="Create account">
+            <Label fx:id="registrationLabel" layoutX="156.0" layoutY="201.0" onMouseClicked="#handleRegistrationLabel" prefHeight="16.0" prefWidth="35.0" text="back" AnchorPane.leftAnchor="157.0" AnchorPane.rightAnchor="157.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
             <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="23.0" text="Invalid email format. Please try again" textFill="RED" visible="false" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
             <Label layoutX="50.0" layoutY="100.0" text="Code" />
-            <Label layoutX="247.0" layoutY="105.0" text="Resend code">
+            <Label fx:id="resendLabel" layoutX="247.0" layoutY="105.0" text="Resend code">
                <font>
                   <Font size="8.0" />
                </font>

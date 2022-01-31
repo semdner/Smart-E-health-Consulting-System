@@ -64,7 +64,8 @@ public class SendEmail {
         properties.put("mail.smtp.port", "587");
 
         String myAccount = "testemailverteiler2@gmail.com";
-        String myPassword = ResourceReader.getResourceString("password.txt");
+        String myPassword = "FraUAS123";
+        //String myPassword = ResourceReader.getResourceString("FraUAS123");
 
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
@@ -78,7 +79,7 @@ public class SendEmail {
         Transport.send(message); // E-Mail senden!
     }
 
-    public void validateEmail(String recipient) throws MessagingException {
+    public static void validateEmail(String recipient) throws MessagingException {
         int[] a = new int[8]; //Größe natürlich beliebig
         int oberGrenze = 10; //kannst wählen wie du willst
 

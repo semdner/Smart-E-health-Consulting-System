@@ -1,5 +1,7 @@
 package com.ehealthsystem.registration;
 
+import com.ehealthsystem.doctor.FoundDoctorFullController;
+import com.ehealthsystem.mail.SendEmail;
 import com.ehealthsystem.tools.BirthdayCheck;
 import com.ehealthsystem.tools.EmailCheck;
 import com.ehealthsystem.tools.SceneSwitch;
@@ -8,11 +10,17 @@ import com.ehealthsystem.user.User;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -128,7 +136,7 @@ public class RegistrationController implements Initializable {
      * missing for registration
      * @param event event the Button reacts to
      */
-    public void handleRegistrationButton(ActionEvent event) throws IOException, SQLException {
+    public void handleRegistrationButton(ActionEvent event) throws IOException, SQLException, MessagingException {
         if(validateUsername() && validateEmail() && validateFirstname() && validateLastname() && validateStreet() && validateNumber() && validateZip() && validateBirthday() && validateGender() && validatePassword() && validateRepeatPassword() && validateInsuranceName()) {
             User newUser = new User(usernameTextField.getText(),
                                     emailTextField.getText(),
@@ -142,9 +150,23 @@ public class RegistrationController implements Initializable {
                                     passwordField.getText(),
                                     insuranceNameTextField.getText(),
                                     privateInsuranceCheckBox.isSelected(),
-                                    true);
-            Session.user = newUser;
-            SceneSwitch.switchToCentered(event, "primary/primary-view.fxml", "E-Health System");
+                                    false);
+            System.out.println(newUser.getMail());
+            SendEmail.validateEmail(newUser.getMail());
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/ehealthsystem/registration/registrationValidation-view.fxml"));
+            Parent root = loader.load();
+
+            RegistrationValidationController controller = loader.getController();
+            controller.start(newUser);
+
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene primaryScene = new Scene(root);
+            stage.setTitle("E-Health-System");
+            stage.setScene(primaryScene);
+
+            // Session.user = newUser;
+            // SceneSwitch.switchToCentered(event, "registration/registrationValidation-view.fxml", "E-Health System");
         } else {
             //showError("Sign up information wrong or missing");
             // Don't show this generic, not helpful error message,
