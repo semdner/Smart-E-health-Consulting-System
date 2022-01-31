@@ -30,6 +30,21 @@ public class GeoDistance {
         return DistanceMatrixApi.getDistanceMatrix(Context.getContext(), user, doctors).await();
     }
 
+    public static ArrayList<DoctorDistance> getDoctorsInRangeIndividualRequests(String userGeoData, double distance) throws SQLException, IOException, InterruptedException, ApiException {
+        ArrayList<Doctor> doctors = Database.getDoctors();
+        ArrayList<DoctorDistance> doctorsInRange = new ArrayList<>();
+
+        for (Doctor d : doctors) {
+            double resultDistance = (double)GeoDistance.getDistances(userGeoData, new String[]{d.getFormattedAddress()}).rows[0].elements[0].distance.inMeters/1000;
+
+            if(resultDistance <= distance) {
+                doctorsInRange.add(new DoctorDistance(resultDistance, d.getFormattedAddress(), d));
+            }
+        }
+
+        return doctorsInRange;
+    }
+
     /**
      * Get doctors that are in a specific range from the user, determining the distance using Google Maps DistanceMatrix API
      * @param userGeoData user location
@@ -40,7 +55,7 @@ public class GeoDistance {
      * @throws InterruptedException see getDistances()
      * @throws ApiException see getDistances()
      */
-    public static ArrayList<DoctorDistance> getDoctorsInRange(String userGeoData, double range) throws SQLException, IOException, InterruptedException, ApiException {
+    public static ArrayList<DoctorDistance> getDoctorsInRangeBatchRequest(String userGeoData, double range) throws SQLException, IOException, InterruptedException, ApiException {
         ArrayList<Doctor> doctors = Database.getDoctors();
 
         //Prepare distance request
@@ -118,7 +133,7 @@ public class GeoDistance {
         if (true) //run new algorithm
             a = Database.getDoctorFromDistance(addr, 1);
         else
-            a = getDoctorsInRange(addr, 1);
+            a = getDoctorsInRangeBatchRequest(addr, 1);
 
         long finish = System.currentTimeMillis();
         long timeElapsed = finish - start;

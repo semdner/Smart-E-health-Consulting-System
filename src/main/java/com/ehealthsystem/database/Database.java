@@ -424,21 +424,6 @@ public class Database {
         return users;
     }
 
-    public static ArrayList<DoctorDistance> getDoctorFromDistance(String userGeoData, double distance) throws SQLException, IOException, InterruptedException, ApiException {
-        ArrayList<Doctor> doctors = getDoctors();
-        ArrayList<DoctorDistance> doctorsInRange = new ArrayList<>();
-
-        for (Doctor d : doctors) {
-            double resultDistance = (double)GeoDistance.getDistances(userGeoData, new String[]{d.getFormattedAddress()}).rows[0].elements[0].distance.inMeters/1000;
-
-            if(resultDistance <= distance) {
-                doctorsInRange.add(new DoctorDistance(resultDistance, d.getFormattedAddress(), d));
-            }
-        }
-
-        return doctorsInRange;
-    }
-
     public static Doctor loadDoctorFromId(int doctorId) throws SQLException {
         String query = "SELECT * FROM doctor WHERE doctor_id = ?";
         PreparedStatement statement = connection.prepareStatement(query);
