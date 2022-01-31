@@ -63,15 +63,9 @@ public class AppointmentMadeController {
 
     private void loadDoctor() throws SQLException, IOException, InterruptedException, ApiException {
         doctorLabel.setText(loadedAppointment.getDoctor().getLastName());
-        doctorGeoData = loadDoctorGeoData();
+        doctorGeoData = GeoCoder.geocode(loadedAppointment.getDoctor().getFormattedAddress()).formattedAddress;
         addressLabel.setText(doctorGeoData);
         specializationsLabel.setText(StringEnumerator.enumerate(loadedAppointment.getDoctor().getSpecializations()));
-    }
-
-    private String loadDoctorGeoData() throws SQLException, IOException, InterruptedException, ApiException {
-        Doctor d = loadedAppointment.getDoctor();
-        GeocodingResult doctorGeoData = GeoCoder.geocode(d.getFormattedAddress());
-        return doctorGeoData.formattedAddress;
     }
 
     private void loadGMap() {
