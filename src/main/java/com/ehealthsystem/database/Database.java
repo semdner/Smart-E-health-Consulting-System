@@ -461,17 +461,7 @@ public class Database {
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, doctorId);
         ResultSet rs = statement.executeQuery();
-        double lat = Double.parseDouble(rs.getString("latitude"));
-        double lng = Double.parseDouble(rs.getString("longitude"));
-        LatLng location = new LatLng(lat, lng);
-        Doctor doctor = new Doctor(rs.getInt("doctor_id"),
-                rs.getString("first_name"),
-                rs.getString("last_name"),
-                rs.getString("street"),
-                rs.getString("number"),
-                rs.getString("zip"),
-                location);
-        return doctor;
+        return loadDoctorsFromResultSet(rs).get(0);
     }
 
     public static ArrayList<String> loadDoctorSpecializations(int id) throws SQLException {
