@@ -83,9 +83,10 @@ public class SendEmail {
     }
 
     public static void validateEmail(String recipient) throws MessagingException {
+        final int CODE_LENGTH = 8;
 
-        int minimum = (int) Math.pow(10, 8 - 1); // minimum value with 2 digits is 10 (10^1)
-        int maximum = (int) Math.pow(10, 8) - 1; // maximum value with 2 digits is 99 (10^2 - 1)
+        int minimum = (int) Math.pow(10, CODE_LENGTH - 1); // minimum value with 2 digits is 10 (10^1)
+        int maximum = (int) Math.pow(10, CODE_LENGTH) - 1; // maximum value with 2 digits is 99 (10^2 - 1)
         Random random = new Random();
         int code =  minimum + random.nextInt((maximum - minimum) + 1);
 
