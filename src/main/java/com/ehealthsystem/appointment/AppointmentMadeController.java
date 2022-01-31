@@ -79,7 +79,7 @@ public class AppointmentMadeController {
             if (newState == Worker.State.SUCCEEDED) {
                 // new page has loaded, process:
                 try {
-                    String userFormattedAddress = GeoCoder.geocode(Session.user.getStreet() + ", " + Session.user.getHouseNo(), Session.user.getZipCode()).formattedAddress;
+                    String userFormattedAddress = Session.getUserGeo().formattedAddress;
                     engine.executeScript("setData(%s,%s,\"%s\",\"%s\",15)".formatted(loadedAppointment.getDoctor().getLocation().lat, loadedAppointment.getDoctor().getLocation().lng, userFormattedAddress, doctorGeoData));
                 } catch (SQLException | InterruptedException | IOException | ApiException e) {
                     e.printStackTrace();

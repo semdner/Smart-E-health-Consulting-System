@@ -2,9 +2,12 @@ package com.ehealthsystem.tools;
 
 import com.ehealthsystem.appointment.AppointmentInCreation;
 import com.ehealthsystem.database.Database;
+import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.user.User;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.GeocodingResult;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class Session {
@@ -21,5 +24,11 @@ public class Session {
      */
     public static void loginUser(String email) throws SQLException {
         user = Database.getUserFromEmail(email);
+    }
+
+    public static GeocodingResult getUserGeo() throws IOException, InterruptedException, ApiException {
+        if (userGeo == null) //lazy-load, store
+            userGeo = GeoCoder.geocode(Session.user.getStreet() + " " + Session.user.getHouseNo(), Session.user.getZipCode());
+        return userGeo;
     }
 }
