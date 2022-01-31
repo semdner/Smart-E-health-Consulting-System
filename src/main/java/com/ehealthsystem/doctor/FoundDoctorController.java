@@ -33,7 +33,7 @@ public class FoundDoctorController {
     DoctorDistance doctor = new DoctorDistance();
     String doctorGeoData;
 
-    public void setData(DoctorDistance doctor, String doctorGeoData) throws IOException {
+    public void setData(DoctorDistance doctor, String doctorGeoData) {
         doctorLabel.setText(doctor.getDoctor().getLastName());
         addressLabel.setText(doctor.getDoctor().getStreet() + " " + doctor.getDoctor().getHouseNumber());
         zipLabel.setText(doctor.getDoctor().getZipCode());
