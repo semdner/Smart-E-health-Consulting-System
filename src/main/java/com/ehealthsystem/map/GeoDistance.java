@@ -30,14 +30,24 @@ public class GeoDistance {
         return DistanceMatrixApi.getDistanceMatrix(Context.getContext(), user, doctors).await();
     }
 
-    public static ArrayList<DoctorDistance> getDoctorsInRangeIndividualRequests(String userGeoData, double distance) throws SQLException, IOException, InterruptedException, ApiException {
+    /**
+     * Get doctors that are in a specific range from the user, determining the distance using Google Maps DistanceMatrix API, requests sent individually
+     * @param userGeoData user location
+     * @param range maximum distance, in km (DRIVING DISTANCE because Google Maps API)
+     * @return a list of doctors that are in the range
+     * @throws SQLException see getDoctors()
+     * @throws IOException see getDistances()
+     * @throws InterruptedException see getDistances()
+     * @throws ApiException see getDistances()
+     */
+    public static ArrayList<DoctorDistance> getDoctorsInRangeIndividualRequests(String userGeoData, double range) throws SQLException, IOException, InterruptedException, ApiException {
         ArrayList<Doctor> doctors = Database.getDoctors();
         ArrayList<DoctorDistance> doctorsInRange = new ArrayList<>();
 
         for (Doctor d : doctors) {
             double resultDistance = (double)GeoDistance.getDistances(userGeoData, new String[]{d.getFormattedAddress()}).rows[0].elements[0].distance.inMeters/1000;
 
-            if(resultDistance <= distance) {
+            if(resultDistance <= range) {
                 doctorsInRange.add(new DoctorDistance(resultDistance, d.getFormattedAddress(), d));
             }
         }
@@ -46,9 +56,9 @@ public class GeoDistance {
     }
 
     /**
-     * Get doctors that are in a specific range from the user, determining the distance using Google Maps DistanceMatrix API
+     * Get doctors that are in a specific range from the user, determining the distance using Google Maps DistanceMatrix API, sent in a single batch request
      * @param userGeoData user location
-     * @param range maximum distance, in km
+     * @param range maximum distance, in km (DRIVING DISTANCE because Google Maps API)
      * @return a list of doctors that are in the range
      * @throws SQLException see getDoctors()
      * @throws IOException see getDistances()
@@ -99,7 +109,7 @@ public class GeoDistance {
 
     /**
      * Get doctors that are in a specific range from the user, determining the distance using local calculation (Haversine formula)
-     * @return a list of doctors that are in the range
+     * @return a list of doctors that are in the range (LINEAR DISTANCE)
      * @throws SQLException see getDoctors()
      */
     public static ArrayList<DoctorDistance> getDoctorsInRangeWithLocalCalculation() throws SQLException, IOException, InterruptedException, ApiException {
