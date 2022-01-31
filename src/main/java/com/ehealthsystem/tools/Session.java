@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class Session {
     public static User user; //user that is currently logged in
     public static AppointmentInCreation appointment; //an appointment that is currently created
-    public static GeocodingResult userGeo;
+    private static GeocodingResult userGeo;
     public static final String datePatternUI = "dd.MM.yyyy"; //date pattern used in the UI
     public static final String timePatternUI = "H:mm"; //time pattern used in the UI
 
@@ -30,5 +30,9 @@ public class Session {
         if (userGeo == null) //lazy-load, store
             userGeo = GeoCoder.geocode(Session.user.getStreet() + " " + Session.user.getHouseNo(), Session.user.getZipCode());
         return userGeo;
+    }
+
+    public static void invalidateUserGeo() {
+        userGeo = null;
     }
 }

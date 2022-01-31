@@ -112,8 +112,8 @@ public class FoundDoctorFullController {
      * DEPRECATED: replaced by interactive route display: loadGMap()
      * Load a static map image using OpenStreetMap data into the webview
      */
-    private void loadOsmMap() {
-        LatLng user = Session.userGeo.geometry.location;
+    private void loadOsmMap() throws IOException, InterruptedException, ApiException {
+        LatLng user = Session.getUserGeo().geometry.location;
         LatLng[] bounds = getBoundsForImage(user, doctor.getDoctor().getLocation());
         WebEngine e = mapWebView.getEngine();
         e.load("https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=" +

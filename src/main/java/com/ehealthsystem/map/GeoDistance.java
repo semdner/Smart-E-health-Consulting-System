@@ -87,13 +87,13 @@ public class GeoDistance {
      * @return a list of doctors that are in the range
      * @throws SQLException see getDoctors()
      */
-    public static ArrayList<DoctorDistance> getDoctorsInRangeWithLocalCalculation() throws SQLException {
+    public static ArrayList<DoctorDistance> getDoctorsInRangeWithLocalCalculation() throws SQLException, IOException, InterruptedException, ApiException {
         double range = Session.appointment.getDistance();
         ArrayList<Doctor> doctors = Database.getDoctors(); //get doctors
         ArrayList<DoctorDistance> result = new ArrayList<>();
 
         for (Doctor d : doctors) { //loop through them
-            double distance = Haversine.distance(d.getLocation(), Session.userGeo.geometry.location);
+            double distance = Haversine.distance(d.getLocation(), Session.getUserGeo().geometry.location);
             if (distance <= range) //in range
                 result.add(new DoctorDistance(
                         distance,
