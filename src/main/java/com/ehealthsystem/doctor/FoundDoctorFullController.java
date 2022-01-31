@@ -305,7 +305,6 @@ public class FoundDoctorFullController {
             if (newState == Worker.State.SUCCEEDED) {
                 // new page has loaded, process:
                 LatLng docLoc = doctor.getDoctor().getLocation();
-
                 engine.executeScript("setData(%s,%s,\"%s\",\"%s\",15)".formatted(docLoc.lat, docLoc.lng, userGeoData, doctorGeoData));
             }
         });

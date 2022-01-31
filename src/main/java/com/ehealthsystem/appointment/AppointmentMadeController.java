@@ -89,14 +89,21 @@ public class AppointmentMadeController {
         engine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> { //https://stackoverflow.com/a/30178571
             if (newState == Worker.State.SUCCEEDED) {
                 // new page has loaded, process:
-                LatLng docLoc = null;
                 try {
-                    docLoc = loadedAppointment.getDoctor().getLocation();
+                    System.out.println(loadedAppointment.getDoctor().getLocation().lat);
+                    System.out.println(loadedAppointment.getDoctor().getLocation().lng);
+                    String userFormattedAddress = GeoCoder.geocode(Session.user.getStreet() + ", " + Session.user.getHouseNo(), Session.user.getZipCode()).formattedAddress;
+                    System.out.print(doctorGeoData);
+                    engine.executeScript("setData(%s,%s,\"%s\",\"%s\",15)".formatted(loadedAppointment.getDoctor().getLocation().lat, loadedAppointment.getDoctor().getLocation().lng, userFormattedAddress, doctorGeoData));
                 } catch (SQLException e) {
                     e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ApiException e) {
+                    e.printStackTrace();
                 }
-
-                engine.executeScript("setData(%s,%s,\"%s\",\"%s\",15)".formatted(docLoc.lat, docLoc.lng, Session.userGeo, doctorGeoData));
             }
         });
 
