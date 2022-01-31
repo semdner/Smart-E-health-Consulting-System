@@ -13,7 +13,7 @@ public class Specialization {
     }
 
     public void setSpecializationList() throws SQLException {
-        specializationList = Database.loadSpecialization();
+        specializationList = Database.loadSpecializations();
     }
 
     public ArrayList<String> getSpecializationList() {

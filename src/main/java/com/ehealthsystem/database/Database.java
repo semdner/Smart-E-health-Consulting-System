@@ -486,7 +486,7 @@ public class Database {
         return specialization;
     }
 
-    public static ArrayList<String> loadSpecialization() throws SQLException {
+    public static ArrayList<String> loadSpecializations() throws SQLException {
         String query = "SELECT * FROM category";
         PreparedStatement statement = connection.prepareStatement(query);
         ResultSet rs = statement.executeQuery();
