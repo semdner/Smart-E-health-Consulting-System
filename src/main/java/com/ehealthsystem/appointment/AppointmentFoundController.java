@@ -37,12 +37,11 @@ public class AppointmentFoundController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            String userGeoData = Session.getUserGeo().formattedAddress;
             ArrayList<DoctorDistance> doctorList = GeoDistance.getDoctorsInRangeWithLocalCalculation();
             if(doctorList.isEmpty()) {
                 errorLabel.setVisible(true);
             } else {
-                loadDoctors(doctorList, userGeoData);
+                loadDoctors(doctorList);
             }
         } catch (SQLException | ApiException | InterruptedException | IOException e) {
             e.printStackTrace();
@@ -55,7 +54,7 @@ public class AppointmentFoundController implements Initializable {
      * @param userGeoData
      * @throws IOException
      */
-    private void loadDoctors(ArrayList<DoctorDistance> doctorList, String userGeoData) throws IOException {
+    private void loadDoctors(ArrayList<DoctorDistance> doctorList) throws IOException {
         int row = 0;
         int column = 0;
         for(int i = 0; i<doctorList.size(); i++) {
@@ -65,7 +64,7 @@ public class AppointmentFoundController implements Initializable {
             VBox vbox = fxmlloader.load();
 
             FoundDoctorController doctor = fxmlloader.getController();
-            doctor.setData(doctorList.get(i), doctorList.get(i).getGeoData(), userGeoData);
+            doctor.setData(doctorList.get(i), doctorList.get(i).getGeoData());
 
             if(column == 3) {
                 column = 0;

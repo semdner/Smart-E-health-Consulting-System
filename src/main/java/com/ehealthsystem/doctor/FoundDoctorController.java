@@ -1,6 +1,7 @@
 package com.ehealthsystem.doctor;
 
 import com.ehealthsystem.map.DoctorDistance;
+import com.ehealthsystem.tools.Session;
 import com.google.maps.errors.ApiException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,15 +31,13 @@ public class FoundDoctorController {
     private Button showMoreButton;
 
     DoctorDistance doctor = new DoctorDistance();
-    String userGeoData;
     String doctorGeoData;
 
-    public void setData(DoctorDistance doctor, String doctorGeoData, String userGeoData) throws IOException {
+    public void setData(DoctorDistance doctor, String doctorGeoData) throws IOException {
         doctorLabel.setText(doctor.getDoctor().getLastName());
         addressLabel.setText(doctor.getDoctor().getStreet() + " " + doctor.getDoctor().getNumber());
         zipLabel.setText(doctor.getDoctor().getZip());
         this.doctor = doctor;
-        this.userGeoData = userGeoData;
         this.doctorGeoData = doctorGeoData;
     }
 
@@ -57,7 +56,7 @@ public class FoundDoctorController {
         FoundDoctorFullController controller = loader.getController();
         controller.setDoctor(doctor);
         controller.setDoctorGeoData(doctorGeoData);
-        controller.setUserGeoData(userGeoData);
+        controller.setUserGeoData(Session.getUserGeo().formattedAddress);
         controller.start();
 
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
