@@ -468,8 +468,8 @@ public class Database {
                 rs.getString("first_name"),
                 rs.getString("last_name"),
                 rs.getString("street"),
-                rs.getString("zip"),
                 rs.getString("number"),
+                rs.getString("zip"),
                 location);
         return doctor;
     }
