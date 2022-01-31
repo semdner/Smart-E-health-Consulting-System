@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 public class RegistrationValidationController {
 
-    static String validation2;
+    static String validation;
 
     @FXML
     TextField codeTextField;
@@ -26,7 +26,7 @@ public class RegistrationValidationController {
     String password;
 
     public void start(User user, String password) {
-        System.out.println(validation2);
+        System.out.println(validation);
         this.password = password;
         newUser = user;
     }
@@ -57,7 +57,7 @@ public class RegistrationValidationController {
     }
 
     public boolean validateCode() {
-        if(codeTextField.getText().equals(validation2)) {
+        if(codeTextField.getText().equals(validation)) {
             return true;
         } else {
             return false;
@@ -65,7 +65,7 @@ public class RegistrationValidationController {
     }
 
     public static void setValidation(String validation) {
-        validation2 = validation;
+        RegistrationValidationController.validation = validation;
     }
 
 }
