@@ -141,7 +141,7 @@ public class GeoDistance {
         ArrayList<DoctorDistance> a = null;
         String addr = "Alfred-Brehm-Platz 15, 60316";
         if (true) //run new algorithm
-            a = Database.getDoctorFromDistance(addr, 1);
+            a = getDoctorsInRangeIndividualRequests(addr, 1);
         else
             a = getDoctorsInRangeBatchRequest(addr, 1);
 
