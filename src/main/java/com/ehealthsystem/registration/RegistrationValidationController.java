@@ -30,7 +30,6 @@ public class RegistrationValidationController {
     String password;
 
     public void start(User user, String password) {
-        System.out.println(validation);
         this.password = password;
         newUser = user;
     }
