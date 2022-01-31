@@ -94,6 +94,18 @@ public class SendEmail {
         String validation = String.valueOf(code);
         SendEmail.sendMail(recipient,"Validation Email", validation);
         RegistrationValidationController.setValidation(validation);
+        /*
+        //TODO Hier ein neues Fenster aufmachen und Validierungscode abfragen
+        public void openValidation{
+            if(validation == validation){
+                private void loadPrimaryWindow(Event event) throws IOException, SQLException {
+                    com.ehealthsystem.tools.Session.loginUser(emailTextField.getText());
+                    SceneSwitch.switchToCentered(event, "primary/primary-view.fxml", "E-Health System");
+                }
+                }else{
+                //TODO Erneut abfragen oder Email neu senden???
+            }
+        }*/
     }
         // Prepare Message with Attachment to send pdf of Health Informations
     public static Message prepareMessageWithAttachment(Session session, String myAccount, String recipient, String subject, String textContent, String filename ) throws MessagingException {
