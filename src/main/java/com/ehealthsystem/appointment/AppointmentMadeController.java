@@ -11,6 +11,7 @@ import com.google.maps.model.GeocodingResult;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -85,8 +86,8 @@ public class AppointmentMadeController {
         engine.load(getClass().getResource("/com/ehealthsystem/map/map.html").toString());
     }
 
-    public void handleShiftAppointmentButton() {
-
+    public void handleShiftAppointmentButton(ActionEvent event) throws IOException {
+        SceneSwitch.switchTo(event, "appointment/appointment-shift.fxml","E-Health System");
     }
 
     public void handleBackButton(ActionEvent event) throws IOException {
