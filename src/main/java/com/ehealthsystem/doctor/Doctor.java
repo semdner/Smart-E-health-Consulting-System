@@ -1,6 +1,10 @@
 package com.ehealthsystem.doctor;
 
+import com.ehealthsystem.database.Database;
 import com.google.maps.model.LatLng;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Doctor {
     int id;
@@ -48,5 +52,9 @@ public class Doctor {
 
     public LatLng getLocation() {
         return location;
+    }
+
+    public ArrayList<String> getSpecializations() throws SQLException {
+        return Database.loadDoctorSpecializations(id); //lazy-load and also don't store
     }
 }

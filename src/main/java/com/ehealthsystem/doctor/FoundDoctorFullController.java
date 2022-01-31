@@ -168,7 +168,7 @@ public class FoundDoctorFullController {
     private void loadDoctorData() throws SQLException {
         doctorLabel.setText("Dr. " + doctor.getDoctor().getFirstName() + " " + doctor.getDoctor().getLastName());
         addressLabel.setText(doctorGeoData);
-        specializationsLabel.setText(StringEnumerator.enumerate(Database.loadDoctorSpecializations(doctor.getDoctor().getId())));
+        specializationsLabel.setText(StringEnumerator.enumerate(doctor.getDoctor().getSpecializations()));
     }
 
     /**

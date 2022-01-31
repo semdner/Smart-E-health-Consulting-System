@@ -64,7 +64,7 @@ public class AppointmentMadeController {
         doctorLabel.setText(loadedAppointment.getDoctor().getLastName());
         doctorGeoData = loadDoctorGeoData();
         addressLabel.setText(doctorGeoData);
-        specializationsLabel.setText(StringEnumerator.enumerate(Database.loadDoctorSpecializations(loadedAppointment.getDoctor().getId())));
+        specializationsLabel.setText(StringEnumerator.enumerate(loadedAppointment.getDoctor().getSpecializations()));
     }
 
     private String loadDoctorGeoData() throws SQLException, IOException, InterruptedException, ApiException {
