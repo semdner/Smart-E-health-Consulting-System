@@ -144,11 +144,11 @@ public class GeoDistance {
         //comment out everything but the one you want to measure
 
         //Methods using Google Maps requests take 1.3 - 5 s in total each
-        //a = getDoctorsInRangeIndividualRequests(addr, 1);
-        //a = getDoctorsInRangeBatchRequest(addr, 1);
+        a = getDoctorsInRangeIndividualRequests(addr, 1);
+        a = getDoctorsInRangeBatchRequest(addr, 1);
 
         //local calculation is noticably faster (0-15 ms total time) but UI is somehow still slow:
-        //a = getDoctorsInRangeWithLocalCalculation(new LatLng(50.11645, 8.69815), 1);
+        a = getDoctorsInRangeWithLocalCalculation(new LatLng(50.11645, 8.69815), 1);
 
         long finish = System.currentTimeMillis();
         long timeElapsed = finish - start;
