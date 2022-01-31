@@ -260,7 +260,7 @@ public class PrimaryEditController implements Initializable {
         setFirstNameTextField(currentUser.getFirstName());
         setLastNameTextField(currentUser.getLastName());
         setStreetTextField(currentUser.getStreet());
-        setHouseNoTextField(currentUser.getHouseNo());
+        setHouseNoTextField(currentUser.getHouseNumber());
         setZipTextField(currentUser.getZipCode());
         loadBirthday(currentUser.getBirthDate());
         setGenderTextField(currentUser.getGender());

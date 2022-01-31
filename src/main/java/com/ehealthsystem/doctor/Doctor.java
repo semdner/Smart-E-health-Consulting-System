@@ -1,12 +1,13 @@
 package com.ehealthsystem.doctor;
 
 import com.ehealthsystem.database.Database;
+import com.ehealthsystem.tools.HasAddress;
 import com.google.maps.model.LatLng;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Doctor {
+public class Doctor implements HasAddress {
     int id;
     String firstName, lastName, street, number;
     String zip;
@@ -42,16 +43,12 @@ public class Doctor {
         return street;
     }
 
-    public String getNumber() {
+    public String getHouseNumber() {
         return number;
     }
 
-    public String getZip() {
+    public String getZipCode() {
         return zip;
-    }
-
-    public String getFormattedAddress() {
-        return "%s %s, %s".formatted(street, number, zip);
     }
 
     public LatLng getLocation() {

@@ -1,13 +1,14 @@
 package com.ehealthsystem.user;
 
 import com.ehealthsystem.database.Database;
+import com.ehealthsystem.tools.HasAddress;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class User {
+public class User implements HasAddress {
     private String username, email, firstName, lastName, street, houseNo, gender;
     private String zipCode;
     private LocalDate birthDate;
@@ -192,12 +193,8 @@ public class User {
         return street;
     }
 
-    public String getHouseNo() {
+    public String getHouseNumber() {
         return houseNo;
-    }
-
-    public String getFormattedAddress() {
-        return "%s %s, %s".formatted(street, houseNo, zipCode);
     }
 
     public String getGender() {

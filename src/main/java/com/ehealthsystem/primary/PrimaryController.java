@@ -130,7 +130,7 @@ public class PrimaryController implements Initializable {
         setFirstNameLabel(Session.user.getFirstName());
         setLastNameLabel(Session.user.getLastName());
         setStreetLabel(Session.user.getStreet());
-        setHouseNoLabel(Session.user.getHouseNo());
+        setHouseNoLabel(Session.user.getHouseNumber());
         setZipLabel(Session.user.getZipCode());
         setBirthdayLabel(Session.user.getBirthDate());
         setGenderLabel(Session.user.getGender());

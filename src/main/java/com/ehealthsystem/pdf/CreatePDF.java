@@ -12,10 +12,7 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.border.Border;
 import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.property.TabAlignment;
-import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -124,7 +121,7 @@ public class CreatePDF {
     private static void PersonalData2(Table table) {
         table.addCell(new Cell().add("Address: ").setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(Session.user.getStreet()).setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(Session.user.getHouseNo()).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(Session.user.getHouseNumber()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add("Birthday: ").setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(String.valueOf(Session.user.getBirthDate())).setBorder(Border.NO_BORDER));
     }

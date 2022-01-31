@@ -100,7 +100,7 @@ public class AppointmentUserController implements Initializable {
         loadFirstName(currentUser.getFirstName());
         loadLastName(currentUser.getLastName());
         loadStreet(currentUser.getStreet());
-        loadHouseNo(currentUser.getHouseNo());
+        loadHouseNo(currentUser.getHouseNumber());
         loadZip(currentUser.getZipCode());
         loadBirthday(currentUser.getBirthDate());
         loadGender(currentUser.getGender());
