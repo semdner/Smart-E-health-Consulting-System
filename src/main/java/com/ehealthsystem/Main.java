@@ -2,14 +2,20 @@ package com.ehealthsystem;
 
 import com.ehealthsystem.database.Database;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Main extends Application {
@@ -55,18 +61,25 @@ public class Main extends Application {
 
     /**
      * Ask the user for an initial admin password when creating the database
-     * TODO To be replaced with GUI dialog
      * @return desired admin password entered by the user
      */
     private static String initialAdminPassword()
     {
-        System.out.println("Please enter your desired admin password: ");
+        TextInputDialog dialog = new TextInputDialog("");
 
-        Scanner in = new Scanner(System.in);
-        String password = in.nextLine();
-        in.close();
+        dialog.setTitle("Setup");
+        dialog.setHeaderText("Please enter your desired administrator password");
+        dialog.setContentText("Password:");
 
-        return password;
+        Optional<String> result = dialog.showAndWait();
+
+        var input = new Object() {
+            String value = "";
+        };
+        result.ifPresentOrElse(password -> input.value = password, () -> System.exit(0));
+
+        System.out.println(input.value);
+        return input.value;
     }
 
     public static Stage getPrimaryStage() {
