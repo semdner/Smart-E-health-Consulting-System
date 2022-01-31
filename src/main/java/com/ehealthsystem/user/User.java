@@ -51,7 +51,7 @@ public class User {
      * @param password
      * @throws SQLException
      */
-    private void insertIntoDb(String password) throws SQLException {
+    public void insertIntoDb(String password) throws SQLException {
         Object[][] parameters = {
                 {"username", username},
                 {"email", email},

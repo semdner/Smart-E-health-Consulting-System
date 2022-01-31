@@ -34,21 +34,7 @@ public class RegistrationValidationController {
     public void handleRegistrationButton(ActionEvent event) throws SQLException, IOException {
         if(validateCode()) {
             Session.user = newUser;
-            Object[][] parameters = {
-                    {"username", Session.user.getUsername()},
-                    {"email", Session.user.getMail()},
-                    {"first_name", Session.user.getFirstName()},
-                    {"last_name", Session.user.getLastName()},
-                    {"street", Session.user.getStreet()},
-                    {"number", Session.user.getHouseNo()},
-                    {"zip", Session.user.getZipCode()},
-                    {"birthday", Session.user.getBirthDate()},
-                    {"sex", Session.user.getGender()},
-                    {"password", Database.hashPassword(password)},
-                    {"insurance_name", Session.user.getInsuranceName()},
-                    {"private_insurance", Session.user.isPrivateInsurance()},
-            };
-            Database.insert("user", parameters);
+            newUser.insertIntoDb(password);
             SceneSwitch.switchToCentered(event, "primary/primary-view.fxml", "E-Health System");
         } else {
             errorLabel.setText("Invalid code");
