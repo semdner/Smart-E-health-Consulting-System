@@ -56,7 +56,7 @@ public class FoundDoctorController {
         FoundDoctorFullController controller = loader.getController();
         controller.setDoctor(doctor);
         controller.setDoctorGeoData(doctorGeoData);
-        controller.setUserGeoData(Session.getUserGeo().formattedAddress);
+        controller.setUserGeoData(Session.user.getFormattedAddress());
         controller.start();
 
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
