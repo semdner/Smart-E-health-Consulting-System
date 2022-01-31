@@ -425,35 +425,18 @@ public class Database {
     }
 
     public static ArrayList<DoctorDistance> getDoctorFromDistance(String userGeoData, double distance) throws SQLException, IOException, InterruptedException, ApiException {
-        String query = "SELECT * FROM doctor;";
-        PreparedStatement statement = connection.prepareStatement(query);
-        ResultSet rs = statement.executeQuery();
+        ArrayList<Doctor> doctors = getDoctors();
+        ArrayList<DoctorDistance> doctorsInRange = new ArrayList<>();
 
-        ArrayList<DoctorDistance> doctorList = new ArrayList<>();
-        String address = null;
-
-        while(rs.next()) {
-            address = rs.getString("street") + " " + rs.getString("number") + ", " + rs.getString("zip");
-
-            double resultDistance = (double)GeoDistance.getDistances(userGeoData, new String[]{address}).rows[0].elements[0].distance.inMeters/1000;
+        for (Doctor d : doctors) {
+            double resultDistance = (double)GeoDistance.getDistances(userGeoData, new String[]{d.getFormattedAddress()}).rows[0].elements[0].distance.inMeters/1000;
 
             if(resultDistance <= distance) {
-                doctorList.add(new DoctorDistance(
-                        resultDistance,
-                        address,
-                        new Doctor(
-                                rs.getInt("doctor_id"),
-                                rs.getString("first_name"),
-                                rs.getString("last_name"),
-                                rs.getString("street"),
-                                rs.getString("number"),
-                                rs.getString("zip"),
-                                new LatLng(rs.getDouble("latitude"), rs.getDouble("longitude"))
-                        )
-                ));
+                doctorsInRange.add(new DoctorDistance(resultDistance, d.getFormattedAddress(), d));
             }
         }
-        return doctorList;
+
+        return doctorsInRange;
     }
 
     public static Doctor loadDoctorFromId(int doctorId) throws SQLException {
