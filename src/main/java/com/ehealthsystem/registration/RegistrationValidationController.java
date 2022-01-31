@@ -17,7 +17,7 @@ import java.sql.SQLException;
 
 public class RegistrationValidationController {
 
-    static String validation2;
+    static String validation;
 
     @FXML
     TextField codeTextField;
@@ -29,7 +29,7 @@ public class RegistrationValidationController {
     String password;
 
     public void start(User user, String password) {
-        System.out.println(validation2);
+        System.out.println(validation);
         this.password = password;
         newUser = user;
     }
@@ -37,21 +37,7 @@ public class RegistrationValidationController {
     public void handleRegistrationButton(ActionEvent event) throws SQLException, IOException {
         if(validateCode()) {
             Session.user = newUser;
-            Object[][] parameters = {
-                    {"username", Session.user.getUsername()},
-                    {"email", Session.user.getMail()},
-                    {"first_name", Session.user.getFirstName()},
-                    {"last_name", Session.user.getLastName()},
-                    {"street", Session.user.getStreet()},
-                    {"number", Session.user.getHouseNo()},
-                    {"zip", Session.user.getZipCode()},
-                    {"birthday", Session.user.getBirthDate()},
-                    {"sex", Session.user.getGender()},
-                    {"password", Database.hashPassword(password)},
-                    {"insurance_name", Session.user.getInsuranceName()},
-                    {"private_insurance", Session.user.isPrivateInsurance()},
-            };
-            Database.insert("user", parameters);
+            newUser.insertIntoDb(password);
             SceneSwitch.switchToCentered(event, "primary/primary-view.fxml", "E-Health System");
         } else {
             errorLabel.setText("Invalid code");
@@ -60,7 +46,7 @@ public class RegistrationValidationController {
     }
 
     public boolean validateCode() {
-        if(codeTextField.getText().equals(validation2)) {
+        if(codeTextField.getText().equals(validation)) {
             return true;
         } else {
             return false;
@@ -76,7 +62,7 @@ public class RegistrationValidationController {
     }
 
     public static void setValidation(String validation) {
-        validation2 = validation;
+        RegistrationValidationController.validation = validation;
     }
 
 }
