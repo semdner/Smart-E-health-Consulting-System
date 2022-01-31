@@ -9,6 +9,7 @@ import javafx.event.Event;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.Random;
 import javax.activation.FileDataSource;
 import javax.activation.DataHandler;
 import javax.mail.Authenticator;
@@ -25,6 +26,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 public class SendEmail {
+
     public static Message prepareMessage(Session session, String myAccount, String recipient, String subject, String textContent) throws MessagingException {
         Message message = new MimeMessage(session);
 
@@ -83,10 +85,12 @@ public class SendEmail {
         int[] a = new int[8]; //Größe natürlich beliebig
         int oberGrenze = 10; //kannst wählen wie du willst
 
-        for(int i = 0; i<a.length; i++) {
-            a[i] = (int)(Math.random()*oberGrenze); //casten nicht vergessen!
-        }
-        String validation = a.toString();
+        int minimum = (int) Math.pow(10, 8 - 1); // minimum value with 2 digits is 10 (10^1)
+        int maximum = (int) Math.pow(10, 8) - 1; // maximum value with 2 digits is 99 (10^2 - 1)
+        Random random = new Random();
+        int code =  minimum + random.nextInt((maximum - minimum) + 1);
+
+        String validation = String.valueOf(code);
         SendEmail.sendMail(recipient,"Validation Email", validation);
         /*
         //TODO Hier ein neues Fenster aufmachen und Validierungscode abfragen

@@ -26,7 +26,7 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="codeTextField" layoutX="50.0" layoutY="116.0" prefHeight="25.0" prefWidth="250.0" />
-            <Button fx:id="ContinueButton" layoutX="50.0" layoutY="151.0" mnemonicParsing="false" prefWidth="250.0" text="Registration" />
+            <Button fx:id="ContinueButton" layoutX="50.0" layoutY="151.0" mnemonicParsing="false" onAction="#handleRegistrationButton" prefWidth="250.0" text="Registration" />
             <AnchorPane layoutX="51.0" layoutY="181.0">
                <children>
                   <Separator layoutY="9.0" prefHeight="0.0" prefWidth="250.0" />
