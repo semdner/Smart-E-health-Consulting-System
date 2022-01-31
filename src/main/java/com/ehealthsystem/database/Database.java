@@ -474,6 +474,16 @@ public class Database {
         return doctor;
     }
 
+    public static ArrayList<String> loadDoctorSpecialization(int id) throws SQLException {
+        String query = "SELECT c.category FROM doctor_category AS dc LEFT JOIN category AS c on dc.category_id = c.category_id WHERE dc.doctor_id = " + id + ";";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+        ArrayList<String> specialization = new ArrayList<>();
+        while (rs.next()) {
+            specialization.add(rs.getString("category"));
+        }
+        return specialization;
+    }
 
     public static ArrayList<String> loadSpecialization() throws SQLException {
         String query = "SELECT * FROM category";

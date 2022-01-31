@@ -1,13 +1,21 @@
 package com.ehealthsystem.appointment;
 
 import com.ehealthsystem.database.Database;
+import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.tools.Session;
+import com.google.maps.errors.ApiException;
+import com.google.maps.model.GeocodingResult;
+import com.google.maps.model.LatLng;
+import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class AppointmentMadeController {
 
@@ -29,15 +37,69 @@ public class AppointmentMadeController {
     @FXML
     Label healthProblemLabel;
 
-    public void start() {
-        // not done yet
-    }
+    @FXML
+    WebView mapWebView;
 
-    private void setDoctor() {
-        // not done yet
+    Appointment loadedAppointment;
+    String doctorGeoData;
+
+    public void start(Appointment appointment) throws SQLException, IOException, InterruptedException, ApiException {
+        loadedAppointment = appointment;
+        loadAppointment();
+        loadDoctor();
+        loadGMap();
     }
 
     private void loadAppointment() {
-        // not done yet
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        dateLabel.setText(loadedAppointment.getDate().format(dateTimeFormatter));
+        System.out.println(dateLabel.getText() + " " + loadedAppointment.getDate());
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+        timeLabel.setText(loadedAppointment.getTime().format(timeFormatter));
+        healthProblemLabel.setText(loadedAppointment.getHealthProblemDescription());
+    }
+
+    private void loadDoctor() throws SQLException, IOException, InterruptedException, ApiException {
+        doctorLabel.setText(loadedAppointment.getDoctor().getLastName());
+        doctorGeoData = loadDoctorGeoData();
+        addressLabel.setText(doctorGeoData);
+        specializationLabel.setText(formatSpecializations(Database.loadDoctorSpecialization(loadedAppointment.getDoctor().getId())));
+    }
+
+    private String formatSpecializations(ArrayList<String> doctorSpecializations) {
+        StringBuilder specializations = new StringBuilder();
+        for (int i = 0; i < doctorSpecializations.size(); i++) {
+            if (doctorSpecializations.size()-1 == i) {
+                specializations.append(doctorSpecializations.get(i));
+            } else {
+                specializations.append(doctorSpecializations.get(i)).append(", ");
+            }
+        }
+        return specializations.toString();
+    }
+
+    private String loadDoctorGeoData() throws SQLException, IOException, InterruptedException, ApiException {
+        GeocodingResult doctorGeoData = GeoCoder.geocode(loadedAppointment.getDoctor().getStreet() + ", " + loadedAppointment.getDoctor().getNumber(), loadedAppointment.getDoctor().getZip());
+        return doctorGeoData.formattedAddress.toString();
+    }
+
+    private void loadGMap() {
+        WebEngine engine = mapWebView.getEngine();
+
+        engine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> { //https://stackoverflow.com/a/30178571
+            if (newState == Worker.State.SUCCEEDED) {
+                // new page has loaded, process:
+                LatLng docLoc = null;
+                try {
+                    docLoc = loadedAppointment.getDoctor().getLocation();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+                engine.executeScript("setData(%s,%s,\"%s\",\"%s\",15)".formatted(docLoc.lat, docLoc.lng, Session.userGeo, doctorGeoData));
+            }
+        });
+
+        engine.load(getClass().getResource("/com/ehealthsystem/map/map.html").toString());
     }
 }

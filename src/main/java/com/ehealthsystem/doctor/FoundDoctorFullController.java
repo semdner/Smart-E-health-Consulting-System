@@ -164,9 +164,22 @@ public class FoundDoctorFullController {
     /**
      * load the doctor data into the Labels
      */
-    private void loadDoctorData() {
+    private void loadDoctorData() throws SQLException {
         doctorLabel.setText("Dr. " + doctor.getDoctor().getFirstName() + " " + doctor.getDoctor().getLastName());
         addressLabel.setText(doctorGeoData);
+        specializationLabel.setText(formatSpecializations(Database.loadDoctorSpecialization(doctor.getDoctor().getId())));
+    }
+
+    private String formatSpecializations(ArrayList<String> doctorSpecializations) {
+        StringBuilder specializations = new StringBuilder();
+        for (int i = 0; i < doctorSpecializations.size(); i++) {
+            if (doctorSpecializations.size()-1 == i) {
+                specializations.append(doctorSpecializations.get(i));
+            } else {
+                specializations.append(doctorSpecializations.get(i)).append(", ");
+            }
+        }
+        return specializations.toString();
     }
 
     /**
