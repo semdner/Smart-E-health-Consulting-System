@@ -88,9 +88,12 @@ public class SendEmail {
         Random random = new Random();
         int code =  minimum + random.nextInt((maximum - minimum) + 1);
 
-        String validation = String.valueOf(code);
+        String validation = "Your confirmation code is %s.\n".formatted(code) +
+                "\n" +
+                "Details:\n" +
+                "An account was registered with this email address on the ehealth system. If this was not you, you can safely ignore this email, your email address will not be stored.";
         SendEmail.sendMail(recipient,"Validation Email", validation);
-        RegistrationValidationController.setValidation(validation);
+        RegistrationValidationController.setValidation(String.valueOf(code));
     }
         // Prepare Message with Attachment to send pdf of Health Informations
     public static Message prepareMessageWithAttachment(Session session, String myAccount, String recipient, String subject, String textContent, String filename ) throws MessagingException {
