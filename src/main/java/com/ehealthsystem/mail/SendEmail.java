@@ -8,6 +8,7 @@ import com.ehealthsystem.tools.SceneSwitch;
 import javafx.event.Event;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.Random;
@@ -21,17 +22,14 @@ import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
+import javax.mail.internet.*;
 
 public class SendEmail {
 
-    public static Message prepareMessage(Session session, String myAccount, String recipient, String subject, String textContent) throws MessagingException {
+    public static Message prepareMessage(Session session, String myAccount, String recipient, String subject, String textContent) throws MessagingException, UnsupportedEncodingException {
         Message message = new MimeMessage(session);
 
-        message.setFrom(new InternetAddress(myAccount));
+        message.setFrom(new InternetAddress(myAccount, "E-Health System"));
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
         message.setSubject(subject);
 
@@ -59,7 +57,7 @@ public class SendEmail {
         return message;
     }
 
-    public static void sendMail(String recipient, String subject, String textContent) throws MessagingException {
+    public static void sendMail(String recipient, String subject, String textContent) throws MessagingException, UnsupportedEncodingException {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
@@ -82,12 +80,11 @@ public class SendEmail {
         Transport.send(message); // E-Mail senden!
     }
 
-    public static void validateEmail(String recipient) throws MessagingException {
-        int[] a = new int[8]; //Größe natürlich beliebig
-        int oberGrenze = 10; //kannst wählen wie du willst
+    public static void validateEmail(String recipient) throws MessagingException, UnsupportedEncodingException {
+        final int CODE_LENGTH = 8;
 
-        int minimum = (int) Math.pow(10, 8 - 1); // minimum value with 2 digits is 10 (10^1)
-        int maximum = (int) Math.pow(10, 8) - 1; // maximum value with 2 digits is 99 (10^2 - 1)
+        int minimum = (int) Math.pow(10, CODE_LENGTH - 1); // minimum value with 2 digits is 10 (10^1)
+        int maximum = (int) Math.pow(10, CODE_LENGTH) - 1; // maximum value with 2 digits is 99 (10^2 - 1)
         Random random = new Random();
         int code =  minimum + random.nextInt((maximum - minimum) + 1);
 
