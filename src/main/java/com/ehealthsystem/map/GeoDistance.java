@@ -141,7 +141,7 @@ public class GeoDistance {
         ArrayList<DoctorDistance> a = null;
         String addr = "Alfred-Brehm-Platz 15, 60316";
 
-        //comment out everythiing but the one you want to measure
+        //comment out everything but the one you want to measure
 
         //Methods using Google Maps requests take 1.3 - 5 s in total each
         //a = getDoctorsInRangeIndividualRequests(addr, 1);
