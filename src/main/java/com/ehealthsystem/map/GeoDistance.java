@@ -49,7 +49,7 @@ public class GeoDistance {
         int i = 0;
         for (Doctor d : doctors) {
             //Two ways of giving the doctors location to Google Maps, time to response is the same
-            docAddresses[i++] = "%s %s, %s".formatted(d.getStreet(), d.getNumber(), d.getZip()); //saved address
+            docAddresses[i++] = d.getFormattedAddress(); //saved address
             //docAddresses[i++] = "%s, %s".formatted(d.getLocation().lat, d.getLocation().lng); //coordinates //Only for testing as this string is also used for the DoctorDistance object
         }
 
@@ -97,7 +97,7 @@ public class GeoDistance {
             if (distance <= range) //in range
                 result.add(new DoctorDistance(
                         distance,
-                        "%s %s, %s".formatted(d.getStreet(), d.getNumber(), d.getZip()),
+                        d.getFormattedAddress(),
                         d
                 ));
         }

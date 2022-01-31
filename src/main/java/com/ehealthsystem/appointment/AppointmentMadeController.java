@@ -1,6 +1,7 @@
 package com.ehealthsystem.appointment;
 
 import com.ehealthsystem.database.Database;
+import com.ehealthsystem.doctor.Doctor;
 import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
@@ -68,7 +69,8 @@ public class AppointmentMadeController {
     }
 
     private String loadDoctorGeoData() throws SQLException, IOException, InterruptedException, ApiException {
-        GeocodingResult doctorGeoData = GeoCoder.geocode(loadedAppointment.getDoctor().getStreet() + ", " + loadedAppointment.getDoctor().getNumber(), loadedAppointment.getDoctor().getZip());
+        Doctor d = loadedAppointment.getDoctor();
+        GeocodingResult doctorGeoData = GeoCoder.geocode(d.getFormattedAddress());
         return doctorGeoData.formattedAddress;
     }
 

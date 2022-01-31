@@ -50,6 +50,10 @@ public class Doctor {
         return zip;
     }
 
+    public String getFormattedAddress() {
+        return "%s %s, %s".formatted(street, number, zip);
+    }
+
     public LatLng getLocation() {
         return location;
     }

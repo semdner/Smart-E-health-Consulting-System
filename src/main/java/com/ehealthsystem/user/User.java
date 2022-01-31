@@ -196,6 +196,10 @@ public class User {
         return houseNo;
     }
 
+    public String getFormattedAddress() {
+        return "%s %s, %s".formatted(street, houseNo, zipCode);
+    }
+
     public String getGender() {
         return gender;
     }

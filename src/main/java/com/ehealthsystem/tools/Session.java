@@ -28,7 +28,7 @@ public class Session {
 
     public static GeocodingResult getUserGeo() throws IOException, InterruptedException, ApiException {
         if (userGeo == null) //lazy-load, store
-            userGeo = GeoCoder.geocode(Session.user.getStreet() + " " + Session.user.getHouseNo(), Session.user.getZipCode());
+            userGeo = GeoCoder.geocode(Session.user.getFormattedAddress());
         return userGeo;
     }
 
