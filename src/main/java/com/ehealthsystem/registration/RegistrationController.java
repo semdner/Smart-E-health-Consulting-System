@@ -158,15 +158,12 @@ public class RegistrationController implements Initializable {
             Parent root = loader.load();
 
             RegistrationValidationController controller = loader.getController();
-            controller.start(newUser);
+            controller.start(newUser, passwordField.getText());
 
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene primaryScene = new Scene(root);
             stage.setTitle("E-Health-System");
             stage.setScene(primaryScene);
-
-            // Session.user = newUser;
-            // SceneSwitch.switchToCentered(event, "registration/registrationValidation-view.fxml", "E-Health System");
         } else {
             //showError("Sign up information wrong or missing");
             // Don't show this generic, not helpful error message,
