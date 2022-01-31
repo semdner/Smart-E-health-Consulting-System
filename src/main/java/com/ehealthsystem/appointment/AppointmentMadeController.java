@@ -4,6 +4,7 @@ import com.ehealthsystem.database.Database;
 import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
+import com.ehealthsystem.tools.StringEnumerator;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
@@ -65,19 +66,7 @@ public class AppointmentMadeController {
         doctorLabel.setText(loadedAppointment.getDoctor().getLastName());
         doctorGeoData = loadDoctorGeoData();
         addressLabel.setText(doctorGeoData);
-        specializationLabel.setText(formatSpecializations(Database.loadDoctorSpecialization(loadedAppointment.getDoctor().getId())));
-    }
-
-    private String formatSpecializations(ArrayList<String> doctorSpecializations) {
-        StringBuilder specializations = new StringBuilder();
-        for (int i = 0; i < doctorSpecializations.size(); i++) {
-            if (doctorSpecializations.size()-1 == i) {
-                specializations.append(doctorSpecializations.get(i));
-            } else {
-                specializations.append(doctorSpecializations.get(i)).append(", ");
-            }
-        }
-        return specializations.toString();
+        specializationLabel.setText(StringEnumerator.enumerate(Database.loadDoctorSpecialization(loadedAppointment.getDoctor().getId())));
     }
 
     private String loadDoctorGeoData() throws SQLException, IOException, InterruptedException, ApiException {
