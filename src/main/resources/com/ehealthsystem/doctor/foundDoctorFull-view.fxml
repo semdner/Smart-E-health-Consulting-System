@@ -97,7 +97,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="specializationLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <Label fx:id="specializationsLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="15.0" />
                                  </font>

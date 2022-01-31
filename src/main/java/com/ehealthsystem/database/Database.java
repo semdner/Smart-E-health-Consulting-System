@@ -474,7 +474,7 @@ public class Database {
         return doctor;
     }
 
-    public static ArrayList<String> loadDoctorSpecialization(int id) throws SQLException {
+    public static ArrayList<String> loadDoctorSpecializations(int id) throws SQLException {
         String query = "SELECT c.category FROM doctor_category AS dc LEFT JOIN category AS c on dc.category_id = c.category_id WHERE dc.doctor_id = ?;";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, id);

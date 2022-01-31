@@ -7,7 +7,6 @@ import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.tools.StringEnumerator;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.GeocodingResult;
-import com.google.maps.model.LatLng;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +17,6 @@ import javafx.scene.web.WebView;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public class AppointmentMadeController {
 
@@ -29,7 +27,7 @@ public class AppointmentMadeController {
     Label addressLabel;
 
     @FXML
-    Label specializationLabel;
+    Label specializationsLabel;
 
     @FXML
     Label dateLabel;
@@ -66,7 +64,7 @@ public class AppointmentMadeController {
         doctorLabel.setText(loadedAppointment.getDoctor().getLastName());
         doctorGeoData = loadDoctorGeoData();
         addressLabel.setText(doctorGeoData);
-        specializationLabel.setText(StringEnumerator.enumerate(Database.loadDoctorSpecialization(loadedAppointment.getDoctor().getId())));
+        specializationsLabel.setText(StringEnumerator.enumerate(Database.loadDoctorSpecializations(loadedAppointment.getDoctor().getId())));
     }
 
     private String loadDoctorGeoData() throws SQLException, IOException, InterruptedException, ApiException {

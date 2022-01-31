@@ -38,7 +38,7 @@ public class FoundDoctorFullController {
     Label addressLabel;
 
     @FXML
-    Label specializationLabel;
+    Label specializationsLabel;
 
     @FXML
     Label dateLabel;
@@ -168,7 +168,7 @@ public class FoundDoctorFullController {
     private void loadDoctorData() throws SQLException {
         doctorLabel.setText("Dr. " + doctor.getDoctor().getFirstName() + " " + doctor.getDoctor().getLastName());
         addressLabel.setText(doctorGeoData);
-        specializationLabel.setText(StringEnumerator.enumerate(Database.loadDoctorSpecialization(doctor.getDoctor().getId())));
+        specializationsLabel.setText(StringEnumerator.enumerate(Database.loadDoctorSpecializations(doctor.getDoctor().getId())));
     }
 
     /**
