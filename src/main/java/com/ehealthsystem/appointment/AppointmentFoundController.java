@@ -37,7 +37,7 @@ public class AppointmentFoundController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            ArrayList<DoctorDistance> doctorList = GeoDistance.getDoctorsInRangeWithLocalCalculation();
+            ArrayList<DoctorDistance> doctorList = GeoDistance.getDoctorsInRangeWithLocalCalculation(Session.getUserGeo().geometry.location, Session.appointment.getDistance());
             if(doctorList.isEmpty()) {
                 errorLabel.setVisible(true);
             } else {

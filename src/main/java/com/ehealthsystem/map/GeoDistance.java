@@ -7,6 +7,7 @@ import com.google.maps.DistanceMatrixApi;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.DistanceMatrixElement;
+import com.google.maps.model.LatLng;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -112,13 +113,12 @@ public class GeoDistance {
      * @return a list of doctors that are in the range (LINEAR DISTANCE)
      * @throws SQLException see getDoctors()
      */
-    public static ArrayList<DoctorDistance> getDoctorsInRangeWithLocalCalculation() throws SQLException, IOException, InterruptedException, ApiException {
-        double range = Session.appointment.getDistance();
+    public static ArrayList<DoctorDistance> getDoctorsInRangeWithLocalCalculation(LatLng location, double range) throws SQLException, IOException, InterruptedException, ApiException {
         ArrayList<Doctor> doctors = Database.getDoctors(); //get doctors
         ArrayList<DoctorDistance> result = new ArrayList<>();
 
         for (Doctor d : doctors) { //loop through them
-            double distance = Haversine.distance(d.getLocation(), Session.getUserGeo().geometry.location);
+            double distance = Haversine.distance(d.getLocation(), location);
             if (distance <= range) //in range
                 result.add(new DoctorDistance(
                         distance,
@@ -140,10 +140,9 @@ public class GeoDistance {
 
         ArrayList<DoctorDistance> a = null;
         String addr = "Alfred-Brehm-Platz 15, 60316";
-        if (true) //run new algorithm
-            a = getDoctorsInRangeIndividualRequests(addr, 1);
-        else
-            a = getDoctorsInRangeBatchRequest(addr, 1);
+        //a = getDoctorsInRangeIndividualRequests(addr, 1);
+        //a = getDoctorsInRangeBatchRequest(addr, 1);
+        a = getDoctorsInRangeWithLocalCalculation(new LatLng(50.11645, 8.69815), 1); //noticably faster but UI is somehow still slow
 
         long finish = System.currentTimeMillis();
         long timeElapsed = finish - start;
