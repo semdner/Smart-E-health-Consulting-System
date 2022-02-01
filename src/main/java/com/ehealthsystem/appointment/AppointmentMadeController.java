@@ -58,8 +58,8 @@ public class AppointmentMadeController {
     }
 
     private void loadAppointment() {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        dateLabel.setText(loadedAppointment.getDate().format(dateTimeFormatter));
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        dateLabel.setText(loadedAppointment.getDate().format(dateFormatter));
         System.out.println(dateLabel.getText() + " " + loadedAppointment.getDate());
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
         timeLabel.setText(loadedAppointment.getTime().format(timeFormatter));
