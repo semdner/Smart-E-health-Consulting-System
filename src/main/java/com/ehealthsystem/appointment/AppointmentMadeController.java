@@ -11,10 +11,14 @@ import com.google.maps.model.GeocodingResult;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -86,8 +90,17 @@ public class AppointmentMadeController {
         engine.load(getClass().getResource("/com/ehealthsystem/map/map.html").toString());
     }
 
-    public void handleShiftAppointmentButton(ActionEvent event) throws IOException {
-        SceneSwitch.switchTo(event, "appointment/appointment-shift.fxml","E-Health System");
+    public void handleShiftAppointmentButton(ActionEvent event) throws IOException, SQLException, InterruptedException, ApiException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/ehealthsystem/appointment/appointmentShift-view.fxml"));
+        Parent root = loader.load();
+
+        AppointmentShiftController controller = loader.getController();
+        controller.start(loadedAppointment);
+
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene primaryScene = new Scene(root);
+        stage.setTitle("Shift Appointment");
+        stage.setScene(primaryScene);
     }
 
     public void handleBackButton(ActionEvent event) throws IOException {
