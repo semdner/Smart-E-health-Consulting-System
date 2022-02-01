@@ -2,7 +2,6 @@ package com.ehealthsystem.appointment;
 
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.doctor.Doctor;
-import com.ehealthsystem.mail.SendEmail;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -47,7 +46,7 @@ public class Appointment {
      * Only to be used if a new appointment is created.
      * @throws SQLException
      */
-    private void insertIntoDb() throws SQLException {
+    public void insertIntoDb() throws SQLException {
         Object[][] parameters = {
                 {"user", user},
                 {"doctor_id", doctor},
@@ -109,11 +108,20 @@ public class Appointment {
      * Deletes an appointment from the database.
      * Use to cancel an appointment.
      * @return whether deletion succeeded
+     * @param id
      */
-    public boolean delete() throws SQLException {
+    public boolean delete(int id) throws SQLException {
         String query = "DELETE FROM appointment WHERE id = ?";
         PreparedStatement statement = Database.connection.prepareStatement(query);
-        statement.setInt(1, id);
+        statement.setInt(1, this.id);
         return statement.executeUpdate() == 1;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 }

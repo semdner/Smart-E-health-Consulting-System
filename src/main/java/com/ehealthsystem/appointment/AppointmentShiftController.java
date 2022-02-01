@@ -3,6 +3,7 @@ package com.ehealthsystem.appointment;
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.doctor.DoctorTimeSlot;
 import com.ehealthsystem.map.GeoCoder;
+import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.tools.StringEnumerator;
 import com.google.maps.errors.ApiException;
@@ -215,4 +216,11 @@ public class AppointmentShiftController {
         return timeSlots;
     }
 
+    public void handleShiftAppointmentButton(javafx.event.ActionEvent event) throws SQLException, IOException {
+        selectedAppointment.setDate(datePicker.getValue());
+        selectedAppointment.setTime(selectedTime);
+        selectedAppointment.delete(selectedAppointment.getId());
+        selectedAppointment.insertIntoDb();
+        SceneSwitch.switchTo(event,"primary/primary-view.fxml", "E-Health-System");
+    }
 }

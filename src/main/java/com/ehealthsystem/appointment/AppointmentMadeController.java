@@ -90,7 +90,7 @@ public class AppointmentMadeController {
         engine.load(getClass().getResource("/com/ehealthsystem/map/map.html").toString());
     }
 
-    public void handleShiftAppointmentButton(ActionEvent event) throws IOException, SQLException, InterruptedException, ApiException {
+    public void handleEditAppointmentButton(ActionEvent event) throws IOException, SQLException, InterruptedException, ApiException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/ehealthsystem/appointment/appointmentShift-view.fxml"));
         Parent root = loader.load();
 
