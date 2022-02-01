@@ -1,7 +1,16 @@
 package com.ehealthsystem.doctor;
 
+import com.ehealthsystem.appointment.Appointment;
+import com.ehealthsystem.database.Database;
+
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class DoctorTimeSlot {
     private LocalDate date;
