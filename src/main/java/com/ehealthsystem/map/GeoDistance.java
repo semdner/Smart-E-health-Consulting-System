@@ -147,7 +147,7 @@ public class GeoDistance {
         a = getDoctorsInRangeIndividualRequests(addr, 1);
         a = getDoctorsInRangeBatchRequest(addr, 1);
 
-        //local calculation is noticably faster (0-15 ms total time) but UI is somehow still slow:
+        //local calculation is noticeably faster (0-15 ms total time) but UI is somehow still slow:
         a = getDoctorsInRangeWithLocalCalculation(new LatLng(50.11645, 8.69815), 1);
 
         long finish = System.currentTimeMillis();
