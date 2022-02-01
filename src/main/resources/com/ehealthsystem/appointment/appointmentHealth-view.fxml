@@ -21,12 +21,12 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="9.0" layoutY="11.0" prefHeight="30.0" prefWidth="169.0" text="Health information" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="821.0" AnchorPane.topAnchor="5.0">
+            <Label layoutX="9.0" layoutY="11.0" prefHeight="30.0" prefWidth="195.0" text="Health information" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="795.0" AnchorPane.topAnchor="5.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Separator layoutX="10.0" layoutY="34.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="819.0" AnchorPane.topAnchor="35.0" />
+            <Separator layoutX="10.0" layoutY="34.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="795.0" AnchorPane.topAnchor="35.0" />
             <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
                <children>
                   <ButtonBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0">
@@ -77,11 +77,11 @@
       </AnchorPane>
    </center>
    <bottom>
-      <AnchorPane prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: eaeaea;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="backButton" layoutX="7.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleBackButton" text="&lt;" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="7.5" />
             <Button fx:id="continueButton" layoutX="961.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleContinueButton" text="&gt;" AnchorPane.bottomAnchor="7.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.5" />
-            <ProgressBar fx:id="progressBar" layoutX="366.0" layoutY="13.0" prefHeight="15.0" prefWidth="268.0" progress="0.5" AnchorPane.bottomAnchor="12.0" AnchorPane.topAnchor="13.0" />
+            <ProgressBar fx:id="progressBar" layoutX="366.0" layoutY="13.0" prefHeight="15.0" prefWidth="268.0" progress="0.5" AnchorPane.bottomAnchor="12.5" AnchorPane.topAnchor="12.5" />
          </children>
       </AnchorPane>
    </bottom>
