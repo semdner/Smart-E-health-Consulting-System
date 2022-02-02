@@ -95,7 +95,7 @@ public class AppointmentShiftController {
     }
 
     private void loadSchedule(LocalDate date) throws SQLException {
-        scheduleGridPane.getChildren().clear(); //clear grid pane
+        scheduleGridPane.getChildren().remove(1, scheduleGridPane.getChildren().size()); //clear grid pane, except for date label
         ArrayList<DoctorTimeSlot> doctorTimeSlotList = DoctorTimeSlot.getFreeTimeSlots(date, selectedAppointment.getDoctor());
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
         selectedDateLabel.setText(date.format(dateFormatter));
