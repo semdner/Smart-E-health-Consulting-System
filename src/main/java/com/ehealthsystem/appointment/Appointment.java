@@ -46,7 +46,7 @@ public class Appointment {
      * Only to be used if a new appointment is created.
      * @throws SQLException
      */
-    public void insertIntoDb() throws SQLException {
+    private void insertIntoDb() throws SQLException {
         Object[][] parameters = {
                 {"user", user},
                 {"doctor_id", doctor},
@@ -116,11 +116,13 @@ public class Appointment {
         return statement.executeUpdate() == 1;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDate date) throws SQLException {
+        update(new Object[][]{{"date", date}});
         this.date = date;
     }
 
-    public void setTime(LocalTime time) {
+    public void setTime(LocalTime time) throws SQLException {
+        update(new Object[][]{{"time", time}});
         this.time = time;
     }
 }
