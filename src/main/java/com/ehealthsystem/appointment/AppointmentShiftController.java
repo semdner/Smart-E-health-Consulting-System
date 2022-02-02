@@ -48,14 +48,14 @@ public class AppointmentShiftController extends ScheduleLoader {
 
     private ArrayList<Label> timeLabelList = new ArrayList<>();
 
-    static Appointment selectedAppointment;
+    static Appointment loadedAppointment;
 
     public void start(Appointment appointment) throws SQLException, IOException, InterruptedException, ApiException {
-        selectedAppointment = appointment;
+        loadedAppointment = appointment;
         loadCurrentAppointment();
         loadShiftAppointment();
         datePicker.valueProperty().addListener((observableValue, localDate, t1) -> {
-            if (!datePicker.getValue().equals(selectedAppointment.getDate()) && datePicker.getValue().isAfter(LocalDate.now()) || datePicker.getValue().isEqual(LocalDate.now())) {
+            if (!datePicker.getValue().equals(loadedAppointment.getDate()) && datePicker.getValue().isAfter(LocalDate.now()) || datePicker.getValue().isEqual(LocalDate.now())) {
                 try {
                     loadSchedule();
                 } catch (SQLException e) {
@@ -68,27 +68,27 @@ public class AppointmentShiftController extends ScheduleLoader {
     }
 
     private void loadCurrentAppointment() throws SQLException, IOException, InterruptedException, ApiException {
-        doctorLabel.setText(selectedAppointment.getDoctor().getLastName());
-        addressLabel.setText(GeoCoder.geocode(selectedAppointment.getDoctor().getFormattedAddress()).formattedAddress);
-        specializationsLabel.setText(StringEnumerator.enumerate(selectedAppointment.getDoctor().getSpecializations()));
+        doctorLabel.setText(loadedAppointment.getDoctor().getLastName());
+        addressLabel.setText(GeoCoder.geocode(loadedAppointment.getDoctor().getFormattedAddress()).formattedAddress);
+        specializationsLabel.setText(StringEnumerator.enumerate(loadedAppointment.getDoctor().getSpecializations()));
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
-        dateLabel.setText(selectedAppointment.getDate().format(dateFormatter));
+        dateLabel.setText(loadedAppointment.getDate().format(dateFormatter));
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Session.timePatternUI);
-        timeLabel.setText(selectedAppointment.getTime().format(timeFormatter));
+        timeLabel.setText(loadedAppointment.getTime().format(timeFormatter));
     }
 
     private void loadShiftAppointment() throws SQLException {
-        datePicker.setValue(selectedAppointment.getDate());
+        datePicker.setValue(loadedAppointment.getDate());
         loadSchedule();
     }
 
     private void loadSchedule() throws SQLException {
-        loadSchedule(datePicker.getValue(), selectedAppointment.getDoctor(), scheduleGridPane, selectedDateLabel, timeLabelList, this);
+        loadSchedule(datePicker.getValue(), loadedAppointment.getDoctor(), scheduleGridPane, selectedDateLabel, timeLabelList, this);
     }
 
     public void handleShiftAppointmentButton(ActionEvent event) throws SQLException, IOException {
-        selectedAppointment.setDate(datePicker.getValue());
-        selectedAppointment.setTime(selectedTime);
+        loadedAppointment.setDate(datePicker.getValue());
+        loadedAppointment.setTime(selectedTime);
         SceneSwitch.switchTo(event,"primary/primary-view.fxml", "E-Health-System");
     }
 }
