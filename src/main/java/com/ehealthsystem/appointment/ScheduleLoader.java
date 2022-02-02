@@ -36,7 +36,7 @@ public abstract class ScheduleLoader {
         }
         for(int i = 0; i< doctorTimeSlotList.size(); i++, column++) {
             //Prepare UI
-            Label time = new Label(doctorTimeSlotList.get(i).getTime().toString());
+            Label time = new Label(doctorTimeSlotList.get(i).getTime().format(DateTimeFormatter.ofPattern(Session.timePatternUI)));
             Button timeButton = new Button();
             if(doctorTimeSlotList.get(i).getFree()) {
                 handleTimeButton(time, timeButton, timeLabelList, loader);
