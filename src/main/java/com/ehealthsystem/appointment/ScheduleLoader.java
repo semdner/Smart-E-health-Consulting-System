@@ -19,10 +19,6 @@ import java.util.ArrayList;
 public abstract class ScheduleLoader {
     protected LocalTime selectedTime;
 
-    public void setSelectedTime(LocalTime selectedTime) {
-        this.selectedTime = selectedTime;
-    }
-
     public static void loadSchedule(LocalDate date, Doctor doctor, GridPane scheduleGridPane, Label dateLabel, ArrayList<Label> timeLabelList, ScheduleLoader loader) throws SQLException {
         scheduleGridPane.getChildren().clear(); //clear grid pane
         ArrayList<DoctorTimeSlot> doctorTimeSlotList = DoctorTimeSlot.getFreeTimeSlots(date, doctor);
@@ -75,7 +71,7 @@ public abstract class ScheduleLoader {
                 }
                 time.setTextFill(Color.web("#FF0000"));
                 DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Session.timePatternUI);
-                loader.setSelectedTime(LocalTime.parse(timeStr, timeFormatter));
+                loader.selectedTime = LocalTime.parse(timeStr, timeFormatter);
             }
         });
     }
