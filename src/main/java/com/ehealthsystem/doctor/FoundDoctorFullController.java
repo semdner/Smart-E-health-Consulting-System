@@ -1,6 +1,7 @@
 package com.ehealthsystem.doctor;
 
 import com.ehealthsystem.appointment.Appointment;
+import com.ehealthsystem.appointment.ScheduleLoader;
 import com.ehealthsystem.map.DoctorDistance;
 import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.tools.ReminderTime;
@@ -29,7 +30,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class FoundDoctorFullController {
+public class FoundDoctorFullController extends ScheduleLoader {
 
     @FXML
     Label doctorLabel;
@@ -62,7 +63,6 @@ public class FoundDoctorFullController {
     private String userGeoData;
     private String doctorGeoData;
     private ArrayList<Label> timeLabelList = new ArrayList<>();
-    private LocalTime selectedTime;
 
     /**
      * sets reminder times, loads the map, doctor data and the doctors schedule

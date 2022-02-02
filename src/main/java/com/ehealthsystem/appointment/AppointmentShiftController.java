@@ -23,7 +23,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class AppointmentShiftController {
+public class AppointmentShiftController extends ScheduleLoader {
 
     @FXML
     Label doctorLabel;
