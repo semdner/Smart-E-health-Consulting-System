@@ -176,9 +176,9 @@ public class FoundDoctorFullController {
      * dynamically load the doctors schedule
      * @throws SQLException
      */
-    private void loadSchedule() throws SQLException {
-        ArrayList<DoctorTimeSlot> doctorTimeSlotList = DoctorTimeSlot.getFreeTimeSlots(Session.appointment.getDate(), doctor.getDoctor());
-        dateLabel.setText(Session.appointment.getDate().toString());
+    private void loadSchedule(LocalDate date) throws SQLException {
+        ArrayList<DoctorTimeSlot> doctorTimeSlotList = DoctorTimeSlot.getFreeTimeSlots(date, doctor.getDoctor());
+        dateLabel.setText(date.toString());
         int column = 0;
         int row = 1;
         if (doctorTimeSlotList.size() == 0) {
