@@ -1,7 +1,5 @@
 package com.ehealthsystem.appointment;
 
-import com.ehealthsystem.database.Database;
-import com.ehealthsystem.doctor.Doctor;
 import com.ehealthsystem.doctor.DoctorTimeSlot;
 import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.tools.SceneSwitch;
@@ -24,9 +22,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 public class AppointmentShiftController {
 

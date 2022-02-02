@@ -1,7 +1,6 @@
 package com.ehealthsystem.doctor;
 
 import com.ehealthsystem.appointment.Appointment;
-import com.ehealthsystem.database.Database;
 import com.ehealthsystem.map.DoctorDistance;
 import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.tools.ReminderTime;
@@ -23,12 +22,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
-import java.io.*;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
 
 public class FoundDoctorFullController {
 
