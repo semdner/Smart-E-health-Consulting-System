@@ -178,7 +178,8 @@ public class FoundDoctorFullController {
      */
     private void loadSchedule(LocalDate date) throws SQLException {
         ArrayList<DoctorTimeSlot> doctorTimeSlotList = DoctorTimeSlot.getFreeTimeSlots(date, doctor.getDoctor());
-        dateLabel.setText(date.toString());
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
+        dateLabel.setText(date.format(dateFormatter));
         int column = 0;
         int row = 1;
         if (doctorTimeSlotList.size() == 0) {
