@@ -8,6 +8,7 @@ import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.tools.StringEnumerator;
 import com.google.maps.errors.ApiException;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,7 +18,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -167,7 +167,7 @@ public class AppointmentShiftController {
         timeButton.setPrefWidth(100);
     }
 
-    public void handleShiftAppointmentButton(javafx.event.ActionEvent event) throws SQLException, IOException {
+    public void handleShiftAppointmentButton(ActionEvent event) throws SQLException, IOException {
         selectedAppointment.setDate(datePicker.getValue());
         selectedAppointment.setTime(selectedTime);
         selectedAppointment.delete();
