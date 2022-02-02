@@ -1,5 +1,9 @@
 package com.ehealthsystem.tools;
 
+import com.ehealthsystem.Main;
+import com.ehealthsystem.appointment.Appointment;
+import com.ehealthsystem.appointment.AppointmentMadeController;
+import com.google.maps.errors.ApiException;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -10,6 +14,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class SceneSwitch {
     /**
@@ -50,5 +55,18 @@ public class SceneSwitch {
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
         stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
+    }
+
+    public static void loadAppointmentMadeView(Event event, Appointment appointment) throws IOException, SQLException, InterruptedException, ApiException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/ehealthsystem/appointment/appointmentMade-view.fxml"));
+        Parent root = loader.load();
+
+        AppointmentMadeController controller = loader.getController();
+        controller.start(appointment);
+
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene primaryScene = new Scene(root);
+        stage.setTitle("Appointment");
+        stage.setScene(primaryScene);
     }
 }
