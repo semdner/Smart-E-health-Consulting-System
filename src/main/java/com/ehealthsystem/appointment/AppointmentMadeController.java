@@ -103,6 +103,11 @@ public class AppointmentMadeController {
         stage.setScene(primaryScene);
     }
 
+    public void handleCancelButton(ActionEvent event) throws SQLException, IOException {
+        loadedAppointment.delete(loadedAppointment.getId());
+        SceneSwitch.switchTo(event,"primary/primary-view.fxml", "E-Health-System");
+    }
+
     public void handleBackButton(ActionEvent event) throws IOException {
         SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
     }
