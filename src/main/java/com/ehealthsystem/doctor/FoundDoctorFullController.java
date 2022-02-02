@@ -178,6 +178,7 @@ public class FoundDoctorFullController {
      */
     private void loadSchedule() throws SQLException {
         LocalDate date = Session.appointment.getDate();
+
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
         dateLabel.setText(date.format(dateFormatter));
 
