@@ -14,7 +14,7 @@ public class Session {
     public static User user; //user that is currently logged in
     public static AppointmentInCreation appointment; //an appointment that is currently created
     private static GeocodingResult userGeo;
-    public static final String datePatternUI = "dd.MM.yyyy"; //date pattern used in the UI
+    public static final String datePatternUI = "d.M.yyyy"; //date pattern used in the UI
     public static final String timePatternUI = "H:mm"; //time pattern used in the UI
 
     /**
