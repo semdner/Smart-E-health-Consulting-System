@@ -77,7 +77,7 @@ public class FoundDoctorFullController {
         reminderComboBox.setValue(ReminderTime.THREE_DAYS); //no need for validation if default value is valid
         loadGMap();
         loadDoctorData();
-        loadSchedule(Session.appointment.getDate());
+        loadSchedule();
     }
 
 
@@ -176,7 +176,8 @@ public class FoundDoctorFullController {
      * dynamically load the doctors schedule
      * @throws SQLException
      */
-    private void loadSchedule(LocalDate date) throws SQLException {
+    private void loadSchedule() throws SQLException {
+        LocalDate date = Session.appointment.getDate();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
         dateLabel.setText(date.format(dateFormatter));
 

@@ -69,7 +69,7 @@ public class AppointmentShiftController {
         datePicker.valueProperty().addListener((observableValue, localDate, t1) -> {
             if (!datePicker.getValue().equals(selectedAppointment.getDate()) && datePicker.getValue().isAfter(LocalDate.now()) || datePicker.getValue().isEqual(LocalDate.now())) {
                 try {
-                    loadSchedule(datePicker.getValue());
+                    loadSchedule();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -91,10 +91,11 @@ public class AppointmentShiftController {
 
     private void loadShiftAppointment() throws SQLException {
         datePicker.setValue(selectedAppointment.getDate());
-        loadSchedule(datePicker.getValue());
+        loadSchedule();
     }
 
-    private void loadSchedule(LocalDate date) throws SQLException {
+    private void loadSchedule() throws SQLException {
+        LocalDate date = datePicker.getValue();
         scheduleGridPane.getChildren().remove(1, scheduleGridPane.getChildren().size()); //clear grid pane, except for date label
 
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
