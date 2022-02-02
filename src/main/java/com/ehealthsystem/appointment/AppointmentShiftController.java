@@ -91,4 +91,8 @@ public class AppointmentShiftController extends ScheduleLoader {
         loadedAppointment.setTime(selectedTime);
         SceneSwitch.switchTo(event,"primary/primary-view.fxml", "E-Health-System");
     }
+
+    public void handleBackButton(ActionEvent event) throws IOException, SQLException, InterruptedException, ApiException {
+        SceneSwitch.loadAppointmentMadeView(event, loadedAppointment);
+    }
 }
