@@ -51,7 +51,6 @@ public class AppointmentFoundController implements Initializable {
     /**
      * dynamically load the doctors in the gridpane
      * @param doctorList the list of all doctors which matches the distance
-     * @param userGeoData
      * @throws IOException
      */
     private void loadDoctors(ArrayList<DoctorDistance> doctorList) throws IOException {
