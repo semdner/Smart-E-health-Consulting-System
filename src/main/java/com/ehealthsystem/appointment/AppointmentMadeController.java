@@ -104,7 +104,7 @@ public class AppointmentMadeController {
     }
 
     public void handleCancelButton(ActionEvent event) throws SQLException, IOException {
-        loadedAppointment.delete(loadedAppointment.getId());
+        loadedAppointment.delete();
         SceneSwitch.switchTo(event,"primary/primary-view.fxml", "E-Health-System");
     }
 

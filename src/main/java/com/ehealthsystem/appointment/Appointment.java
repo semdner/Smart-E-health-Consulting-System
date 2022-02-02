@@ -108,12 +108,11 @@ public class Appointment {
      * Deletes an appointment from the database.
      * Use to cancel an appointment.
      * @return whether deletion succeeded
-     * @param id
      */
-    public boolean delete(int id) throws SQLException {
+    public boolean delete() throws SQLException {
         String query = "DELETE FROM appointment WHERE id = ?";
         PreparedStatement statement = Database.connection.prepareStatement(query);
-        statement.setInt(1, this.id);
+        statement.setInt(1, id);
         return statement.executeUpdate() == 1;
     }
 

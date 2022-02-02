@@ -170,7 +170,7 @@ public class AppointmentShiftController {
     public void handleShiftAppointmentButton(javafx.event.ActionEvent event) throws SQLException, IOException {
         selectedAppointment.setDate(datePicker.getValue());
         selectedAppointment.setTime(selectedTime);
-        selectedAppointment.delete(selectedAppointment.getId());
+        selectedAppointment.delete();
         selectedAppointment.insertIntoDb();
         SceneSwitch.switchTo(event,"primary/primary-view.fxml", "E-Health-System");
     }
