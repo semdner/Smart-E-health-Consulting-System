@@ -83,9 +83,9 @@ public class AppointmentShiftController {
         doctorLabel.setText(selectedAppointment.getDoctor().getLastName());
         addressLabel.setText(GeoCoder.geocode(selectedAppointment.getDoctor().getFormattedAddress()).formattedAddress);
         specializationsLabel.setText(StringEnumerator.enumerate(selectedAppointment.getDoctor().getSpecializations()));
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
         dateLabel.setText(selectedAppointment.getDate().format(dateFormatter));
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Session.timePatternUI);
         timeLabel.setText(selectedAppointment.getTime().format(timeFormatter));
     }
 
@@ -96,7 +96,7 @@ public class AppointmentShiftController {
 
     private void loadSchedule(LocalDate date) throws SQLException {
         ArrayList<DoctorTimeSlot> doctorTimeSlotList = DoctorTimeSlot.getFreeTimeSlots(selectedAppointment.getDate(), selectedAppointment.getDoctor());
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
         selectedDateLabel.setText(date.format(dateFormatter));
         int column = 0;
         int row = 1;
