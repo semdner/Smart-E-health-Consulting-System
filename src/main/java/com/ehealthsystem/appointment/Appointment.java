@@ -17,7 +17,7 @@ public class Appointment {
 
     /**
      *
-     * @param insertIntoDb true if this is a new appointment that is inserted to the database, false if the object shall solely represent a appointment that is already saved in the database
+     * @param insertIntoDb true if this is a new appointment that is inserted to the database, false if the object shall solely represent an appointment that is already saved in the database
      * @param id ignored when insertToDb is true (to be precise, it is saved but overwritten after successful insert)
      * @param user
      * @param doctor
