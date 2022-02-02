@@ -1,5 +1,6 @@
 package com.ehealthsystem.user;
 
+import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.tools.HasAddress;
 
@@ -7,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class User implements HasAddress {
     private String username, email, firstName, lastName, street, houseNo, gender;
@@ -222,7 +224,7 @@ public class User implements HasAddress {
      * @return usersAppointments
      * @throws SQLException
      */
-    /*public ArrayList<Appointment> getAppointments() throws SQLException {
-        return Database.getUsersAppointments(username);
-    }*/
+    public ArrayList<Appointment> getAppointments() throws SQLException {
+        return Database.getUsersAppointments(username); //lazy-load and also don't store
+    }
 }

@@ -91,7 +91,7 @@ public class PrimaryController implements Initializable {
     }
 
     private void loadUserAppointments() throws SQLException, IOException {
-        ArrayList<Appointment> appointments = Database.getUsersAppointments(Session.user.getUsername());
+        ArrayList<Appointment> appointments = Session.user.getAppointments();
         int pastRow = 0;
         int upcomingRow = 0;
         ArrayList<VBox> pastAppointmentBoxes = new ArrayList<>();
