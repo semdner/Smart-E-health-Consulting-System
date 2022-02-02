@@ -77,7 +77,7 @@ public class FoundDoctorFullController {
         reminderComboBox.setValue(ReminderTime.THREE_DAYS); //no need for validation if default value is valid
         loadGMap();
         loadDoctorData();
-        loadSchedule();
+        loadSchedule(Session.appointment.getDate());
     }
 
 
