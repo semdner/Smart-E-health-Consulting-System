@@ -95,7 +95,7 @@ public class AppointmentShiftController {
     }
 
     private void loadSchedule(LocalDate date) throws SQLException {
-        ArrayList<DoctorTimeSlot> doctorTimeSlotList = DoctorTimeSlot.getFreeTimeSlots(selectedAppointment.getDate(), selectedAppointment.getDoctor());
+        ArrayList<DoctorTimeSlot> doctorTimeSlotList = DoctorTimeSlot.getFreeTimeSlots(date, selectedAppointment.getDoctor());
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
         selectedDateLabel.setText(date.format(dateFormatter));
         int column = 0;
