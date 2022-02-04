@@ -2,6 +2,7 @@ package com.ehealthsystem.appointment;
 
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.doctor.Doctor;
+import com.ehealthsystem.mail.SendEmail;
 import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
@@ -21,6 +22,7 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -115,8 +117,22 @@ public class AppointmentMadeController {
         stage.setScene(primaryScene);
     }
 
-    public void handleCancelButton(ActionEvent event) throws SQLException, IOException {
+    public void handleCancelButton(ActionEvent event) throws SQLException, IOException, MessagingException {
         loadedAppointment.delete();
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Session.timePatternUI);
+
+        SendEmail.sendMail(
+                Session.user.getMail(),
+                "Confirmation of appointment cancellation: Dr. %s @ %s %s".formatted(
+                        loadedAppointment.getDoctor().getFirstName(),
+                        loadedAppointment.getDate().format(dateFormatter),
+                        loadedAppointment.getTime().format(timeFormatter)
+                ),
+                "This is to confirm that your appointment with Dr. %s was cancelled.".formatted(loadedAppointment.getDoctor().getFirstName())
+        );
+
         SceneSwitch.switchTo(event,"primary/primary-view.fxml", "E-Health-System");
     }
 
