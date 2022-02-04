@@ -125,7 +125,7 @@ public class CreatePDF {
         table.addCell(new Cell().add(Session.user.getStreet()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(Session.user.getHouseNumber()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add("Birthday: ").setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(String.valueOf(Session.user.getBirthDate())).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(String.valueOf(Session.user.getBirthDate().format(Session.dateFormatter))).setBorder(Border.NO_BORDER));
     }
 
     private static void Disease(Table table) throws SQLException {
