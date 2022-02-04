@@ -65,12 +65,15 @@ public class FoundDoctorFullController extends ScheduleLoader {
      * @throws SQLException
      */
     public void start() throws IOException, InterruptedException, ApiException, SQLException {
-        datePicker.setValue(LocalDate.now());
         reminderComboBox.getItems().setAll(ReminderTime.values());
         reminderComboBox.setValue(ReminderTime.THREE_DAYS); //no need for validation if default value is valid
         loadGMap();
         loadDoctorData();
-        loadSchedule();
+
+        datePicker.setValue(LocalDate.now());
+        while (!loadSchedule()) { //Display first day with free times.
+            datePicker.setValue(datePicker.getValue().plusDays(1));
+        }
     }
 
 
@@ -169,8 +172,8 @@ public class FoundDoctorFullController extends ScheduleLoader {
      * dynamically load the doctors schedule
      * @throws SQLException
      */
-    private void loadSchedule() throws SQLException, UnsupportedDataTypeException {
-        loadSchedule(datePicker.getValue(), doctor.getDoctor(), dateLabel, makeAppointmentButton);
+    private boolean loadSchedule() throws SQLException, UnsupportedDataTypeException {
+        return loadSchedule(datePicker.getValue(), doctor.getDoctor(), dateLabel, makeAppointmentButton);
     }
 
     /**

@@ -29,7 +29,16 @@ public abstract class ScheduleLoader {
     private ArrayList<Label> timeLabelList = new ArrayList<>();
     protected LocalTime selectedTime;
 
-    protected void loadSchedule(LocalDate date, Doctor doctor, Label dateLabel, Button primaryActionButton) throws SQLException, UnsupportedDataTypeException {
+    /**
+     * @param date
+     * @param doctor
+     * @param dateLabel
+     * @param primaryActionButton
+     * @return true if at least one free time slot was loaded (=is displayed to the user)
+     * @throws SQLException
+     * @throws UnsupportedDataTypeException
+     */
+    protected boolean loadSchedule(LocalDate date, Doctor doctor, Label dateLabel, Button primaryActionButton) throws SQLException, UnsupportedDataTypeException {
         scheduleGridPane.getChildren().remove(1, scheduleGridPane.getChildren().size()); //clear grid pane, except for date label
         ArrayList<DoctorTimeSlot> doctorTimeSlotList = DoctorTimeSlot.getFreeTimeSlots(date, doctor);
 
@@ -62,13 +71,14 @@ public abstract class ScheduleLoader {
         }
 
         if (freeTimeslots <= 0) {
-            errorLabel.setText("This doctor has no free appointments during the specified time range");
+            errorLabel.setText("No free appointments that day. How about another day?"); //may have many patients or (if it's today) has simply already closed for today
             errorLabel.setVisible(true);
             primaryActionButton.setDisable(true);
-            return;
+            return false;
         } else { //initial state, or another date was selected => undo
             errorLabel.setVisible(false);
             primaryActionButton.setDisable(false);
+            return true;
         }
     }
 
