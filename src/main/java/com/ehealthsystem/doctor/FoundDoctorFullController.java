@@ -77,10 +77,10 @@ public class FoundDoctorFullController extends ScheduleLoader {
         loadDoctorData();
 
         datePicker.setValue(LocalDate.now());
-        Session.appointment.setDate(datePicker.getValue());
         while (!loadSchedule()) { //Display first day with free times.
             datePicker.setValue(datePicker.getValue().plusDays(1));
         }
+        Session.appointment.setDate(datePicker.getValue());
     }
 
 
