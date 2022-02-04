@@ -6,6 +6,7 @@ import com.ehealthsystem.database.Database;
 import javax.activation.UnsupportedDataTypeException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -80,7 +81,7 @@ public class DoctorTimeSlot {
             LocalTime t = LocalTime.parse(timeOfDay, timeFormatter);
 
             //and finally into DoctorTimeSlot objects
-            timeSlots.add(new DoctorTimeSlot(d, t, true));
+            timeSlots.add(new DoctorTimeSlot(d, t, !LocalDateTime.of(d,t).isBefore(LocalDateTime.now()))); //free if not in the past
         }
 
         return timeSlots;
