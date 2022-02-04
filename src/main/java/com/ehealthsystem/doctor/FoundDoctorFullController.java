@@ -200,6 +200,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
      */
     public void handleMakeAppointmentButton(ActionEvent event) throws IOException, SQLException, MessagingException, InterruptedException, ApiException {
         if(selectedTime != null) {
+            errorLabel.setVisible(false);
             ReminderTime reminderChoice = ((ReminderTime) reminderComboBox.getValue());
             Session.appointment.setTime(selectedTime);
             Appointment appointment = new Appointment(
