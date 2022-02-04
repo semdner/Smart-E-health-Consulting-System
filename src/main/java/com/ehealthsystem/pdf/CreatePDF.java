@@ -1,4 +1,6 @@
 package com.ehealthsystem.pdf;
+import com.ehealthsystem.database.Database;
+import com.ehealthsystem.healthinformation.HealthInformation;
 import com.ehealthsystem.tools.Session;
 
 import com.itextpdf.io.font.FontConstants;
@@ -71,7 +73,7 @@ public class CreatePDF {
         // Adding Data into Table
         PersonalData1(table1);
         PersonalData2(table2);
-        Disease(table3, con);
+        Disease(table3);
         //Allergies(table4, con);
         InsuranceData(table5);
 
@@ -126,27 +128,16 @@ public class CreatePDF {
         table.addCell(new Cell().add(String.valueOf(Session.user.getBirthDate())).setBorder(Border.NO_BORDER));
     }
 
-    private static void Disease(Table table, Connection con) throws SQLException {
-        Paragraph x = null;
-        ResultSet rs1;
-        PreparedStatement st1 = null;
-        String sql1 = "select disease_name from disease";
-
-        st1 = con.prepareStatement(sql1);
-        rs1 = st1.executeQuery();
-        /*
-        int i = 0;
-        while(rs1.next()){
-            i++;
-            x = new Paragraph(rs1.getString("disease_name"));
-            table.addCell(new Cell().add(x).setBorder(Border.NO_BORDER));
-        }
-        if(!rs1.next() && i == 0)
-        {
+    private static void Disease(Table table) throws SQLException {
+        ArrayList<HealthInformation> healthInformation = Database.getHealthInformation(Session.user.getMail());
+        if (healthInformation.size() == 0) {
             table.addCell(new Cell().add("--- None ---").setBorder(Border.NO_BORDER));
+        } else {
+            for (HealthInformation h : healthInformation) {
+                Paragraph x = new Paragraph(h.getICD() + ": " + h.getDisease());
+                table.addCell(new Cell().add(x).setBorder(Border.NO_BORDER));
+            }
         }
-        */
-        table.addCell(new Cell().add("--- None ---").setBorder(Border.NO_BORDER));
     }
 
     private static void Allergies(Table table, Connection con) throws SQLException {
