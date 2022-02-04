@@ -41,7 +41,7 @@ public abstract class ScheduleLoader {
         }
         for(int i = 0; i< doctorTimeSlotList.size(); i++, column++) {
             //Prepare UI
-            Label time = new Label(doctorTimeSlotList.get(i).getTime().format(DateTimeFormatter.ofPattern(Session.timePatternUI)));
+            Label time = new Label(doctorTimeSlotList.get(i).getTime().format(DateTimeFormatter.ofPattern(Session.timePatternSchedule)));
             Button timeButton = new Button();
             if(doctorTimeSlotList.get(i).getFree()) {
                 handleTimeButton(time, timeButton);
@@ -75,7 +75,7 @@ public abstract class ScheduleLoader {
                     timeLabelList.get(i).setTextFill(Color.web("#000000"));
                 }
                 time.setTextFill(Color.web("#FF0000"));
-                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Session.timePatternUI);
+                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Session.timePatternSchedule);
                 selectedTime = LocalTime.parse(timeStr, timeFormatter);
             }
         });
