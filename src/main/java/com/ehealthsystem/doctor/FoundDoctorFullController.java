@@ -97,9 +97,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
      * @param userGeoData
      */
     public void setUserGeoData(String userGeoData) {
-        // parse address if it contains 'ß'
-        String uGD = userGeoData.replaceAll("ß", "ss");
-        this.userGeoData = uGD;
+        this.userGeoData = userGeoData;
     }
 
     /**
@@ -107,9 +105,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
      * @param doctorGeoData
      */
     public void setDoctorGeoData(String doctorGeoData) {
-        // parse address if it contains 'ß'
-        String dGD = doctorGeoData.replaceAll("ß", "ss");
-        this.doctorGeoData = dGD;
+        this.doctorGeoData = doctorGeoData;
     }
 
     /**
