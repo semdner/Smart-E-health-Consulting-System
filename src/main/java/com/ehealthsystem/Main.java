@@ -78,7 +78,6 @@ public class Main extends Application {
         };
         result.ifPresentOrElse(password -> input.value = password, () -> System.exit(0));
 
-        System.out.println(input.value);
         return input.value;
     }
 
