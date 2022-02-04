@@ -9,7 +9,7 @@ CREATE TABLE appointment
     "minutesBeforeReminder"	INTEGER CHECK("minutesBeforeReminder" IN (10, 60, 4320, 10080)),
     "duration" INTEGER, -- not used yet
     PRIMARY KEY("id" AUTOINCREMENT),
-    UNIQUE (doctor_id, user, date, time),
+    UNIQUE (doctor_id, date, time),
     FOREIGN KEY("user") REFERENCES "user"("username") ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY("doctor_id") REFERENCES "doctor"("doctor_id") ON UPDATE CASCADE ON DELETE CASCADE
 );
