@@ -39,9 +39,6 @@ public class FoundDoctorFullController extends ScheduleLoader {
     Label dateLabel;
 
     @FXML
-    Label errorLabel;
-
-    @FXML
     ComboBox reminderComboBox;
 
     @FXML

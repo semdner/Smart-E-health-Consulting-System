@@ -21,6 +21,10 @@ public abstract class ScheduleLoader {
     @FXML
     GridPane scheduleGridPane;
 
+    @FXML
+    protected
+    Label errorLabel;
+
     private ArrayList<Label> timeLabelList = new ArrayList<>();
     protected LocalTime selectedTime;
 
@@ -34,9 +38,8 @@ public abstract class ScheduleLoader {
         int column = 0;
         int row = 1;
         if (doctorTimeSlotList.size() == 0) {
-            //TODO add
-            //errorLabel.setText("This doctor has no free appointments during the specified time range");
-            //errorLabel.setVisible(true);
+            errorLabel.setText("This doctor has no free appointments during the specified time range");
+            errorLabel.setVisible(true);
             return;
         }
         for(int i = 0; i< doctorTimeSlotList.size(); i++, column++) {
