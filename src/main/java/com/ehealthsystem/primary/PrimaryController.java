@@ -167,8 +167,7 @@ public class PrimaryController implements Initializable {
     }
 
     private void setBirthdayLabel(LocalDate birthday) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
-        birthdayLabel.setText(birthday.format(formatter));
+        birthdayLabel.setText(birthday.format(Session.dateFormatter));
     }
 
     private void setGenderLabel(String gender) {

@@ -10,14 +10,15 @@ import com.google.maps.model.GeocodingResult;
 import javax.activation.UnsupportedDataTypeException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 
 public class Session {
     public static User user; //user that is currently logged in
     public static AppointmentInCreation appointment; //an appointment that is currently created
     private static GeocodingResult userGeo;
-    public static final String datePatternUI = "dd.MM.yyyy"; //date pattern used in the UI
-    public static final String timePatternUI = "H:mm"; //time pattern used in the UI
-    public static final String timePatternSchedule = "HH:mm"; //time pattern used for the schedule grid pane
+    public static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy"); //date pattern used in the UI
+    public static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("H:mm"); //time pattern used in the UI
+    public static final DateTimeFormatter timeFormatterForSchedule = DateTimeFormatter.ofPattern("HH:mm"); //time pattern used for the schedule grid pane
 
     /**
      * To be called on login to load user object for the user to be called by further methods

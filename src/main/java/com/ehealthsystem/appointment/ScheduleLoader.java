@@ -42,15 +42,14 @@ public abstract class ScheduleLoader {
         scheduleGridPane.getChildren().remove(1, scheduleGridPane.getChildren().size()); //clear grid pane, except for date label
         ArrayList<DoctorTimeSlot> doctorTimeSlotList = DoctorTimeSlot.getFreeTimeSlots(date, doctor);
 
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
-        dateLabel.setText(date.format(dateFormatter));
+        dateLabel.setText(date.format(Session.dateFormatter));
 
         int column = 0;
         int row = 1;
         int freeTimeslots = 0;
         for(int i = 0; i< doctorTimeSlotList.size(); i++, column++) {
             //Prepare UI
-            Label time = new Label(doctorTimeSlotList.get(i).getTime().format(DateTimeFormatter.ofPattern(Session.timePatternSchedule)));
+            Label time = new Label(doctorTimeSlotList.get(i).getTime().format(Session.timeFormatterForSchedule));
             Button timeButton = new Button();
             boolean free = doctorTimeSlotList.get(i).getFree();
             if(free) {
@@ -93,8 +92,7 @@ public abstract class ScheduleLoader {
                     timeLabelList.get(i).setTextFill(Color.web("#000000"));
                 }
                 time.setTextFill(Color.web("#FF0000"));
-                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Session.timePatternSchedule);
-                selectedTime = LocalTime.parse(timeStr, timeFormatter);
+                selectedTime = LocalTime.parse(timeStr, Session.timeFormatterForSchedule);
             }
         });
     }

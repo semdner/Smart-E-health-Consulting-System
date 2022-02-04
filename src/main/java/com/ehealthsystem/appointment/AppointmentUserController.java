@@ -169,8 +169,7 @@ public class AppointmentUserController implements Initializable {
      * @param birthday
      */
     private void loadBirthday(LocalDate birthday) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
-        birthdayLabel.setText(birthday.format(formatter));
+        birthdayLabel.setText(birthday.format(Session.dateFormatter));
     }
 
     /**

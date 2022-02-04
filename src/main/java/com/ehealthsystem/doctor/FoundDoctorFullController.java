@@ -214,10 +214,8 @@ public class FoundDoctorFullController extends ScheduleLoader {
                     reminderChoice.getMinutes(), //no need for validation of combobox selection since default value is valid
                     0
             );
-            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
-            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Session.timePatternUI);
-            String date = appointment.getDate().format(dateFormatter);
-            String time = appointment.getTime().format(timeFormatter);
+            String date = appointment.getDate().format(Session.dateFormatter);
+            String time = appointment.getTime().format(Session.timeFormatter);
             SendEmail.sendMail(
                     Session.user.getMail(),
                     "Appointment confirmation: Dr. %s @ %s %s".formatted(

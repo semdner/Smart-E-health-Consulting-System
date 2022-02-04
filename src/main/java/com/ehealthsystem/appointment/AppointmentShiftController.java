@@ -64,10 +64,8 @@ public class AppointmentShiftController extends ScheduleLoader {
         doctorLabel.setText(loadedAppointment.getDoctor().getLastName());
         addressLabel.setText(loadedAppointment.getDoctor().getFormattedAddressWithPlaceName());
         specializationsLabel.setText(StringEnumerator.enumerate(loadedAppointment.getDoctor().getSpecializations()));
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
-        dateLabel.setText(loadedAppointment.getDate().format(dateFormatter));
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Session.timePatternUI);
-        timeLabel.setText(loadedAppointment.getTime().format(timeFormatter));
+        dateLabel.setText(loadedAppointment.getDate().format(Session.dateFormatter));
+        timeLabel.setText(loadedAppointment.getTime().format(Session.timeFormatter));
     }
 
     private void loadShiftAppointment() throws SQLException, UnsupportedDataTypeException {
@@ -92,17 +90,15 @@ public class AppointmentShiftController extends ScheduleLoader {
 
         loadedAppointment.setDate(datePicker.getValue());
         loadedAppointment.setTime(selectedTime);
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Session.timePatternUI);
 
         SendEmail.sendMail(
                 Session.user.getMail(),
                 "Appointment shift confirmation: Dr. %s: %s %s -> %s %s".formatted(
                         loadedAppointment.getDoctor().getFirstName(),
-                        oldDateTime.toLocalDate().format(dateFormatter),
-                        oldDateTime.toLocalTime().format(timeFormatter),
-                        loadedAppointment.getDate().isEqual(oldDateTime.toLocalDate()) ? "" : loadedAppointment.getDate().format(dateFormatter), //don't display date twice if only the time was changed
-                        loadedAppointment.getTime().format(timeFormatter)
+                        oldDateTime.toLocalDate().format(Session.dateFormatter),
+                        oldDateTime.toLocalTime().format(Session.timeFormatter),
+                        loadedAppointment.getDate().isEqual(oldDateTime.toLocalDate()) ? "" : loadedAppointment.getDate().format(Session.dateFormatter), //don't display date twice if only the time was changed
+                        loadedAppointment.getTime().format(Session.timeFormatter)
                 ),
                 "This is to confirm that your appointment with Dr. %s was shifted.".formatted(loadedAppointment.getDoctor().getFirstName())
         );

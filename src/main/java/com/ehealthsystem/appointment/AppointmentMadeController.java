@@ -72,11 +72,9 @@ public class AppointmentMadeController {
     }
 
     private void loadAppointment() {
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
-        dateLabel.setText(loadedAppointment.getDate().format(dateFormatter));
+        dateLabel.setText(loadedAppointment.getDate().format(Session.dateFormatter));
         System.out.println(dateLabel.getText() + " " + loadedAppointment.getDate());
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Session.timePatternUI);
-        timeLabel.setText(loadedAppointment.getTime().format(timeFormatter));
+        timeLabel.setText(loadedAppointment.getTime().format(Session.timeFormatter));
         healthProblemLabel.setText(loadedAppointment.getHealthProblemDescription());
     }
 
@@ -120,15 +118,12 @@ public class AppointmentMadeController {
     public void handleCancelButton(ActionEvent event) throws SQLException, IOException, MessagingException {
         loadedAppointment.delete();
 
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Session.timePatternUI);
-
         SendEmail.sendMail(
                 Session.user.getMail(),
                 "Confirmation of appointment cancellation: Dr. %s @ %s %s".formatted(
                         loadedAppointment.getDoctor().getFirstName(),
-                        loadedAppointment.getDate().format(dateFormatter),
-                        loadedAppointment.getTime().format(timeFormatter)
+                        loadedAppointment.getDate().format(Session.dateFormatter),
+                        loadedAppointment.getTime().format(Session.timeFormatter)
                 ),
                 "This is to confirm that your appointment with Dr. %s was cancelled.".formatted(loadedAppointment.getDoctor().getFirstName())
         );

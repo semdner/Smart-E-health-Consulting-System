@@ -30,10 +30,8 @@ public class AppointmentController {
 
     public void setData(Appointment appointment) throws SQLException {
         loadedAppointment = appointment; // used later for passing to the next scene;
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
-        dateLabel.setText(loadedAppointment.getDate().format(dateTimeFormatter));
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Session.timePatternUI);
-        timeLabel.setText(loadedAppointment.getTime().format(timeFormatter));
+        dateLabel.setText(loadedAppointment.getDate().format(Session.dateFormatter));
+        timeLabel.setText(loadedAppointment.getTime().format(Session.timeFormatter));
         doctorLabel.setText(loadedAppointment.getDoctor().getLastName());
     }
 
