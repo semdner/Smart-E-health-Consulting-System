@@ -80,7 +80,7 @@ public class AppointmentMadeController {
 
     private void loadDoctor() throws SQLException, IOException, InterruptedException, ApiException {
         doctorLabel.setText(loadedAppointment.getDoctor().getLastName());
-        doctorGeoData = GeoCoder.geocode(loadedAppointment.getDoctor().getFormattedAddress()).formattedAddress;
+        doctorGeoData = loadedAppointment.getDoctor().getFormattedAddressWithPlaceName();
         addressLabel.setText(doctorGeoData);
         specializationsLabel.setText(StringEnumerator.enumerate(loadedAppointment.getDoctor().getSpecializations()));
     }

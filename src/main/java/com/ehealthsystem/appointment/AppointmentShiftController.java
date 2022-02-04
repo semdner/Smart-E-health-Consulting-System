@@ -64,7 +64,7 @@ public class AppointmentShiftController extends ScheduleLoader {
 
     private void loadCurrentAppointment() throws SQLException, IOException, InterruptedException, ApiException {
         doctorLabel.setText(loadedAppointment.getDoctor().getLastName());
-        addressLabel.setText(GeoCoder.geocode(loadedAppointment.getDoctor().getFormattedAddress()).formattedAddress);
+        addressLabel.setText(loadedAppointment.getDoctor().getFormattedAddressWithPlaceName());
         specializationsLabel.setText(StringEnumerator.enumerate(loadedAppointment.getDoctor().getSpecializations()));
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
         dateLabel.setText(loadedAppointment.getDate().format(dateFormatter));

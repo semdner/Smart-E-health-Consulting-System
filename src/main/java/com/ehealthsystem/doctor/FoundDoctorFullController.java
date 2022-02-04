@@ -157,7 +157,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
      */
     private void loadDoctorData() throws SQLException, IOException, InterruptedException, ApiException {
         doctorLabel.setText("Dr. " + doctor.getDoctor().getFirstName() + " " + doctor.getDoctor().getLastName());
-        addressLabel.setText(GeoCoder.geocode(doctorGeoData).formattedAddress);
+        addressLabel.setText(doctor.getDoctor().getFormattedAddressWithPlaceName());
         specializationsLabel.setText(StringEnumerator.enumerate(doctor.getDoctor().getSpecializations()));
     }
 
