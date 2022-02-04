@@ -55,7 +55,7 @@ public class AppointmentShiftController extends ScheduleLoader {
         loadCurrentAppointment();
         loadShiftAppointment();
         datePicker.valueProperty().addListener((observableValue, localDate, t1) -> {
-            if (!datePicker.getValue().equals(loadedAppointment.getDate()) && datePicker.getValue().isAfter(LocalDate.now()) || datePicker.getValue().isEqual(LocalDate.now())) {
+            if (!datePicker.getValue().isBefore(LocalDate.now())) { //>= today
                 try {
                     loadSchedule();
                 } catch (SQLException | UnsupportedDataTypeException e) {
