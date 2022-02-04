@@ -51,12 +51,11 @@ public abstract class ScheduleLoader {
             //Prepare UI
             Label time = new Label(doctorTimeSlotList.get(i).getTime().format(DateTimeFormatter.ofPattern(Session.timePatternSchedule)));
             Button timeButton = new Button();
-            if(doctorTimeSlotList.get(i).getFree()) {
+            boolean free = doctorTimeSlotList.get(i).getFree();
+            if(free) {
                 handleTimeButton(time, timeButton);
-                setStyle(time, timeButton);
-            } else {
-                setStyle(time);
             }
+            setStyle(time, timeButton, free);
 
             if(i % 5 == 0 && i != 0) {
                 //Go to next row
@@ -66,9 +65,7 @@ public abstract class ScheduleLoader {
 
             //Add to UI
             scheduleGridPane.add(time, column, row);
-            if(doctorTimeSlotList.get(i).getFree()) {
-                scheduleGridPane.add(timeButton, column, row);
-            }
+            scheduleGridPane.add(timeButton, column, row);
         }
     }
 
@@ -90,20 +87,12 @@ public abstract class ScheduleLoader {
     }
 
     /**
-     * set the style for the not free appointment labels
-     * @param time
-     */
-    private static void setStyle(Label time) {
-        time.setStyle("-fx-font-size: 15px;");
-        time.setTextFill(Color.web("#999999"));
-    }
-
-    /**
      * set style for the free appointment labels and the buttons
      * @param time
      * @param timeButton
      */
-    private static void setStyle(Label time, Button timeButton) {
+    private static void setStyle(Label time, Button timeButton, boolean free) {
+        if (!free) time.setTextFill(Color.web("#999999"));
         time.setStyle("-fx-font-size: 15px;");
         timeButton.setStyle("-fx-opacity: 0%");
         timeButton.setPrefWidth(100);
