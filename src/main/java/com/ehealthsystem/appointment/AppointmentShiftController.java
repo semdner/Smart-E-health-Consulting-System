@@ -79,7 +79,7 @@ public class AppointmentShiftController extends ScheduleLoader {
 
     public void handleShiftAppointmentButton(ActionEvent event) throws SQLException, IOException, MessagingException {
         if(selectedTime == null) {
-            errorLabel.setText("no time selected");
+            errorLabel.setText(NO_TIME_SELECTED);
             errorLabel.setVisible(true);
             return;
         } else {

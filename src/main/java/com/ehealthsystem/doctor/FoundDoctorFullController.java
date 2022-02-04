@@ -224,7 +224,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
             );
             SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
         } else {
-            errorLabel.setText("no time selected");
+            errorLabel.setText(NO_TIME_SELECTED);
             errorLabel.setVisible(true);
         }
     }

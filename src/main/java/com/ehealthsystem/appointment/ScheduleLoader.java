@@ -29,6 +29,8 @@ public abstract class ScheduleLoader {
     private ArrayList<Label> timeLabelList = new ArrayList<>();
     protected LocalTime selectedTime;
 
+    protected static final String NO_TIME_SELECTED = "Please select a time.";
+
     /**
      * @param date
      * @param doctor
