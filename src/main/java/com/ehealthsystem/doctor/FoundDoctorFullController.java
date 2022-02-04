@@ -164,7 +164,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
      * @throws SQLException
      */
     private void loadSchedule() throws SQLException, UnsupportedDataTypeException {
-        loadSchedule(Session.appointment.getDate(), doctor.getDoctor(), dateLabel);
+        loadSchedule(Session.appointment.getDate(), doctor.getDoctor(), dateLabel, makeAppointmentButton);
     }
 
     /**

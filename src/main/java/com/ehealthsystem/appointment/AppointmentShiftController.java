@@ -7,6 +7,7 @@ import com.ehealthsystem.tools.StringEnumerator;
 import com.google.maps.errors.ApiException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -44,6 +45,9 @@ public class AppointmentShiftController extends ScheduleLoader {
     @FXML
     Label selectedDateLabel;
 
+    @FXML
+    Button shiftAppointmentButton;
+
     static Appointment loadedAppointment;
 
     public void start(Appointment appointment) throws SQLException, IOException, InterruptedException, ApiException {
@@ -79,7 +83,7 @@ public class AppointmentShiftController extends ScheduleLoader {
     }
 
     private void loadSchedule() throws SQLException, UnsupportedDataTypeException {
-        loadSchedule(datePicker.getValue(), loadedAppointment.getDoctor(), selectedDateLabel);
+        loadSchedule(datePicker.getValue(), loadedAppointment.getDoctor(), selectedDateLabel, shiftAppointmentButton);
     }
 
     public void handleShiftAppointmentButton(ActionEvent event) throws SQLException, IOException {
