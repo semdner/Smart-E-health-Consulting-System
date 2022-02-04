@@ -38,21 +38,14 @@ public abstract class ScheduleLoader {
 
         int column = 0;
         int row = 1;
-        if (doctorTimeSlotList.size() == 0) {
-            errorLabel.setText("This doctor has no free appointments during the specified time range");
-            errorLabel.setVisible(true);
-            primaryActionButton.setDisable(true);
-            return;
-        } else { //initial state, or another date was selected => undo
-            errorLabel.setVisible(false);
-            primaryActionButton.setDisable(false);
-        }
+        int freeTimeslots = 0;
         for(int i = 0; i< doctorTimeSlotList.size(); i++, column++) {
             //Prepare UI
             Label time = new Label(doctorTimeSlotList.get(i).getTime().format(DateTimeFormatter.ofPattern(Session.timePatternSchedule)));
             Button timeButton = new Button();
             boolean free = doctorTimeSlotList.get(i).getFree();
             if(free) {
+                freeTimeslots++;
                 handleTimeButton(time, timeButton);
             }
             setStyle(time, timeButton, free);
@@ -66,6 +59,16 @@ public abstract class ScheduleLoader {
             //Add to UI
             scheduleGridPane.add(time, column, row);
             scheduleGridPane.add(timeButton, column, row);
+        }
+
+        if (freeTimeslots <= 0) {
+            errorLabel.setText("This doctor has no free appointments during the specified time range");
+            errorLabel.setVisible(true);
+            primaryActionButton.setDisable(true);
+            return;
+        } else { //initial state, or another date was selected => undo
+            errorLabel.setVisible(false);
+            primaryActionButton.setDisable(false);
         }
     }
 
