@@ -54,17 +54,6 @@ public class AppointmentShiftController extends ScheduleLoader {
         loadedAppointment = appointment;
         loadCurrentAppointment();
         loadShiftAppointment();
-        datePicker.valueProperty().addListener((observableValue, localDate, t1) -> {
-            if (!datePicker.getValue().isBefore(LocalDate.now())) { //>= today
-                try {
-                    loadSchedule();
-                } catch (SQLException | UnsupportedDataTypeException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                datePicker.setValue(LocalDate.now());
-            }
-        });
     }
 
     private void loadCurrentAppointment() throws SQLException, IOException, InterruptedException, ApiException {
@@ -99,5 +88,17 @@ public class AppointmentShiftController extends ScheduleLoader {
 
     public void handleBackButton(ActionEvent event) throws IOException, SQLException, InterruptedException, ApiException {
         SceneSwitch.loadAppointmentMadeView(event, loadedAppointment);
+    }
+
+    public void handleDateChoice(ActionEvent event) {
+        if (!datePicker.getValue().isBefore(LocalDate.now())) { //>= today
+            try {
+                loadSchedule();
+            } catch (SQLException | UnsupportedDataTypeException e) {
+                e.printStackTrace();
+            }
+        } else {
+            datePicker.setValue(LocalDate.now());
+        }
     }
 }

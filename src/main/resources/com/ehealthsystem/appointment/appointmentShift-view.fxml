@@ -143,7 +143,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="datePicker" focusTraversable="false" showWeekNumbers="true" GridPane.columnIndex="1" />
+                        <DatePicker fx:id="datePicker" focusTraversable="false" onAction="#handleDateChoice" showWeekNumbers="true" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                   <GridPane fx:id="scheduleGridPane" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="85.0">
