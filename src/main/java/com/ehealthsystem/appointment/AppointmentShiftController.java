@@ -46,8 +46,6 @@ public class AppointmentShiftController extends ScheduleLoader {
     @FXML
     GridPane scheduleGridPane;
 
-    private ArrayList<Label> timeLabelList = new ArrayList<>();
-
     static Appointment loadedAppointment;
 
     public void start(Appointment appointment) throws SQLException, IOException, InterruptedException, ApiException {
@@ -83,7 +81,7 @@ public class AppointmentShiftController extends ScheduleLoader {
     }
 
     private void loadSchedule() throws SQLException {
-        loadSchedule(datePicker.getValue(), loadedAppointment.getDoctor(), scheduleGridPane, selectedDateLabel, timeLabelList, this);
+        loadSchedule(datePicker.getValue(), loadedAppointment.getDoctor(), scheduleGridPane, selectedDateLabel, this);
     }
 
     public void handleShiftAppointmentButton(ActionEvent event) throws SQLException, IOException {

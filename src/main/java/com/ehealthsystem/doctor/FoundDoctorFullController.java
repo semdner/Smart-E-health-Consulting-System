@@ -56,7 +56,6 @@ public class FoundDoctorFullController extends ScheduleLoader {
     private DoctorDistance doctor = new DoctorDistance();
     private String userGeoData;
     private String doctorGeoData;
-    private ArrayList<Label> timeLabelList = new ArrayList<>();
 
     /**
      * sets reminder times, loads the map, doctor data and the doctors schedule
@@ -170,7 +169,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
      * @throws SQLException
      */
     private void loadSchedule() throws SQLException {
-        loadSchedule(Session.appointment.getDate(), doctor.getDoctor(), scheduleGridPane, dateLabel, timeLabelList, this);
+        loadSchedule(Session.appointment.getDate(), doctor.getDoctor(), scheduleGridPane, dateLabel, this);
     }
 
     /**

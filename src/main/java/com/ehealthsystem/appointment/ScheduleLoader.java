@@ -17,9 +17,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public abstract class ScheduleLoader {
+    private ArrayList<Label> timeLabelList = new ArrayList<>();
     protected LocalTime selectedTime;
 
-    public static void loadSchedule(LocalDate date, Doctor doctor, GridPane scheduleGridPane, Label dateLabel, ArrayList<Label> timeLabelList, ScheduleLoader loader) throws SQLException {
+    public void loadSchedule(LocalDate date, Doctor doctor, GridPane scheduleGridPane, Label dateLabel, ScheduleLoader loader) throws SQLException {
         scheduleGridPane.getChildren().clear(); //clear grid pane
         ArrayList<DoctorTimeSlot> doctorTimeSlotList = DoctorTimeSlot.getFreeTimeSlots(date, doctor);
 
@@ -39,7 +40,7 @@ public abstract class ScheduleLoader {
             Label time = new Label(doctorTimeSlotList.get(i).getTime().format(DateTimeFormatter.ofPattern(Session.timePatternUI)));
             Button timeButton = new Button();
             if(doctorTimeSlotList.get(i).getFree()) {
-                handleTimeButton(time, timeButton, timeLabelList, loader);
+                handleTimeButton(time, timeButton, loader);
                 setStyle(time, timeButton);
             } else {
                 setStyle(time);
@@ -59,7 +60,7 @@ public abstract class ScheduleLoader {
         }
     }
 
-    private static void handleTimeButton(Label time, Button timeButton, ArrayList<Label> timeLabelList, ScheduleLoader loader) {
+    private void handleTimeButton(Label time, Button timeButton, ScheduleLoader loader) {
         timeLabelList.add(time);
         String timeStr = time.getText();
         // dynamically add the event handler for the buttons
