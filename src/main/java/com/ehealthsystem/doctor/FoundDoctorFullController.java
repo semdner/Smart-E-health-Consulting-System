@@ -195,38 +195,40 @@ public class FoundDoctorFullController extends ScheduleLoader {
      * @throws IOException
      */
     public void handleMakeAppointmentButton(ActionEvent event) throws IOException, SQLException, MessagingException, InterruptedException, ApiException {
-        if(selectedTime != null) {
-            errorLabel.setVisible(false);
-            ReminderTime reminderChoice = ((ReminderTime) reminderComboBox.getValue());
-            Session.appointment.setTime(selectedTime);
-            Appointment appointment = new Appointment(
-                    true,
-                    0,
-                    Session.user.getUsername(),
-                    doctor.getDoctor().getId(),
-                    Session.appointment.getHealthProblem(),
-                    Session.appointment.getDate(),
-                    Session.appointment.getTime(),
-                    reminderChoice.getMinutes(), //no need for validation of combobox selection since default value is valid
-                    0
-            );
-            String date = appointment.getDate().format(Session.dateFormatter);
-            String time = appointment.getTime().format(Session.timeFormatter);
-            SendEmail.sendMail(
-                    Session.user.getMail(),
-                    "Appointment confirmation: Dr. %s @ %s %s".formatted(
-                            appointment.getDoctor().getLastName(),
-                            date,
-                            time
-                    ),
-                    "You successfully made an appointment with Dr. %s on %s at %s. Their address is %s.".formatted(appointment.getDoctor().getLastName(), date, time, doctorGeoData)
-                    + (reminderChoice.getMinutes() != 0 ? " A reminder email will be sent to you %s ahead.".formatted(reminderChoice.getLabel()) : "")
-            );
-            SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
-        } else {
+        if(selectedTime == null) {
             errorLabel.setText(NO_TIME_SELECTED);
             errorLabel.setVisible(true);
+            return;
+        } else {
+            errorLabel.setVisible(false);
         }
+        
+        ReminderTime reminderChoice = ((ReminderTime) reminderComboBox.getValue());
+        Session.appointment.setTime(selectedTime);
+        Appointment appointment = new Appointment(
+                true,
+                0,
+                Session.user.getUsername(),
+                doctor.getDoctor().getId(),
+                Session.appointment.getHealthProblem(),
+                Session.appointment.getDate(),
+                Session.appointment.getTime(),
+                reminderChoice.getMinutes(), //no need for validation of combobox selection since default value is valid
+                0
+        );
+        String date = appointment.getDate().format(Session.dateFormatter);
+        String time = appointment.getTime().format(Session.timeFormatter);
+        SendEmail.sendMail(
+                Session.user.getMail(),
+                "Appointment confirmation: Dr. %s @ %s %s".formatted(
+                        appointment.getDoctor().getLastName(),
+                        date,
+                        time
+                ),
+                "You successfully made an appointment with Dr. %s on %s at %s. Their address is %s.".formatted(appointment.getDoctor().getLastName(), date, time, doctorGeoData)
+                        + (reminderChoice.getMinutes() != 0 ? " A reminder email will be sent to you %s ahead.".formatted(reminderChoice.getLabel()) : "")
+        );
+        SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
     }
 
     /**
