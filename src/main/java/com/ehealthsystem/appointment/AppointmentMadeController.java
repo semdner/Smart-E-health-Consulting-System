@@ -62,8 +62,8 @@ public class AppointmentMadeController {
         loadedAppointment = appointment;
         loadAppointment();
         if (loadedAppointment.getDate().isBefore(LocalDate.now())) { //past appointment
-            editAppointmentButton.setVisible(false);
-            cancelAppointmentButton.setVisible(false);
+            editAppointmentButton.setDisable(true);
+            cancelAppointmentButton.setDisable(true);
         }
         loadDoctor();
         loadGMap();
