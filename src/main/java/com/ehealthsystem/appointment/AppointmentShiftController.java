@@ -1,5 +1,7 @@
 package com.ehealthsystem.appointment;
 
+import com.ehealthsystem.database.Database;
+import com.ehealthsystem.mail.SendEmail;
 import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
@@ -13,9 +15,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 import javax.activation.UnsupportedDataTypeException;
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -75,15 +79,31 @@ public class AppointmentShiftController extends ScheduleLoader {
         loadSchedule(datePicker.getValue(), loadedAppointment.getDoctor(), selectedDateLabel, shiftAppointmentButton);
     }
 
-    public void handleShiftAppointmentButton(ActionEvent event) throws SQLException, IOException {
+    public void handleShiftAppointmentButton(ActionEvent event) throws SQLException, IOException, MessagingException {
         if(selectedTime == null) {
             errorLabel.setText("no time selected");
             errorLabel.setVisible(true);
             return;
         }
 
+        LocalDateTime oldDateTime = loadedAppointment.getDateTime();
+
         loadedAppointment.setDate(datePicker.getValue());
         loadedAppointment.setTime(selectedTime);
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Session.timePatternUI);
+
+        SendEmail.sendMail(
+                Session.user.getMail(),
+                "Appointment shift confirmation: Dr. %s: %s %s -> %s %s".formatted(
+                        loadedAppointment.getDoctor().getFirstName(),
+                        oldDateTime.toLocalDate().format(dateFormatter),
+                        oldDateTime.toLocalTime().format(timeFormatter),
+                        loadedAppointment.getDate().isEqual(oldDateTime.toLocalDate()) ? "" : loadedAppointment.getDate().format(dateFormatter), //don't display date twice if only the time was changed
+                        loadedAppointment.getTime().format(timeFormatter)
+                ),
+                "This is to confirm that your appointment with Dr. %s was shifted.".formatted(loadedAppointment.getDoctor().getFirstName())
+        );
         SceneSwitch.switchTo(event,"primary/primary-view.fxml", "E-Health-System");
     }
 
