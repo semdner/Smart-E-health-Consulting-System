@@ -20,6 +20,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
+import javax.activation.UnsupportedDataTypeException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -162,7 +163,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
      * dynamically load the doctors schedule
      * @throws SQLException
      */
-    private void loadSchedule() throws SQLException {
+    private void loadSchedule() throws SQLException, UnsupportedDataTypeException {
         loadSchedule(Session.appointment.getDate(), doctor.getDoctor(), dateLabel);
     }
 

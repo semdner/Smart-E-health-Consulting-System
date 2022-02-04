@@ -7,6 +7,7 @@ import com.ehealthsystem.user.User;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.GeocodingResult;
 
+import javax.activation.UnsupportedDataTypeException;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -23,7 +24,7 @@ public class Session {
      * @param email the email of the user to log in
      * @throws SQLException
      */
-    public static void loginUser(String email) throws SQLException {
+    public static void loginUser(String email) throws SQLException, UnsupportedDataTypeException {
         user = Database.getUserFromEmail(email);
     }
 

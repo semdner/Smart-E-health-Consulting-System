@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 
+import javax.activation.UnsupportedDataTypeException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -118,7 +119,7 @@ public class PrimaryEditController implements Initializable {
      * update user information when save button is pressed
      * @throws SQLException
      */
-    private void updateUserInformation() throws SQLException {
+    private void updateUserInformation() throws SQLException, UnsupportedDataTypeException {
         updateUsername(usernameTextField.getText());
         updateEmail(emailTextField.getText());
         if(!firstNameTextField.getText().isBlank()) {
@@ -142,7 +143,7 @@ public class PrimaryEditController implements Initializable {
      * @param username
      * @throws SQLException
      */
-    private void updateUsername(String username) throws SQLException {
+    private void updateUsername(String username) throws SQLException, UnsupportedDataTypeException {
         if(!usernameTextField.getText().isBlank()) {
             Session.user.setUsername(username);
         }
@@ -153,7 +154,7 @@ public class PrimaryEditController implements Initializable {
      * @param updateEmail
      * @throws SQLException
      */
-    private void updateEmail(String updateEmail) throws SQLException {
+    private void updateEmail(String updateEmail) throws SQLException, UnsupportedDataTypeException {
         if(EmailCheck.isValidEmailAddress(emailTextField.getText())) {
             Session.user.setEmail(updateEmail);
         }
@@ -164,7 +165,7 @@ public class PrimaryEditController implements Initializable {
      * @param firstName
      * @throws SQLException
      */
-    private void updateFirstName(String firstName) throws SQLException {
+    private void updateFirstName(String firstName) throws SQLException, UnsupportedDataTypeException {
         Session.user.setFirstName(firstName);
     }
 
@@ -173,7 +174,7 @@ public class PrimaryEditController implements Initializable {
      * @param lastName
      * @throws SQLException
      */
-    private void updateLastName(String lastName) throws SQLException {
+    private void updateLastName(String lastName) throws SQLException, UnsupportedDataTypeException {
         Session.user.setLastName(lastName);
     }
 
@@ -182,7 +183,7 @@ public class PrimaryEditController implements Initializable {
      * @param street
      * @throws SQLException
      */
-    private void updateStreet(String street) throws SQLException {
+    private void updateStreet(String street) throws SQLException, UnsupportedDataTypeException {
         Session.user.setStreet(street);
     }
 
@@ -191,7 +192,7 @@ public class PrimaryEditController implements Initializable {
      * @param houseNo
      * @throws SQLException
      */
-    private void updateNumber(String houseNo) throws SQLException {
+    private void updateNumber(String houseNo) throws SQLException, UnsupportedDataTypeException {
         Session.user.setHouseNo(houseNo);
     }
 
@@ -200,7 +201,7 @@ public class PrimaryEditController implements Initializable {
      * @param zip
      * @throws SQLException
      */
-    private void updateZip(String zip) throws SQLException {
+    private void updateZip(String zip) throws SQLException, UnsupportedDataTypeException {
         Session.user.setZipCode(zip);
     }
 
@@ -209,7 +210,7 @@ public class PrimaryEditController implements Initializable {
      * @param birthday
      * @throws SQLException
      */
-    private void updateBirthday(LocalDate birthday) throws SQLException {
+    private void updateBirthday(LocalDate birthday) throws SQLException, UnsupportedDataTypeException {
         if(BirthdayCheck.isOldEnough(birthday)) {
             Session.user.setBirthDate(birthday);
         }
@@ -220,13 +221,13 @@ public class PrimaryEditController implements Initializable {
      * @param gender
      * @throws SQLException
      */
-    private void updateGender(String gender) throws SQLException {
+    private void updateGender(String gender) throws SQLException, UnsupportedDataTypeException {
         if(!genderBox.getSelectionModel().isEmpty()) {
             Session.user.setGender(gender);
         }
     }
 
-    private void updateInsuranceName(String text) throws SQLException {
+    private void updateInsuranceName(String text) throws SQLException, UnsupportedDataTypeException {
         Session.user.setInsuranceName(text);
     }
 
@@ -235,7 +236,7 @@ public class PrimaryEditController implements Initializable {
      * @param privateInsurance
      * @throws SQLException
      */
-    private void updatePrivateInsurance(boolean privateInsurance) throws SQLException {
+    private void updatePrivateInsurance(boolean privateInsurance) throws SQLException, UnsupportedDataTypeException {
         Session.user.setPrivateInsurance(privateInsurance);
     }
 

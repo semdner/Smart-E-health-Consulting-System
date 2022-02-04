@@ -4,6 +4,7 @@ import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.tools.HasAddress;
 
+import javax.activation.UnsupportedDataTypeException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -35,7 +36,7 @@ public class User implements HasAddress {
      * @param privateInsurance
      * @throws SQLException
      */
-    public User(String username, String email, String firstName, String lastName, String street, String houseNo, String zipCode, LocalDate birthDate, String gender, String password, String insuranceName, boolean privateInsurance, boolean insertIntoDb) throws SQLException {
+    public User(String username, String email, String firstName, String lastName, String street, String houseNo, String zipCode, LocalDate birthDate, String gender, String password, String insuranceName, boolean privateInsurance, boolean insertIntoDb) throws SQLException, UnsupportedDataTypeException {
         this.username = username;
         this.email = email;
         this.firstName = firstName;
@@ -57,7 +58,7 @@ public class User implements HasAddress {
      * @param password
      * @throws SQLException
      */
-    public void insertIntoDb(String password) throws SQLException {
+    public void insertIntoDb(String password) throws SQLException, UnsupportedDataTypeException {
         Object[][] parameters = {
                 {"username", username},
                 {"email", email},
@@ -110,7 +111,7 @@ public class User implements HasAddress {
      * @param newValues
      * @throws SQLException
      */
-    private void update(Object[][] newValues) throws SQLException {
+    private void update(Object[][] newValues) throws SQLException, UnsupportedDataTypeException {
         Database.update(
                 "user",
                 newValues,
@@ -118,59 +119,59 @@ public class User implements HasAddress {
         );
     }
 
-    public void setUsername(String username) throws SQLException {
+    public void setUsername(String username) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"username", username}});
         this.username = username;
     }
 
-    public void setEmail(String email) throws SQLException {
+    public void setEmail(String email) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"email", email}});
         this.email = email;
     }
 
-    public void setFirstName(String firstName) throws SQLException {
+    public void setFirstName(String firstName) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"first_name", firstName}});
         this.firstName = firstName;
     }
 
-    public void setLastName(String lastName) throws SQLException {
+    public void setLastName(String lastName) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"last_name", lastName}});
         this.lastName = lastName;
     }
 
-    public void setStreet(String street) throws SQLException {
+    public void setStreet(String street) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"street", street}});
         this.street = street;
     }
 
-    public void setHouseNo(String houseNo) throws SQLException {
+    public void setHouseNo(String houseNo) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"number", houseNo}});
         this.houseNo = houseNo;
     }
 
-    public void setZipCode(String zipCode) throws SQLException {
+    public void setZipCode(String zipCode) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"zip", zipCode}});
         this.zipCode = zipCode;
     }
 
-    public void setBirthDate(LocalDate birthDate) throws SQLException {
+    public void setBirthDate(LocalDate birthDate) throws SQLException, UnsupportedDataTypeException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Database.datePattern);
         String bd = birthDate.format(formatter);
         update(new Object[][]{{"birthday", bd}});
         this.birthDate = birthDate;
     }
 
-    public void setGender(String gender) throws SQLException {
+    public void setGender(String gender) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"sex", gender}});
         this.gender = gender;
     }
 
-    public void setInsuranceName(String insuranceName) throws SQLException {
+    public void setInsuranceName(String insuranceName) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"insurance_name", insuranceName}});
         this.insuranceName = insuranceName;
     }
 
-    public void setPrivateInsurance(boolean privateInsurance) throws SQLException {
+    public void setPrivateInsurance(boolean privateInsurance) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"private_insurance", privateInsurance}});
         this.privateInsurance = privateInsurance;
     }
@@ -224,7 +225,7 @@ public class User implements HasAddress {
      * @return usersAppointments
      * @throws SQLException
      */
-    public ArrayList<Appointment> getAppointments() throws SQLException {
+    public ArrayList<Appointment> getAppointments() throws SQLException, UnsupportedDataTypeException {
         return Database.getUsersAppointments(username); //lazy-load and also don't store
     }
 }

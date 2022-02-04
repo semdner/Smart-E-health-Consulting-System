@@ -12,6 +12,7 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.model.LatLng;
 import org.mindrot.jbcrypt.BCrypt;
 
+import javax.activation.UnsupportedDataTypeException;
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
@@ -167,7 +168,7 @@ public class Database {
      * @throws SQLException
      * @return id of inserted row
      */
-    public static int insert(String tableName, Object[][] parameters) throws SQLException {
+    public static int insert(String tableName, Object[][] parameters) throws SQLException, UnsupportedDataTypeException {
         String query = "INSERT INTO <tableName> (<names>) VALUES (<values>)".replace("<tableName>", tableName);
 
         //add parameter names
@@ -219,7 +220,7 @@ public class Database {
      * @param conditions array consisting of pairs of column name and value, rows have to match these criteria
      * @throws SQLException
      */
-    public static void update(String tableName, Object[][] newValues, Object[][] conditions) throws SQLException {
+    public static void update(String tableName, Object[][] newValues, Object[][] conditions) throws SQLException, UnsupportedDataTypeException {
         String query = "UPDATE <tableName> SET <newValues> WHERE <conditions>".replace("<tableName>", tableName);
 
         //add placeholders for newValues
@@ -270,7 +271,7 @@ public class Database {
      * @param statement the query to apply the operation to
      * @throws SQLException see the called methods
      */
-    private static void insertValueIntoStatement(int i, Object value, PreparedStatement statement) throws SQLException {
+    private static void insertValueIntoStatement(int i, Object value, PreparedStatement statement) throws SQLException, UnsupportedDataTypeException {
         if (value instanceof String) {
             statement.setString(i+1, (String)value);
         } else if (value instanceof Boolean) {
@@ -283,8 +284,10 @@ public class Database {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(timePatternAppointment);
             String time = ((LocalTime)value).format(formatter);
             statement.setString(i+1, time);
-        } else {
+        } else if (value instanceof Integer) {
             statement.setInt(i+1, (Integer) value);
+        } else {
+            throw new UnsupportedDataTypeException("Unknown datatype: " + value.getClass().getCanonicalName());
         }
     }
 
@@ -294,7 +297,7 @@ public class Database {
      * @return all users
      * @throws SQLException
      */
-    public static ArrayList<User> getAllUsers() throws SQLException {
+    public static ArrayList<User> getAllUsers() throws SQLException, UnsupportedDataTypeException {
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);  // set timeout to 30 sec.
         ResultSet rs = statement.executeQuery("SELECT * FROM user");
@@ -306,7 +309,7 @@ public class Database {
      * @param username
      * @return
      */
-    public static User getUser(String username) throws SQLException {
+    public static User getUser(String username) throws SQLException, UnsupportedDataTypeException {
         String query = "SELECT * FROM user WHERE username = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);
@@ -319,7 +322,7 @@ public class Database {
      * @param email
      * @return
      */
-    public static User getUserFromEmail(String email) throws SQLException {
+    public static User getUserFromEmail(String email) throws SQLException, UnsupportedDataTypeException {
         String query = "SELECT * FROM user WHERE email = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, email);
@@ -391,7 +394,7 @@ public class Database {
      * @return User objects
      * @throws SQLException if reading an attribute fails
      */
-    private static ArrayList<User> loadUsersFromResultSet(ResultSet rs) throws SQLException {
+    private static ArrayList<User> loadUsersFromResultSet(ResultSet rs) throws SQLException, UnsupportedDataTypeException {
         ArrayList<User> users = new ArrayList<>();
         while (rs.next())
         {
@@ -491,7 +494,7 @@ public class Database {
      * @return
      * @throws SQLException
      */
-    public static ArrayList<Appointment> loadAppointmentsFromResultSet(ResultSet rs) throws SQLException {
+    public static ArrayList<Appointment> loadAppointmentsFromResultSet(ResultSet rs) throws SQLException, UnsupportedDataTypeException {
         ArrayList<Appointment> appointments = new ArrayList<>();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Database.datePattern);
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Database.timePatternAppointment);
@@ -522,7 +525,7 @@ public class Database {
      * @return doctorsAppointments
      * @throws SQLException
      */
-    public static ArrayList<Appointment> getDoctorsAppointments(int doctor, LocalDate date) throws SQLException {
+    public static ArrayList<Appointment> getDoctorsAppointments(int doctor, LocalDate date) throws SQLException, UnsupportedDataTypeException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePattern);
 
         String query = "SELECT * FROM appointment WHERE doctor_id = ? AND date = ? ORDER BY date, time"; //ordering not necessary but just convenient, e.g. if it will be displayed in a list to the doctor in the future
@@ -539,7 +542,7 @@ public class Database {
      * This method is not part of the User class because the content is so similar to DB.getDoctorsAppointments() and hence shall be next to it
      * @return usersAppointments
      */
-    public static ArrayList<Appointment> getUsersAppointments(String username) throws SQLException {
+    public static ArrayList<Appointment> getUsersAppointments(String username) throws SQLException, UnsupportedDataTypeException {
         String query = "SELECT * FROM appointment WHERE user = ? ORDER BY date, time"; //ordering for display as list
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);

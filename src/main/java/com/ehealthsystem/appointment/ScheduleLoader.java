@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
+import javax.activation.UnsupportedDataTypeException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -28,7 +29,7 @@ public abstract class ScheduleLoader {
     private ArrayList<Label> timeLabelList = new ArrayList<>();
     protected LocalTime selectedTime;
 
-    protected void loadSchedule(LocalDate date, Doctor doctor, Label dateLabel) throws SQLException {
+    protected void loadSchedule(LocalDate date, Doctor doctor, Label dateLabel) throws SQLException, UnsupportedDataTypeException {
         scheduleGridPane.getChildren().remove(1, scheduleGridPane.getChildren().size()); //clear grid pane, except for date label
         ArrayList<DoctorTimeSlot> doctorTimeSlotList = DoctorTimeSlot.getFreeTimeSlots(date, doctor);
 

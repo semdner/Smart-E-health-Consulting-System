@@ -3,6 +3,7 @@ package com.ehealthsystem.appointment;
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.doctor.Doctor;
 
+import javax.activation.UnsupportedDataTypeException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -28,7 +29,7 @@ public class Appointment {
      * @param duration
      * @throws SQLException
      */
-    public Appointment(boolean insertIntoDb, int id, String user, int doctor, String healthProblemDescription, LocalDate date, LocalTime time, int minutesBeforeReminder, int duration) throws SQLException {
+    public Appointment(boolean insertIntoDb, int id, String user, int doctor, String healthProblemDescription, LocalDate date, LocalTime time, int minutesBeforeReminder, int duration) throws SQLException, UnsupportedDataTypeException {
         this.id = id;
         this.user = user;
         this.doctor = doctor;
@@ -46,7 +47,7 @@ public class Appointment {
      * Only to be used if a new appointment is created.
      * @throws SQLException
      */
-    private void insertIntoDb() throws SQLException {
+    private void insertIntoDb() throws SQLException, UnsupportedDataTypeException {
         Object[][] parameters = {
                 {"user", user},
                 {"doctor_id", doctor},
@@ -96,7 +97,7 @@ public class Appointment {
      * @param newValues
      * @throws SQLException
      */
-    private void update(Object[][] newValues) throws SQLException {
+    private void update(Object[][] newValues) throws SQLException, UnsupportedDataTypeException {
         Database.update(
                 tableName,
                 newValues,
@@ -116,12 +117,12 @@ public class Appointment {
         return statement.executeUpdate() == 1;
     }
 
-    public void setDate(LocalDate date) throws SQLException {
+    public void setDate(LocalDate date) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"date", date}});
         this.date = date;
     }
 
-    public void setTime(LocalTime time) throws SQLException {
+    public void setTime(LocalTime time) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"time", time}});
         this.time = time;
     }

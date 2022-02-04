@@ -3,6 +3,7 @@ package com.ehealthsystem.doctor;
 import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.database.Database;
 
+import javax.activation.UnsupportedDataTypeException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -35,7 +36,7 @@ public class DoctorTimeSlot {
         return free;
     }
 
-    public static ArrayList<DoctorTimeSlot> getFreeTimeSlots(LocalDate date, Doctor doctor) throws SQLException {
+    public static ArrayList<DoctorTimeSlot> getFreeTimeSlots(LocalDate date, Doctor doctor) throws SQLException, UnsupportedDataTypeException {
         ArrayList<Appointment> appointments = Database.getDoctorsAppointments(doctor.getId(), date);
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Database.datePattern);
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Database.timePatternAppointment);

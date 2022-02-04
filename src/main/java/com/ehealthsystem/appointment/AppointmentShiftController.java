@@ -11,6 +11,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
+import javax.activation.UnsupportedDataTypeException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -53,7 +54,7 @@ public class AppointmentShiftController extends ScheduleLoader {
             if (!datePicker.getValue().equals(loadedAppointment.getDate()) && datePicker.getValue().isAfter(LocalDate.now()) || datePicker.getValue().isEqual(LocalDate.now())) {
                 try {
                     loadSchedule();
-                } catch (SQLException e) {
+                } catch (SQLException | UnsupportedDataTypeException e) {
                     e.printStackTrace();
                 }
             } else {
@@ -72,12 +73,12 @@ public class AppointmentShiftController extends ScheduleLoader {
         timeLabel.setText(loadedAppointment.getTime().format(timeFormatter));
     }
 
-    private void loadShiftAppointment() throws SQLException {
+    private void loadShiftAppointment() throws SQLException, UnsupportedDataTypeException {
         datePicker.setValue(loadedAppointment.getDate());
         loadSchedule();
     }
 
-    private void loadSchedule() throws SQLException {
+    private void loadSchedule() throws SQLException, UnsupportedDataTypeException {
         loadSchedule(datePicker.getValue(), loadedAppointment.getDoctor(), selectedDateLabel);
     }
 
@@ -86,7 +87,7 @@ public class AppointmentShiftController extends ScheduleLoader {
             errorLabel.setVisible(true);
             return;
         }
-        
+
         loadedAppointment.setDate(datePicker.getValue());
         loadedAppointment.setTime(selectedTime);
         SceneSwitch.switchTo(event,"primary/primary-view.fxml", "E-Health-System");
