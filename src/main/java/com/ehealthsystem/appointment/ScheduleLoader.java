@@ -42,6 +42,8 @@ public abstract class ScheduleLoader {
             errorLabel.setText("This doctor has no free appointments during the specified time range");
             errorLabel.setVisible(true);
             return;
+        } else { //initial state, or another date was selected => undo
+            errorLabel.setVisible(false);
         }
         for(int i = 0; i< doctorTimeSlotList.size(); i++, column++) {
             //Prepare UI
