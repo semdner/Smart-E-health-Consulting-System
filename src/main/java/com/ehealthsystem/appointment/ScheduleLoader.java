@@ -20,7 +20,7 @@ public abstract class ScheduleLoader {
     private ArrayList<Label> timeLabelList = new ArrayList<>();
     protected LocalTime selectedTime;
 
-    protected void loadSchedule(LocalDate date, Doctor doctor, GridPane scheduleGridPane, Label dateLabel, ScheduleLoader loader) throws SQLException {
+    protected void loadSchedule(LocalDate date, Doctor doctor, GridPane scheduleGridPane, Label dateLabel) throws SQLException {
         scheduleGridPane.getChildren().clear(); //clear grid pane
         ArrayList<DoctorTimeSlot> doctorTimeSlotList = DoctorTimeSlot.getFreeTimeSlots(date, doctor);
 
@@ -40,7 +40,7 @@ public abstract class ScheduleLoader {
             Label time = new Label(doctorTimeSlotList.get(i).getTime().format(DateTimeFormatter.ofPattern(Session.timePatternUI)));
             Button timeButton = new Button();
             if(doctorTimeSlotList.get(i).getFree()) {
-                handleTimeButton(time, timeButton, loader);
+                handleTimeButton(time, timeButton);
                 setStyle(time, timeButton);
             } else {
                 setStyle(time);
@@ -60,7 +60,7 @@ public abstract class ScheduleLoader {
         }
     }
 
-    private void handleTimeButton(Label time, Button timeButton, ScheduleLoader loader) {
+    private void handleTimeButton(Label time, Button timeButton) {
         timeLabelList.add(time);
         String timeStr = time.getText();
         // dynamically add the event handler for the buttons
@@ -72,7 +72,7 @@ public abstract class ScheduleLoader {
                 }
                 time.setTextFill(Color.web("#FF0000"));
                 DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Session.timePatternUI);
-                loader.selectedTime = LocalTime.parse(timeStr, timeFormatter);
+                selectedTime = LocalTime.parse(timeStr, timeFormatter);
             }
         });
     }

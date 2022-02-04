@@ -169,7 +169,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
      * @throws SQLException
      */
     private void loadSchedule() throws SQLException {
-        loadSchedule(Session.appointment.getDate(), doctor.getDoctor(), scheduleGridPane, dateLabel, this);
+        loadSchedule(Session.appointment.getDate(), doctor.getDoctor(), scheduleGridPane, dateLabel);
     }
 
     /**

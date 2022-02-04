@@ -81,7 +81,7 @@ public class AppointmentShiftController extends ScheduleLoader {
     }
 
     private void loadSchedule() throws SQLException {
-        loadSchedule(datePicker.getValue(), loadedAppointment.getDoctor(), scheduleGridPane, selectedDateLabel, this);
+        loadSchedule(datePicker.getValue(), loadedAppointment.getDoctor(), scheduleGridPane, selectedDateLabel);
     }
 
     public void handleShiftAppointmentButton(ActionEvent event) throws SQLException, IOException {
