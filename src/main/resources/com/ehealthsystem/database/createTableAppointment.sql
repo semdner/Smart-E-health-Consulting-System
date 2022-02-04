@@ -6,7 +6,7 @@ CREATE TABLE appointment
     "healthProblemDescription"	TEXT,
     date        TEXT NOT NULL,
     time        TEXT NOT NULL,
-    "minutesBeforeReminder"	INTEGER CHECK("minutesBeforeReminder" IN (10, 60, 4320, 10080)),
+    "minutesBeforeReminder"	INTEGER CHECK("minutesBeforeReminder" IN (0, 10, 60, 4320, 10080)),
     "duration" INTEGER, -- not used yet
     PRIMARY KEY("id" AUTOINCREMENT),
     UNIQUE (doctor_id, date, time),
