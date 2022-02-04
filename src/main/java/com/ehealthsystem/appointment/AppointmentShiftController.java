@@ -84,6 +84,8 @@ public class AppointmentShiftController extends ScheduleLoader {
             errorLabel.setText("no time selected");
             errorLabel.setVisible(true);
             return;
+        } else {
+            errorLabel.setVisible(false);
         }
 
         LocalDateTime oldDateTime = loadedAppointment.getDateTime();
