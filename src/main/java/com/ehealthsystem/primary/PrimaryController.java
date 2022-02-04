@@ -103,7 +103,7 @@ public class PrimaryController implements Initializable {
 
             AppointmentController appointment = fxmlloader.getController();
             appointment.setData(appointments.get(i));
-            if(appointments.get(i).getDate().isBefore(LocalDate.now())) {
+            if(appointments.get(i).isInThePast()) {
                 pastAppointmentBoxes.add(vbox);
             } else {
                 upcomingAppointmentsGridPane.add(vbox, 0, upcomingRow);

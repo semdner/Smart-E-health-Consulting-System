@@ -61,7 +61,7 @@ public class AppointmentMadeController {
     public void start(Appointment appointment) throws SQLException, IOException, InterruptedException, ApiException {
         loadedAppointment = appointment;
         loadAppointment();
-        if (loadedAppointment.getDate().isBefore(LocalDate.now())) { //past appointment
+        if (loadedAppointment.isInThePast()) { //past appointment
             editAppointmentButton.setDisable(true);
             cancelAppointmentButton.setDisable(true);
         }

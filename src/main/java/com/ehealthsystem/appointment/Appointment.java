@@ -7,6 +7,7 @@ import javax.activation.UnsupportedDataTypeException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Appointment {
@@ -74,6 +75,14 @@ public class Appointment {
 
     public LocalTime getTime() {
         return time;
+    }
+
+    public LocalDateTime getDateTime() {
+        return LocalDateTime.of(date, time);
+    }
+
+    public boolean isInThePast() {
+        return getDateTime().isBefore(LocalDateTime.now());
     }
 
     public int getMinutesBeforeReminder() {
