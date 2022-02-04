@@ -20,7 +20,7 @@ public abstract class ScheduleLoader {
     private ArrayList<Label> timeLabelList = new ArrayList<>();
     protected LocalTime selectedTime;
 
-    public void loadSchedule(LocalDate date, Doctor doctor, GridPane scheduleGridPane, Label dateLabel, ScheduleLoader loader) throws SQLException {
+    protected void loadSchedule(LocalDate date, Doctor doctor, GridPane scheduleGridPane, Label dateLabel, ScheduleLoader loader) throws SQLException {
         scheduleGridPane.getChildren().clear(); //clear grid pane
         ArrayList<DoctorTimeSlot> doctorTimeSlotList = DoctorTimeSlot.getFreeTimeSlots(date, doctor);
 
