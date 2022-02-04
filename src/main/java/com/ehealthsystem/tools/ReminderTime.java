@@ -22,4 +22,8 @@ public enum ReminderTime { //https://stackoverflow.com/q/27801119/18039017
     public int getMinutes() {
         return minutes;
     }
+
+    public String getLabel() {
+        return label;
+    }
 }

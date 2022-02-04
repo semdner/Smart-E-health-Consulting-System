@@ -2,6 +2,8 @@ package com.ehealthsystem.doctor;
 
 import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.appointment.ScheduleLoader;
+import com.ehealthsystem.database.Database;
+import com.ehealthsystem.mail.SendEmail;
 import com.ehealthsystem.map.DoctorDistance;
 import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.tools.ReminderTime;
@@ -22,9 +24,13 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 import javax.activation.UnsupportedDataTypeException;
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 
 public class FoundDoctorFullController extends ScheduleLoader {
@@ -71,6 +77,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
         loadDoctorData();
 
         datePicker.setValue(LocalDate.now());
+        Session.appointment.setDate(datePicker.getValue());
         while (!loadSchedule()) { //Display first day with free times.
             datePicker.setValue(datePicker.getValue().plusDays(1));
         }
@@ -164,7 +171,8 @@ public class FoundDoctorFullController extends ScheduleLoader {
      */
     private void loadDoctorData() throws SQLException, IOException, InterruptedException, ApiException {
         doctorLabel.setText("Dr. " + doctor.getDoctor().getFirstName() + " " + doctor.getDoctor().getLastName());
-        addressLabel.setText(doctor.getDoctor().getFormattedAddressWithPlaceName());
+        doctorGeoData = doctor.getDoctor().getFormattedAddressWithPlaceName();
+        addressLabel.setText(doctorGeoData);
         specializationsLabel.setText(StringEnumerator.enumerate(doctor.getDoctor().getSpecializations()));
     }
 
@@ -190,10 +198,11 @@ public class FoundDoctorFullController extends ScheduleLoader {
      * @param event
      * @throws IOException
      */
-    public void handleMakeAppointmentButton(ActionEvent event) throws IOException, SQLException {
+    public void handleMakeAppointmentButton(ActionEvent event) throws IOException, SQLException, MessagingException, InterruptedException, ApiException {
         if(selectedTime != null) {
+            ReminderTime reminderChoice = ((ReminderTime) reminderComboBox.getValue());
             Session.appointment.setTime(selectedTime);
-            new Appointment(
+            Appointment appointment = new Appointment(
                     true,
                     0,
                     Session.user.getUsername(),
@@ -201,9 +210,23 @@ public class FoundDoctorFullController extends ScheduleLoader {
                     Session.appointment.getHealthProblem(),
                     Session.appointment.getDate(),
                     Session.appointment.getTime(),
-                    ((ReminderTime) reminderComboBox.getValue()).getMinutes(), //no need for validation of combobox selection since default value is valid
+                    reminderChoice.getMinutes(), //no need for validation of combobox selection since default value is valid
                     0
-                    );
+            );
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
+            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Session.timePatternUI);
+            String date = appointment.getDate().format(dateFormatter);
+            String time = appointment.getTime().format(timeFormatter);
+            SendEmail.sendMail(
+                    Session.user.getMail(),
+                    "Appointment confirmation: Dr. %s @ %s %s".formatted(
+                            appointment.getDoctor().getLastName(),
+                            date,
+                            time
+                    ),
+                    "You successfully made an appointment with Dr. %s on %s at %s. Their address is %s.".formatted(appointment.getDoctor().getLastName(), time, date, doctorGeoData)
+                    + (reminderChoice.getMinutes() != 0 ? " A reminder email will be sent to you %s ahead.".formatted(reminderChoice.getLabel()) : "")
+            );
             SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
         } else {
             errorLabel.setText("no time selected");
