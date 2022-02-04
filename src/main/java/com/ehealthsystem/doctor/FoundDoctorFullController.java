@@ -39,9 +39,6 @@ public class FoundDoctorFullController extends ScheduleLoader {
     Label dateLabel;
 
     @FXML
-    GridPane scheduleGridPane;
-
-    @FXML
     Label errorLabel;
 
     @FXML
@@ -169,7 +166,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
      * @throws SQLException
      */
     private void loadSchedule() throws SQLException {
-        loadSchedule(Session.appointment.getDate(), doctor.getDoctor(), scheduleGridPane, dateLabel);
+        loadSchedule(Session.appointment.getDate(), doctor.getDoctor(), dateLabel);
     }
 
     /**

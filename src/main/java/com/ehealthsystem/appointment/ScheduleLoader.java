@@ -4,6 +4,7 @@ import com.ehealthsystem.doctor.Doctor;
 import com.ehealthsystem.doctor.DoctorTimeSlot;
 import com.ehealthsystem.tools.Session;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -17,10 +18,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public abstract class ScheduleLoader {
+    @FXML
+    GridPane scheduleGridPane;
+
     private ArrayList<Label> timeLabelList = new ArrayList<>();
     protected LocalTime selectedTime;
 
-    protected void loadSchedule(LocalDate date, Doctor doctor, GridPane scheduleGridPane, Label dateLabel) throws SQLException {
+    protected void loadSchedule(LocalDate date, Doctor doctor, Label dateLabel) throws SQLException {
         scheduleGridPane.getChildren().clear(); //clear grid pane
         ArrayList<DoctorTimeSlot> doctorTimeSlotList = DoctorTimeSlot.getFreeTimeSlots(date, doctor);
 
