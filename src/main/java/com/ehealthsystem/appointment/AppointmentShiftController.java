@@ -82,6 +82,11 @@ public class AppointmentShiftController extends ScheduleLoader {
     }
 
     public void handleShiftAppointmentButton(ActionEvent event) throws SQLException, IOException {
+        if(selectedTime == null) {
+            errorLabel.setVisible(true);
+            return;
+        }
+        
         loadedAppointment.setDate(datePicker.getValue());
         loadedAppointment.setTime(selectedTime);
         SceneSwitch.switchTo(event,"primary/primary-view.fxml", "E-Health-System");
