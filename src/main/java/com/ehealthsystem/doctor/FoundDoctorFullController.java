@@ -202,7 +202,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
         } else {
             errorLabel.setVisible(false);
         }
-        
+
         ReminderTime reminderChoice = ((ReminderTime) reminderComboBox.getValue());
         Session.appointment.setTime(selectedTime);
         Appointment appointment = new Appointment(
