@@ -287,7 +287,7 @@ public class Database {
         } else if (value instanceof Integer) {
             statement.setInt(i+1, (Integer) value);
         } else {
-            throw new UnsupportedDataTypeException("Unknown datatype: " + value.getClass().getCanonicalName());
+            throw new UnsupportedDataTypeException("Unknown datatype: " + value);
         }
     }
 
