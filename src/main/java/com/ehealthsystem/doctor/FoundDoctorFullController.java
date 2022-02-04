@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.web.WebEngine;
@@ -23,6 +24,7 @@ import javafx.scene.web.WebView;
 import javax.activation.UnsupportedDataTypeException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class FoundDoctorFullController extends ScheduleLoader {
@@ -38,6 +40,9 @@ public class FoundDoctorFullController extends ScheduleLoader {
 
     @FXML
     Label dateLabel;
+
+    @FXML
+    DatePicker datePicker;
 
     @FXML
     ComboBox reminderComboBox;
@@ -60,6 +65,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
      * @throws SQLException
      */
     public void start() throws IOException, InterruptedException, ApiException, SQLException {
+        datePicker.setValue(LocalDate.now());
         reminderComboBox.getItems().setAll(ReminderTime.values());
         reminderComboBox.setValue(ReminderTime.THREE_DAYS); //no need for validation if default value is valid
         loadGMap();
@@ -164,7 +170,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
      * @throws SQLException
      */
     private void loadSchedule() throws SQLException, UnsupportedDataTypeException {
-        loadSchedule(Session.appointment.getDate(), doctor.getDoctor(), dateLabel, makeAppointmentButton);
+        loadSchedule(datePicker.getValue(), doctor.getDoctor(), dateLabel, makeAppointmentButton);
     }
 
     /**
@@ -219,5 +225,14 @@ public class FoundDoctorFullController extends ScheduleLoader {
         });
 
         engine.load(getClass().getResource("/com/ehealthsystem/map/map.html").toString());
+    }
+
+    public void handleDateChoice(ActionEvent event) throws SQLException, UnsupportedDataTypeException {
+        if (datePicker.getValue().isBefore(LocalDate.now())) {
+            datePicker.setValue(LocalDate.now());
+            return;
+        }
+        Session.appointment.setDate(datePicker.getValue());
+        loadSchedule();
     }
 }

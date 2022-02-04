@@ -17,9 +17,6 @@ import java.util.ResourceBundle;
 public class AppointmentInformationController implements Initializable {
 
     @FXML
-    DatePicker datePicker;
-
-    @FXML
     Slider searchDistanceSlider;
 
     @FXML
@@ -38,7 +35,6 @@ public class AppointmentInformationController implements Initializable {
             String[] categories = specialization.getSpecializationList().toArray(new String[0]);
             doctorChoiceBox.getItems().setAll(categories);
 
-            datePicker.setValue(Session.appointment.getDate() != null ? Session.appointment.getDate() : LocalDate.now());
             if (Session.appointment.getDistance() != -1) {
                 searchDistanceSlider.setValue(Session.appointment.getDistance());
             }
@@ -63,13 +59,6 @@ public class AppointmentInformationController implements Initializable {
         boolean okay = true;
         Session.appointment.setDistance(searchDistanceSlider.getValue());
 
-        if(validateDate()) {
-            Session.appointment.setDate(datePicker.getValue());
-        } else {
-            Session.appointment.setDate(null);
-            okay = false;
-        }
-
         if(validateSpecialization()) {
             Session.appointment.setSpecialization(doctorChoiceBox.getValue().toString());
         } else {
@@ -89,23 +78,6 @@ public class AppointmentInformationController implements Initializable {
     public void handleBackButton(ActionEvent event) throws IOException {
         saveData();
         SceneSwitch.switchTo(event, "appointment/appointmentHealth-view.fxml", "Make appointment");
-    }
-
-    public boolean validateDate() {
-        LocalDate date;
-        try {
-            date = datePicker.getValue(); //null if no date selected
-            if (date.isBefore(LocalDate.now())) { //throws NullPointerException if date is null
-                errorLabel.setText("You can't make appointments for the past. Please use a date in the future or today.");
-                return false;
-            } else {
-                return true;
-            }
-        } catch (NullPointerException e) {
-            errorLabel.setText("You didn't select a date.");
-            errorLabel.setVisible(true);
-            return false;
-        }
     }
 
     public boolean validateHealthProblem() {
