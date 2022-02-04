@@ -25,7 +25,7 @@ public abstract class ScheduleLoader {
     protected LocalTime selectedTime;
 
     protected void loadSchedule(LocalDate date, Doctor doctor, Label dateLabel) throws SQLException {
-        scheduleGridPane.getChildren().clear(); //clear grid pane
+        scheduleGridPane.getChildren().remove(1, scheduleGridPane.getChildren().size()); //clear grid pane, except for date label
         ArrayList<DoctorTimeSlot> doctorTimeSlotList = DoctorTimeSlot.getFreeTimeSlots(date, doctor);
 
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Session.datePatternUI);
