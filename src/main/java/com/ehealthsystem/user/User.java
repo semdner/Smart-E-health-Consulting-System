@@ -155,8 +155,7 @@ public class User implements HasAddress {
     }
 
     public void setBirthDate(LocalDate birthDate) throws SQLException, UnsupportedDataTypeException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Database.datePattern);
-        String bd = birthDate.format(formatter);
+        String bd = birthDate.format(Database.dateFormatter);
         update(new Object[][]{{"birthday", bd}});
         this.birthDate = birthDate;
     }
