@@ -119,22 +119,6 @@ public class Database {
     }
 
     /**
-     * Get a list of all usernames for login
-     * @return usernames
-     */
-    public static ArrayList<String> getUsernames() throws SQLException {
-        Statement statement = connection.createStatement();
-        statement.setQueryTimeout(30);  // set timeout to 30 sec.
-        ResultSet rs = statement.executeQuery("SELECT username FROM user");
-
-        ArrayList<String> usernames = new ArrayList<>();
-        while (rs.next())
-            usernames.add(rs.getString("username"));
-
-        return usernames;
-    }
-
-    /**
      * Check if user entered their correct password
      * Retrieves stored password and verifies that the entered one matches the stored hash
      * This method is not part of the User class because there isn't a user object during login yet
