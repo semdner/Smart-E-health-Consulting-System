@@ -40,44 +40,50 @@ public class AdminController implements Initializable {
         ArrayList<User> users = Database.getAllUsers();
         int row = 1;
         for (int i = 1; i < users.size(); i++) {
-            loadCurrentUser(users.get(i), row);
+            loadUser(users.get(i), row);
             row++;
         }
     }
 
-    public void loadCurrentUser(User user, int row) throws SQLException {
-        Label username = new Label(user.getUsername());
-        Label email = new Label(user.getMail());
-        Label firstName = new Label(user.getFirstName());
-        Label lastName = new Label(user.getLastName());
-        Label street = new Label(user.getStreet());
-        Label houseNo = new Label(user.getHouseNumber());
-        Label zip = new Label(user.getZipCode());
-        Label birthday = new Label(user.getBirthDate().toString());
-        Label gender = new Label(user.getGender());
-        Label password = new Label(user.getHashedPassword(user.getMail()));
-        userGridPane.add(username, 0, row);
-        userGridPane.add(email, 1, row);
-        userGridPane.add(firstName, 2, row);
-        userGridPane.add(lastName, 3, row);
-        userGridPane.add(street, 4, row);
-        userGridPane.add(houseNo, 5, row);
-        userGridPane.add(zip, 6, row);
-        userGridPane.add(birthday, 7, row);
-        userGridPane.add(gender, 8, row);
-        userGridPane.add(password, 9, row);
+    private void loadUser(User user, int row) throws SQLException {
+        ArrayList<Label> labels = createLabel(user);
+        ArrayList<Button> buttons = createButton(user);
+        loadTable(labels, buttons, row);
     }
 
-    public void setUserButtons() {
-        Button usernameButton = new Button();
-        Button emailButton = new Button();
-        Button firstNameButton = new Button();
-        Button lastNameButton = new Button();
-        Button streetButton = new Button();
-        Button houseNoButton = new Button();
-        Button zipButton = new Button();
-        Button birthdayButton = new Button();
-        Button genderButton = new Button();
-        Button passwordButton = new Button();
+    private ArrayList<Label> createLabel(User user) throws SQLException {
+        ArrayList labels = new ArrayList<>();
+        labels.add(new Label(user.getUsername()));
+        labels.add(new Label(user.getMail()));
+        labels.add( new Label(user.getFirstName()));
+        labels.add(new Label(user.getLastName()));
+        labels.add(new Label(user.getStreet()));
+        labels.add(new Label(user.getHouseNumber()));
+        labels.add(new Label(user.getZipCode()));
+        labels.add(new Label(user.getBirthDate().toString()));
+        labels.add(new Label(user.getGender()));
+        labels.add(new Label(user.getHashedPassword(user.getMail())));
+        return labels;
+    }
+
+    private ArrayList<Button> createButton(User user) {
+        ArrayList<Button> buttons = new ArrayList<>();
+        buttons.add(new Button());
+        buttons.add(new Button());
+        buttons.add(new Button());
+        buttons.add(new Button());
+        buttons.add(new Button());
+        buttons.add(new Button());
+        buttons.add(new Button());
+        buttons.add(new Button());
+        buttons.add(new Button());
+        buttons.add(new Button());
+        return buttons;
+    }
+
+    public void loadTable(ArrayList<Label> labels, ArrayList<Button> buttons, int row) {
+        for (int i = 0; i < 10; i++) {
+            userGridPane.add(labels.get(i), i, row);
+        }
     }
 }
