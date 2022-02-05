@@ -43,52 +43,52 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="username">
+                  <Label text="Username">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="email" GridPane.rowIndex="1">
+                  <Label text="Email" GridPane.rowIndex="1">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="first name" GridPane.rowIndex="2">
+                  <Label text="First name" GridPane.rowIndex="2">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="last name" GridPane.rowIndex="3">
+                  <Label text="Last name" GridPane.rowIndex="3">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="street" GridPane.rowIndex="4">
+                  <Label text="Street" GridPane.rowIndex="4">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="house no." GridPane.rowIndex="5">
+                  <Label text="House no." GridPane.rowIndex="5">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="zip" GridPane.rowIndex="6">
+                  <Label text="Zip code" GridPane.rowIndex="6">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="birthday" GridPane.rowIndex="7">
+                  <Label text="Birthday" GridPane.rowIndex="7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="gender" GridPane.rowIndex="8">
+                  <Label text="Gender" GridPane.rowIndex="8">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="private insurance" GridPane.rowIndex="10">
+                  <Label text="Private insurance" GridPane.rowIndex="10">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -143,7 +143,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="286.0" text="insurance name" GridPane.rowIndex="9">
+                  <Label layoutX="10.0" layoutY="286.0" text="Insurance name" GridPane.rowIndex="9">
                      <font>
                         <Font size="15.0" />
                      </font>

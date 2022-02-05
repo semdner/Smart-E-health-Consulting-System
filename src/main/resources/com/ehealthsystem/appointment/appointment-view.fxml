@@ -24,17 +24,17 @@
                 <RowConstraints maxHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="date">
+                  <Label text="Date">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Label>
-                  <Label text="time" GridPane.rowIndex="1">
+                  <Label text="Time" GridPane.rowIndex="1">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Label>
-                  <Label text="doctor" GridPane.rowIndex="2">
+                  <Label text="Doctor" GridPane.rowIndex="2">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -60,7 +60,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="20.0" prefWidth="220.0" style="-fx-background-color: eaeaea;">
          <children>
-            <Button fx:id="showMoreButton" layoutX="47.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleShowMoreButton" prefHeight="22.0" prefWidth="120.0" text="show appointment" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="3.0">
+            <Button fx:id="showMoreButton" layoutX="47.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleShowMoreButton" prefHeight="22.0" prefWidth="120.0" text="Show details" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="3.0">
                <font>
                   <Font size="11.0" />
                </font>

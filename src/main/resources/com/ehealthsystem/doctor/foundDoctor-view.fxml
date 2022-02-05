@@ -24,15 +24,15 @@
                 <RowConstraints maxHeight="0.0" minHeight="28.0" prefHeight="20.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="doctor">
+                  <Label text="Doctor">
                      <font>
                         <Font size="15.0" />
                      </font></Label>
-                  <Label text="address" GridPane.rowIndex="1">
+                  <Label text="Address" GridPane.rowIndex="1">
                      <font>
                         <Font size="15.0" />
                      </font></Label>
-                  <Label text="zip" GridPane.rowIndex="2">
+                  <Label text="Zip code" GridPane.rowIndex="2">
                      <font>
                         <Font size="15.0" />
                      </font></Label>
@@ -54,7 +54,7 @@
       </AnchorPane>
       <AnchorPane focusTraversable="true" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: eaeaea;">
          <children>
-            <Button fx:id="showMoreButton" focusTraversable="false" layoutX="116.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleShowMoreButton" prefHeight="25.0" prefWidth="83.0" text="show more" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="6.0" />
+            <Button fx:id="showMoreButton" focusTraversable="false" layoutX="116.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleShowMoreButton" prefHeight="25.0" prefWidth="83.0" text="Show more" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="6.0" />
          </children>
       </AnchorPane>
    </children>

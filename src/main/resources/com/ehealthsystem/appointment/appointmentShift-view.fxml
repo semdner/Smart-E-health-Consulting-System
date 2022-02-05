@@ -37,7 +37,7 @@
          <children>
             <AnchorPane prefHeight="470.0" prefWidth="500.0">
                <children>
-                  <Label prefHeight="21.0" prefWidth="167.0" text="Current Appointment" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                  <Label prefHeight="21.0" prefWidth="195.0" text="Appointment information" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -57,17 +57,17 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label text="doctor">
+                        <Label text="Doctor">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label text="address" GridPane.rowIndex="1">
+                        <Label text="Address" GridPane.rowIndex="1">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label text="specialization" GridPane.rowIndex="2">
+                        <Label text="Specialization" GridPane.rowIndex="2">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -87,17 +87,17 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label text="date" GridPane.rowIndex="3">
+                        <Label text="Date" GridPane.rowIndex="3">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label text="time" GridPane.rowIndex="4">
+                        <Label text="Time" GridPane.rowIndex="4">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label text="health problem" GridPane.rowIndex="5">
+                        <Label text="Health problem" GridPane.rowIndex="5">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -123,7 +123,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="470.0" prefWidth="500.0">
                <children>
-                  <Label prefHeight="21.0" prefWidth="167.0" text="Shift Appointment" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                  <Label prefHeight="21.0" prefWidth="167.0" text="New time" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -138,7 +138,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label text="date">
+                        <Label text="Date">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -170,8 +170,8 @@
    <bottom>
       <AnchorPane prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: eaeaea;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="shiftAppointmentButton" layoutX="841.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleShiftAppointmentButton" prefHeight="26.0" prefWidth="120.0" text="shift appointment" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="840.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.5" />
-            <Button fx:id="backButton1" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleBackButton" prefWidth="50.0" text="back" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="940.0" AnchorPane.topAnchor="7.5" />
+            <Button fx:id="shiftAppointmentButton" layoutX="841.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleShiftAppointmentButton" prefHeight="26.0" prefWidth="120.0" text="Shift appointment" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="840.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.5" />
+            <Button fx:id="backButton1" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleBackButton" prefWidth="50.0" text="Back" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="940.0" AnchorPane.topAnchor="7.5" />
             <Label fx:id="errorLabel" layoutX="817.0" layoutY="10.0" text="" textFill="RED" visible="false" AnchorPane.leftAnchor="80.0">
                <font>
                   <Font size="15.0" />

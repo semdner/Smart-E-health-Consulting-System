@@ -38,24 +38,24 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="max. search distance [km]">
+                  <Label text="Max. distance to doctor [km]">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="health problem" GridPane.rowIndex="1">
+                  <Label text="Health problem" GridPane.rowIndex="1">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="doctor specialization" GridPane.rowIndex="2">
+                  <Label text="Doctor specialization" GridPane.rowIndex="2">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
                   <Slider fx:id="searchDistanceSlider" focusTraversable="false" max="150.0" prefWidth="365.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="25.0" GridPane.columnIndex="1" />
                   <TextField fx:id="healthProblemField" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <ComboBox fx:id="doctorChoiceBox" focusTraversable="false" prefHeight="25.0" prefWidth="164.0" promptText="choose specialization" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ComboBox fx:id="doctorChoiceBox" focusTraversable="false" prefHeight="25.0" prefWidth="164.0" promptText="Choose specialization" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </children>

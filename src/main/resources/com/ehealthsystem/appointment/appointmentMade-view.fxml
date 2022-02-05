@@ -66,17 +66,17 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label text="doctor">
+                              <Label text="Doctor">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label text="address" GridPane.rowIndex="1">
+                              <Label text="Address" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label text="specialization" GridPane.rowIndex="2">
+                              <Label text="Specialization" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -119,17 +119,17 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label text="date">
+                              <Label text="Date">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label text="time" GridPane.rowIndex="1">
+                              <Label text="Time" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label text="health problem" GridPane.rowIndex="2">
+                              <Label text="Health problem" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -157,7 +157,7 @@
             </HBox>
             <AnchorPane>
                <children>
-                  <Label layoutX="14.0" layoutY="14.0" prefHeight="21.0" prefWidth="75.0" text="Webview" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="915.0" AnchorPane.topAnchor="10.0">
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="21.0" prefWidth="75.0" text="Route" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="915.0" AnchorPane.topAnchor="10.0">
                      <font>
                         <Font size="15.0" />
                      </font>
