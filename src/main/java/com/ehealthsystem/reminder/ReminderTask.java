@@ -30,13 +30,7 @@ public class ReminderTask extends TimerTask {
                     ),
                     "This is to remind you of your upcoming appointment with Dr. %s.".formatted(appointment.getDoctor().getFirstName())
             );
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (UnsupportedDataTypeException e) {
+        } catch (MessagingException | UnsupportedEncodingException | SQLException | UnsupportedDataTypeException e) {
             e.printStackTrace();
         }
     }

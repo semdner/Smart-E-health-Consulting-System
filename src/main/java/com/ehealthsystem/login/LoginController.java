@@ -47,11 +47,7 @@ public class LoginController {
     }
 
     private boolean validateAdmin() {
-        if (emailTextField.getText().equals("admin")) {
-            return true;
-        } else {
-            return false;
-        }
+        return emailTextField.getText().equals("admin");
     }
 
     /**
@@ -116,7 +112,7 @@ public class LoginController {
 
     /**
      * Method called to switch scene to registration form.
-     * @param event MouseEvent trigged the method
+     * @param event MouseEvent that triggered the method
      * @throws IOException if the FXMLLoader can't find the scene
      */
     public void handleRegistrationLabel(MouseEvent event) throws IOException {

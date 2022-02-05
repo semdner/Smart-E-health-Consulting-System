@@ -1,28 +1,17 @@
 package com.ehealthsystem.mail;
 
-import com.ehealthsystem.registration.RegistrationController;
 import com.ehealthsystem.registration.RegistrationValidationController;
-import com.ehealthsystem.tools.ResourceReader;
 
-import com.ehealthsystem.tools.SceneSwitch;
-import javafx.event.Event;
-
-import java.io.IOException;
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import java.io.UnsupportedEncodingException;
-import java.sql.SQLException;
 import java.util.Properties;
 import java.util.Random;
-import javax.activation.FileDataSource;
-import javax.activation.DataHandler;
-import javax.mail.Authenticator;
-import javax.mail.BodyPart;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.*;
 
 public class SendEmail {
 

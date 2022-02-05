@@ -33,9 +33,10 @@ public class CreatePDF {
 
         try {
             con = DriverManager.getConnection("jdbc:sqlite:" + fileName);
-            System.out.println("Connection was succesful!");
+            System.out.println("Connection was successful!");
         } catch (SQLException e) {
-            System.out.println("Connection failed! " + e);
+            System.out.println("Connection failed!");
+            e.printStackTrace();
         }
 
 
@@ -60,14 +61,14 @@ public class CreatePDF {
         Text headline4 = new Text("\n" + "Insurance:").setFont(bold).setFontSize(14f);
 
         // Creating Table and editing Size
-        float col1[] = {75f, 200f, 70f, 1f};
+        float[] col1 = {75f, 200f, 70f, 1f};
         Table table1 = new Table(col1);
-        float col2[] = {75f, 125f, 75f, 70f, 1f};
+        float[] col2 = {75f, 125f, 75f, 70f, 1f};
         Table table2 = new Table(col2);
-        float columnList[] = {280f, 280f};
+        float[] columnList = {280f, 280f};
         Table table3 = new Table(columnList);
         Table table4 = new Table(columnList);
-        float col3[] = {125f, 150f, 70f, 1f};
+        float[] col3 = {125f, 150f, 70f, 1f};
         Table table5 = new Table(col3);
 
         // Adding Data into Table
@@ -125,7 +126,7 @@ public class CreatePDF {
         table.addCell(new Cell().add(Session.user.getStreet()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(Session.user.getHouseNumber()).setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add("Birthday: ").setBorder(Border.NO_BORDER));
-        table.addCell(new Cell().add(String.valueOf(Session.user.getBirthDate().format(Session.dateFormatter))).setBorder(Border.NO_BORDER));
+        table.addCell(new Cell().add(Session.user.getBirthDate().format(Session.dateFormatter)).setBorder(Border.NO_BORDER));
     }
 
     private static void Disease(Table table) throws SQLException {
