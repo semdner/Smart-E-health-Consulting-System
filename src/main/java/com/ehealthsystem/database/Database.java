@@ -586,4 +586,15 @@ public class Database {
         ResultSet rs = statement.executeQuery();
         return loadAppointmentsFromResultSet(rs);
     }
+
+    public static String getPassword(String email) throws SQLException {
+        String query = "SELECT password FROM user WHERE email = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, email);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            return rs.getString("password");
+        }
+        return null;
+    }
 }

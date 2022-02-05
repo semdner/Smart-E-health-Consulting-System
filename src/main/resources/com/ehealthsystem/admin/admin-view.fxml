@@ -45,9 +45,8 @@
               <content>
                 <AnchorPane prefWidth="1258.0">
                      <children>
-                        <GridPane layoutX="382.0" layoutY="5.0" prefHeight="30.0" prefWidth="155.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                        <GridPane fx:id="userGridPane" layoutX="382.0" layoutY="5.0" prefHeight="30.0" prefWidth="155.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="10.0" prefWidth="41.0" />
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="114.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="114.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="114.0" />
@@ -63,49 +62,45 @@
                             <RowConstraints minHeight="30.0" prefHeight="0.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label text="id">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font></Label>
-                              <Label text="username" GridPane.columnIndex="1">
+                              <Label text="username">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <Label text="email" GridPane.columnIndex="2">
+                              <Label text="email" GridPane.columnIndex="1">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font></Label>
-                              <Label text="first name" GridPane.columnIndex="3">
+                              <Label text="first name" GridPane.columnIndex="2">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font></Label>
-                              <Label text="last name" GridPane.columnIndex="4">
+                              <Label text="last name" GridPane.columnIndex="3">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font></Label>
-                              <Label text="street" GridPane.columnIndex="5">
+                              <Label text="street" GridPane.columnIndex="4">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font></Label>
-                              <Label text="house no." GridPane.columnIndex="6">
+                              <Label text="house no." GridPane.columnIndex="5">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font></Label>
-                              <Label text="zip" GridPane.columnIndex="7">
+                              <Label text="zip" GridPane.columnIndex="6">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <Label text="birthday" GridPane.columnIndex="8">
+                              <Label text="birthday" GridPane.columnIndex="7">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font></Label>
-                              <Label text="gender" GridPane.columnIndex="9">
+                              <Label text="gender" GridPane.columnIndex="8">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font></Label>
-                              <Label text="password" GridPane.columnIndex="10">
+                              <Label text="password" GridPane.columnIndex="9">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font></Label>

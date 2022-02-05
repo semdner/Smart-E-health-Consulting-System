@@ -8,7 +8,6 @@ import javax.activation.UnsupportedDataTypeException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class User implements HasAddress {
@@ -217,6 +216,10 @@ public class User implements HasAddress {
 
     public boolean isPrivateInsurance() {
         return privateInsurance;
+    }
+
+    public String getHashedPassword(String mail) throws SQLException {
+        return Database.getPassword(email);
     }
 
     /**
