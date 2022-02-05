@@ -122,7 +122,7 @@ public class Database {
      * Check if user entered their correct password
      * Retrieves stored password and verifies that the entered one matches the stored hash
      * This method is not part of the User class because there isn't a user object during login yet
-     * @param usernameOrEmail
+     * @param usernameOrEmail since a user can enter both username or email in the text field
      * @param password in plain text
      * @return whether password is correct
      */
@@ -298,7 +298,7 @@ public class Database {
 
     /**
      * Get a user object with all user's details loaded from the database
-     * @param usernameOrEmail
+     * @param usernameOrEmail since a user can enter both username or email in the text field
      * @return
      */
     public static User getUserByUsernameOrEmail(String usernameOrEmail) throws SQLException, UnsupportedDataTypeException {
