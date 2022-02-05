@@ -445,6 +445,6 @@ public class RegistrationController implements Initializable {
      * @param event
      */
     public void handleBackButton(ActionEvent event) throws IOException {
-        SceneSwitch.switchTo(event, "main/main-view.fxml", "Welcome");
+        SceneSwitch.switchToCentered(event, "main/main-view.fxml", "Welcome");
     }
 }
