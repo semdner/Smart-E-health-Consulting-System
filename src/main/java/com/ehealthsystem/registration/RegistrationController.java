@@ -165,6 +165,7 @@ public class RegistrationController implements Initializable {
             Scene primaryScene = new Scene(root);
             stage.setTitle("E-Health-System");
             stage.setScene(primaryScene);
+            SceneSwitch.centerWindow(stage);
         } else {
             //showError("Sign up information wrong or missing");
             // Don't show this generic, not helpful error message,
