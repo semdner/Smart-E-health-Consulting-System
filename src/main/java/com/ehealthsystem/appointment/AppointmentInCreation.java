@@ -20,10 +20,6 @@ public class AppointmentInCreation {
     public AppointmentInCreation() {
     }
 
-    public AppointmentInCreation(ArrayList<HealthInformation> healthInformation) {
-        this.healthInformation = healthInformation;
-    }
-
     public void setDate(LocalDate date) {
         this.date = date;
     }

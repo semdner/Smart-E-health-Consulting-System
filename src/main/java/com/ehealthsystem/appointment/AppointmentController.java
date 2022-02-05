@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.format.DateTimeFormatter;
 
 public class AppointmentController {
 

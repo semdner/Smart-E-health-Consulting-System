@@ -2,10 +2,8 @@ package com.ehealthsystem.doctor;
 
 import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.appointment.ScheduleLoader;
-import com.ehealthsystem.database.Database;
 import com.ehealthsystem.mail.SendEmail;
 import com.ehealthsystem.map.DoctorDistance;
-import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.tools.ReminderTime;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
@@ -19,7 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
@@ -27,11 +24,7 @@ import javax.activation.UnsupportedDataTypeException;
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.util.ArrayList;
 
 public class FoundDoctorFullController extends ScheduleLoader {
 

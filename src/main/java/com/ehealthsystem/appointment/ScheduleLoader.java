@@ -15,7 +15,6 @@ import javax.activation.UnsupportedDataTypeException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public abstract class ScheduleLoader {

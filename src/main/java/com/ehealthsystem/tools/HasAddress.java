@@ -4,6 +4,7 @@ import com.ehealthsystem.map.GeoCoder;
 import com.google.maps.errors.ApiException;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public interface HasAddress {
     String getStreet();
@@ -15,6 +16,6 @@ public interface HasAddress {
     }
 
     default String getFormattedAddressWithPlaceName() throws IOException, InterruptedException, ApiException {
-        return GeoCoder.geocode(getFormattedAddress()).formattedAddress;
+        return Objects.requireNonNull(GeoCoder.geocode(getFormattedAddress())).formattedAddress;
     }
 }

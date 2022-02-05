@@ -33,7 +33,7 @@ public class GeoDistance {
      * @param range maximum distance, in km (DRIVING DISTANCE because Google Maps API)
      * @return a list of doctors that are in the range
      */
-    public static ArrayList<DoctorDistance> filterDoctorsInRangeIndividualRequests(ArrayList<Doctor> doctors, String userGeoData, double range) throws SQLException, IOException, InterruptedException, ApiException {
+    public static ArrayList<DoctorDistance> filterDoctorsInRangeIndividualRequests(ArrayList<Doctor> doctors, String userGeoData, double range) throws IOException, InterruptedException, ApiException {
         ArrayList<DoctorDistance> doctorsInRange = new ArrayList<>();
 
         for (Doctor d : doctors) {
@@ -53,7 +53,7 @@ public class GeoDistance {
      * @param range maximum distance, in km (DRIVING DISTANCE because Google Maps API)
      * @return a list of doctors that are in the range
      */
-    public static ArrayList<DoctorDistance> filterDoctorsInRangeBatchRequest(ArrayList<Doctor> doctors, String userGeoData, double range) throws SQLException, IOException, InterruptedException, ApiException {
+    public static ArrayList<DoctorDistance> filterDoctorsInRangeBatchRequest(ArrayList<Doctor> doctors, String userGeoData, double range) throws IOException, InterruptedException, ApiException {
         //Prepare distance request
         //Collect doctors' addresses in a list
         String[] docAddresses = new String[doctors.size()];

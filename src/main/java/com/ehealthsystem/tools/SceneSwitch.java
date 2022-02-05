@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class SceneSwitch {
     /**
@@ -25,7 +26,7 @@ public class SceneSwitch {
      * @throws IOException if the file was not found
      */
     public static void switchTo(Event event, String file, String title) throws IOException {
-        Parent root = FXMLLoader.load(SceneSwitch.class.getResource("/com/ehealthsystem/" + file));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(SceneSwitch.class.getResource("/com/ehealthsystem/" + file)));
         Stage stage = event == null ? Main.getPrimaryStage() : (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle(title);

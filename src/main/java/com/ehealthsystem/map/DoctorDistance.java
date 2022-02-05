@@ -1,8 +1,6 @@
 package com.ehealthsystem.map;
 
 import com.ehealthsystem.doctor.Doctor;
-import com.ehealthsystem.mail.SendEmail;
-import com.google.maps.model.LatLng;
 
 public class DoctorDistance {
     double distance;

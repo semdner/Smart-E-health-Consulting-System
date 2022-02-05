@@ -3,21 +3,16 @@ package com.ehealthsystem;
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.reminder.ReminderScheduler;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
-import java.util.Scanner;
 
 public class Main extends Application {
     static Stage primaryStage;

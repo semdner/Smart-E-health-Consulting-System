@@ -17,6 +17,7 @@ public class ResourceReader {
     public static String getResourceString(String resourceName) {
         InputStream inputStream = Main.class.getResourceAsStream(resourceName);
         try {
+            assert inputStream != null;
             return CharStreams.toString(new InputStreamReader(inputStream, Charsets.UTF_8));
         } catch (IOException e) {
             e.printStackTrace();

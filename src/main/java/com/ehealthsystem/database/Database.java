@@ -8,7 +8,6 @@ import com.ehealthsystem.healthinformation.HealthInformation;
 import com.ehealthsystem.tools.ResourceReader;
 import com.ehealthsystem.user.User;
 import com.google.maps.model.LatLng;
-import javafx.collections.ObservableList;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.activation.UnsupportedDataTypeException;
@@ -17,7 +16,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.sql.SQLException;
 
 public class Database {
 
@@ -133,7 +131,7 @@ public class Database {
         ResultSet rs = statement.executeQuery();
 
         rs.next();
-        String storedPassword = null;
+        String storedPassword;
         try {
             storedPassword = rs.getString("password");
         } catch (SQLException e) {
@@ -154,15 +152,14 @@ public class Database {
         String query = "INSERT INTO <tableName> (<names>) VALUES (<values>)".replace("<tableName>", tableName);
 
         //add parameter names
-        String names = "";
+        StringBuilder names = new StringBuilder();
         String separator = ", ";
-        for (int i = 0; i < parameters.length; i++)
-        {
-            String name = (String)parameters[i][0];
-            names += name + separator;
+        for (Object[] parameter : parameters) {
+            String name = (String) parameter[0];
+            names.append(name).append(separator);
         }
-        names = names.substring(0, names.length() - separator.length()); //remove last separator
-        query = query.replace("<names>", names);
+        names = new StringBuilder(names.substring(0, names.length() - separator.length())); //remove last separator
+        query = query.replace("<names>", names.toString());
 
         //add question marks
         String questionMarks = "?" + separator;
@@ -207,23 +204,23 @@ public class Database {
 
         //add placeholders for newValues
         String separator = ", ";
-        String placeHolder = "";
+        StringBuilder placeHolder = new StringBuilder();
         for (Object[] newValue : newValues)
         {
-            placeHolder += newValue[0] + " = ?" + separator;
+            placeHolder.append(newValue[0]).append(" = ?").append(separator);
         }
-        placeHolder = placeHolder.substring(0, placeHolder.length() - separator.length()); //remove last separator
-        query = query.replace("<newValues>", placeHolder);
+        placeHolder = new StringBuilder(placeHolder.substring(0, placeHolder.length() - separator.length())); //remove last separator
+        query = query.replace("<newValues>", placeHolder.toString());
 
         //add placeholders for conditions
         String conjunction = " AND ";
-        String conditionsPlaceholders = "";
+        StringBuilder conditionsPlaceholders = new StringBuilder();
         for (Object[] condition : conditions)
         {
-            conditionsPlaceholders += condition[0] + " = ?" + conjunction;
+            conditionsPlaceholders.append(condition[0]).append(" = ?").append(conjunction);
         }
-        conditionsPlaceholders = conditionsPlaceholders.substring(0, conditionsPlaceholders.length() - conjunction.length()); //remove last conjunction
-        query = query.replace("<conditions>", conditionsPlaceholders);
+        conditionsPlaceholders = new StringBuilder(conditionsPlaceholders.substring(0, conditionsPlaceholders.length() - conjunction.length())); //remove last conjunction
+        query = query.replace("<conditions>", conditionsPlaceholders.toString());
 
         PreparedStatement statement = Database.connection.prepareStatement(query);
 
@@ -339,10 +336,11 @@ public class Database {
      * @throws SQLException if query fails
      */
     public static ArrayList<Doctor> getDoctorsBySpecialization(String specialization) throws SQLException {
-        String query = "SELECT doctor.*, c.category FROM doctor\n" +
-                "INNER JOIN doctor_category dc on doctor.doctor_id = dc.doctor_id\n" +
-                "INNER JOIN category c on dc.category_id = c.category_id\n" +
-                "WHERE category = ?;";
+        String query = """
+                SELECT doctor.*, c.category FROM doctor
+                INNER JOIN doctor_category dc on doctor.doctor_id = dc.doctor_id
+                INNER JOIN category c on dc.category_id = c.category_id
+                WHERE category = ?;""";
         // Doctors with multiple categories are listed for each category once after the inner join,
         // but they are only listed once PER CATEGORY (and this is what the WHERE claus filters),
         // hence no DISTINCT is needed.
@@ -568,7 +566,7 @@ public class Database {
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, email);
         ResultSet rs = statement.executeQuery();
-        while (rs.next()) {
+        if (rs.next()) {
             return rs.getString("password");
         }
         return null;
