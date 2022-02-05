@@ -9,6 +9,7 @@ import com.ehealthsystem.pdf.CreatePDF;
 import com.ehealthsystem.pdf.fileChooserSave;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -95,6 +96,7 @@ public class PrimaryController implements Initializable {
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
+        Platform.runLater( () -> makeAppointmentButton1.requestFocus() ); //https://stackoverflow.com/a/38374747/18039017
     }
 
     private void loadUserAppointments() throws SQLException, IOException {
