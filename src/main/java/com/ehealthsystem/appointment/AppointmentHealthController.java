@@ -30,6 +30,9 @@ public class AppointmentHealthController implements Initializable {
     @FXML
     Button backButton;
 
+    @FXML
+    Label errorLabel;
+
     private ArrayList<HealthInformation> selectedHealthInformation = new ArrayList<>();
     private ArrayList<HealthInformation> allHealthInformation = new ArrayList<>();
     private ArrayList<CheckBox> numberOfCheckBoxes = new ArrayList<>();
@@ -74,6 +77,11 @@ public class AppointmentHealthController implements Initializable {
      */
     private void loadHealthInformation() throws SQLException {
         allHealthInformation = Database.getHealthInformation(Session.user.getMail());
+        if (allHealthInformation.isEmpty()) {
+            errorLabel.setText("You don't have any saved health statuses.");
+            errorLabel.setVisible(true);
+            return;
+        }
         fillHealthTable(allHealthInformation);
     }
 
