@@ -113,16 +113,12 @@ public class AdminController implements Initializable {
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if(!(selectedLabel == null)) {
+                if(selectedLabel != null) {
                     selectedLabel.setTextFill(Color.web("#000000"));
-                    label.setTextFill(Color.web("#FF0000"));
-                    selectedLabel = label;
-                    selectedCell = new int[]{column, row};
-                } else {
-                    selectedLabel = label;
-                    selectedLabel.setTextFill(Color.web("#FF0000"));
-                    selectedCell = new int[]{column, row};
                 }
+                selectedLabel = label;
+                selectedLabel.setTextFill(Color.web("#FF0000"));
+                selectedCell = new int[]{column, row};
             }
         });
     }
