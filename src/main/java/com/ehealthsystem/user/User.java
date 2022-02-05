@@ -119,8 +119,8 @@ public class User implements HasAddress {
     }
 
     public void setUsername(String username) throws SQLException, UnsupportedDataTypeException {
-        update(new Object[][]{{"username", username}});
         this.username = username;
+        update(new Object[][]{{"username", username}});
     }
 
     public void setEmail(String email) throws SQLException, UnsupportedDataTypeException {

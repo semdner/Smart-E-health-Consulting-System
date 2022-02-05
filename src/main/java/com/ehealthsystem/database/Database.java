@@ -8,6 +8,7 @@ import com.ehealthsystem.healthinformation.HealthInformation;
 import com.ehealthsystem.tools.ResourceReader;
 import com.ehealthsystem.user.User;
 import com.google.maps.model.LatLng;
+import javafx.collections.ObservableList;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.activation.UnsupportedDataTypeException;
