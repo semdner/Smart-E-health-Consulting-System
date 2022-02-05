@@ -18,9 +18,6 @@ public class GeoDistance {
      * @param userGeoData source address, can be as textual address or in coordinates
      * @param doctorGeoData array of destinations to determine distances to
      * @return the requested distances
-     * @throws IOException see await()
-     * @throws InterruptedException see await()
-     * @throws ApiException see await()
      */
     public static DistanceMatrix getDistances(String userGeoData, String[] doctorGeoData) throws IOException, InterruptedException, ApiException {
         String[] user = {userGeoData};
@@ -35,10 +32,6 @@ public class GeoDistance {
      * @param userGeoData user location
      * @param range maximum distance, in km (DRIVING DISTANCE because Google Maps API)
      * @return a list of doctors that are in the range
-     * @throws SQLException see getDoctors()
-     * @throws IOException see getDistances()
-     * @throws InterruptedException see getDistances()
-     * @throws ApiException see getDistances()
      */
     public static ArrayList<DoctorDistance> filterDoctorsInRangeIndividualRequests(ArrayList<Doctor> doctors, String userGeoData, double range) throws SQLException, IOException, InterruptedException, ApiException {
         ArrayList<DoctorDistance> doctorsInRange = new ArrayList<>();
@@ -59,10 +52,6 @@ public class GeoDistance {
      * @param userGeoData user location
      * @param range maximum distance, in km (DRIVING DISTANCE because Google Maps API)
      * @return a list of doctors that are in the range
-     * @throws SQLException see getDoctors()
-     * @throws IOException see getDistances()
-     * @throws InterruptedException see getDistances()
-     * @throws ApiException see getDistances()
      */
     public static ArrayList<DoctorDistance> filterDoctorsInRangeBatchRequest(ArrayList<Doctor> doctors, String userGeoData, double range) throws SQLException, IOException, InterruptedException, ApiException {
         //Prepare distance request

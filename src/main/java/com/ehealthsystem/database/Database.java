@@ -50,7 +50,7 @@ public class Database {
     /**
      * Create database with provided admin password
      * @param initialAdminPassword provided admin password desired by the user
-     * @throws SQLException
+     * @throws SQLException if a creation step failed
      */
     public static void createDB(String initialAdminPassword) throws SQLException {
         init();
@@ -121,7 +121,6 @@ public class Database {
     /**
      * Get a list of all usernames for login
      * @return usernames
-     * @throws SQLException
      */
     public static ArrayList<String> getUsernames() throws SQLException {
         Statement statement = connection.createStatement();
@@ -268,7 +267,6 @@ public class Database {
      * @param i index of the placeholder
      * @param value the value to set for the placeholder
      * @param statement the query to apply the operation to
-     * @throws SQLException see the called methods
      */
     private static void insertValueIntoStatement(int i, Object value, PreparedStatement statement) throws SQLException, UnsupportedDataTypeException {
         if (value instanceof String) {

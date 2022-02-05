@@ -22,14 +22,6 @@ public class Appointment {
      *
      * @param insertIntoDb true if this is a new appointment that is inserted to the database, false if the object shall solely represent an appointment that is already saved in the database
      * @param id ignored when insertToDb is true (to be precise, it is saved but overwritten after successful insert)
-     * @param user
-     * @param doctor
-     * @param healthProblemDescription
-     * @param date
-     * @param time
-     * @param minutesBeforeReminder
-     * @param duration
-     * @throws SQLException
      */
     public Appointment(boolean insertIntoDb, int id, String user, int doctor, String healthProblemDescription, LocalDate date, LocalTime time, int minutesBeforeReminder, int duration) throws SQLException, UnsupportedDataTypeException {
         this.id = id;
@@ -49,7 +41,6 @@ public class Appointment {
     /**
      * Inserts this appointment into the database.
      * Only to be used if a new appointment is created.
-     * @throws SQLException
      */
     private void insertIntoDb() throws SQLException, UnsupportedDataTypeException {
         Object[][] parameters = {
