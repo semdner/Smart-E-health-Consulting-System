@@ -80,6 +80,6 @@ public class AppointmentFoundController implements Initializable {
      * @throws IOException
      */
     public void handleBackButton(ActionEvent event) throws IOException {
-        SceneSwitch.switchTo(event, "appointment/appointmentInformation-view.fxml", "Make appointment");
+        SceneSwitch.switchTo(event, "main/main-view.fxml", "Ehealth system");
     }
 }

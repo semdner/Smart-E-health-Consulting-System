@@ -7,6 +7,7 @@ import com.ehealthsystem.tools.EmailCheck;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.user.User;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -84,6 +85,7 @@ public class RegistrationController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String[] choices = {"male", "female", "other"};
         genderBox.getItems().addAll(choices);
+        Platform.runLater( () -> firstNameTextField.requestFocus() ); //https://stackoverflow.com/a/38374747/18039017
     }
 
     /**
@@ -439,16 +441,10 @@ public class RegistrationController implements Initializable {
     }
 
     /**
-     * Method called when Login Label is pressed.
-     * Used to check to switch the scene to the login screen.
+     * Method called when back button is pressed.
      * @param event
-     * @throws IOException
      */
-    public void handleLoginLabel(MouseEvent event) throws IOException  {
-        switchToLoginView(event);
-    }
-
-    private void switchToLoginView(Event event) throws IOException {
-        SceneSwitch.switchTo(event, "login/login-view.fxml", "Login");
+    public void handleBackButton(ActionEvent event) throws IOException {
+        SceneSwitch.switchTo(event, "main/main-view.fxml", "Welcome");
     }
 }
