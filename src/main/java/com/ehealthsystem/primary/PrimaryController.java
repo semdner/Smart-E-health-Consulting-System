@@ -74,6 +74,12 @@ public class PrimaryController implements Initializable {
     @FXML
     GridPane pastAppointmentsGridPane;
 
+    @FXML
+    Label upcomingAppointmentsErrorLabel;
+
+    @FXML
+    Label pastAppointmentsErrorLabel;
+
     /**
      * First method called when scene is switched.
      * Used to set the user information form the database.
@@ -115,6 +121,15 @@ public class PrimaryController implements Initializable {
         for (VBox pastAppointmentBox : pastAppointmentBoxes) {
             pastAppointmentsGridPane.add(pastAppointmentBox, 0, pastRow);
             pastRow++;
+        }
+
+        if (upcomingAppointmentsGridPane.getChildren().isEmpty()) {
+            upcomingAppointmentsErrorLabel.setText("No upcoming appointments.");
+            upcomingAppointmentsErrorLabel.setVisible(true);
+        }
+        if (pastAppointmentsGridPane.getChildren().isEmpty()) {
+            pastAppointmentsErrorLabel.setText("No past appointments.");
+            pastAppointmentsErrorLabel.setVisible(true);
         }
 
         System.out.println("Users appointments: " + appointments.size());
