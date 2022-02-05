@@ -3,16 +3,20 @@ package com.ehealthsystem.admin;
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.user.User;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 import javax.activation.UnsupportedDataTypeException;
 import java.net.URL;
 import java.sql.Array;
 import java.sql.SQLException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -26,6 +30,8 @@ public class AdminController implements Initializable {
 
     @FXML
     GridPane userGridPane;
+
+    Label selectedLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -84,6 +90,31 @@ public class AdminController implements Initializable {
     public void loadTable(ArrayList<Label> labels, ArrayList<Button> buttons, int row) {
         for (int i = 0; i < 10; i++) {
             userGridPane.add(labels.get(i), i, row);
+            userGridPane.add(buttons.get(i), i, row);
+            setStyle(buttons.get(i));
+            handleButton(labels.get(i), buttons.get(i));
         }
+    }
+
+    private void handleButton(Label label, Button button) {
+        // dynamically add the event handler for the buttons
+        button.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(!(selectedLabel == null)) {
+                    selectedLabel.setTextFill(Color.web("#000000"));
+                    label.setTextFill(Color.web("#FF0000"));
+                    selectedLabel = label;
+                } else {
+                    selectedLabel = label;
+                    selectedLabel.setTextFill(Color.web("#FF0000"));
+                }
+            }
+        });
+    }
+
+    private static void setStyle(Button button) {
+        button.setStyle("-fx-opacity: 0%");
+        button.setPrefWidth(100);
     }
 }
