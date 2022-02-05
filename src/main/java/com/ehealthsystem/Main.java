@@ -43,7 +43,7 @@ public class Main extends Application {
 
     @Override
     public void stop(){
-        Database.close();
+
     }
 
     public static void main(String[] args) throws SQLException {
