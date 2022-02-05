@@ -1,15 +1,11 @@
 package com.ehealthsystem.appointment;
 
-import com.ehealthsystem.database.Database;
-import com.ehealthsystem.doctor.Doctor;
 import com.ehealthsystem.mail.SendEmail;
-import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.reminder.ReminderScheduler;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.tools.StringEnumerator;
 import com.google.maps.errors.ApiException;
-import com.google.maps.model.GeocodingResult;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,8 +22,6 @@ import javafx.stage.Stage;
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class AppointmentMadeController {
 

@@ -1,8 +1,6 @@
 package com.ehealthsystem.appointment;
 
-import com.ehealthsystem.database.Database;
 import com.ehealthsystem.mail.SendEmail;
-import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.reminder.ReminderScheduler;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
@@ -13,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 
 import javax.activation.UnsupportedDataTypeException;
 import javax.mail.MessagingException;
@@ -21,8 +18,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public class AppointmentShiftController extends ScheduleLoader {
 
