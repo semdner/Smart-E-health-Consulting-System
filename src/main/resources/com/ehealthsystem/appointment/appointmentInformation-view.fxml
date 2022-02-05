@@ -83,10 +83,10 @@
    <bottom>
       <AnchorPane prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: eaeaea;" BorderPane.alignment="CENTER">
          <children>
+            <Button fx:id="continueButton" mnemonicParsing="false" onAction="#handleContinueButton" text="&gt;" AnchorPane.bottomAnchor="7.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.5" />
             <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleBackButton" text="&lt;" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="965.0" AnchorPane.topAnchor="7.5" />
             <ProgressBar fx:id="progressBar2" prefHeight="15.0" prefWidth="268.0" progress="0.75" AnchorPane.bottomAnchor="12.5" AnchorPane.leftAnchor="366.0" AnchorPane.rightAnchor="366.0" AnchorPane.topAnchor="12.5" />
             <Label fx:id="errorLabel" text="missing information, please fill in to continue" textFill="RED" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="10.0" />
-            <Button fx:id="continueButton" mnemonicParsing="false" onAction="#handleContinueButton" text="&gt;" AnchorPane.bottomAnchor="7.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.5" />
          </children>
       </AnchorPane>
    </bottom>

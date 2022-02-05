@@ -84,8 +84,8 @@
    <bottom>
       <AnchorPane prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: eaeaea;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="backButton" layoutX="7.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleBackButton" text="&lt;" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="7.5" />
             <Button fx:id="continueButton" layoutX="961.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleContinueButton" text="&gt;" AnchorPane.bottomAnchor="7.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.5" />
+            <Button fx:id="backButton" layoutX="7.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleBackButton" text="&lt;" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="7.5" />
             <ProgressBar fx:id="progressBar" layoutX="366.0" layoutY="13.0" prefHeight="15.0" prefWidth="268.0" progress="0.5" AnchorPane.bottomAnchor="12.5" AnchorPane.topAnchor="12.5" />
          </children>
       </AnchorPane>
