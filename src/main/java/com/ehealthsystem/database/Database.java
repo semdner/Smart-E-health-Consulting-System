@@ -138,14 +138,14 @@ public class Database {
      * Check if user entered their correct password
      * Retrieves stored password and verifies that the entered one matches the stored hash
      * This method is not part of the User class because there isn't a user object during login yet
-     * @param email
+     * @param usernameOrEmail
      * @param password in plain text
      * @return whether password is correct
      */
-    public static boolean checkPassword(String email, String password) throws SQLException {
+    public static boolean checkPassword(String usernameOrEmail, String password) throws SQLException {
         PreparedStatement statement = connection.prepareStatement("SELECT password FROM user WHERE email = ? OR username = ?");
-        statement.setString(1, email);
-        statement.setString(2, email);
+        statement.setString(1, usernameOrEmail);
+        statement.setString(2, usernameOrEmail);
         ResultSet rs = statement.executeQuery();
 
         rs.next();
@@ -305,7 +305,7 @@ public class Database {
      * @param username
      * @return
      */
-    public static User getUser(String username) throws SQLException, UnsupportedDataTypeException {
+    public static User getUserByUsername(String username) throws SQLException, UnsupportedDataTypeException {
         String query = "SELECT * FROM user WHERE username = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);
@@ -315,14 +315,14 @@ public class Database {
 
     /**
      * Get a user object with all user's details loaded from the database
-     * @param email
+     * @param usernameOrEmail
      * @return
      */
-    public static User getUserFromEmail(String email) throws SQLException, UnsupportedDataTypeException {
+    public static User getUserByUsernameOrEmail(String usernameOrEmail) throws SQLException, UnsupportedDataTypeException {
         String query = "SELECT * FROM user WHERE email = ? OR username = ?";
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, email);
-        statement.setString(2, email);
+        statement.setString(1, usernameOrEmail);
+        statement.setString(2, usernameOrEmail);
         ResultSet rs = statement.executeQuery();
         return loadUsersFromResultSet(rs).get(0);
     }

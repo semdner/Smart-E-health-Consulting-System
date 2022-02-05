@@ -22,7 +22,7 @@ public class ReminderTask extends TimerTask {
     public void run() {
         try {
             SendEmail.sendMail(
-                    Database.getUser(appointment.getUser()).getMail(),
+                    Database.getUserByUsername(appointment.getUser()).getMail(),
                     "Appointment reminder: Dr. %s @ %s %s".formatted(
                             appointment.getDoctor().getLastName(),
                             appointment.getDate().format(Session.dateFormatter),
