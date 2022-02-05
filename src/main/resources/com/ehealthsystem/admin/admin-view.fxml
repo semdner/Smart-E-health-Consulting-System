@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.admin.AdminController">
    <top>
       <MenuBar prefHeight="25.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
@@ -60,11 +59,11 @@
    <bottom>
       <AnchorPane prefHeight="45.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="editButton" layoutX="100.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="24.0" prefWidth="80.0" text="edit" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="100.0" />
-            <Button fx:id="saveButton" disable="true" layoutX="280.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleSaveButton" prefHeight="24.0" prefWidth="80.0" text="save" />
-            <Button fx:id="deleteButton" layoutX="10.0" layoutY="11.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="80.0" text="delete" />
+            <Button fx:id="editButton" layoutX="100.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="24.0" prefWidth="80.0" text="Edit" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="100.0" />
+            <Button fx:id="saveButton" disable="true" layoutX="280.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleSaveButton" prefHeight="24.0" prefWidth="80.0" text="Save" />
+            <Button fx:id="deleteButton" layoutX="10.0" layoutY="11.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="80.0" text="Delete" />
             <Label fx:id="errorLabel" alignment="CENTER_RIGHT" layoutX="880.0" layoutY="15.0" prefHeight="16.0" prefWidth="106.0" text="no cell selected" textFill="RED" visible="false" AnchorPane.leftAnchor="880.0" AnchorPane.rightAnchor="10.0" />
-            <Button fx:id="cancelButton" disable="true" layoutX="190.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="24.0" prefWidth="80.0" text="cancel" />
+            <Button fx:id="cancelButton" disable="true" layoutX="190.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="24.0" prefWidth="80.0" text="Cancel" />
          </children>
       </AnchorPane>
    </bottom>
