@@ -343,6 +343,25 @@ public class Database {
     }
 
     /**
+     * Get all doctors that have a specified specialization from the database as objects of class Doctor
+     * @return all doctors with the specified specialization
+     * @throws SQLException if query fails
+     */
+    public static ArrayList<Doctor> getDoctorsBySpecialization(String specialization) throws SQLException {
+        String query = "SELECT doctor.*, c.category FROM doctor\n" +
+                "INNER JOIN doctor_category dc on doctor.doctor_id = dc.doctor_id\n" +
+                "INNER JOIN category c on dc.category_id = c.category_id\n" +
+                "WHERE category = ?;";
+        // Doctors with multiple categories are listed for each category once after the inner join,
+        // but they are only listed once PER CATEGORY (and this is what the WHERE claus filters),
+        // hence no DISTINCT is needed.
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, specialization);
+        ResultSet rs = statement.executeQuery();
+        return loadDoctorsFromResultSet(rs);
+    }
+
+    /**
      * Helper method to turn result set into array of Doctor objects
      * @param rs resultSet after the query was executed
      * @return Doctor objects
