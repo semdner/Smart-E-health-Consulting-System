@@ -15,6 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 import javax.activation.UnsupportedDataTypeException;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Array;
 import java.sql.SQLException;
@@ -140,5 +141,9 @@ public class AdminController implements Initializable {
             editTextField.setText(selectedLabel.getText());
             userGridPane.add(editTextField, selectedCell[0], selectedCell[1]);
         }
+    }
+
+    public void handleLogout(ActionEvent event) throws IOException {
+        Session.logout();
     }
 }
