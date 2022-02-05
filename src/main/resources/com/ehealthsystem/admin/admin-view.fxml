@@ -7,12 +7,11 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.admin.AdminController">
@@ -43,84 +42,37 @@
             <Separator layoutX="10.0" layoutY="40.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="590.0" AnchorPane.topAnchor="35.0" />
             <ScrollPane hbarPolicy="ALWAYS" layoutX="400.0" layoutY="78.0" prefHeight="440.0" prefWidth="980.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="78.0">
               <content>
-                <AnchorPane prefWidth="1258.0">
+                <AnchorPane fx:id="userTreeView" prefHeight="210.0" prefWidth="1020.0">
                      <children>
-                        <GridPane fx:id="userGridPane" layoutX="382.0" layoutY="5.0" prefHeight="30.0" prefWidth="155.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="114.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="114.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="114.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="114.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="114.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="114.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="114.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="114.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="114.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="114.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="30.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Label text="username">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <Label text="email" GridPane.columnIndex="1">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font></Label>
-                              <Label text="first name" GridPane.columnIndex="2">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font></Label>
-                              <Label text="last name" GridPane.columnIndex="3">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font></Label>
-                              <Label text="street" GridPane.columnIndex="4">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font></Label>
-                              <Label text="house no." GridPane.columnIndex="5">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font></Label>
-                              <Label text="zip" GridPane.columnIndex="6">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <Label text="birthday" GridPane.columnIndex="7">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font></Label>
-                              <Label text="gender" GridPane.columnIndex="8">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font></Label>
-                              <Label text="password" GridPane.columnIndex="9">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font></Label>
-                           </children>
-                        </GridPane>
+                        <TableView fx:id="userTableView" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                          <columns>
+                            <TableColumn fx:id="username" minWidth="100.0" prefWidth="100.0" text="username" />
+                            <TableColumn fx:id="email" minWidth="100.0" prefWidth="100.0" text="email" />
+                              <TableColumn fx:id="firstName" minWidth="100.0" prefWidth="100.0" text="first name" />
+                              <TableColumn fx:id="lastName" minWidth="100.0" prefWidth="100.0" text="last name" />
+                              <TableColumn fx:id="street" minWidth="100.0" prefWidth="100.0" text="street" />
+                              <TableColumn fx:id="houseNo" minWidth="100.0" prefWidth="100.0" text="house no" />
+                              <TableColumn fx:id="zip" minWidth="100.0" prefWidth="100.0" text="zip" />
+                              <TableColumn fx:id="birthday" minWidth="100.0" prefWidth="100.0" text="birthday" />
+                              <TableColumn fx:id="gender" minWidth="100.0" prefWidth="100.0" text="gender" />
+                              <TableColumn fx:id="password" minWidth="100.0" prefWidth="100.0" text="password" />
+                          </columns>
+                        </TableView>
                      </children>
                   </AnchorPane>
               </content>
             </ScrollPane>
-            <TextField focusTraversable="false" layoutX="10.0" layoutY="46.0" prefHeight="24.0" prefWidth="188.0" promptText="search username or email" AnchorPane.bottomAnchor="458.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="46.0" />
+            <TextField focusTraversable="false" layoutX="10.0" layoutY="46.0" prefHeight="24.0" prefWidth="214.0" promptText="search username or email" AnchorPane.bottomAnchor="458.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="46.0" />
          </children></AnchorPane>
    </center>
    <bottom>
       <AnchorPane prefHeight="45.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="editButton" layoutX="100.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="24.0" prefWidth="80.0" text="edit" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="100.0" />
-            <Button fx:id="saveButton" disable="true" layoutX="280.0" layoutY="11.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="80.0" text="save" />
+            <Button fx:id="saveButton" disable="true" layoutX="280.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleSaveButton" prefHeight="24.0" prefWidth="80.0" text="save" />
             <Button fx:id="deleteButton" layoutX="10.0" layoutY="11.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="80.0" text="delete" />
             <Label fx:id="errorLabel" alignment="CENTER_RIGHT" layoutX="880.0" layoutY="15.0" prefHeight="16.0" prefWidth="106.0" text="no cell selected" textFill="RED" visible="false" AnchorPane.leftAnchor="880.0" AnchorPane.rightAnchor="10.0" />
-            <Button fx:id="cancelButton" disable="true" layoutX="190.0" layoutY="11.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="80.0" text="cancel" />
+            <Button fx:id="cancelButton" disable="true" layoutX="190.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="24.0" prefWidth="80.0" text="cancel" />
          </children>
       </AnchorPane>
    </bottom>
