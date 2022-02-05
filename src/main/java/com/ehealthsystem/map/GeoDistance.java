@@ -31,7 +31,7 @@ public class GeoDistance {
     }
 
     /**
-     * Get doctors that are in a specific range from the user, determining the distance using Google Maps DistanceMatrix API, requests sent individually
+     * Reduce a list of doctors to only include ones that are in a specific range from the user, determining the distance using Google Maps DistanceMatrix API, requests sent individually
      * @param userGeoData user location
      * @param range maximum distance, in km (DRIVING DISTANCE because Google Maps API)
      * @return a list of doctors that are in the range
@@ -40,8 +40,7 @@ public class GeoDistance {
      * @throws InterruptedException see getDistances()
      * @throws ApiException see getDistances()
      */
-    public static ArrayList<DoctorDistance> getDoctorsInRangeIndividualRequests(String userGeoData, double range) throws SQLException, IOException, InterruptedException, ApiException {
-        ArrayList<Doctor> doctors = Database.getDoctors();
+    public static ArrayList<DoctorDistance> filterDoctorsInRangeIndividualRequests(ArrayList<Doctor> doctors, String userGeoData, double range) throws SQLException, IOException, InterruptedException, ApiException {
         ArrayList<DoctorDistance> doctorsInRange = new ArrayList<>();
 
         for (Doctor d : doctors) {
@@ -56,7 +55,7 @@ public class GeoDistance {
     }
 
     /**
-     * Get doctors that are in a specific range from the user, determining the distance using Google Maps DistanceMatrix API, sent in a single batch request
+     * Reduce a list of doctors to only include ones that are in a specific range from the user, determining the distance using Google Maps DistanceMatrix API, sent in a single batch request
      * @param userGeoData user location
      * @param range maximum distance, in km (DRIVING DISTANCE because Google Maps API)
      * @return a list of doctors that are in the range
@@ -65,9 +64,7 @@ public class GeoDistance {
      * @throws InterruptedException see getDistances()
      * @throws ApiException see getDistances()
      */
-    public static ArrayList<DoctorDistance> getDoctorsInRangeBatchRequest(String userGeoData, double range) throws SQLException, IOException, InterruptedException, ApiException {
-        ArrayList<Doctor> doctors = Database.getDoctors();
-
+    public static ArrayList<DoctorDistance> filterDoctorsInRangeBatchRequest(ArrayList<Doctor> doctors, String userGeoData, double range) throws SQLException, IOException, InterruptedException, ApiException {
         //Prepare distance request
         //Collect doctors' addresses in a list
         String[] docAddresses = new String[doctors.size()];
@@ -108,12 +105,11 @@ public class GeoDistance {
     }
 
     /**
-     * Get doctors that are in a specific range from the user, determining the distance using local calculation (Haversine formula)
+     * Reduce a list of doctors to only include ones that are in a specific range from the user, determining the distance using local calculation (Haversine formula)
      * @return a list of doctors that are in the range (LINEAR DISTANCE)
      * @throws SQLException see getDoctors()
      */
-    public static ArrayList<DoctorDistance> getDoctorsInRangeWithLocalCalculation(LatLng location, double range) throws SQLException, IOException, InterruptedException, ApiException {
-        ArrayList<Doctor> doctors = Database.getDoctors(); //get doctors
+    public static ArrayList<DoctorDistance> filterDoctorsInRangeWithLocalCalculation(ArrayList<Doctor> doctors, LatLng location, double range) throws SQLException, IOException, InterruptedException, ApiException {
         ArrayList<DoctorDistance> result = new ArrayList<>();
 
         for (Doctor d : doctors) { //loop through them
@@ -143,11 +139,11 @@ public class GeoDistance {
         //comment out everything but the one you want to measure
 
         //Methods using Google Maps requests take 1.3 - 5 s in total each
-        a = getDoctorsInRangeIndividualRequests(addr, 1);
-        a = getDoctorsInRangeBatchRequest(addr, 1);
+        a = filterDoctorsInRangeIndividualRequests(Database.getDoctors(), addr, 1);
+        a = filterDoctorsInRangeBatchRequest(Database.getDoctors(), addr, 1);
 
         //local calculation is noticeably faster (0-15 ms total time) but UI is somehow still slow:
-        a = getDoctorsInRangeWithLocalCalculation(new LatLng(50.11645, 8.69815), 1);
+        a = filterDoctorsInRangeWithLocalCalculation(Database.getDoctors(), new LatLng(50.11645, 8.69815), 1);
 
         long finish = System.currentTimeMillis();
         long timeElapsed = finish - start;

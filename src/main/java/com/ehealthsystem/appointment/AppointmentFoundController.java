@@ -1,5 +1,6 @@
 package com.ehealthsystem.appointment;
 
+import com.ehealthsystem.database.Database;
 import com.ehealthsystem.doctor.FoundDoctorController;
 import com.ehealthsystem.map.DoctorDistance;
 import com.ehealthsystem.map.GeoDistance;
@@ -36,7 +37,7 @@ public class AppointmentFoundController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            ArrayList<DoctorDistance> doctorList = GeoDistance.getDoctorsInRangeWithLocalCalculation(Session.getUserGeo().geometry.location, Session.appointment.getDistance());
+            ArrayList<DoctorDistance> doctorList = GeoDistance.filterDoctorsInRangeWithLocalCalculation(Database.getDoctors(), Session.getUserGeo().geometry.location, Session.appointment.getDistance());
             if(doctorList.isEmpty()) {
                 errorLabel.setVisible(true);
             } else {
