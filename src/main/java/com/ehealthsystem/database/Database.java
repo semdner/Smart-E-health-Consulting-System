@@ -147,7 +147,7 @@ public class Database {
      * General method for inserting a single row into a database table
      * @param tableName the name of the table to which the row shall be added
      * @param parameters array consisting of pairs of column name and value
-     * @throws SQLException
+     * @throws SQLException if insert failed or succeeded but no generated ID was received
      * @return id of inserted row
      */
     public static int insert(String tableName, Object[][] parameters) throws SQLException, UnsupportedDataTypeException {
@@ -471,10 +471,6 @@ public class Database {
 
     /**
      * DEPRECATED: FoundDoctorFullController.getFreeTimeSlots() is used instead
-     * @param doctor
-     * @param selectedDate
-     * @return
-     * @throws SQLException
      */
     public static ArrayList<DoctorTimeSlot> getDoctorsFreeTimes(Doctor doctor, LocalDate selectedDate) throws SQLException {
         String dateStr = selectedDate.format(dateFormatter);
@@ -500,8 +496,8 @@ public class Database {
     /**
      * Helper method to turn result set into array of appointment objects
      * @param rs resultSet after the query was executed
-     * @return
-     * @throws SQLException
+     * @return list of appointments, may be empty
+     * @throws SQLException if reading an attribute fails
      */
     public static ArrayList<Appointment> loadAppointmentsFromResultSet(ResultSet rs) throws SQLException, UnsupportedDataTypeException {
         ArrayList<Appointment> appointments = new ArrayList<>();
@@ -530,7 +526,7 @@ public class Database {
      * @param doctor
      * @param date
      * @return doctorsAppointments
-     * @throws SQLException
+     * @throws SQLException if reading an attribute fails
      */
     public static ArrayList<Appointment> getDoctorsAppointments(int doctor, LocalDate date) throws SQLException, UnsupportedDataTypeException {
         String query = "SELECT * FROM appointment WHERE doctor_id = ? AND date = ? ORDER BY date, time"; //ordering not necessary but just convenient, e.g. if it will be displayed in a list to the doctor in the future
@@ -557,9 +553,6 @@ public class Database {
 
     /**
      * Get upcoming appointments that have a reminder. To be used to set reminders initially (application start).
-     * @return
-     * @throws SQLException
-     * @throws UnsupportedDataTypeException
      */
     public static ArrayList<Appointment> getUpcomingAppointmentsWithReminder() throws SQLException, UnsupportedDataTypeException {
         String query = "SELECT * FROM appointment WHERE date >= ? AND time > ? AND minutesBeforeReminder != 0 ORDER BY date, time"; //ordering for display as list
