@@ -66,52 +66,52 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="username">
+                  <Label text="Username">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="email" GridPane.rowIndex="1">
+                  <Label text="Email" GridPane.rowIndex="1">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="first name" GridPane.rowIndex="2">
+                  <Label text="First name" GridPane.rowIndex="2">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="last name" GridPane.rowIndex="3">
+                  <Label text="Last name" GridPane.rowIndex="3">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="street" GridPane.rowIndex="4">
+                  <Label text="Street" GridPane.rowIndex="4">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="house no." GridPane.rowIndex="5">
+                  <Label text="House no." GridPane.rowIndex="5">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="zip" GridPane.rowIndex="6">
+                  <Label text="Zip code" GridPane.rowIndex="6">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="birthday" GridPane.rowIndex="7">
+                  <Label text="Birthday" GridPane.rowIndex="7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="gender" GridPane.rowIndex="8">
+                  <Label text="Gender" GridPane.rowIndex="8">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="private insurance" GridPane.rowIndex="10">
+                  <Label text="Private insurance" GridPane.rowIndex="10">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -125,21 +125,21 @@
                   <TextField fx:id="zipTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <DatePicker fx:id="birthdayPicker" prefHeight="25.0" prefWidth="365.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <ChoiceBox fx:id="genderBox" minWidth="0.0" prefHeight="25.0" prefWidth="365.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <Label layoutX="10.0" layoutY="286.0" text="insurance name" GridPane.rowIndex="9">
+                  <Label layoutX="10.0" layoutY="286.0" text="Insurance name" GridPane.rowIndex="9">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
                   <TextField fx:id="insuranceNameTextField" layoutX="375.0" layoutY="193.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                   <CheckBox fx:id="privateInsuranceCheckBox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                  <Label text="old password" GridPane.rowIndex="11">
+                  <Label text="Old password" GridPane.rowIndex="11">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
                   <PasswordField fx:id="oldPasswordField" onAction="#handleOldPassword" onKeyTyped="#handleOldPassword" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                   <PasswordField fx:id="newPasswordField" onKeyTyped="#handleNewPassword" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                  <Label text="new password" GridPane.rowIndex="12">
+                  <Label text="New password" GridPane.rowIndex="12">
                      <font>
                         <Font size="15.0" />
                      </font>

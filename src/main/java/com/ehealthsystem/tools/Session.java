@@ -28,7 +28,7 @@ public class Session {
      * @throws SQLException
      */
     public static void loginUser(String email) throws SQLException, UnsupportedDataTypeException {
-        user = Database.getUserFromEmail(email);
+        user = Database.getUserByUsernameOrEmail(email);
     }
 
     public static void loginAdmin(String name) throws SQLException, UnsupportedDataTypeException {
