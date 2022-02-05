@@ -17,10 +17,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class PrimaryEditController implements Initializable {
 
+    public CheckBox changePasswordCheckbox;
+    public Label oldPasswordLabel;
+    public Label newPasswordLabel;
     @FXML
     TextField usernameTextField;
 
@@ -101,7 +106,7 @@ public class PrimaryEditController implements Initializable {
      */
     public void handleSaveButton(ActionEvent event) throws IOException, SQLException {
         updateUserInformation();
-        if(oldPasswordField.getText().isBlank() && newPasswordField.getText().isBlank())
+        if(changePasswordCheckbox.isSelected() && !oldPasswordField.getText().isBlank() && !newPasswordField.getText().isBlank())
             updatePassword(oldPasswordField.getText(), newPasswordField.getText());
         loadScene(event);
     }
@@ -395,5 +400,12 @@ public class PrimaryEditController implements Initializable {
             errorLabel.setText("Invalid email format");
             errorLabel.setVisible(true);
         }
+    }
+
+    public void changePasswordCheckboxChanged(ActionEvent event) {
+        boolean disable = !changePasswordCheckbox.isSelected();
+        ArrayList<Control> controls = new ArrayList<>(Arrays.asList(oldPasswordLabel, oldPasswordField, newPasswordLabel, newPasswordField));
+        for (Control c : controls)
+            c.setDisable(disable);
     }
 }

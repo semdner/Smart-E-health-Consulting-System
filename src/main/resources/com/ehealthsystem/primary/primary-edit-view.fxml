@@ -64,6 +64,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label text="Username">
@@ -132,19 +133,25 @@
                   </Label>
                   <TextField fx:id="insuranceNameTextField" layoutX="375.0" layoutY="193.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                   <CheckBox fx:id="privateInsuranceCheckBox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                  <Label text="Old password" GridPane.rowIndex="11">
+                  <Label fx:id="oldPasswordLabel" disable="true" text="Old password" GridPane.rowIndex="12">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="oldPasswordField" onAction="#handleOldPassword" onKeyTyped="#handleOldPassword" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                  <PasswordField fx:id="newPasswordField" onKeyTyped="#handleNewPassword" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                  <Label text="New password" GridPane.rowIndex="12">
+                  <PasswordField fx:id="oldPasswordField" disable="true" onAction="#handleOldPassword" onKeyTyped="#handleOldPassword" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                  <PasswordField fx:id="newPasswordField" disable="true" onKeyTyped="#handleNewPassword" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                  <Label fx:id="newPasswordLabel" disable="true" text="New password" GridPane.rowIndex="13">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="errorLabel" prefWidth="365.0" text="new password cannot be the same as your old password." textFill="RED" visible="false" GridPane.rowIndex="13" />
+                  <Label fx:id="errorLabel" prefWidth="365.0" text="new password cannot be the same as your old password." textFill="RED" visible="false" GridPane.rowIndex="14" />
+                  <Label layoutX="10.0" layoutY="315.0" text="Change password" GridPane.rowIndex="11">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="changePasswordCheckbox" layoutX="375.0" layoutY="317.0" mnemonicParsing="false" onAction="#changePasswordCheckboxChanged" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                </children>
             </GridPane>
             <Label layoutX="10.0" layoutY="11.0" text="User information" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="590.8" AnchorPane.topAnchor="5.0">
