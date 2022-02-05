@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -14,6 +13,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.admin.AdminController">
    <top>
       <MenuBar prefHeight="25.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
@@ -40,29 +40,21 @@
                </font>
             </Label>
             <Separator layoutX="10.0" layoutY="40.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="590.0" AnchorPane.topAnchor="35.0" />
-            <ScrollPane hbarPolicy="ALWAYS" layoutX="400.0" layoutY="78.0" prefHeight="440.0" prefWidth="980.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="78.0">
-              <content>
-                <AnchorPane fx:id="userTreeView" prefHeight="210.0" prefWidth="1020.0">
-                     <children>
-                        <TableView fx:id="userTableView" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                          <columns>
-                            <TableColumn fx:id="username" minWidth="100.0" prefWidth="100.0" text="username" />
-                            <TableColumn fx:id="email" minWidth="100.0" prefWidth="100.0" text="email" />
-                              <TableColumn fx:id="firstName" minWidth="100.0" prefWidth="100.0" text="first name" />
-                              <TableColumn fx:id="lastName" minWidth="100.0" prefWidth="100.0" text="last name" />
-                              <TableColumn fx:id="street" minWidth="100.0" prefWidth="100.0" text="street" />
-                              <TableColumn fx:id="houseNo" minWidth="100.0" prefWidth="100.0" text="house no" />
-                              <TableColumn fx:id="zip" minWidth="100.0" prefWidth="100.0" text="zip" />
-                              <TableColumn fx:id="birthday" minWidth="100.0" prefWidth="100.0" text="birthday" />
-                              <TableColumn fx:id="gender" minWidth="100.0" prefWidth="100.0" text="gender" />
-                              <TableColumn fx:id="password" minWidth="100.0" prefWidth="100.0" text="password" />
-                          </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-              </content>
-            </ScrollPane>
             <TextField focusTraversable="false" layoutX="10.0" layoutY="46.0" prefHeight="24.0" prefWidth="214.0" promptText="search username or email" AnchorPane.bottomAnchor="458.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="46.0" />
+            <TableView fx:id="userTableView" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="78.0">
+              <columns>
+                <TableColumn fx:id="username" minWidth="100.0" prefWidth="100.0" text="username" />
+                <TableColumn fx:id="email" minWidth="100.0" prefWidth="100.0" text="email" />
+                  <TableColumn fx:id="firstName" minWidth="100.0" prefWidth="100.0" text="first name" />
+                  <TableColumn fx:id="lastName" minWidth="100.0" prefWidth="100.0" text="last name" />
+                  <TableColumn fx:id="street" minWidth="100.0" prefWidth="100.0" text="street" />
+                  <TableColumn fx:id="houseNo" minWidth="100.0" prefWidth="100.0" text="house no" />
+                  <TableColumn fx:id="zip" minWidth="100.0" prefWidth="100.0" text="zip" />
+                  <TableColumn fx:id="birthday" minWidth="100.0" prefWidth="100.0" text="birthday" />
+                  <TableColumn fx:id="gender" minWidth="100.0" prefWidth="100.0" text="gender" />
+                  <TableColumn fx:id="password" minWidth="100.0" prefWidth="100.0" text="password" />
+              </columns>
+            </TableView>
          </children></AnchorPane>
    </center>
    <bottom>

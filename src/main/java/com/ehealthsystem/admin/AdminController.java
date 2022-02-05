@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.util.Callback;
 
 import javax.activation.UnsupportedDataTypeException;
 import java.io.IOException;
@@ -61,9 +62,7 @@ public class AdminController implements Initializable {
     private void loadUsersFromDatabase() throws SQLException, UnsupportedDataTypeException {
         users = Database.getAllUsers();
         ObservableList<User> list = FXCollections.observableArrayList();
-            for (User user : users) {
-                list.add(user);
-            }
+        list.addAll(users);
         userTableView.setItems(list);
     }
 
