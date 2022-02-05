@@ -7,18 +7,14 @@ import com.ehealthsystem.tools.Session;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class LoginController {
 
@@ -44,21 +40,35 @@ public class LoginController {
      */
     @FXML
     public void handleLoginButton(ActionEvent event) throws IOException, SQLException {
-        if (validateEmail() && validatePasswordField() && validateCredentials())
+        if(validateAdmin() && validatePasswordField() && validateCredentials()) {
+            loadAdminWindow(event);
+        } else if (validateUsernameOrEmail() && validatePasswordField() && validateCredentials())
             loadPrimaryWindow(event);
+    }
+
+    private boolean validateAdmin() {
+        if (emailTextField.getText().equals("admin")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
      * Method to validate the email format.
      * @return true if email format filled in matches pattern
      */
-    private boolean validateEmail() {
-        if(EmailCheck.isValidEmailAddress(emailTextField.getText())) {
-            return true;
+    private boolean validateUsernameOrEmail() {
+        if(emailTextField.getText().contains("@")) {
+            if(EmailCheck.isValidEmailAddress(emailTextField.getText())) {
+                return true;
+            } else {
+                errorLabel.setText("Invalid username or email. Please try again");
+                errorLabel.setVisible(true);
+                return false;
+            }
         } else {
-            errorLabel.setText("Invalid email format. Please try again");
-            errorLabel.setVisible(true);
-            return false;
+            return true;
         }
     }
 
@@ -82,6 +92,11 @@ public class LoginController {
     private void loadPrimaryWindow(Event event) throws IOException, SQLException {
         Session.loginUser(emailTextField.getText());
         SceneSwitch.switchToCentered(event, "primary/primary-view.fxml", "E-Health System");
+    }
+
+    private void loadAdminWindow(ActionEvent event) throws SQLException, IOException {
+        Session.loginAdmin(emailTextField.getText());
+        SceneSwitch.switchToCentered(event, "admin/admin-view.fxml", "Admin Panel");
     }
 
     /**

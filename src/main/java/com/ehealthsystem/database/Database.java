@@ -1,5 +1,6 @@
 package com.ehealthsystem.database;
 
+import com.ehealthsystem.admin.Admin;
 import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.doctor.Doctor;
 import com.ehealthsystem.doctor.DoctorTimeSlot;
@@ -146,8 +147,9 @@ public class Database {
      * @return whether password is correct
      */
     public static boolean checkPassword(String email, String password) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement("SELECT password FROM user WHERE email = ?");
+        PreparedStatement statement = connection.prepareStatement("SELECT password FROM user WHERE email = ? OR username = ?");
         statement.setString(1, email);
+        statement.setString(2, email);
         ResultSet rs = statement.executeQuery();
 
         rs.next();
@@ -323,12 +325,24 @@ public class Database {
      * @return
      */
     public static User getUserFromEmail(String email) throws SQLException, UnsupportedDataTypeException {
-        String query = "SELECT * FROM user WHERE email = ?";
+        String query = "SELECT * FROM user WHERE email = ? OR username = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, email);
+        statement.setString(2, email);
         ResultSet rs = statement.executeQuery();
         return loadUsersFromResultSet(rs).get(0);
     }
+
+    public static Admin getAdmin(String name) throws SQLException, UnsupportedDataTypeException {
+        String query = "SELECT * FROM user WHERE username = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, name);
+        ResultSet rs = statement.executeQuery();
+        Admin admin = new Admin("admin");
+        return admin;
+    }
+
+
 
     /**
      * Get all doctors from the database as objects of class Doctor
@@ -453,6 +467,8 @@ public class Database {
         ResultSet rs = statement.executeQuery();
         return loadDoctorsFromResultSet(rs).get(0);
     }
+
+
 
     public static ArrayList<String> loadDoctorSpecializations(int id) throws SQLException {
         String query = "SELECT c.category FROM doctor_category AS dc LEFT JOIN category AS c on dc.category_id = c.category_id WHERE dc.doctor_id = ?;";

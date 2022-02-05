@@ -1,5 +1,6 @@
 package com.ehealthsystem.tools;
 
+import com.ehealthsystem.admin.Admin;
 import com.ehealthsystem.appointment.AppointmentInCreation;
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.map.GeoCoder;
@@ -14,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Session {
     public static User user; //user that is currently logged in
+    public static Admin admin;
     public static AppointmentInCreation appointment; //an appointment that is currently created
     private static GeocodingResult userGeo;
     public static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy"); //date pattern used in the UI
@@ -27,6 +29,10 @@ public class Session {
      */
     public static void loginUser(String email) throws SQLException, UnsupportedDataTypeException {
         user = Database.getUserFromEmail(email);
+    }
+
+    public static void loginAdmin(String name) throws SQLException, UnsupportedDataTypeException {
+        admin = Database.getAdmin(name);
     }
 
     public static GeocodingResult getUserGeo() throws IOException, InterruptedException, ApiException {
