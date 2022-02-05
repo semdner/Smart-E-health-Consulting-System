@@ -10,6 +10,7 @@ import com.ehealthsystem.pdf.fileChooserSave;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -215,5 +216,9 @@ public class PrimaryController implements Initializable {
     public void handlepdfButton(ActionEvent event) throws SQLException, IOException {
         String dest = fileChooserSave.chooseDest(Main.getPrimaryStage());
         CreatePDF.create_Pdf(dest);
+    }
+
+    public void handleLogout(ActionEvent event) throws IOException {
+        Session.logout();
     }
 }

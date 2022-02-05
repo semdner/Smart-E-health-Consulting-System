@@ -78,4 +78,8 @@ public class AdminController implements Initializable {
     public void handleSaveButton(ActionEvent event) throws SQLException, IOException {
 
     }
+
+    public void handleLogout(ActionEvent event) throws IOException {
+        Session.logout();
+    }
 }

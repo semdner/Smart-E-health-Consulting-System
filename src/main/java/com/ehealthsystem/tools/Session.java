@@ -44,4 +44,12 @@ public class Session {
     public static void invalidateUserGeo() {
         userGeo = null;
     }
+
+    public static void logout() throws IOException {
+        user = null;
+        admin = null;
+        appointment = null;
+        invalidateUserGeo();
+        SceneSwitch.switchToCentered(null, "main/main-view.fxml", "Welcome"); //hack with custom event
+    }
 }

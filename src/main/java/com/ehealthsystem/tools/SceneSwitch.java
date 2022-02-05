@@ -26,7 +26,7 @@ public class SceneSwitch {
      */
     public static void switchTo(Event event, String file, String title) throws IOException {
         Parent root = FXMLLoader.load(SceneSwitch.class.getResource("/com/ehealthsystem/" + file));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage stage = event == null ? Main.getPrimaryStage() : (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle(title);
         stage.setScene(scene);
@@ -41,7 +41,7 @@ public class SceneSwitch {
      * @throws IOException if the file was not found
      */
     public static void switchToCentered(Event event, String file, String title) throws IOException {
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow(); //grab current stage before it's replaced at scene switch
+        Stage stage = event == null ? Main.getPrimaryStage() : (Stage)((Node)event.getSource()).getScene().getWindow(); //grab current stage before it's replaced at scene switch
         switchTo(event, file, title);
         centerWindow(stage);
     }

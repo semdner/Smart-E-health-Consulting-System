@@ -57,7 +57,7 @@ public class RegistrationValidationController {
         SendEmail.validateEmail(newUser.getMail());
     }
 
-    public void handleBackLabel(ActionEvent event) throws IOException {
+    public void handleBackButton(ActionEvent event) throws IOException {
         SceneSwitch.switchToCentered(event, "registration/registration-view.fxml", "E-Health System");
     }
 
