@@ -4,16 +4,12 @@ import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.doctor.Doctor;
 import com.ehealthsystem.doctor.DoctorTimeSlot;
 import com.ehealthsystem.healthinformation.HealthInformation;
-import com.ehealthsystem.map.DoctorDistance;
-import com.ehealthsystem.map.GeoDistance;
 import com.ehealthsystem.tools.ResourceReader;
 import com.ehealthsystem.user.User;
-import com.google.maps.errors.ApiException;
 import com.google.maps.model.LatLng;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.activation.UnsupportedDataTypeException;
-import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
