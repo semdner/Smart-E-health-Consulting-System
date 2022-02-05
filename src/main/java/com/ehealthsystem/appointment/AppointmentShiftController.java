@@ -3,6 +3,7 @@ package com.ehealthsystem.appointment;
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.mail.SendEmail;
 import com.ehealthsystem.map.GeoCoder;
+import com.ehealthsystem.reminder.ReminderScheduler;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.tools.StringEnumerator;
@@ -90,6 +91,9 @@ public class AppointmentShiftController extends ScheduleLoader {
 
         loadedAppointment.setDate(datePicker.getValue());
         loadedAppointment.setTime(selectedTime);
+
+        if (loadedAppointment.getMinutesBeforeReminder() != 0) //has a reminder
+            ReminderScheduler.updateReminder(loadedAppointment);
 
         SendEmail.sendMail(
                 Session.user.getMail(),

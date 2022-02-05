@@ -1,6 +1,7 @@
 package com.ehealthsystem;
 
 import com.ehealthsystem.database.Database;
+import com.ehealthsystem.reminder.ReminderScheduler;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,6 +32,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException, SQLException {
         this.primaryStage = primaryStage;
         initDB();
+        ReminderScheduler.setupReminders();
 
         Parent root = FXMLLoader.load(getClass().getResource("main/main-view.fxml"));
         Scene mainScene = new Scene(root);

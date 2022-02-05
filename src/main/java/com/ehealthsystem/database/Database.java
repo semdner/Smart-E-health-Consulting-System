@@ -568,4 +568,19 @@ public class Database {
         ResultSet rs = statement.executeQuery();
         return loadAppointmentsFromResultSet(rs);
     }
+
+    /**
+     * Get upcoming appointments that have a reminder. To be used to set reminders initially (application start).
+     * @return
+     * @throws SQLException
+     * @throws UnsupportedDataTypeException
+     */
+    public static ArrayList<Appointment> getUpcomingAppointmentsWithReminder() throws SQLException, UnsupportedDataTypeException {
+        String query = "SELECT * FROM appointment WHERE date >= ? AND time > ? AND minutesBeforeReminder != 0 ORDER BY date, time"; //ordering for display as list
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, LocalDate.now().format(DateTimeFormatter.ofPattern(Database.datePattern)));
+        statement.setString(2, LocalTime.now().format(DateTimeFormatter.ofPattern(Database.timePatternAppointment)));
+        ResultSet rs = statement.executeQuery();
+        return loadAppointmentsFromResultSet(rs);
+    }
 }

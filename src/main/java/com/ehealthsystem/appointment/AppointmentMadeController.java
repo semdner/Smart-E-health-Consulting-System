@@ -4,6 +4,7 @@ import com.ehealthsystem.database.Database;
 import com.ehealthsystem.doctor.Doctor;
 import com.ehealthsystem.mail.SendEmail;
 import com.ehealthsystem.map.GeoCoder;
+import com.ehealthsystem.reminder.ReminderScheduler;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.tools.StringEnumerator;
@@ -117,6 +118,9 @@ public class AppointmentMadeController {
 
     public void handleCancelButton(ActionEvent event) throws SQLException, IOException, MessagingException {
         loadedAppointment.delete();
+
+        if (loadedAppointment.getMinutesBeforeReminder() != 0) //has a reminder
+            ReminderScheduler.deleteReminder(loadedAppointment);
 
         SendEmail.sendMail(
                 Session.user.getMail(),

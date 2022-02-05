@@ -2,6 +2,7 @@ package com.ehealthsystem.appointment;
 
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.doctor.Doctor;
+import com.ehealthsystem.reminder.ReminderScheduler;
 
 import javax.activation.UnsupportedDataTypeException;
 import java.sql.PreparedStatement;
@@ -39,8 +40,10 @@ public class Appointment {
         this.time = time;
         this.minutesBeforeReminder = minutesBeforeReminder;
         this.duration = duration;
-        if (insertIntoDb)
+        if (insertIntoDb) {
             insertIntoDb();
+            ReminderScheduler.createReminder(this);
+        }
     }
 
     /**
