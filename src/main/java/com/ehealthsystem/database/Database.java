@@ -5,16 +5,12 @@ import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.doctor.Doctor;
 import com.ehealthsystem.doctor.DoctorTimeSlot;
 import com.ehealthsystem.healthinformation.HealthInformation;
-import com.ehealthsystem.map.DoctorDistance;
-import com.ehealthsystem.map.GeoDistance;
 import com.ehealthsystem.tools.ResourceReader;
 import com.ehealthsystem.user.User;
-import com.google.maps.errors.ApiException;
 import com.google.maps.model.LatLng;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.activation.UnsupportedDataTypeException;
-import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -26,8 +22,8 @@ public class Database {
 
     public static Connection connection = null;
     public static final String fileName = "ehealth.sqlite3";
-    public static final String datePattern = "yyyy-MM-dd"; //date pattern used for tables (e.g. appointment, user)
-    public static final String timePatternAppointment = "HH:mm"; //time pattern used for user appointment
+    public static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //date pattern used for tables (e.g. appointment, user)
+    public static final DateTimeFormatter timeFormatterAppointment = DateTimeFormatter.ofPattern("HH:mm"); //time pattern used for user appointment
 
     /**
      * To be called on application start.
@@ -279,12 +275,10 @@ public class Database {
         } else if (value instanceof Boolean) {
             statement.setBoolean(i+1, (Boolean)value);
         } else if (value instanceof LocalDate) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePattern);
-            String date = ((LocalDate)value).format(formatter);
+            String date = ((LocalDate)value).format(dateFormatter);
             statement.setString(i+1, date);
         } else if (value instanceof LocalTime) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(timePatternAppointment);
-            String time = ((LocalTime)value).format(formatter);
+            String time = ((LocalTime)value).format(timeFormatterAppointment);
             statement.setString(i+1, time);
         } else if (value instanceof Integer) {
             statement.setInt(i+1, (Integer) value);
@@ -436,8 +430,7 @@ public class Database {
             if (username.equals("admin")) {
                 birthDate = null;    //admin doesn't have a stored birthdate
             } else {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePattern);
-                birthDate = LocalDate.parse(rs.getString("birthday"), formatter);
+                birthDate = LocalDate.parse(rs.getString("birthday"), dateFormatter);
             }
 
             User user = new User(
@@ -501,7 +494,6 @@ public class Database {
      * @throws SQLException
      */
     public static ArrayList<DoctorTimeSlot> getDoctorsFreeTimes(Doctor doctor, LocalDate selectedDate) throws SQLException {
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(datePattern);
         String dateStr = selectedDate.format(dateFormatter);
 
         String query = "SELECT da.date, da.time, da.free" +
@@ -514,10 +506,9 @@ public class Database {
         ResultSet rs = statement.executeQuery();
 
         ArrayList<DoctorTimeSlot> appointments = new ArrayList<>();
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Database.timePatternAppointment);
         while(rs.next()) {
             LocalDate date = LocalDate.parse(rs.getString("date"), dateFormatter);
-            LocalTime time = LocalTime.parse(rs.getString("time"), timeFormatter);
+            LocalTime time = LocalTime.parse(rs.getString("time"), timeFormatterAppointment);
             appointments.add(new DoctorTimeSlot(date, time, rs.getBoolean("free")));
         }
         return appointments;
@@ -531,8 +522,6 @@ public class Database {
      */
     public static ArrayList<Appointment> loadAppointmentsFromResultSet(ResultSet rs) throws SQLException, UnsupportedDataTypeException {
         ArrayList<Appointment> appointments = new ArrayList<>();
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(Database.datePattern);
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(Database.timePatternAppointment);
 
         while (rs.next())
         {
@@ -543,7 +532,7 @@ public class Database {
                     rs.getInt("doctor_id"),
                     rs.getString("healthProblemDescription"),
                     LocalDate.parse(rs.getString("date"), dateFormatter),
-                    LocalTime.parse(rs.getString("time"), timeFormatter),
+                    LocalTime.parse(rs.getString("time"), timeFormatterAppointment),
                     rs.getInt("minutesBeforeReminder"),
                     rs.getInt("duration")
             );
@@ -561,12 +550,10 @@ public class Database {
      * @throws SQLException
      */
     public static ArrayList<Appointment> getDoctorsAppointments(int doctor, LocalDate date) throws SQLException, UnsupportedDataTypeException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePattern);
-
         String query = "SELECT * FROM appointment WHERE doctor_id = ? AND date = ? ORDER BY date, time"; //ordering not necessary but just convenient, e.g. if it will be displayed in a list to the doctor in the future
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, doctor);
-        statement.setString(2, date.format(formatter));
+        statement.setString(2, date.format(dateFormatter));
         ResultSet rs = statement.executeQuery();
         return loadAppointmentsFromResultSet(rs);
     }
@@ -594,8 +581,8 @@ public class Database {
     public static ArrayList<Appointment> getUpcomingAppointmentsWithReminder() throws SQLException, UnsupportedDataTypeException {
         String query = "SELECT * FROM appointment WHERE date >= ? AND time > ? AND minutesBeforeReminder != 0 ORDER BY date, time"; //ordering for display as list
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, LocalDate.now().format(DateTimeFormatter.ofPattern(Database.datePattern)));
-        statement.setString(2, LocalTime.now().format(DateTimeFormatter.ofPattern(Database.timePatternAppointment)));
+        statement.setString(1, LocalDate.now().format(dateFormatter));
+        statement.setString(2, LocalTime.now().format(timeFormatterAppointment));
         ResultSet rs = statement.executeQuery();
         return loadAppointmentsFromResultSet(rs);
     }

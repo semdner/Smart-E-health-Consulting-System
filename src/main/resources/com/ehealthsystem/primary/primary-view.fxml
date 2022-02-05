@@ -198,6 +198,7 @@
                                               <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                           </GridPane>
+                                          <Label fx:id="upcomingAppointmentsErrorLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="498.0" prefWidth="235.0" text="Label" textAlignment="CENTER" visible="false" AnchorPane.bottomAnchor="-388.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children></AnchorPane>
                                 </content>
                               </ScrollPane>
@@ -222,6 +223,7 @@
                                  <content>
                                     <AnchorPane minHeight="110.0" prefHeight="0.0" prefWidth="235.0">
                                        <children>
+                                          <Label fx:id="pastAppointmentsErrorLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="498.0" prefWidth="235.0" text="Label" textAlignment="CENTER" visible="false" />
                                           <GridPane fx:id="pastAppointmentsGridPane" prefWidth="225.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                              <columnConstraints>
                                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="225.0" prefWidth="225.0" />

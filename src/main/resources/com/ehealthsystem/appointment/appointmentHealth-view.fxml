@@ -67,6 +67,11 @@
                                     </Label>
                                  </children>
                               </GridPane>
+                              <Label fx:id="errorLabel" layoutX="350.0" layoutY="216.0" text="" textAlignment="CENTER" visible="false">
+                                   <font>
+                                       <Font size="15.0" />
+                                   </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                     </content>
