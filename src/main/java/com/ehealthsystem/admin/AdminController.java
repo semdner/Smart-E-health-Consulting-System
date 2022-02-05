@@ -3,11 +3,13 @@ package com.ehealthsystem.admin;
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.user.User;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -26,12 +28,22 @@ public class AdminController implements Initializable {
     Button editButton;
 
     @FXML
+    Button cancelButton;
+
+    @FXML
+    Button saveButton;
+
+    @FXML
     Button deleteButton;
 
     @FXML
     GridPane userGridPane;
 
+    @FXML
+    Label errorLabel;
+
     Label selectedLabel;
+    int[] selectedCell = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -42,7 +54,7 @@ public class AdminController implements Initializable {
         }
     }
 
-    public void loadUsersFromDatabase() throws SQLException, UnsupportedDataTypeException {
+    private void loadUsersFromDatabase() throws SQLException, UnsupportedDataTypeException {
         ArrayList<User> users = Database.getAllUsers();
         int row = 1;
         for (int i = 1; i < users.size(); i++) {
@@ -87,16 +99,16 @@ public class AdminController implements Initializable {
         return buttons;
     }
 
-    public void loadTable(ArrayList<Label> labels, ArrayList<Button> buttons, int row) {
+    private void loadTable(ArrayList<Label> labels, ArrayList<Button> buttons, int row) {
         for (int i = 0; i < 10; i++) {
             userGridPane.add(labels.get(i), i, row);
             userGridPane.add(buttons.get(i), i, row);
             setStyle(buttons.get(i));
-            handleButton(labels.get(i), buttons.get(i));
+            handleButton(labels.get(i), buttons.get(i), i, row);
         }
     }
 
-    private void handleButton(Label label, Button button) {
+    private void handleButton(Label label, Button button, int column, int row) {
         // dynamically add the event handler for the buttons
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -105,9 +117,11 @@ public class AdminController implements Initializable {
                     selectedLabel.setTextFill(Color.web("#000000"));
                     label.setTextFill(Color.web("#FF0000"));
                     selectedLabel = label;
+                    selectedCell = new int[]{column, row};
                 } else {
                     selectedLabel = label;
                     selectedLabel.setTextFill(Color.web("#FF0000"));
+                    selectedCell = new int[]{column, row};
                 }
             }
         });
@@ -116,5 +130,19 @@ public class AdminController implements Initializable {
     private static void setStyle(Button button) {
         button.setStyle("-fx-opacity: 0%");
         button.setPrefWidth(100);
+    }
+
+    public void handleEditButton(ActionEvent event) {
+        if(selectedCell == null) {
+            errorLabel.setVisible(true);
+            return;
+        } else {
+            errorLabel.setVisible(false);
+            cancelButton.setDisable(false);
+            saveButton.setDisable(false);
+            TextField editTextField = new TextField();
+            editTextField.setText(selectedLabel.getText());
+            userGridPane.add(editTextField, selectedCell[0], selectedCell[1]);
+        }
     }
 }
