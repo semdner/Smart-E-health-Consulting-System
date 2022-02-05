@@ -2,7 +2,6 @@ package com.ehealthsystem.map;
 
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.doctor.Doctor;
-import com.ehealthsystem.tools.Session;
 import com.google.maps.DistanceMatrixApi;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.DistanceMatrix;

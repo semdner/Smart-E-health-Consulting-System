@@ -2,7 +2,6 @@ package com.ehealthsystem.appointment;
 
 import com.ehealthsystem.doctor.FoundDoctorController;
 import com.ehealthsystem.map.DoctorDistance;
-import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.map.GeoDistance;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
