@@ -2,11 +2,13 @@ package com.ehealthsystem.registration;
 
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.mail.SendEmail;
+import com.ehealthsystem.map.GeoCoder;
 import com.ehealthsystem.tools.BirthdayCheck;
 import com.ehealthsystem.tools.EmailCheck;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.user.User;
+import com.google.maps.errors.ApiException;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -150,8 +152,8 @@ public class RegistrationController implements Initializable {
      * missing for registration
      * @param event event the Button reacts to
      */
-    public void handleRegistrationButton(ActionEvent event) throws IOException, SQLException, MessagingException {
-        if(validateFirstname() && validateLastname() && validateEmail() && validateUsername() && validatePassword() && validateRepeatPassword() && validateStreet() && validateNumber() && validateZip() && validateBirthday() && validateGender() && validateInsuranceName()) {
+    public void handleRegistrationButton(ActionEvent event) throws IOException, SQLException, MessagingException, InterruptedException, ApiException {
+        if(validateFirstname() && validateLastname() && validateEmail() && validateUsername() && validatePassword() && validateRepeatPassword() && validateStreet() && validateNumber() && validateAddress() && validateZip() && validateBirthday() && validateGender() && validateInsuranceName()) {
             User newUser = new User(usernameTextField.getText(),
                                     emailTextField.getText(),
                                     firstNameTextField.getText(),
@@ -333,6 +335,16 @@ public class RegistrationController implements Initializable {
         } else {
             hideError(numberTextField);
             return true;
+        }
+    }
+
+    private boolean validateAddress() throws IOException, InterruptedException, ApiException {
+        try {
+            GeoCoder.geocode("%s %s, %s".formatted(streetTextField.getText(), numberTextField.getText(), zipTextField.getText()));
+            return true;
+        } catch (ArrayIndexOutOfBoundsException e) { //[0] in geocode()
+            showError("Unknown address, did you enter everything correctly?");
+            return false;
         }
     }
 
