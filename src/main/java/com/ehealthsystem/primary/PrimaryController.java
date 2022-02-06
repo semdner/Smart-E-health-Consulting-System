@@ -220,4 +220,8 @@ public class PrimaryController implements Initializable {
     public void handleLogout(ActionEvent event) throws IOException {
         Session.logout();
     }
+
+    public void handleHealthInformation(ActionEvent event) throws IOException {
+        SceneSwitch.switchTo(null, "healthInformation/healthInformation-view.fxml", "Health information");
+    }
 }

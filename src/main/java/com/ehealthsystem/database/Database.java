@@ -6,6 +6,7 @@ import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.doctor.Doctor;
 import com.ehealthsystem.doctor.DoctorTimeSlot;
 import com.ehealthsystem.healthinformation.HealthInformation;
+import com.ehealthsystem.healthinformation.HealthInformationTableView;
 import com.ehealthsystem.tools.ResourceReader;
 import com.ehealthsystem.user.User;
 import com.google.maps.model.LatLng;
@@ -598,5 +599,31 @@ public class Database {
             return rs.getString("password");
         }
         return null;
+    }
+
+    public static ObservableList<HealthInformationTableView> getHealthInformationForTableView(String username) throws SQLException {
+        String query = "SELECT h.ICD, d.disease_name FROM health_status AS h, user LEFT JOIN disease d on h.ICD = d.ICD WHERE username = ?;";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, username);
+        ResultSet rs = statement.executeQuery();
+        ObservableList<HealthInformationTableView> healthProblems = FXCollections.observableArrayList();
+        while(rs.next()) {
+            healthProblems.add(new HealthInformationTableView(rs.getString("ICD"),
+                    rs.getString("disease_name")));
+        }
+        return healthProblems;
+    }
+
+    public static void deleteHealthInformation(HealthInformationTableView selected, String username) throws SQLException {
+        String query = "SELECT user_id FROM user WHERE username = ?;";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, username);
+        ResultSet rs = statement.executeQuery();
+        int user_id = rs.getInt("user_id");
+        String deleteQuery = "DELETE FROM health_status WHERE ICD = ? AND user_id = ?;";
+        statement = connection.prepareStatement(deleteQuery);
+        statement.setString(1, selected.getICD());
+        statement.setString(2, String.valueOf(user_id));
+        statement.executeUpdate();
     }
 }
