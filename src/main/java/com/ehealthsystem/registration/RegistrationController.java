@@ -5,6 +5,7 @@ import com.ehealthsystem.mail.SendEmail;
 import com.ehealthsystem.tools.BirthdayCheck;
 import com.ehealthsystem.tools.EmailCheck;
 import com.ehealthsystem.tools.SceneSwitch;
+import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.user.User;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -82,8 +83,6 @@ public class RegistrationController implements Initializable {
     @FXML
     TextField birthdayEditor;
 
-
-
     /**
      * fist method called when scene is switched.
      * Used to set the choices of the choice box
@@ -97,13 +96,9 @@ public class RegistrationController implements Initializable {
         Platform.runLater(() -> firstNameTextField.requestFocus()); //https://stackoverflow.com/a/38374747/1803901
 
         birthdayPicker.valueProperty().addListener((observable, oldDate, newDate) -> {
-            System.out.println("Hallo");
-            birthdayEditor.setText(birthdayPicker.getValue().toString());
+            birthdayEditor.setText(birthdayPicker.getValue().format(Session.dateFormatter));
         });
     }
-
-    final DatePicker datePicker = new DatePicker();
-
 
     /**
      * Show the error label
@@ -156,7 +151,7 @@ public class RegistrationController implements Initializable {
      * @param event event the Button reacts to
      */
     public void handleRegistrationButton(ActionEvent event) throws IOException, SQLException, MessagingException {
-        if(validateUsername() && validateEmail() && validateFirstname() && validateLastname() && validateStreet() && validateNumber() && validateZip() && validateBirthday() && validateGender() && validatePassword() && validateRepeatPassword() && validateInsuranceName()) {
+        if(validateFirstname() && validateLastname() && validateEmail() && validateUsername() && validatePassword() && validateRepeatPassword() && validateStreet() && validateNumber() && validateZip() && validateBirthday() && validateGender() && validateInsuranceName()) {
             User newUser = new User(usernameTextField.getText(),
                                     emailTextField.getText(),
                                     firstNameTextField.getText(),
@@ -218,15 +213,7 @@ public class RegistrationController implements Initializable {
     }
 
     public void handleBirthdayEditor(KeyEvent event){
-        if(birthdayEditor.getText().isBlank()){
-            fieldError(birthdayEditor,"Birthday has to be selected");
-        }else {
-            LocalDate date = LocalDate.parse(birthdayEditor.getText(), Database.dateFormatter);
-            hideError(birthdayEditor);
-            birthdayPicker.setValue(date);
-
-        }
-
+        validateBirthday();
     }
 
     /**
@@ -403,13 +390,28 @@ public class RegistrationController implements Initializable {
      * @return true if birthday is entered correctly
      */
     public boolean validateBirthday() {
-        if(BirthdayCheck.isOldEnough(birthdayPicker.getValue())) {
-            errorLabel.setVisible(false);
-            return true;
-        } else {
-            showError("You need to be at least " + BirthdayCheck.MINIMUM_AGE + " years old");
+        if(birthdayEditor.getText().isBlank()){
+            fieldError(birthdayEditor,"Birthday has to be entered");
+            return false;
+        }else {
+            LocalDate date = null;
+            try {
+                date = LocalDate.parse(birthdayEditor.getText(), DateTimeFormatter.ofPattern("d.M.yyyy")); //allows user to leave ot leading 0s in day and month (e.g. 1.1.2000)
+            } catch (DateTimeParseException e) {
+                fieldError(birthdayEditor,"Invalid date format for birthday");
+                return false;
+            }
+            hideError(birthdayEditor);
+            birthdayPicker.setValue(date);
+        }
+
+        if(!BirthdayCheck.isOldEnough(birthdayPicker.getValue())) {
+            fieldError(birthdayEditor, "You need to be at least " + BirthdayCheck.MINIMUM_AGE + " years old");
             return false;
         }
+
+        errorLabel.setVisible(false);
+        return true;
     }
 
     /**
