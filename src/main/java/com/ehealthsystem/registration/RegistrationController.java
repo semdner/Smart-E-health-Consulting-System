@@ -407,13 +407,13 @@ public class RegistrationController implements Initializable {
             birthdayPicker.setValue(date);
         }
 
-        if(BirthdayCheck.isOldEnough(birthdayPicker.getValue())) {
-            errorLabel.setVisible(false);
-            return true;
-        } else {
+        if(!BirthdayCheck.isOldEnough(birthdayPicker.getValue())) {
             fieldError(birthdayEditor, "You need to be at least " + BirthdayCheck.MINIMUM_AGE + " years old");
             return false;
         }
+
+        errorLabel.setVisible(false);
+        return true;
     }
 
     /**
