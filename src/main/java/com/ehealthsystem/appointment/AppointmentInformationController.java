@@ -26,9 +26,6 @@ public class AppointmentInformationController implements Initializable {
     TextField healthProblemField;
 
     @FXML
-    ComboBox doctorChoiceBox;
-
-    @FXML
     ComboBox healthProblemChoiceBox;
 
     @FXML
@@ -39,8 +36,8 @@ public class AppointmentInformationController implements Initializable {
         try {
             Specialization specialization = new Specialization();
             String[] categories = specialization.getSpecializationList().toArray(new String[0]);
-            doctorChoiceBox.getItems().setAll(categories);
-            healthProblemChoiceBox.getItems().setAll(categories);
+
+            healthProblemChoiceBox.getItems().setAll(Database.loadProblems());
 
             if (Session.appointment.getDistance() != -1) {
                 searchDistanceSlider.setValue(Session.appointment.getDistance());
@@ -48,9 +45,6 @@ public class AppointmentInformationController implements Initializable {
 
             healthProblemField.setText(Session.appointment.getHealthProblem());
 
-            if (Session.appointment.getSpecialization() != null) {
-                doctorChoiceBox.setValue(Session.appointment.getSpecialization());
-            }
             if(Session.appointment.getHealthProblemChoice() != null){
                 healthProblemChoiceBox.setValue(Session.appointment.getHealthProblemChoice());
             }
@@ -71,18 +65,13 @@ public class AppointmentInformationController implements Initializable {
         }
     }
 
-    private boolean saveData() {
+    private boolean saveData() throws SQLException {
         boolean okay = true;
         Session.appointment.setDistance(searchDistanceSlider.getValue());
 
-        if(validateSpecialization()) {
-            Session.appointment.setSpecialization(doctorChoiceBox.getValue().toString());
-        } else {
-            okay = false;
-        }
-
         if(validateHealthProblem()) {
             Session.appointment.setHealthProblem(healthProblemField.getText());
+
         } else {
             Session.appointment.setHealthProblem(null);
             okay = false;
@@ -90,6 +79,7 @@ public class AppointmentInformationController implements Initializable {
 
         if(validateHealthProblemChoiceBox()){
             Session.appointment.setHealthProblemChoice(healthProblemChoiceBox.getValue().toString());
+            Session.appointment.setSpecialization(Database.problemToSuitableSpecialization(healthProblemChoiceBox.getValue().toString()));
         }else{
             okay = false;
         }
@@ -97,7 +87,7 @@ public class AppointmentInformationController implements Initializable {
         return okay;
     }
 
-    public void handleBackButton(ActionEvent event) throws IOException {
+    public void handleBackButton(ActionEvent event) throws IOException, SQLException {
         saveData();
         SceneSwitch.switchTo(event, "appointment/appointmentHealth-view.fxml", "Make appointment");
     }
@@ -114,15 +104,6 @@ public class AppointmentInformationController implements Initializable {
         return true;
     }
 
-    public boolean validateSpecialization() {
-        if(doctorChoiceBox.getValue() == null) {
-            errorLabel.setText("Please choose a doctor specialization.");
-            errorLabel.setVisible(true);
-            return false;
-        } else {
-            return true;
-        }
-    }
 
     public boolean validateHealthProblemChoiceBox(){
         if(healthProblemChoiceBox.getValue() == null){
