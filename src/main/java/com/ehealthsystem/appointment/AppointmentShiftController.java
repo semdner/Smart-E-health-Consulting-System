@@ -109,7 +109,8 @@ public class AppointmentShiftController extends ScheduleLoader {
         SceneSwitch.loadAppointmentMadeView(event, loadedAppointment);
     }
 
-    public void handleDateChoice(ActionEvent event) throws SQLException, UnsupportedDataTypeException {
+    public void handleDateChoice(ActionEvent event) throws SQLException, UnsupportedDataTypeException { //not triggered when the same day is re-selected
+        selectedTime = null;
         if (datePicker.getValue().isBefore(LocalDate.now())) {
             errorLabel.setText("Can't make an appointment in the past.");
             errorLabel.setVisible(true);
