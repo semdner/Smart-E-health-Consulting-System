@@ -29,6 +29,9 @@ public class AppointmentInformationController implements Initializable {
     ComboBox doctorChoiceBox;
 
     @FXML
+    ComboBox healthProblemChoiceBox;
+
+    @FXML
     Label errorLabel;
 
     @Override
@@ -37,6 +40,7 @@ public class AppointmentInformationController implements Initializable {
             Specialization specialization = new Specialization();
             String[] categories = specialization.getSpecializationList().toArray(new String[0]);
             doctorChoiceBox.getItems().setAll(categories);
+            healthProblemChoiceBox.getItems().setAll(categories);
 
             if (Session.appointment.getDistance() != -1) {
                 searchDistanceSlider.setValue(Session.appointment.getDistance());
@@ -46,6 +50,9 @@ public class AppointmentInformationController implements Initializable {
 
             if (Session.appointment.getSpecialization() != null) {
                 doctorChoiceBox.setValue(Session.appointment.getSpecialization());
+            }
+            if(Session.appointment.getHealthProblemChoice() != null){
+                healthProblemChoiceBox.setValue(Session.appointment.getHealthProblemChoice());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,6 +88,12 @@ public class AppointmentInformationController implements Initializable {
             okay = false;
         }
 
+        if(validateHealthProblemChoiceBox()){
+            Session.appointment.setHealthProblemChoice(healthProblemChoiceBox.getValue().toString());
+        }else{
+            okay = false;
+        }
+
         return okay;
     }
 
@@ -90,13 +103,15 @@ public class AppointmentInformationController implements Initializable {
     }
 
     public boolean validateHealthProblem() {
+        /*
         if(healthProblemField.getText() == null || healthProblemField.getText().isBlank()) {
             errorLabel.setText("Please describe your health problem.");
             errorLabel.setVisible(true);
             return false;
         } else {
             return true;
-        }
+        }*/
+        return true;
     }
 
     public boolean validateSpecialization() {
@@ -105,6 +120,16 @@ public class AppointmentInformationController implements Initializable {
             errorLabel.setVisible(true);
             return false;
         } else {
+            return true;
+        }
+    }
+
+    public boolean validateHealthProblemChoiceBox(){
+        if(healthProblemChoiceBox.getValue() == null){
+            errorLabel.setText("Please choose a Health Problem");
+            errorLabel.setVisible(true);
+            return false;
+        }else{
             return true;
         }
     }

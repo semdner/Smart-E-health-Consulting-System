@@ -20,6 +20,7 @@ public class AppointmentInCreation {
     //Data that is only used to save the creation progress
     private double distance = -1;
     private String specialization;
+    private String healthProblemChoice;
     private ArrayList<HealthInformation> healthInformation = new ArrayList<>();
 
     public AppointmentInCreation() {
@@ -60,6 +61,10 @@ public class AppointmentInCreation {
     public void setSpecialization(String specialization) {
         this.specialization = specialization;
     }
+
+    public void setHealthProblemChoice(String healthProblemChoice){this.healthProblemChoice = healthProblemChoice;}
+
+    public String getHealthProblemChoice(){return healthProblemChoice;}
 
     public LocalDate getDate() {
         return date;
