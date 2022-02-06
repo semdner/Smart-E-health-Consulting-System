@@ -246,8 +246,11 @@ public class FoundDoctorFullController extends ScheduleLoader {
 
     public void handleDateChoice(ActionEvent event) throws SQLException, UnsupportedDataTypeException {
         if (datePicker.getValue().isBefore(LocalDate.now())) {
-            datePicker.setValue(LocalDate.now());
+            errorLabel.setText("Can't make an appointment in the past.");
+            errorLabel.setVisible(true);
             return;
+        } else {
+            errorLabel.setVisible(false);
         }
         Session.appointment.setDate(datePicker.getValue());
         loadSchedule();
