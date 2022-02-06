@@ -5,6 +5,7 @@ import com.ehealthsystem.mail.SendEmail;
 import com.ehealthsystem.tools.BirthdayCheck;
 import com.ehealthsystem.tools.EmailCheck;
 import com.ehealthsystem.tools.SceneSwitch;
+import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.user.User;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -82,8 +83,6 @@ public class RegistrationController implements Initializable {
     @FXML
     TextField birthdayEditor;
 
-
-
     /**
      * fist method called when scene is switched.
      * Used to set the choices of the choice box
@@ -97,7 +96,7 @@ public class RegistrationController implements Initializable {
         Platform.runLater(() -> firstNameTextField.requestFocus()); //https://stackoverflow.com/a/38374747/1803901
 
         birthdayPicker.valueProperty().addListener((observable, oldDate, newDate) -> {
-            birthdayEditor.setText(birthdayPicker.getValue().toString());
+            birthdayEditor.setText(birthdayPicker.getValue().format(Session.dateFormatter));
         });
     }
 
@@ -397,7 +396,7 @@ public class RegistrationController implements Initializable {
         }else {
             LocalDate date = null;
             try {
-                date = LocalDate.parse(birthdayEditor.getText(), Database.dateFormatter);
+                date = LocalDate.parse(birthdayEditor.getText(), DateTimeFormatter.ofPattern("d.M.yyyy")); //allows user to leave ot leading 0s in day and month (e.g. 1.1.2000)
             } catch (DateTimeParseException e) {
                 fieldError(birthdayEditor,"Invalid date format for birthday");
                 return false;
