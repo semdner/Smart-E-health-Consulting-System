@@ -24,6 +24,7 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
+                  <MenuItem mnemonicParsing="false" text="Add healthinformation" />
                   <MenuItem mnemonicParsing="false" onAction="#handlepdfButton" text="PDF Export" />
             </items>
           </Menu>
