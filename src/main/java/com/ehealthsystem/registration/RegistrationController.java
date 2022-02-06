@@ -102,9 +102,6 @@ public class RegistrationController implements Initializable {
         });
     }
 
-    final DatePicker datePicker = new DatePicker();
-
-
     /**
      * Show the error label
      * @param error
