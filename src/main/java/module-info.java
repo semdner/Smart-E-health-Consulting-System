@@ -23,6 +23,7 @@ module Smart.E.health.Consulting.System {
     opens com.ehealthsystem.registration to javafx.fxml;
     opens com.ehealthsystem.doctor to javafx.fxml;
     opens com.ehealthsystem.admin to javafx.fxml, javafx.base;
+    opens com.ehealthsystem.healthinformation to javafx.fxml, javafx.base;
 
     exports com.ehealthsystem;
 }

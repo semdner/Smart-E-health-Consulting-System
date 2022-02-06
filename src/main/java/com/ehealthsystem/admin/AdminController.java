@@ -32,21 +32,6 @@ import java.util.ResourceBundle;
 public class AdminController implements Initializable {
 
     @FXML
-    Button editButton;
-
-    @FXML
-    Button cancelButton;
-
-    @FXML
-    Button saveButton;
-
-    @FXML
-    Button deleteButton;
-
-    @FXML
-    Label errorLabel;
-
-    @FXML
     TableView<UserTableView> userTableView;
 
     @FXML
