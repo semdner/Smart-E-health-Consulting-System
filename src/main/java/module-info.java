@@ -15,13 +15,14 @@ module Smart.E.health.Consulting.System {
     requires kernel;
     requires io;
     requires java.desktop;
+    requires javafx.base;
 
     opens com.ehealthsystem.appointment to javafx.fxml;
     opens com.ehealthsystem.login to javafx.fxml;
     opens com.ehealthsystem.primary to javafx.fxml;
     opens com.ehealthsystem.registration to javafx.fxml;
     opens com.ehealthsystem.doctor to javafx.fxml;
-    opens com.ehealthsystem.admin to javafx.fxml;
+    opens com.ehealthsystem.admin to javafx.fxml, javafx.base;
 
     exports com.ehealthsystem;
 }

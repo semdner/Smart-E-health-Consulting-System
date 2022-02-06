@@ -46,11 +46,13 @@
                 <TableColumn fx:id="email" minWidth="100.0" prefWidth="100.0" text="email" />
                   <TableColumn fx:id="firstName" minWidth="100.0" prefWidth="100.0" text="first name" />
                   <TableColumn fx:id="lastName" minWidth="100.0" prefWidth="100.0" text="last name" />
+                  <TableColumn fx:id="birthday" minWidth="100.0" prefWidth="100.0" text="birthday" />
+                  <TableColumn fx:id="gender" minWidth="100.0" prefWidth="100.0" text="gender" />
                   <TableColumn fx:id="street" minWidth="100.0" prefWidth="100.0" text="street" />
                   <TableColumn fx:id="houseNo" minWidth="100.0" prefWidth="100.0" text="house no" />
                   <TableColumn fx:id="zip" minWidth="100.0" prefWidth="100.0" text="zip" />
-                  <TableColumn fx:id="birthday" minWidth="100.0" prefWidth="100.0" text="birthday" />
-                  <TableColumn fx:id="gender" minWidth="100.0" prefWidth="100.0" text="gender" />
+                  <TableColumn fx:id="insuranceName" minWidth="100.0" prefWidth="100.0" text="insurance" />
+                  <TableColumn fx:id="privateInsurance" minWidth="100.0" prefWidth="100.0" text="private" />
                   <TableColumn fx:id="password" minWidth="100.0" prefWidth="100.0" text="password" />
               </columns>
             </TableView>

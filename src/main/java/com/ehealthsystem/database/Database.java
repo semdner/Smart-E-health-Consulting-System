@@ -1,6 +1,7 @@
 package com.ehealthsystem.database;
 
 import com.ehealthsystem.admin.Admin;
+import com.ehealthsystem.admin.UserTableView;
 import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.doctor.Doctor;
 import com.ehealthsystem.doctor.DoctorTimeSlot;
@@ -8,6 +9,8 @@ import com.ehealthsystem.healthinformation.HealthInformation;
 import com.ehealthsystem.tools.ResourceReader;
 import com.ehealthsystem.user.User;
 import com.google.maps.model.LatLng;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.activation.UnsupportedDataTypeException;
@@ -559,6 +562,31 @@ public class Database {
         statement.setString(2, LocalTime.now().format(timeFormatterAppointment));
         ResultSet rs = statement.executeQuery();
         return loadAppointmentsFromResultSet(rs);
+    }
+
+    public static ObservableList<UserTableView> getUserForTableView() throws SQLException {
+        String query = "SELECT * FROM user";
+        ObservableList<UserTableView> users = FXCollections.observableArrayList();
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+        while(rs.next()) {
+            if(rs.getString("username").equals("admin")) {
+                continue;
+            }
+            users.add(new UserTableView(rs.getString("username"),
+                    rs.getString("email"),
+                    rs.getString("first_name"),
+                    rs.getString("last_name"),
+                    rs.getString("birthday"),
+                    rs.getString("sex"),
+                    rs.getString("street"),
+                    rs.getString("number"),
+                    rs.getString("zip"),
+                    rs.getString("insurance_name"),
+                    rs.getBoolean("private_insurance"),
+                    rs.getString("password")));
+        }
+        return users;
     }
 
     public static String getPassword(String email) throws SQLException {

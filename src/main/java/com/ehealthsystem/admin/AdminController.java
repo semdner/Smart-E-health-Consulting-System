@@ -43,10 +43,44 @@ public class AdminController implements Initializable {
     Label errorLabel;
 
     @FXML
-    TableView<User> userTableView;
+    TableView<UserTableView> userTableView;
 
     @FXML
-    TableColumn<User, String> username;
+    TableColumn<UserTableView, String> username;
+
+    @FXML
+    TableColumn<UserTableView, String> email;
+
+    @FXML
+    TableColumn<UserTableView, String> firstName;
+
+    @FXML
+    TableColumn<UserTableView, String> lastName;
+
+    @FXML
+    TableColumn<UserTableView, String> birthday;
+
+    @FXML
+    TableColumn<UserTableView, String> gender;
+
+    @FXML
+    TableColumn<UserTableView, String> street;
+
+    @FXML
+    TableColumn<UserTableView, String> houseNo;
+
+    @FXML
+    TableColumn<UserTableView, String> zip;
+
+    @FXML
+    TableColumn<UserTableView, String> insuranceName;
+
+    @FXML
+    TableColumn<UserTableView, Boolean> privateInsurance;
+
+    @FXML
+    TableColumn<UserTableView, String> password;
+
 
     ArrayList<User> users;
 
@@ -60,10 +94,21 @@ public class AdminController implements Initializable {
     }
 
     private void loadUsersFromDatabase() throws SQLException, UnsupportedDataTypeException {
-        users = Database.getAllUsers();
-        ObservableList<User> list = FXCollections.observableArrayList();
-        list.addAll(users);
-        userTableView.setItems(list);
+        ObservableList<UserTableView> users = Database.getUserForTableView();
+        username.setCellValueFactory(new PropertyValueFactory<UserTableView, String>("username"));
+        email.setCellValueFactory(new PropertyValueFactory<UserTableView, String>("email"));
+        firstName.setCellValueFactory(new PropertyValueFactory<UserTableView, String>("firstName"));
+        lastName.setCellValueFactory(new PropertyValueFactory<UserTableView, String>("lastName"));
+        birthday.setCellValueFactory(new PropertyValueFactory<UserTableView, String>("birthDate"));
+        gender.setCellValueFactory(new PropertyValueFactory<UserTableView, String>("gender"));
+        street.setCellValueFactory(new PropertyValueFactory<UserTableView, String>("street"));
+        houseNo.setCellValueFactory(new PropertyValueFactory<UserTableView, String>("houseNo"));
+        zip.setCellValueFactory(new PropertyValueFactory<UserTableView, String>("zipCode"));
+        insuranceName.setCellValueFactory(new PropertyValueFactory<UserTableView, String>("insuranceName"));
+        privateInsurance.setCellValueFactory(new PropertyValueFactory<UserTableView, Boolean>("privateInsurance"));
+        password.setCellValueFactory(new PropertyValueFactory<UserTableView, String>("password"));
+
+        userTableView.setItems(users);
     }
 
     public void handleEditButton(ActionEvent event) {
