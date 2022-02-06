@@ -190,7 +190,7 @@ public class AdminController implements Initializable {
                 String identifier = user.getUsername();
                 DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 user.setBirthDate(userTableViewStringCellEditEvent.getNewValue());
-                Object[][] parameters = {{"birtday", user.getBirthDate()}};
+                Object[][] parameters = {{"birthday", user.getBirthDate()}};
                 try {
                     Database.update("user", parameters, new Object[][]{{"username", identifier}});
                 } catch (SQLException | UnsupportedDataTypeException e) {
