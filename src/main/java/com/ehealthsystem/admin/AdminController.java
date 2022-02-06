@@ -1,13 +1,12 @@
 package com.ehealthsystem.admin;
 
 import com.ehealthsystem.database.Database;
+import com.ehealthsystem.healthinformation.HealthInformationTableView;
 import com.ehealthsystem.tools.EmailCheck;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.user.User;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,9 +15,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.util.Callback;
 import javafx.util.converter.BooleanStringConverter;
 
 import javax.activation.UnsupportedDataTypeException;
@@ -70,7 +66,10 @@ public class AdminController implements Initializable {
     @FXML
     TableColumn<UserTableView, String> password;
 
-    ArrayList<User> users;
+    @FXML
+    Button deleteButton;
+
+    UserTableView selectedRow = new UserTableView(null, null, null, null, null, null, null, null, null, null, false, null);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -97,6 +96,11 @@ public class AdminController implements Initializable {
         password.setCellValueFactory(new PropertyValueFactory<UserTableView, String>("password"));
         handleEdit();
         userTableView.setItems(users);
+        userTableView.setOnMousePressed((MouseEvent event) -> {
+            if (event.getClickCount() >= 1) {
+                selectedRow = userTableView.getSelectionModel().getSelectedItem();
+            }
+        });
     }
 
     private void handleEdit() {
@@ -300,16 +304,11 @@ public class AdminController implements Initializable {
         });
     }
 
-    public void handleEditButton(ActionEvent event) {
-
-    }
-
-    public void handleCancelButton(ActionEvent event) throws IOException {
-
-    }
-
-    public void handleSaveButton(ActionEvent event) throws SQLException, IOException {
-
+    public void handleDeleteButton(ActionEvent event) throws IOException, SQLException {
+        if(selectedRow.getUsername() != null) {
+            Database.deleteUserInformation(selectedRow, selectedRow.getUsername());
+            SceneSwitch.switchToCentered(event, "admin/admin-view.fxml", "Admin Panel");
+        }
     }
 
     public void handleLogout(ActionEvent event) throws IOException {

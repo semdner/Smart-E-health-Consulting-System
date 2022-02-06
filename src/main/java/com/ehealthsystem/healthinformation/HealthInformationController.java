@@ -63,8 +63,6 @@ public class HealthInformationController implements Initializable {
         healthTableView.setOnMousePressed((MouseEvent event) -> {
             if (event.getClickCount() >= 1) {
                 selectedRow = healthTableView.getSelectionModel().getSelectedItem();
-                System.out.println(selectedRow.getICD());
-                System.out.println(selectedRow.getHealthProblem());
             }
         });
     }
