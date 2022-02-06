@@ -1,12 +1,17 @@
 package com.ehealthsystem.appointment;
 
+import com.ehealthsystem.database.Database;
 import com.ehealthsystem.healthinformation.HealthInformation;
+import com.ehealthsystem.map.DoctorDistance;
+import com.ehealthsystem.map.GeoDistance;
+import com.ehealthsystem.tools.Session;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class AppointmentInCreation {
+    public ArrayList<DoctorDistance> doctorList = new ArrayList<>();
     //Data that will be stored in the final appointment
     private String healthProblem;
     private LocalDate date;

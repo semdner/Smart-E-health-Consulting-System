@@ -39,7 +39,7 @@
                             <RowConstraints minHeight="140.0" prefHeight="140.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                         </GridPane>
-                        <Label fx:id="errorLabel" layoutX="350.0" layoutY="216.0" text="No doctors found.&#10;Expand your radius to find more doctors" textAlignment="CENTER" textFill="RED" visible="false">
+                        <Label fx:id="errorLabel" layoutX="350.0" layoutY="216.0" text="" textAlignment="CENTER" textFill="RED" visible="false">
                            <font>
                               <Font size="15.0" />
                            </font>
