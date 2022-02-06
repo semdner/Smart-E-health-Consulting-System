@@ -1,8 +1,11 @@
 package com.ehealthsystem.appointment;
 
+import com.ehealthsystem.database.Database;
 import com.ehealthsystem.doctor.specialization.Specialization;
+import com.ehealthsystem.map.GeoDistance;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
+import com.google.maps.errors.ApiException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,6 +29,9 @@ public class AppointmentInformationController implements Initializable {
     ComboBox doctorChoiceBox;
 
     @FXML
+    ComboBox healthProblemChoiceBox;
+
+    @FXML
     Label errorLabel;
 
     @Override
@@ -34,6 +40,7 @@ public class AppointmentInformationController implements Initializable {
             Specialization specialization = new Specialization();
             String[] categories = specialization.getSpecializationList().toArray(new String[0]);
             doctorChoiceBox.getItems().setAll(categories);
+            healthProblemChoiceBox.getItems().setAll(categories);
 
             if (Session.appointment.getDistance() != -1) {
                 searchDistanceSlider.setValue(Session.appointment.getDistance());
@@ -44,14 +51,23 @@ public class AppointmentInformationController implements Initializable {
             if (Session.appointment.getSpecialization() != null) {
                 doctorChoiceBox.setValue(Session.appointment.getSpecialization());
             }
+            if(Session.appointment.getHealthProblemChoice() != null){
+                healthProblemChoiceBox.setValue(Session.appointment.getHealthProblemChoice());
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void handleContinueButton(ActionEvent event) throws IOException {
+    public void handleContinueButton(ActionEvent event) throws IOException, InterruptedException, ApiException, SQLException {
         if (saveData()) {
-            SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");
+            Session.appointment.doctorList = GeoDistance.filterDoctorsInRangeWithLocalCalculation(Database.getDoctorsBySpecialization(Session.appointment.getSpecialization()), Session.getUserGeo().geometry.location, Session.appointment.getDistance());
+            if(Session.appointment.doctorList.isEmpty()) {
+                errorLabel.setText("No doctors with that category in range.");
+                errorLabel.setVisible(true);
+            } else {
+                SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");
+            }
         }
     }
 
@@ -72,6 +88,12 @@ public class AppointmentInformationController implements Initializable {
             okay = false;
         }
 
+        if(validateHealthProblemChoiceBox()){
+            Session.appointment.setHealthProblemChoice(healthProblemChoiceBox.getValue().toString());
+        }else{
+            okay = false;
+        }
+
         return okay;
     }
 
@@ -81,13 +103,15 @@ public class AppointmentInformationController implements Initializable {
     }
 
     public boolean validateHealthProblem() {
+        /*
         if(healthProblemField.getText() == null || healthProblemField.getText().isBlank()) {
             errorLabel.setText("Please describe your health problem.");
             errorLabel.setVisible(true);
             return false;
         } else {
             return true;
-        }
+        }*/
+        return true;
     }
 
     public boolean validateSpecialization() {
@@ -96,6 +120,16 @@ public class AppointmentInformationController implements Initializable {
             errorLabel.setVisible(true);
             return false;
         } else {
+            return true;
+        }
+    }
+
+    public boolean validateHealthProblemChoiceBox(){
+        if(healthProblemChoiceBox.getValue() == null){
+            errorLabel.setText("Please choose a Health Problem");
+            errorLabel.setVisible(true);
+            return false;
+        }else{
             return true;
         }
     }

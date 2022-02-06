@@ -1,11 +1,10 @@
 package com.ehealthsystem.registration;
 
-import com.ehealthsystem.doctor.FoundDoctorFullController;
+import com.ehealthsystem.database.Database;
 import com.ehealthsystem.mail.SendEmail;
 import com.ehealthsystem.tools.BirthdayCheck;
 import com.ehealthsystem.tools.EmailCheck;
 import com.ehealthsystem.tools.SceneSwitch;
-import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.user.User;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -20,16 +19,21 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegistrationController implements Initializable {
+
 
     @FXML
     TextField usernameTextField;
@@ -75,6 +79,11 @@ public class RegistrationController implements Initializable {
     @FXML
     Label loginLabel;
 
+    @FXML
+    TextField birthdayEditor;
+
+
+
     /**
      * fist method called when scene is switched.
      * Used to set the choices of the choice box
@@ -85,8 +94,16 @@ public class RegistrationController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String[] choices = {"male", "female", "other"};
         genderBox.getItems().addAll(choices);
-        Platform.runLater( () -> firstNameTextField.requestFocus() ); //https://stackoverflow.com/a/38374747/18039017
+        Platform.runLater(() -> firstNameTextField.requestFocus()); //https://stackoverflow.com/a/38374747/1803901
+
+        birthdayPicker.valueProperty().addListener((observable, oldDate, newDate) -> {
+            System.out.println("Hallo");
+            birthdayEditor.setText(birthdayPicker.getValue().toString());
+        });
     }
+
+    final DatePicker datePicker = new DatePicker();
+
 
     /**
      * Show the error label
@@ -198,6 +215,17 @@ public class RegistrationController implements Initializable {
             hideError(usernameTextField);
             return true;
         }
+    }
+
+    public void handleBirthdayEditor(KeyEvent event){
+        if(birthdayEditor.getText().isBlank()){
+            fieldError(birthdayEditor,"Birthday has to be selected");
+        }else {
+            LocalDate date = LocalDate.parse(birthdayEditor.getText(), Database.dateFormatter);
+            hideError(birthdayEditor);
+            datePicker.setValue(date);
+        }
+
     }
 
     /**
