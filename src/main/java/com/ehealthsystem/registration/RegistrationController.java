@@ -97,7 +97,6 @@ public class RegistrationController implements Initializable {
         Platform.runLater(() -> firstNameTextField.requestFocus()); //https://stackoverflow.com/a/38374747/1803901
 
         birthdayPicker.valueProperty().addListener((observable, oldDate, newDate) -> {
-            System.out.println("Hallo");
             birthdayEditor.setText(birthdayPicker.getValue().toString());
         });
     }
