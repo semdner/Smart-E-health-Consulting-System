@@ -49,7 +49,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Slider fx:id="searchDistanceSlider" focusTraversable="false" max="150.0" prefWidth="365.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="25.0" GridPane.columnIndex="1" />
+                  <Slider fx:id="searchDistanceSlider" blockIncrement="5.0" focusTraversable="false" majorTickUnit="5.0" max="150.0" min="5.0" minorTickCount="0" prefWidth="365.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="25.0" GridPane.columnIndex="1" />
                   <TextField fx:id="healthProblemField" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Additional Comment" GridPane.rowIndex="2">
                      <font>
