@@ -50,7 +50,7 @@ public class DoctorTimeSlot {
             ));
         }
 
-        //Get busy times from database
+        //Get busy times (i.e. already reserved by another patient) from database
         Set<String> busyTimes = new HashSet<>();
         for (Appointment a : appointments) {
             busyTimes.add("%s %s".formatted(
@@ -59,9 +59,6 @@ public class DoctorTimeSlot {
             ));
             System.out.println(busyTimes.size());
         }
-
-        //Remove busy times (to not display them)
-        times.removeAll(busyTimes); //reason why this is a string set: so that it's comparable (equality check)
 
         //Make set to list and order it (because set is unordered)
         ArrayList<String> timesList = new ArrayList<>(times);
@@ -78,7 +75,10 @@ public class DoctorTimeSlot {
             LocalTime t = LocalTime.parse(timeOfDay, Database.timeFormatterAppointment);
 
             //and finally into DoctorTimeSlot objects
-            timeSlots.add(new DoctorTimeSlot(d, t, !LocalDateTime.of(d,t).isBefore(LocalDateTime.now()))); //free if not in the past
+            boolean timeIsInPast = LocalDateTime.of(d,t).isBefore(LocalDateTime.now());
+            boolean timeIsBusy = busyTimes.contains(time);
+            boolean free = !timeIsInPast && !timeIsBusy; //free if not in the past and not busy
+            timeSlots.add(new DoctorTimeSlot(d, t, free));
         }
 
         return timeSlots;
