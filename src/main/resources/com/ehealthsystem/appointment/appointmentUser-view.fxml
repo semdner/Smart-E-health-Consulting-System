@@ -18,13 +18,14 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="9.0" layoutY="11.0" text="User information" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+            <Label layoutX="9.0" layoutY="11.0" text="Personal information" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Separator layoutX="10.0" layoutY="34.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="590.0" AnchorPane.topAnchor="35.0" />
-            <GridPane layoutX="53.0" layoutY="68.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
+            <Separator layoutX="10.0" layoutY="34.0" prefHeight="3.0" prefWidth="186.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="554.0" AnchorPane.topAnchor="35.0" />
+            <Label layoutX="10.0" layoutY="46.0" text="Please ensure that your information is up-to-date. You may change it on the home page." />
+            <GridPane layoutX="72.0" layoutY="68.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

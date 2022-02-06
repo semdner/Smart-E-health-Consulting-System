@@ -38,11 +38,11 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Separator layoutX="10.0" layoutY="40.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="590.0" AnchorPane.topAnchor="35.0" />
+            <Separator layoutX="10.0" layoutY="40.0" prefHeight="3.0" prefWidth="168.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="822.0" AnchorPane.topAnchor="35.0" />
             <TableView fx:id="healthTableView" editable="true" prefHeight="458.0" prefWidth="980.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
               <columns>
                 <TableColumn fx:id="ICD" minWidth="93.0" prefWidth="110.0" text="ICD" />
-                <TableColumn fx:id="healthProblem" minWidth="0.0" prefWidth="869.0" text="health problem" />
+                <TableColumn fx:id="healthProblem" minWidth="0.0" prefWidth="869.0" text="Health problem" />
               </columns>
             </TableView>
          </children></AnchorPane>
@@ -50,10 +50,10 @@
    <bottom>
       <AnchorPane prefHeight="40.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="backButton" layoutX="924.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="24.0" prefWidth="70.0" text="back" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="8.0" />
-            <Button fx:id="deleteButton" layoutX="90.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="24.0" prefWidth="70.0" text="delete" AnchorPane.bottomAnchor="8.0" AnchorPane.topAnchor="8.0" />
+            <Button fx:id="backButton" layoutX="924.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="24.0" prefWidth="70.0" text="Back" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="8.0" />
+            <Button fx:id="deleteButton" layoutX="90.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="24.0" prefWidth="70.0" text="Delete" AnchorPane.bottomAnchor="8.0" AnchorPane.topAnchor="8.0" />
             <ChoiceBox fx:id="healthChoiceBox" layoutX="756.0" layoutY="8.0" prefWidth="150.0" />
-            <Button fx:id="addButton" layoutX="916.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="24.0" prefWidth="70.0" text="add" />
+            <Button fx:id="addButton" layoutX="916.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="24.0" prefWidth="70.0" text="Add" />
          </children>
       </AnchorPane>
    </bottom>

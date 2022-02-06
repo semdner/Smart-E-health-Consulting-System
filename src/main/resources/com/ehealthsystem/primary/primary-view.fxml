@@ -108,7 +108,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="House no." GridPane.rowIndex="5">
+                  <Label text="House number" GridPane.rowIndex="5">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -170,7 +170,7 @@
                   </Label>
                </children>
             </GridPane>
-            <Label layoutX="10.0" layoutY="11.0" prefHeight="25.0" prefWidth="190.0" text="User information" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="550.0" AnchorPane.topAnchor="5.0">
+            <Label layoutX="10.0" layoutY="11.0" prefHeight="25.0" prefWidth="190.0" text="Personal information" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="550.0" AnchorPane.topAnchor="5.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -182,7 +182,7 @@
    <right>
       <TabPane prefHeight="575.0" prefWidth="250.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab fx:id="upcomingAppointments" text="upcoming">
+          <Tab fx:id="upcomingAppointments" text="Upcoming">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -215,7 +215,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab fx:id="pastAppointments" text="past appointments">
+          <Tab fx:id="pastAppointments" text="Past appointments">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>

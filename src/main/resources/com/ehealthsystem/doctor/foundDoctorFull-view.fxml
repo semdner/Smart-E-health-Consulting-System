@@ -46,7 +46,7 @@
                </font>
             </Label>
             <ComboBox fx:id="reminderComboBox" layoutX="697.0" layoutY="8.0" prefHeight="25.0" prefWidth="132.0" promptText="set reminder" AnchorPane.bottomAnchor="8.0" AnchorPane.topAnchor="8.0" />
-            <Label layoutX="590.0" layoutY="13.0" text="Reminder time" />
+            <Label layoutX="607.0" layoutY="12.0" text="Reminder time" />
          </children>
       </AnchorPane>
    </bottom>
@@ -62,7 +62,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Separator layoutX="10.0" layoutY="32.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="346.0" AnchorPane.topAnchor="32.0" />
+                        <Separator layoutX="10.0" layoutY="32.0" prefHeight="3.0" prefWidth="132.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="358.0" AnchorPane.topAnchor="32.0" />
                         <GridPane layoutX="150.0" layoutY="35.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="111.0" />
@@ -115,8 +115,8 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="datePicker" editable="false" focusTraversable="false" layoutX="92.0" layoutY="8.0" onAction="#handleDateChoice" prefHeight="25.0" prefWidth="105.0" showWeekNumbers="true" />
-                        <Separator layoutX="-23.0" layoutY="30.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="420.0" AnchorPane.topAnchor="32.0" />
+                        <DatePicker fx:id="datePicker" editable="false" focusTraversable="false" layoutX="86.0" layoutY="8.0" onAction="#handleDateChoice" prefHeight="25.0" prefWidth="105.0" showWeekNumbers="true" />
+                        <Separator layoutX="-23.0" layoutY="30.0" prefHeight="3.0" prefWidth="64.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="426.0" AnchorPane.topAnchor="32.0" />
                         <GridPane fx:id="scheduleGridPane" layoutX="150.0" layoutY="35.0" AnchorPane.leftAnchor="10.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

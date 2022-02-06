@@ -25,7 +25,7 @@
                </font>
             </Label>
             <Separator layoutX="10.0" layoutY="34.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="857.0" AnchorPane.topAnchor="35.0" />
-            <ScrollPane hbarPolicy="NEVER" layoutX="400.0" layoutY="168.0" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
+            <ScrollPane hbarPolicy="NEVER" layoutX="400.0" layoutY="168.0" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="967.0">
                      <children>
@@ -48,6 +48,7 @@
                   </AnchorPane>
               </content>
             </ScrollPane>
+            <Label layoutX="10.0" layoutY="46.0" text="Choose a doctor to make an appointment with." />
          </children>
       </AnchorPane>
    </center>

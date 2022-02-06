@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
@@ -26,14 +27,22 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Separator layoutX="10.0" layoutY="34.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="795.0" AnchorPane.topAnchor="35.0" />
+            <Separator layoutX="10.0" layoutY="34.0" prefHeight="2.0" prefWidth="173.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="817.0" AnchorPane.topAnchor="35.0" />
             <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
                <children>
+                  <Label text="Please select any diseases that are relevant for your appointment. This way, the doctor can better know about your background.">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
                   <ButtonBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0">
                     <buttons>
                         <Button focusTraversable="false" mnemonicParsing="false" onAction="#handleDeselectAllButton" text="Deselect all" />
                       <Button focusTraversable="false" mnemonicParsing="false" onAction="#handleSelectAllButton" text="Select all" />
                     </buttons>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
                   </ButtonBar>
                   <ScrollPane hbarPolicy="NEVER" prefHeight="445.0" prefWidth="980.0" vbarPolicy="ALWAYS">
                     <content>

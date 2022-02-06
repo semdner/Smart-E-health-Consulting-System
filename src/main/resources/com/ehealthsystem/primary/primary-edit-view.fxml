@@ -92,7 +92,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="House no." GridPane.rowIndex="5">
+                  <Label text="House number" GridPane.rowIndex="5">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -154,14 +154,14 @@
                   <CheckBox fx:id="changePasswordCheckbox" layoutX="375.0" layoutY="317.0" mnemonicParsing="false" onAction="#changePasswordCheckboxChanged" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                </children>
             </GridPane>
-            <Label layoutX="10.0" layoutY="11.0" text="User information" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="550.0" AnchorPane.topAnchor="5.0">
+            <Label layoutX="10.0" layoutY="11.0" text="Personal information" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="550.0" AnchorPane.topAnchor="5.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Separator layoutX="10.0" layoutY="40.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="550.0" AnchorPane.topAnchor="35.0" />
-            <Button fx:id="cancelButton" layoutX="21.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleCancelButton" prefWidth="60.0" text="cancel" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
-            <Button fx:id="saveButton" layoutX="70.0" layoutY="540.0" mnemonicParsing="false" onAction="#handleSaveButton" prefWidth="60.0" text="save" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="80.0" />
+            <Separator layoutX="10.0" layoutY="40.0" prefHeight="2.0" prefWidth="187.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="553.0" AnchorPane.topAnchor="35.0" />
+            <Button fx:id="cancelButton" layoutX="21.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleCancelButton" prefWidth="60.0" text="Cancel" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+            <Button fx:id="saveButton" layoutX="70.0" layoutY="540.0" mnemonicParsing="false" onAction="#handleSaveButton" prefWidth="60.0" text="Save" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="80.0" />
          </children></AnchorPane>
    </center>
    <right>

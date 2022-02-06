@@ -59,7 +59,7 @@
    <bottom>
       <AnchorPane prefHeight="40.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="deleteButton" layoutX="924.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="delete" AnchorPane.bottomAnchor="7.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.5" />
+            <Button fx:id="deleteButton" layoutX="924.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete" AnchorPane.bottomAnchor="7.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.5" />
          </children>
       </AnchorPane>
    </bottom>

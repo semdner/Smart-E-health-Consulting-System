@@ -28,6 +28,7 @@
             <Label layoutX="50.0" layoutY="100.0" text="Code" AnchorPane.bottomAnchor="183.0" />
             <Label fx:id="resendLabel" layoutX="230.0" layoutY="99.0" onMouseClicked="#handleResendLabel" text="Resend code" textFill="#1849da" underline="true" AnchorPane.bottomAnchor="184.0" />
             <Button fx:id="backButton" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleBackButton" text="&lt; Back" />
+            <Label layoutX="32.0" layoutY="54.0" text="Please enter the confirmation code sent to your inbox." />
          </children>
       </AnchorPane>
    </center>
