@@ -81,7 +81,7 @@ public class HealthInformationController implements Initializable {
         SceneSwitch.switchTo(null, "healthInformation/healthInformation-view.fxml", "Health information");
     }
 
-    public void handleBackButton() {
-        
+    public void handleBackButton(ActionEvent event) throws IOException {
+        SceneSwitch.switchTo(event, "appointment/appointmentHealth-view.fxml", "Make appointment");
     }
 }
