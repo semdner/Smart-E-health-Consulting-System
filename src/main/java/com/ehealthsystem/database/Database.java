@@ -475,6 +475,33 @@ public class Database {
         return specialization;
     }
 
+    public static ArrayList<String> loadProblems() throws SQLException {
+        String query = "SELECT * FROM problems";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+        ArrayList<String> problems = new ArrayList<>();
+        while (rs.next()) {
+            problems.add(rs.getString("name"));
+        }
+        return problems;
+    }
+
+    public static String problemToSuitableSpecialization(String problem) throws SQLException {
+        String query = """
+                SELECT c.category FROM problems
+                INNER JOIN suitableSpecializations sS on problems.id = sS.problem
+                INNER JOIN category c on sS.specialization = c.category_id
+                WHERE problems.name = ?""";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, problem);
+        ResultSet rs = statement.executeQuery();
+
+        if (rs.next()) {
+            return rs.getString("category");
+        }
+        return null;
+    }
+
     /**
      * DEPRECATED: FoundDoctorFullController.getFreeTimeSlots() is used instead
      */
