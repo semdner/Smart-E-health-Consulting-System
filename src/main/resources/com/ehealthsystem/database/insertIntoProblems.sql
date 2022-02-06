@@ -7,4 +7,5 @@ INSERT INTO problems VALUES
 (6, "Removal of wisdom teeth"),
 (7, "Determine vision (visual acuity)"),
 (8, "Heartache"),
-(9, "Sports injury");
+(9, "Sports injury"),
+(10, "Burning eyes");

@@ -7,4 +7,5 @@ INSERT INTO suitableSpecializations VALUES
 (6, 5),
 (7, 6),
 (8, 7),
-(9, 8);
+(9, 8),
+(10, 6);
