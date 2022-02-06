@@ -215,20 +215,7 @@ public class RegistrationController implements Initializable {
     }
 
     public void handleBirthdayEditor(KeyEvent event){
-        if(birthdayEditor.getText().isBlank()){
-            fieldError(birthdayEditor,"Birthday has to be selected");
-        }else {
-            LocalDate date = null;
-            try {
-                date = LocalDate.parse(birthdayEditor.getText(), Database.dateFormatter);
-            } catch (DateTimeParseException e) {
-                return;
-            }
-            hideError(birthdayEditor);
-            birthdayPicker.setValue(date);
-
-        }
-
+        validateBirthday();
     }
 
     /**
@@ -405,6 +392,20 @@ public class RegistrationController implements Initializable {
      * @return true if birthday is entered correctly
      */
     public boolean validateBirthday() {
+        if(birthdayEditor.getText().isBlank()){
+            fieldError(birthdayEditor,"Birthday has to be selected");
+            return false;
+        }else {
+            LocalDate date = null;
+            try {
+                date = LocalDate.parse(birthdayEditor.getText(), Database.dateFormatter);
+            } catch (DateTimeParseException e) {
+                return false;
+            }
+            hideError(birthdayEditor);
+            birthdayPicker.setValue(date);
+        }
+
         if(BirthdayCheck.isOldEnough(birthdayPicker.getValue())) {
             errorLabel.setVisible(false);
             return true;
