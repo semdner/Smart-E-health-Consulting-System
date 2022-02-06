@@ -1,8 +1,11 @@
 package com.ehealthsystem.appointment;
 
+import com.ehealthsystem.database.Database;
 import com.ehealthsystem.doctor.specialization.Specialization;
+import com.ehealthsystem.map.GeoDistance;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
+import com.google.maps.errors.ApiException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -56,9 +59,15 @@ public class AppointmentInformationController implements Initializable {
         }
     }
 
-    public void handleContinueButton(ActionEvent event) throws IOException {
+    public void handleContinueButton(ActionEvent event) throws IOException, InterruptedException, ApiException, SQLException {
         if (saveData()) {
-            SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");
+            Session.appointment.doctorList = GeoDistance.filterDoctorsInRangeWithLocalCalculation(Database.getDoctorsBySpecialization(Session.appointment.getSpecialization()), Session.getUserGeo().geometry.location, Session.appointment.getDistance());
+            if(Session.appointment.doctorList.isEmpty()) {
+                errorLabel.setText("No doctors with that category in range.");
+                errorLabel.setVisible(true);
+            } else {
+                SceneSwitch.switchTo(event, "appointment/appointmentFound-view.fxml", "Make appointment");
+            }
         }
     }
 

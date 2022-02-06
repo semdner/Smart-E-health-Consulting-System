@@ -84,6 +84,11 @@ public class Database {
         statement.execute(ResourceReader.getResourceString("database/insertIntoDoctorCategory.sql"));
         statement.execute(ResourceReader.getResourceString("database/insertIntoDoctorAppointment.sql"));
 
+        statement.execute(ResourceReader.getResourceString("database/createTableProblems.sql"));
+        statement.execute(ResourceReader.getResourceString("database/insertIntoProblems.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableSuitableSpecializations.sql"));
+        statement.execute(ResourceReader.getResourceString("database/insertIntoSuitableSpecializations.sql"));
+
         //Insert admin user
         String query = "INSERT INTO user (username, password) VALUES ('admin', ?)";
         PreparedStatement adminInsert = connection.prepareStatement(query);
@@ -468,6 +473,33 @@ public class Database {
             specialization.add(rs.getString("category"));
         }
         return specialization;
+    }
+
+    public static ArrayList<String> loadProblems() throws SQLException {
+        String query = "SELECT * FROM problems";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+        ArrayList<String> problems = new ArrayList<>();
+        while (rs.next()) {
+            problems.add(rs.getString("name"));
+        }
+        return problems;
+    }
+
+    public static String problemToSuitableSpecialization(String problem) throws SQLException {
+        String query = """
+                SELECT c.category FROM problems
+                INNER JOIN suitableSpecializations sS on problems.id = sS.problem
+                INNER JOIN category c on sS.specialization = c.category_id
+                WHERE problems.name = ?""";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, problem);
+        ResultSet rs = statement.executeQuery();
+
+        if (rs.next()) {
+            return rs.getString("category");
+        }
+        return null;
     }
 
     /**
