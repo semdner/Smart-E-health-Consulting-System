@@ -223,7 +223,8 @@ public class RegistrationController implements Initializable {
         }else {
             LocalDate date = LocalDate.parse(birthdayEditor.getText(), Database.dateFormatter);
             hideError(birthdayEditor);
-            datePicker.setValue(date);
+            birthdayPicker.setValue(date);
+
         }
 
     }
