@@ -1,9 +1,9 @@
 INSERT INTO category(category_id,category) VALUES
-(0, "General Practitioner"),
-(1, "Vaccination Center"),
-(2, "Dentist"),
-(3, "Orthodontist"),
-(4, "Oral Surgeon"),
-(5, "Eye Doctor"),
-(6, "Cardiologist"),
-(7, "Sports Physician");
+(1, "General Practitioner"),
+(2, "Vaccination Center"),
+(3, "Dentist"),
+(4, "Orthodontist"),
+(5, "Oral Surgeon"),
+(6, "Eye Doctor"),
+(7, "Cardiologist"),
+(8, "Sports Physician");

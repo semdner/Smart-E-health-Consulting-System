@@ -84,6 +84,11 @@ public class Database {
         statement.execute(ResourceReader.getResourceString("database/insertIntoDoctorCategory.sql"));
         statement.execute(ResourceReader.getResourceString("database/insertIntoDoctorAppointment.sql"));
 
+        statement.execute(ResourceReader.getResourceString("database/createTableProblems.sql"));
+        statement.execute(ResourceReader.getResourceString("database/insertIntoProblems.sql"));
+        statement.execute(ResourceReader.getResourceString("database/createTableSuitableSpecializations.sql"));
+        statement.execute(ResourceReader.getResourceString("database/insertIntoSuitableSpecializations.sql"));
+
         //Insert admin user
         String query = "INSERT INTO user (username, password) VALUES ('admin', ?)";
         PreparedStatement adminInsert = connection.prepareStatement(query);
