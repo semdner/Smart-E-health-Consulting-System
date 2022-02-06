@@ -221,7 +221,12 @@ public class RegistrationController implements Initializable {
         if(birthdayEditor.getText().isBlank()){
             fieldError(birthdayEditor,"Birthday has to be selected");
         }else {
-            LocalDate date = LocalDate.parse(birthdayEditor.getText(), Database.dateFormatter);
+            LocalDate date = null;
+            try {
+                date = LocalDate.parse(birthdayEditor.getText(), Database.dateFormatter);
+            } catch (DateTimeParseException e) {
+                return;
+            }
             hideError(birthdayEditor);
             birthdayPicker.setValue(date);
 
