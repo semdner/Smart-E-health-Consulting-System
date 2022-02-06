@@ -38,15 +38,15 @@
    <bottom>
       <AnchorPane prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="makeAppointmentButton" layoutX="841.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleMakeAppointmentButton" prefHeight="26.0" text="Confirm appointment" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="8.0" />
+            <Button fx:id="makeAppointmentButton" layoutX="841.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleMakeAppointmentButton" prefHeight="26.0" text="Confirm appointment" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="838.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="7.5" />
             <Button layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleBackButton" prefWidth="50.0" text="&lt;" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="965.0" AnchorPane.topAnchor="7.5" />
             <Label fx:id="errorLabel" layoutX="817.0" layoutY="10.0" text="" textFill="RED" visible="false" AnchorPane.leftAnchor="80.0">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <ComboBox fx:id="reminderComboBox" layoutX="728.0" layoutY="8.0" prefWidth="120.0" promptText="set reminder" />
-            <Label layoutX="644.0" layoutY="13.0" text="Reminder time" />
+            <ComboBox fx:id="reminderComboBox" layoutX="697.0" layoutY="8.0" prefHeight="25.0" prefWidth="132.0" promptText="set reminder" AnchorPane.bottomAnchor="8.0" AnchorPane.topAnchor="8.0" />
+            <Label layoutX="590.0" layoutY="13.0" text="Reminder time" />
          </children>
       </AnchorPane>
    </bottom>
