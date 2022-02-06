@@ -156,7 +156,7 @@ public class RegistrationController implements Initializable {
      * @param event event the Button reacts to
      */
     public void handleRegistrationButton(ActionEvent event) throws IOException, SQLException, MessagingException {
-        if(validateUsername() && validateEmail() && validateFirstname() && validateLastname() && validateStreet() && validateNumber() && validateZip() && validateBirthday() && validateGender() && validatePassword() && validateRepeatPassword() && validateInsuranceName()) {
+        if(validateFirstname() && validateLastname() && validateEmail() && validateUsername() && validatePassword() && validateRepeatPassword() && validateStreet() && validateNumber() && validateZip() && validateBirthday() && validateGender() && validateInsuranceName()) {
             User newUser = new User(usernameTextField.getText(),
                                     emailTextField.getText(),
                                     firstNameTextField.getText(),
