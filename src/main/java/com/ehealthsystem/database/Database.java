@@ -695,4 +695,29 @@ public class Database {
         statement = connection.prepareStatement(queryInsert);
         statement.executeUpdate();
     }
+
+    public static void deleteUserInformation(UserTableView selectedRow, String username) throws SQLException {
+        String queryID = "SELECT user_id FROM user WHERE username = ?;";
+        PreparedStatement statement = connection.prepareStatement(queryID);
+        statement.setString(1, username);
+        ResultSet rs = statement.executeQuery();
+        int user_id = 0;
+        while (rs.next()) {
+            user_id = rs.getInt("user_id");
+        }
+
+        String queryDeleteion = "DELETE FROM user WHERE user_id = ?;";
+        statement = connection.prepareStatement(queryDeleteion);
+        statement.setInt(1, user_id);
+        statement.executeUpdate();
+
+        queryDeleteion = "DELETE FROM health_status WHERE user_id = ?;";
+        statement = connection.prepareStatement(queryDeleteion);
+        statement.setInt(1, user_id);
+        statement.executeUpdate();
+
+        queryDeleteion = "DELETE FROM appointment WHERE user = '" + username + "';";
+        statement = connection.prepareStatement(queryDeleteion);
+        statement.executeUpdate();
+    }
 }
