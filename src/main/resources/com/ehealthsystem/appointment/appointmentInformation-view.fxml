@@ -56,7 +56,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="healthProblemChoiceBox" focusTraversable="false" prefHeight="25.0" prefWidth="206.0" promptText="Choose Health Problem" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="healthProblemChoiceBox" focusTraversable="false" prefHeight="25.0" prefWidth="206.0" promptText="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </children>

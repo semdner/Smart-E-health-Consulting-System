@@ -107,7 +107,7 @@ public class AppointmentInformationController implements Initializable {
 
     public boolean validateHealthProblemChoiceBox(){
         if(healthProblemChoiceBox.getValue() == null){
-            errorLabel.setText("Please choose a Health Problem");
+            errorLabel.setText("Please provide your health problem.");
             errorLabel.setVisible(true);
             return false;
         }else{
