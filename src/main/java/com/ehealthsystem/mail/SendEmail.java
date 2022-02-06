@@ -81,7 +81,7 @@ public class SendEmail {
                 "\n" +
                 "Details:\n" +
                 "An account was registered with this email address on the ehealth system. If this was not you, you can safely ignore this email, your email address will not be stored.";
-        SendEmail.sendMail(recipient,"Validation Email", validation);
+        SendEmail.sendMail(recipient,"Validation code", validation);
         RegistrationValidationController.setValidation(String.valueOf(code));
     }
         // Prepare Message with Attachment to send pdf of Health Informations
