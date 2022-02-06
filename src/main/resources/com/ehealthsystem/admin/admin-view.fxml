@@ -40,7 +40,7 @@
             </Label>
             <Separator layoutX="10.0" layoutY="40.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="590.0" AnchorPane.topAnchor="35.0" />
             <TextField focusTraversable="false" layoutX="10.0" layoutY="46.0" prefHeight="24.0" prefWidth="214.0" promptText="search username or email" AnchorPane.bottomAnchor="458.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="46.0" />
-            <TableView fx:id="userTableView" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="78.0">
+            <TableView fx:id="userTableView" editable="true" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="78.0">
               <columns>
                 <TableColumn fx:id="username" minWidth="100.0" prefWidth="100.0" text="username" />
                 <TableColumn fx:id="email" minWidth="100.0" prefWidth="100.0" text="email" />

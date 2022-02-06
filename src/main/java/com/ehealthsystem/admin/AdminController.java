@@ -1,6 +1,7 @@
 package com.ehealthsystem.admin;
 
 import com.ehealthsystem.database.Database;
+import com.ehealthsystem.tools.EmailCheck;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.user.User;
@@ -13,15 +14,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
+import javafx.util.converter.BooleanStringConverter;
 
 import javax.activation.UnsupportedDataTypeException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -81,7 +85,6 @@ public class AdminController implements Initializable {
     @FXML
     TableColumn<UserTableView, String> password;
 
-
     ArrayList<User> users;
 
     @Override
@@ -107,8 +110,209 @@ public class AdminController implements Initializable {
         insuranceName.setCellValueFactory(new PropertyValueFactory<UserTableView, String>("insuranceName"));
         privateInsurance.setCellValueFactory(new PropertyValueFactory<UserTableView, Boolean>("privateInsurance"));
         password.setCellValueFactory(new PropertyValueFactory<UserTableView, String>("password"));
-
+        handleEdit();
         userTableView.setItems(users);
+    }
+
+    private void handleEdit() {
+        username.setCellFactory(TextFieldTableCell.forTableColumn());
+        username.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserTableView, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserTableView, String> userTableViewStringCellEditEvent) {
+                UserTableView user = userTableViewStringCellEditEvent.getRowValue();
+                String identifier = user.getUsername();
+                user.setUsername(userTableViewStringCellEditEvent.getNewValue());
+                Object[][] parameters = {{"username", user.getUsername()}};
+                try {
+                    Database.update("user", parameters, new Object[][]{{"username", identifier}});
+                } catch (SQLException | UnsupportedDataTypeException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+        email.setCellFactory(TextFieldTableCell.forTableColumn());
+        email.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserTableView, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserTableView, String> userTableViewStringCellEditEvent) {
+                UserTableView user = userTableViewStringCellEditEvent.getRowValue();
+                String identifier = user.getUsername();
+                if(EmailCheck.isValidEmailAddress(userTableViewStringCellEditEvent.getNewValue())) {
+                    user.setEmail(userTableViewStringCellEditEvent.getNewValue());
+                }
+                Object[][] parameters = {{"email", user.getEmail()}};
+                try {
+                    Database.update("user", parameters, new Object[][]{{"username", identifier}});
+                } catch (SQLException | UnsupportedDataTypeException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        firstName.setCellFactory(TextFieldTableCell.forTableColumn());
+        firstName.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserTableView, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserTableView, String> userTableViewStringCellEditEvent) {
+                UserTableView user = userTableViewStringCellEditEvent.getRowValue();
+                String identifier = user.getUsername();
+                user.setFirstName(userTableViewStringCellEditEvent.getNewValue());
+                Object[][] parameters = {{"first_name", user.getFirstName()}};
+                try {
+                    Database.update("user", parameters, new Object[][]{{"username", identifier}});
+                } catch (SQLException | UnsupportedDataTypeException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        lastName.setCellFactory(TextFieldTableCell.forTableColumn());
+        lastName.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserTableView, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserTableView, String> userTableViewStringCellEditEvent) {
+                UserTableView user = userTableViewStringCellEditEvent.getRowValue();
+                String identifier = user.getUsername();
+                user.setLastName(userTableViewStringCellEditEvent.getNewValue());
+                Object[][] parameters = {{"last_name", user.getLastName()}};
+                try {
+                    Database.update("user", parameters, new Object[][]{{"username", identifier}});
+                } catch (SQLException | UnsupportedDataTypeException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        birthday.setCellFactory(TextFieldTableCell.forTableColumn());
+        birthday.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserTableView, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserTableView, String> userTableViewStringCellEditEvent) {
+                UserTableView user = userTableViewStringCellEditEvent.getRowValue();
+                String identifier = user.getUsername();
+                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                user.setBirthDate(userTableViewStringCellEditEvent.getNewValue());
+                Object[][] parameters = {{"birtday", user.getBirthDate()}};
+                try {
+                    Database.update("user", parameters, new Object[][]{{"username", identifier}});
+                } catch (SQLException | UnsupportedDataTypeException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        gender.setCellFactory(TextFieldTableCell.forTableColumn());
+        gender.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserTableView, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserTableView, String> userTableViewStringCellEditEvent) {
+                UserTableView user = userTableViewStringCellEditEvent.getRowValue();
+                String identifier = user.getUsername();
+                switch(userTableViewStringCellEditEvent.getNewValue()) {
+                    case "male" : user.setGender(userTableViewStringCellEditEvent.getNewValue()); break;
+                    case "female": user.setGender(userTableViewStringCellEditEvent.getNewValue()); break;
+                    case "other": user.setGender(userTableViewStringCellEditEvent.getNewValue()); break;
+                    default: user.setGender(user.getGender()); break;
+                }
+                Object[][] parameters = {{"sex", user.getGender()}};
+                System.out.println(user.getGender());
+                try {
+                    Database.update("user", parameters, new Object[][]{{"username", identifier}});
+                } catch (SQLException | UnsupportedDataTypeException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        street.setCellFactory(TextFieldTableCell.forTableColumn());
+        street.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserTableView, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserTableView, String> userTableViewStringCellEditEvent) {
+                UserTableView user = userTableViewStringCellEditEvent.getRowValue();
+                String identifier = user.getUsername();
+                user.setStreet(userTableViewStringCellEditEvent.getNewValue());
+                Object[][] parameters = {{"street", user.getStreet()}};
+                try {
+                    Database.update("user", parameters, new Object[][]{{"username", identifier}});
+                } catch (SQLException | UnsupportedDataTypeException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        houseNo.setCellFactory(TextFieldTableCell.forTableColumn());
+        houseNo.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserTableView, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserTableView, String> userTableViewStringCellEditEvent) {
+                UserTableView user = userTableViewStringCellEditEvent.getRowValue();
+                String identifier = user.getUsername();
+                user.setHouseNo(userTableViewStringCellEditEvent.getNewValue());
+                Object[][] parameters = {{"number", user.getHouseNo()}};
+                try {
+                    Database.update("user", parameters, new Object[][]{{"username", identifier}});
+                } catch (SQLException | UnsupportedDataTypeException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        zip.setCellFactory(TextFieldTableCell.forTableColumn());
+        zip.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserTableView, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserTableView, String> userTableViewStringCellEditEvent) {
+                UserTableView user = userTableViewStringCellEditEvent.getRowValue();
+                String identifier = user.getUsername();
+                user.setZipCode(userTableViewStringCellEditEvent.getNewValue());
+                Object[][] parameters = {{"zip", user.getZipCode()}};
+                try {
+                    Database.update("user", parameters, new Object[][]{{"username", identifier}});
+                } catch (SQLException | UnsupportedDataTypeException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        insuranceName.setCellFactory(TextFieldTableCell.forTableColumn());
+        insuranceName.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserTableView, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserTableView, String> userTableViewStringCellEditEvent) {
+                UserTableView user = userTableViewStringCellEditEvent.getRowValue();
+                String identifier = user.getUsername();
+                user.setInsuranceName(userTableViewStringCellEditEvent.getNewValue());
+                Object[][] parameters = {{"insurance_name", user.getInsuranceName()}};
+                try {
+                    Database.update("user", parameters, new Object[][]{{"username", identifier}});
+                } catch (SQLException | UnsupportedDataTypeException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        privateInsurance.setCellFactory(TextFieldTableCell.forTableColumn(new BooleanStringConverter()));
+        privateInsurance.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserTableView, Boolean>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserTableView, Boolean> userTableViewStringCellEditEvent) {
+                UserTableView user = userTableViewStringCellEditEvent.getRowValue();
+                String identifier = user.getUsername();
+                user.setPrivateInsurance(userTableViewStringCellEditEvent.getNewValue());
+                Object[][] parameters = {{"private_insurance", user.getPrivateInsurance()}};
+                try {
+                    Database.update("user", parameters, new Object[][]{{"username", identifier}});
+                } catch (SQLException | UnsupportedDataTypeException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        password.setCellFactory(TextFieldTableCell.forTableColumn());
+        password.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserTableView, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserTableView, String> userTableViewStringCellEditEvent) {
+                UserTableView user = userTableViewStringCellEditEvent.getRowValue();
+                try {
+                    user.setPassword(userTableViewStringCellEditEvent.getNewValue());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void handleEditButton(ActionEvent event) {
