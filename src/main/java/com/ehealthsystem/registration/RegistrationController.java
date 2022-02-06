@@ -393,13 +393,14 @@ public class RegistrationController implements Initializable {
      */
     public boolean validateBirthday() {
         if(birthdayEditor.getText().isBlank()){
-            fieldError(birthdayEditor,"Birthday has to be selected");
+            fieldError(birthdayEditor,"Birthday has to be entered");
             return false;
         }else {
             LocalDate date = null;
             try {
                 date = LocalDate.parse(birthdayEditor.getText(), Database.dateFormatter);
             } catch (DateTimeParseException e) {
+                fieldError(birthdayEditor,"Invalid date format for birthday");
                 return false;
             }
             hideError(birthdayEditor);
@@ -410,7 +411,7 @@ public class RegistrationController implements Initializable {
             errorLabel.setVisible(false);
             return true;
         } else {
-            showError("You need to be at least " + BirthdayCheck.MINIMUM_AGE + " years old");
+            fieldError(birthdayEditor, "You need to be at least " + BirthdayCheck.MINIMUM_AGE + " years old");
             return false;
         }
     }
