@@ -248,11 +248,11 @@ public class FoundDoctorFullController extends ScheduleLoader {
         if (datePicker.getValue().isBefore(LocalDate.now())) {
             errorLabel.setText("Can't make an appointment in the past.");
             errorLabel.setVisible(true);
-            return;
         } else {
             errorLabel.setVisible(false);
+            Session.appointment.setDate(datePicker.getValue());
         }
-        Session.appointment.setDate(datePicker.getValue());
+
         loadSchedule();
     }
 }

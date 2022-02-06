@@ -113,7 +113,6 @@ public class AppointmentShiftController extends ScheduleLoader {
         if (datePicker.getValue().isBefore(LocalDate.now())) {
             errorLabel.setText("Can't make an appointment in the past.");
             errorLabel.setVisible(true);
-            return;
         } else {
             errorLabel.setVisible(false);
         }
