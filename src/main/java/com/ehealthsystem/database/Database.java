@@ -8,6 +8,7 @@ import com.ehealthsystem.doctor.DoctorTimeSlot;
 import com.ehealthsystem.healthinformation.HealthInformation;
 import com.ehealthsystem.healthinformation.HealthInformationTableView;
 import com.ehealthsystem.tools.ResourceReader;
+import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.user.User;
 import com.google.maps.model.LatLng;
 import javafx.collections.FXCollections;
@@ -656,6 +657,42 @@ public class Database {
         statement = connection.prepareStatement(deleteQuery);
         statement.setString(1, selected.getICD());
         statement.setString(2, String.valueOf(user_id));
+        statement.executeUpdate();
+    }
+
+    public static ArrayList<String> getDisease() throws SQLException {
+        String query = "SELECT disease_name FROM disease;";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+        ArrayList<String> list = new ArrayList<>();
+        while(rs.next()) {
+            list.add(rs.getString("disease_name"));
+        }
+        return list;
+    }
+
+    public static void addHealthInformation(String selected, String username) throws SQLException {
+        String queryICD = "SELECT ICD FROM disease WHERE disease_name = ?";
+        PreparedStatement statement = connection.prepareStatement(queryICD);
+        statement.setString(1, selected);
+        ResultSet rs = statement.executeQuery();
+        String ICD = null;
+        while(rs.next()) {
+            ICD = rs.getString("ICD");   
+        }
+
+        String queryID = "SELECT user_id FROM user WHERE username = ?;";
+        statement = connection.prepareStatement(queryID);
+        statement.setString(1, username);
+        rs = statement.executeQuery();
+        int user_id = 0;
+        while (rs.next()) {
+            user_id = rs.getInt("user_id");
+        }
+
+        System.out.println(user_id + ", " + ICD);
+        String queryInsert = "INSERT INTO health_status (user_id, ICD) VALUES (" + user_id + ", '" + ICD + "');";
+        statement = connection.prepareStatement(queryInsert);
         statement.executeUpdate();
     }
 }
