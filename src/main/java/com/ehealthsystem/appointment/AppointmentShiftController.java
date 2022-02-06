@@ -62,6 +62,7 @@ public class AppointmentShiftController extends ScheduleLoader {
         specializationsLabel.setText(StringEnumerator.enumerate(loadedAppointment.getDoctor().getSpecializations()));
         dateLabel.setText(loadedAppointment.getDate().format(Session.dateFormatter));
         timeLabel.setText(loadedAppointment.getTime().format(Session.timeFormatter));
+        healthProblemLabel.setText(loadedAppointment.getHealthProblemDescription());
     }
 
     private void loadShiftAppointment() throws SQLException, UnsupportedDataTypeException {
