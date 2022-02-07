@@ -163,6 +163,7 @@ public class RegistrationController implements Initializable {
      */
     public void handleRegistrationButton(ActionEvent event) throws IOException, SQLException, MessagingException, InterruptedException, ApiException {
         if(validateFirstname() && validateLastname() && validateEmail() && validateUsername() && validatePassword() && validateRepeatPassword() && validateStreet() && validateNumber() && validateAddress() && validateZip() && validateBirthday() && validateGender() && validateInsuranceName()) {
+            errorLabel.setVisible(false);
             User newUser = new User(usernameTextField.getText(),
                                     emailTextField.getText(),
                                     firstNameTextField.getText(),
