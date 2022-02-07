@@ -1,10 +1,7 @@
 package com.ehealthsystem.appointment;
 
-import com.ehealthsystem.database.Database;
-import com.ehealthsystem.healthinformation.HealthInformation;
+import com.ehealthsystem.healthInformation.HealthInformation;
 import com.ehealthsystem.map.DoctorDistance;
-import com.ehealthsystem.map.GeoDistance;
-import com.ehealthsystem.tools.Session;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

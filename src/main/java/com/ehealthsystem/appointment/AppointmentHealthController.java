@@ -1,14 +1,13 @@
 package com.ehealthsystem.appointment;
 
 import com.ehealthsystem.database.Database;
-import com.ehealthsystem.healthinformation.HealthInformation;
+import com.ehealthsystem.healthInformation.HealthInformation;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;

@@ -1,11 +1,9 @@
 package com.ehealthsystem.admin;
 
 import com.ehealthsystem.database.Database;
-import com.ehealthsystem.healthinformation.HealthInformationTableView;
 import com.ehealthsystem.tools.EmailCheck;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
-import com.ehealthsystem.user.User;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,7 +20,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {

@@ -1,4 +1,4 @@
-package com.ehealthsystem.healthinformation;
+package com.ehealthsystem.healthInformation;
 
 import javafx.beans.property.SimpleStringProperty;
 

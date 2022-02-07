@@ -1,6 +1,6 @@
 package com.ehealthsystem.pdf;
 import com.ehealthsystem.database.Database;
-import com.ehealthsystem.healthinformation.HealthInformation;
+import com.ehealthsystem.healthInformation.HealthInformation;
 import com.ehealthsystem.tools.Session;
 
 import com.itextpdf.io.font.FontConstants;

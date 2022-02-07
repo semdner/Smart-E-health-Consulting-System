@@ -1,4 +1,4 @@
-package com.ehealthsystem.healthinformation;
+package com.ehealthsystem.healthInformation;
 
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.tools.SceneSwitch;

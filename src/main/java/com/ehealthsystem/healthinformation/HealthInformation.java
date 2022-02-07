@@ -1,6 +1,4 @@
-package com.ehealthsystem.healthinformation;
-
-import java.time.LocalDate;
+package com.ehealthsystem.healthInformation;
 
 public class HealthInformation {
 
