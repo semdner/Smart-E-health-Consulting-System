@@ -58,7 +58,7 @@ public class AppointmentFoundController implements Initializable {
             VBox vbox = fxmlloader.load();
 
             FoundDoctorController doctor = fxmlloader.getController();
-            doctor.setData(doctorList.get(i), doctorList.get(i).getGeoData());
+            doctor.setData(doctorList.get(i), doctorList.get(i).getGeoData(), doctorList.get(i).getDistance());
 
             if(column == 3) {
                 column = 0;

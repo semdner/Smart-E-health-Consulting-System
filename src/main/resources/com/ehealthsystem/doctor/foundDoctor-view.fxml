@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="315.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.doctor.FoundDoctorController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="315.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.doctor.FoundDoctorController">
    <children>
       <AnchorPane prefHeight="110.0" prefWidth="315.0" style="-fx-background-color: F0F0F0;">
          <children>
@@ -22,6 +22,7 @@
                 <RowConstraints maxHeight="0.0" minHeight="28.0" prefHeight="20.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="0.0" minHeight="28.0" prefHeight="20.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="0.0" minHeight="28.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="0.0" minHeight="28.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label text="Doctor">
@@ -48,6 +49,16 @@
                      <font>
                         <Font size="15.0" />
                      </font></Label>
+                  <Label text="Distance" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="distanceLabel" layoutX="158.0" layoutY="70.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
                </children>
             </GridPane>
          </children>

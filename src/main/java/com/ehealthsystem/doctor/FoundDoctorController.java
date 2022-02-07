@@ -28,15 +28,19 @@ public class FoundDoctorController {
     private Label zipLabel;
 
     @FXML
+    private Label distanceLabel;
+
+    @FXML
     private Button showMoreButton;
 
     DoctorDistance doctor = new DoctorDistance();
     String doctorGeoData;
 
-    public void setData(DoctorDistance doctor, String doctorGeoData) {
+    public void setData(DoctorDistance doctor, String doctorGeoData, double distance) {
         doctorLabel.setText(doctor.getDoctor().getLastName());
         addressLabel.setText(doctor.getDoctor().getStreet() + " " + doctor.getDoctor().getHouseNumber());
         zipLabel.setText(doctor.getDoctor().getZipCode());
+        distanceLabel.setText("%.1f km".formatted(distance));
         this.doctor = doctor;
         this.doctorGeoData = doctorGeoData;
     }

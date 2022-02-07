@@ -36,7 +36,7 @@
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
-                            <RowConstraints minHeight="140.0" prefHeight="140.0" vgrow="SOMETIMES" />
+                            <RowConstraints vgrow="SOMETIMES" />
                           </rowConstraints>
                         </GridPane>
                         <Label fx:id="errorLabel" layoutX="350.0" layoutY="216.0" text="" textAlignment="CENTER" textFill="RED" visible="false">
