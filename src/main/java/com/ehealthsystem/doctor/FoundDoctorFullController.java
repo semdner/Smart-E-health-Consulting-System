@@ -161,7 +161,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
      * load the doctor data into the Labels
      */
     private void loadDoctorData() throws SQLException, IOException, InterruptedException, ApiException {
-        doctorLabel.setText("Dr. " + doctor.getDoctor().getFirstName() + " " + doctor.getDoctor().getLastName());
+        doctorLabel.setText(doctor.getDoctor().getFirstName() + " " + doctor.getDoctor().getLastName());
         doctorGeoData = doctor.getDoctor().getFormattedAddressWithPlaceName();
         addressLabel.setText(doctorGeoData);
         specializationsLabel.setText(StringEnumerator.enumerate(doctor.getDoctor().getSpecializations()));
@@ -234,12 +234,12 @@ public class FoundDoctorFullController extends ScheduleLoader {
         String time = appointment.getTime().format(Session.timeFormatter);
         SendEmail.sendMail(
                 Session.user.getMail(),
-                "Appointment confirmation: Dr. %s @ %s %s".formatted(
+                "Appointment confirmation: Doctor: %s @ %s %s".formatted(
                         appointment.getDoctor().getLastName(),
                         date,
                         time
                 ),
-                "You successfully made an appointment with Dr. %s on %s at %s. Their address is %s.".formatted(appointment.getDoctor().getLastName(), date, time, doctorGeoData)
+                "You successfully made an appointment with the doctor %s on %s at %s. Their address is %s.".formatted(appointment.getDoctor().getLastName(), date, time, doctorGeoData)
                         + (reminderChoice.getMinutes() != 0 ? " A reminder email will be sent to you %s ahead.".formatted(reminderChoice.getLabel()) : "")
         );
         SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");

@@ -23,12 +23,12 @@ public class ReminderTask extends TimerTask {
         try {
             SendEmail.sendMail(
                     Database.getUserByUsername(appointment.getUser()).getMail(),
-                    "Appointment reminder: Dr. %s @ %s %s".formatted(
+                    "Appointment reminder: Doctor: %s @ %s %s".formatted(
                             appointment.getDoctor().getLastName(),
                             appointment.getDate().format(Session.dateFormatter),
                             appointment.getTime().format(Session.timeFormatter)
                     ),
-                    "This is to remind you of your upcoming appointment with Dr. %s.".formatted(appointment.getDoctor().getFirstName())
+                    "This is to remind you of your upcoming appointment with the doctor %s.".formatted(appointment.getDoctor().getFirstName())
             );
         } catch (MessagingException | UnsupportedEncodingException | SQLException | UnsupportedDataTypeException e) {
             e.printStackTrace();

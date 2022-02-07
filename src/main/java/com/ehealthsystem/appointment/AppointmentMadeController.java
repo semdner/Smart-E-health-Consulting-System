@@ -118,12 +118,12 @@ public class AppointmentMadeController {
 
         SendEmail.sendMail(
                 Session.user.getMail(),
-                "Confirmation of appointment cancellation: Dr. %s @ %s %s".formatted(
+                "Confirmation of appointment cancellation: Doctor: %s @ %s %s".formatted(
                         loadedAppointment.getDoctor().getFirstName(),
                         loadedAppointment.getDate().format(Session.dateFormatter),
                         loadedAppointment.getTime().format(Session.timeFormatter)
                 ),
-                "This is to confirm that your appointment with Dr. %s was cancelled.".formatted(loadedAppointment.getDoctor().getFirstName())
+                "This is to confirm that your appointment with the doctor %s was cancelled.".formatted(loadedAppointment.getDoctor().getFirstName())
         );
 
         SceneSwitch.switchTo(event,"primary/primary-view.fxml", "E-Health-System");

@@ -93,14 +93,14 @@ public class AppointmentShiftController extends ScheduleLoader {
 
         SendEmail.sendMail(
                 Session.user.getMail(),
-                "Appointment shift confirmation: Dr. %s: %s %s -> %s %s".formatted(
+                "Appointment shift confirmation: Doctor: %s: %s %s -> %s %s".formatted(
                         loadedAppointment.getDoctor().getFirstName(),
                         oldDateTime.toLocalDate().format(Session.dateFormatter),
                         oldDateTime.toLocalTime().format(Session.timeFormatter),
                         loadedAppointment.getDate().isEqual(oldDateTime.toLocalDate()) ? "" : loadedAppointment.getDate().format(Session.dateFormatter), //don't display date twice if only the time was changed
                         loadedAppointment.getTime().format(Session.timeFormatter)
                 ),
-                "This is to confirm that your appointment with Dr. %s was shifted.".formatted(loadedAppointment.getDoctor().getFirstName())
+                "This is to confirm that your appointment with the doctor %s was shifted.".formatted(loadedAppointment.getDoctor().getFirstName())
         );
         SceneSwitch.switchTo(event,"primary/primary-view.fxml", "E-Health-System");
     }
