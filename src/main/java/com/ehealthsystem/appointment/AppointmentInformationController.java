@@ -93,15 +93,15 @@ public class AppointmentInformationController implements Initializable {
     }
 
     public boolean validateHealthProblem() {
-        /*
+        // Health problem is used very often in other views in combination with appointment details,
+        // it would be bad if nothing is displayed there. Therefore, mandate the patient to provide it!
         if(healthProblemField.getText() == null || healthProblemField.getText().isBlank()) {
-            errorLabel.setText("Please describe your health problem.");
+            errorLabel.setText("Please provide details to your health problem.");
             errorLabel.setVisible(true);
             return false;
         } else {
             return true;
-        }*/
-        return true;
+        }
     }
 
 
