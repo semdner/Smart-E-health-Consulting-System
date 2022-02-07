@@ -28,7 +28,7 @@ public class ReminderTask extends TimerTask {
                             appointment.getDate().format(Session.dateFormatter),
                             appointment.getTime().format(Session.timeFormatter)
                     ),
-                    "This is to remind you of your upcoming appointment with the doctor %s.".formatted(appointment.getDoctor().getFirstName())
+                    "This is to remind you of your upcoming appointment with the doctor %s.".formatted(appointment.getDoctor().getLastName())
             );
         } catch (MessagingException | UnsupportedEncodingException | SQLException | UnsupportedDataTypeException e) {
             e.printStackTrace();
