@@ -58,7 +58,7 @@ public class RegistrationValidationController {
     }
 
     public void handleBackButton(ActionEvent event) throws IOException {
-        SceneSwitch.switchToCentered(event, "registration/registration-view.fxml", "E-Health System");
+        SceneSwitch.switchToCentered(event, "main/main-view.fxml", "Welcome");
     }
 
     public static void setValidation(String validation) {
