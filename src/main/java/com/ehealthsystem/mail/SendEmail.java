@@ -1,5 +1,6 @@
 package com.ehealthsystem.mail;
 
+import com.ehealthsystem.pdf.CreatePDF;
 import com.ehealthsystem.registration.RegistrationValidationController;
 
 import javax.activation.DataHandler;
@@ -9,7 +10,11 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.sql.SQLException;
 import java.util.Properties;
 import java.util.Random;
 
@@ -46,7 +51,7 @@ public class SendEmail {
         return message;
     }
 
-    public static void sendMail(String recipient, String subject, String textContent) throws MessagingException, UnsupportedEncodingException {
+    public static void sendMail(String recipient, String subject, String textContent, boolean attach) throws MessagingException, IOException, SQLException {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
@@ -64,12 +69,17 @@ public class SendEmail {
             }
         });
 
+        Message message;
         // Message-Objekt erzeugen und senden!
-        Message message = prepareMessage(session, myAccount, recipient, subject, textContent);
+        if(attach == true){
+            message = prepareMessageWithAttachment(session,myAccount,recipient,subject,textContent);
+        } else {
+            message = prepareMessage(session, myAccount, recipient, subject, textContent);
+        }
         Transport.send(message); // E-Mail senden!
     }
 
-    public static void validateEmail(String recipient) throws MessagingException, UnsupportedEncodingException {
+    public static void validateEmail(String recipient) throws MessagingException, IOException, SQLException {
         final int CODE_LENGTH = 6;
 
         int minimum = (int) Math.pow(10, CODE_LENGTH - 1); // minimum value with 2 digits is 10 (10^1)
@@ -81,11 +91,11 @@ public class SendEmail {
                 "\n" +
                 "Details:\n" +
                 "An account was registered with this email address on the ehealth system. If this was not you, you can safely ignore this email, your email address will not be stored.";
-        SendEmail.sendMail(recipient,"Validation code", validation);
+        SendEmail.sendMail(recipient,"Validation code", validation,false);
         RegistrationValidationController.setValidation(String.valueOf(code));
     }
         // Prepare Message with Attachment to send pdf of Health Informations
-    public static Message prepareMessageWithAttachment(Session session, String myAccount, String recipient, String subject, String textContent, String filename ) throws MessagingException {
+    public static Message prepareMessageWithAttachment(Session session, String myAccount, String recipient, String subject, String textContent) throws MessagingException, SQLException, IOException {
         Message message = new MimeMessage(session);
 
         message.setFrom(new InternetAddress(myAccount));
@@ -102,11 +112,14 @@ public class SendEmail {
         multipart.addBodyPart(messageBodyPart);
         // Message fertigstellen, indem sie mit dem Multipart-Content ausgestattet wird
 
+        Path temp = Files.createTempFile("export", ".pdf");
 
+        String absolutePath = temp.toString();
+        CreatePDF.create_Pdf(absolutePath);
         messageBodyPart = new MimeBodyPart();
-        FileDataSource source = new FileDataSource(filename);
+        FileDataSource source = new FileDataSource(absolutePath);
         messageBodyPart.setDataHandler(new DataHandler(source));
-        messageBodyPart.setFileName(filename);
+        messageBodyPart.setFileName("Patient_Health_Information.pdf");
         multipart.addBodyPart(messageBodyPart);
 
 

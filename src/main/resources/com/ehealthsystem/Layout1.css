@@ -55,3 +55,23 @@ divider-color: #BDBDBD;
 .combo-box{
     -fx-background-color: secondary-text-color;
 }
+
+.combo-box .list-cell{
+
+    -fx-background-color:secondary-text-color;
+
+
+}
+
+/*Edit Cell Color Only when cursor hover cell */
+.combo-box .list-cell:hover{
+
+    -fx-background-color:secondary-text-color;
+}
+
+/*Edit Cell Color Only when selected */
+.combo-box .list-cell:selected{
+
+    -fx-background-color:secondary-text-color;
+
+}

@@ -100,7 +100,7 @@ public class AppointmentShiftController extends ScheduleLoader {
                         loadedAppointment.getDate().isEqual(oldDateTime.toLocalDate()) ? "" : loadedAppointment.getDate().format(Session.dateFormatter), //don't display date twice if only the time was changed
                         loadedAppointment.getTime().format(Session.timeFormatter)
                 ),
-                "This is to confirm that your appointment with the doctor %s was shifted.".formatted(loadedAppointment.getDoctor().getLastName())
+                "This is to confirm that your appointment with the doctor %s was shifted.".formatted(loadedAppointment.getDoctor().getLastName()),false
         );
         SceneSwitch.switchTo(event,"primary/primary-view.fxml", "E-Health-System");
     }

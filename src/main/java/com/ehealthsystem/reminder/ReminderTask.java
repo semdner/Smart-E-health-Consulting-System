@@ -7,6 +7,7 @@ import com.ehealthsystem.tools.Session;
 
 import javax.activation.UnsupportedDataTypeException;
 import javax.mail.MessagingException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.TimerTask;
@@ -28,9 +29,11 @@ public class ReminderTask extends TimerTask {
                             appointment.getDate().format(Session.dateFormatter),
                             appointment.getTime().format(Session.timeFormatter)
                     ),
-                    "This is to remind you of your upcoming appointment with the doctor %s.".formatted(appointment.getDoctor().getLastName())
+                    "This is to remind you of your upcoming appointment with the doctor %s.".formatted(appointment.getDoctor().getLastName()),false
             );
         } catch (MessagingException | UnsupportedEncodingException | SQLException | UnsupportedDataTypeException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

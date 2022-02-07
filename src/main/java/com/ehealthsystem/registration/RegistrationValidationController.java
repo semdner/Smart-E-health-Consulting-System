@@ -53,7 +53,7 @@ public class RegistrationValidationController {
         }
     }
 
-    public void handleResendLabel(MouseEvent event) throws MessagingException, UnsupportedEncodingException {
+    public void handleResendLabel(MouseEvent event) throws MessagingException, IOException, SQLException {
         SendEmail.validateEmail(newUser.getMail());
     }
 

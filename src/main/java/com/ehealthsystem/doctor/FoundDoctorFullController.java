@@ -240,8 +240,9 @@ public class FoundDoctorFullController extends ScheduleLoader {
                         time
                 ),
                 "You successfully made an appointment with the doctor %s on %s at %s. Their address is %s.".formatted(appointment.getDoctor().getLastName(), date, time, doctorGeoData)
-                        + (reminderChoice.getMinutes() != 0 ? " A reminder email will be sent to you %s ahead.".formatted(reminderChoice.getLabel()) : "")
+                        + (reminderChoice.getMinutes() != 0 ? " A reminder email will be sent to you %s ahead.".formatted(reminderChoice.getLabel()) : ""),false
         );
+        SendEmail.sendMail(Session.user.getMail(),"Patient Health Information","Here is the health information about your patient",true);
         SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
     }
 

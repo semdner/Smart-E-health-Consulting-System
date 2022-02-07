@@ -123,7 +123,7 @@ public class AppointmentMadeController {
                         loadedAppointment.getDate().format(Session.dateFormatter),
                         loadedAppointment.getTime().format(Session.timeFormatter)
                 ),
-                "This is to confirm that your appointment with the doctor %s was cancelled.".formatted(loadedAppointment.getDoctor().getLastName())
+                "This is to confirm that your appointment with the doctor %s was cancelled.".formatted(loadedAppointment.getDoctor().getLastName()),false
         );
 
         SceneSwitch.switchTo(event,"primary/primary-view.fxml", "E-Health-System");
