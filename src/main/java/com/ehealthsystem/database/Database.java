@@ -310,6 +310,14 @@ public class Database {
         return rs.next();
     }
 
+    public static boolean isEmailTaken(String email) throws SQLException {
+        String query = "SELECT * FROM user WHERE email = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, email);
+        ResultSet rs = statement.executeQuery();
+        return rs.next();
+    }
+
     /**
      * Get a user object with all user's details loaded from the database
      * @param usernameOrEmail since a user can enter both username or email in the text field

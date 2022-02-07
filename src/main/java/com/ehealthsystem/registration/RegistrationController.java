@@ -226,7 +226,7 @@ public class RegistrationController implements Initializable {
      * Used to check if information are right/wrong while typing.
      * @param event KeyEvent the Textbox reacts to
      */
-    public void handleEmail(KeyEvent event) {
+    public void handleEmail(KeyEvent event) throws SQLException {
         validateEmail();
     }
 
@@ -235,13 +235,16 @@ public class RegistrationController implements Initializable {
      * Used to validate the email correctness.
      * @return true if email is entered correctly
      */
-    public boolean validateEmail() {
-        if(EmailCheck.isValidEmailAddress(emailTextField.getText())) {
-            hideError(emailTextField);
-            return true;
-        } else {
+    public boolean validateEmail() throws SQLException {
+        if(!EmailCheck.isValidEmailAddress(emailTextField.getText())) {
             fieldError(emailTextField, "Invalid email format");
             return false;
+        } else if (Database.isEmailTaken(emailTextField.getText())) {
+            fieldError(emailTextField, "Email already used for another account");
+            return false;
+        } else {
+            hideError(emailTextField);
+            return true;
         }
     }
 
