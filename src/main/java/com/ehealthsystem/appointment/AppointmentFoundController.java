@@ -51,16 +51,16 @@ public class AppointmentFoundController implements Initializable {
     private void loadDoctors(ArrayList<DoctorDistance> doctorList) throws IOException {
         int row = 0;
         int column = 0;
-        for(int i = 0; i<doctorList.size(); i++) {
+        for (DoctorDistance doctorDistance : doctorList) {
             FXMLLoader fxmlloader = new FXMLLoader();
             fxmlloader.setLocation(getClass().getResource("/com/ehealthsystem/doctor/foundDoctor-view.fxml"));
 
             VBox vbox = fxmlloader.load();
 
             FoundDoctorController doctor = fxmlloader.getController();
-            doctor.setData(doctorList.get(i), doctorList.get(i).getGeoData(), doctorList.get(i).getDistance());
+            doctor.setData(doctorDistance, doctorDistance.getGeoData(), doctorDistance.getDistance());
 
-            if(column == 3) {
+            if (column == 3) {
                 column = 0;
                 row++;
             }
