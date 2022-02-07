@@ -12,13 +12,25 @@ import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.TimerTask;
 
+/**
+ * An object of this class represents a task to send a reminder mail at a certain point in the future.
+ */
 public class ReminderTask extends TimerTask {
     Appointment appointment;
 
+    /**
+     * Create a new ReminderTask for an appointment.
+     * The reminder time is automatically read out from the provided appointment.
+     * @param appointment the appointment for which a reminder is to be sent
+     */
     public ReminderTask(Appointment appointment) {
         this.appointment = appointment;
     }
 
+    /**
+     * The method to be executed at the reminder time.
+     * Responsible for sending the reminder email.
+     */
     @Override
     public void run() {
         try {

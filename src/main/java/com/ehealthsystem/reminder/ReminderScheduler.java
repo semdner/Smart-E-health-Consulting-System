@@ -9,16 +9,31 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
 
+/**
+ * Manager for ReminderTasks (using java.util.TimerTask)
+ * Sets up reminders on application start.
+ * Gets notified by the UI controllers whenever a reminder time changes.
+ * Checks the reminder time for validity by itself. Does not schedule reminders that should have already been sent.
+ * Application's process keeps running in the background even though UI was closed, if there are still reminders scheduled.
+ */
 public class ReminderScheduler {
     static Map<Integer, Timer> map = new HashMap<>();
     private final static boolean logging = false;
 
+    /**
+     * Display messages to the console for verbosity purposes.
+     * @param message The message to display to the console.
+     */
     private static void log(String message) {
         if (logging) {
             System.out.println(message);
         }
     }
 
+    /**
+     * Set up (schedule) all reminders on application start.
+     * Do not call from Main before the database file is created on initial setup.
+     */
     public static void setupReminders() throws SQLException, UnsupportedDataTypeException {
         log("Setting up reminders");
         for (Appointment a : Database.getUpcomingAppointmentsWithReminder()) {
@@ -27,8 +42,9 @@ public class ReminderScheduler {
     }
 
     /**
-     * To be called for creating reminders (on application load and creation of a new appointment)
-     * @param appointment
+     * Create a reminder for a given appointment.
+     * Called on application load and creation of a new appointment.
+     * @param appointment the appointment in question to create a reminder for
      */
     public static void createReminder(Appointment appointment) {
         //determine reminder time
@@ -45,8 +61,10 @@ public class ReminderScheduler {
     }
 
     /**
-     * To remove the reminder when the appointment was cancelled
-     * @param appointment
+     * Remove a reminder for an appointment.
+     * To be called before an appointment gets cancelled/deleted (e.g. patient cancels appointment).
+     * Also used as helper method for updateReminder.
+     * @param appointment the appointment to delete the reminder for
      */
     public static void deleteReminder(Appointment appointment) {
         log("Deleting appointment");
@@ -59,8 +77,14 @@ public class ReminderScheduler {
     }
 
     /**
-     * To adjust a reminder when an appointment's time was shifted
-     * @param appointment
+     * Update the reminder time when an appointment's time was changed (appointment shifted)
+     * AppointmentShiftController is responsible for triggering this method
+     * to keep the reminder time in sync with the appointment's time
+     *
+     * Works by deleting a potentially existing reminder
+     * and then creating a new reminder for that appointment.
+     * Has effectively no own code because it only calls the according functions.
+     * @param appointment the appointment to update the reminder for
      */
     public static void updateReminder(Appointment appointment) {
         log("SHIFT START");

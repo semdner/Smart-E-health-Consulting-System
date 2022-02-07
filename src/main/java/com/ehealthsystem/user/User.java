@@ -22,7 +22,7 @@ public class User implements HasAddress {
      * @param username
      * @param insertIntoDb
      * true if this is a new user that is inserted to the database,
-     * false if the object shall solely represent a user that is already saved in the database
+     * false if the object shall solely represent a user that is already saved in the database (i.e. result of a SELECT query)
      * or also false if object is for bridging the step from registration to email validation
      * @param password
      * @param firstName

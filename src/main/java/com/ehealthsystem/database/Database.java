@@ -21,9 +21,14 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * Class for for database communication (reading and writing data)
+ */
 public class Database {
-
     public static Connection connection = null;
+    /**
+     * The file name of the database file
+     */
     public static final String fileName = "ehealth.sqlite3";
     public static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //date pattern used for tables (e.g. appointment, user)
     public static final DateTimeFormatter timeFormatterAppointment = DateTimeFormatter.ofPattern("HH:mm"); //time pattern used for user appointment
@@ -302,6 +307,11 @@ public class Database {
         return loadUsersFromResultSet(rs).get(0);
     }
 
+    /**
+     * Check, if a username is already taken, used for registration
+     * @param username the username to check
+     * @return whether the username is already taken
+     */
     public static boolean isUsernameTaken(String username) throws SQLException {
         String query = "SELECT * FROM user WHERE username = ?";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -310,6 +320,11 @@ public class Database {
         return rs.next();
     }
 
+    /**
+     * Check, if an email is already taken, used for registration
+     * @param email the email address to check
+     * @return whether the email is already in use
+     */
     public static boolean isEmailTaken(String email) throws SQLException {
         String query = "SELECT * FROM user WHERE email = ?";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -331,17 +346,6 @@ public class Database {
         ResultSet rs = statement.executeQuery();
         return loadUsersFromResultSet(rs).get(0);
     }
-
-    public static Admin getAdmin(String name) throws SQLException, UnsupportedDataTypeException {
-        String query = "SELECT * FROM user WHERE username = ?";
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, name);
-        ResultSet rs = statement.executeQuery();
-        Admin admin = new Admin("admin");
-        return admin;
-    }
-
-
 
     /**
      * Get all doctors from the database as objects of class Doctor
@@ -399,6 +403,10 @@ public class Database {
         return doctors;
     }
 
+    /**
+     * Get health statuses of a user
+     * @param email User's email address
+     */
     public static ArrayList<HealthInformation> getHealthInformation(String email) throws SQLException {
         String query = "SELECT health_status.ICD, disease.disease_name, medication.medication_name" +
                 " FROM ((((health_status INNER JOIN disease on health_status.ICD = disease.ICD)" +
@@ -459,6 +467,11 @@ public class Database {
         return users;
     }
 
+    /**
+     * Get a doctor by their ID
+     * @param doctorId the numeric identifier for the doctor
+     * @return the requested doctor
+     */
     public static Doctor loadDoctorFromId(int doctorId) throws SQLException {
         String query = "SELECT * FROM doctor WHERE doctor_id = ?";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -468,7 +481,11 @@ public class Database {
     }
 
 
-
+    /**
+     * Get a list of a doctor's specializations
+     * @param id the numeric identifier for the doctor
+     * @return list of names of their specializations
+     */
     public static ArrayList<String> loadDoctorSpecializations(int id) throws SQLException {
         String query = "SELECT c.category FROM doctor_category AS dc LEFT JOIN category AS c on dc.category_id = c.category_id WHERE dc.doctor_id = ?;";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -481,6 +498,10 @@ public class Database {
         return specialization;
     }
 
+    /**
+     * Get a list of all specializations that doctors can have
+     * @return specialization names
+     */
     public static ArrayList<String> loadSpecializations() throws SQLException {
         String query = "SELECT * FROM category";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -492,6 +513,10 @@ public class Database {
         return specialization;
     }
 
+    /**
+     * Get list of all potential health problems based on which you can select a doctor
+     * @return problem names
+     */
     public static ArrayList<String> loadProblems() throws SQLException {
         String query = "SELECT * FROM problems";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -503,6 +528,11 @@ public class Database {
         return problems;
     }
 
+    /**
+     * Get the suitable specialization for a provided health problem
+     * @param problem the health problem to get a suitable specialization for
+     * @return the suitable specialization for that problem
+     */
     public static String problemToSuitableSpecialization(String problem) throws SQLException {
         String query = """
                 SELECT c.category FROM problems
@@ -613,6 +643,9 @@ public class Database {
         return loadAppointmentsFromResultSet(rs);
     }
 
+    /**
+     * Load users into a table view for the Admin GUI
+     */
     public static ObservableList<UserTableView> getUserForTableView() throws SQLException {
         String query = "SELECT * FROM user";
         ObservableList<UserTableView> users = FXCollections.observableArrayList();
@@ -638,6 +671,12 @@ public class Database {
         return users;
     }
 
+    /**
+     * Get a users password to display in the admin GUI
+     * @param email
+     * @return
+     * @throws SQLException
+     */
     public static String getPassword(String email) throws SQLException {
         String query = "SELECT password FROM user WHERE email = ?";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -649,6 +688,10 @@ public class Database {
         return null;
     }
 
+    /**
+     * Get a users current health statuses so that they can manage theirs
+     * @param username the user to get health statuses for
+     */
     public static ObservableList<HealthInformationTableView> getHealthInformationForTableView(String username) throws SQLException {
         String query = "SELECT h.ICD, d.disease_name FROM health_status AS h, user LEFT JOIN disease d on h.ICD = d.ICD WHERE username = ?;";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -656,12 +699,21 @@ public class Database {
         ResultSet rs = statement.executeQuery();
         ObservableList<HealthInformationTableView> healthProblems = FXCollections.observableArrayList();
         while(rs.next()) {
-            healthProblems.add(new HealthInformationTableView(rs.getString("ICD"),
-                    rs.getString("disease_name")));
+            healthProblems.add(
+                    new HealthInformationTableView(
+                            rs.getString("ICD"),
+                            rs.getString("disease_name")
+                    )
+            );
         }
         return healthProblems;
     }
 
+    /**
+     * Delete a user's health status
+     * @param selected the selected table view from which the health status to delete is read out from
+     * @param username the concerned user's name
+     */
     public static void deleteHealthInformation(HealthInformationTableView selected, String username) throws SQLException {
         String query = "SELECT user_id FROM user WHERE username = ?;";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -675,6 +727,11 @@ public class Database {
         statement.executeUpdate();
     }
 
+    /**
+     * Get all possible diseases.
+     * Used by the UI for the patient to add a disease to their health information.
+     * @return list of all possible disease
+     */
     public static ArrayList<String> getDisease() throws SQLException {
         String query = "SELECT disease_name FROM disease;";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -686,6 +743,12 @@ public class Database {
         return list;
     }
 
+    /**
+     * Add a disease to a user's health information
+     * @param selected
+     * @param username
+     * @throws SQLException
+     */
     public static void addHealthInformation(String selected, String username) throws SQLException {
         String queryICD = "SELECT ICD FROM disease WHERE disease_name = ?";
         PreparedStatement statement = connection.prepareStatement(queryICD);
@@ -711,6 +774,12 @@ public class Database {
         statement.executeUpdate();
     }
 
+    /**
+     * Delete a disease from a user's health information
+     * @param selectedRow the selected row from which the health information to delete is derived from
+     * @param username    the name of the user from which to delete this health information from
+     * @throws SQLException
+     */
     public static void deleteUserInformation(UserTableView selectedRow, String username) throws SQLException {
         String queryID = "SELECT user_id FROM user WHERE username = ?;";
         PreparedStatement statement = connection.prepareStatement(queryID);

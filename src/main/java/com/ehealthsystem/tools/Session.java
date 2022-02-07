@@ -32,7 +32,7 @@ public class Session {
     }
 
     public static void loginAdmin(String name) throws SQLException, UnsupportedDataTypeException {
-        admin = Database.getAdmin(name);
+        admin = new Admin("admin");
     }
 
     public static GeocodingResult getUserGeo() throws IOException, InterruptedException, ApiException {

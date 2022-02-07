@@ -108,6 +108,7 @@ public class RegistrationController implements Initializable {
 
         birthdayPicker.valueProperty().addListener((observable, oldDate, newDate) -> {
             birthdayEditor.setText(birthdayPicker.getValue().format(Session.dateFormatter));
+            validateBirthday();
         });
     }
 
@@ -422,7 +423,7 @@ public class RegistrationController implements Initializable {
             fieldError(birthdayEditor,"Birthday has to be entered");
             return false;
         }else {
-            LocalDate date = null;
+            LocalDate date;
             try {
                 date = LocalDate.parse(birthdayEditor.getText(), DateTimeFormatter.ofPattern("d.M.yyyy")); //allows user to leave ot leading 0s in day and month (e.g. 1.1.2000)
             } catch (DateTimeParseException e) {
@@ -442,11 +443,15 @@ public class RegistrationController implements Initializable {
         return true;
     }
 
+    /**
+     * Method to handle the proper functioning of the radio buttons for gender selection
+     * @param event ActionEvent triggered when pressing a radio button
+     */
     public void handleGenderChoice(ActionEvent event) {
         RadioButton source = ((RadioButton) event.getSource());
         gender = source.getText();
         for (RadioButton choice : genderRadioButtons) {
-            choice.setSelected(choice == source);
+            choice.setSelected(choice == source); //deselect all other choices
         }
     }
 
