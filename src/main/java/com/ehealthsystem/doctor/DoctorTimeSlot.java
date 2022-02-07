@@ -2,16 +2,15 @@ package com.ehealthsystem.doctor;
 
 import com.ehealthsystem.appointment.Appointment;
 import com.ehealthsystem.database.Database;
+import com.ehealthsystem.tools.Session;
 
 import javax.activation.UnsupportedDataTypeException;
+import java.sql.Array;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class DoctorTimeSlot {
     private LocalDate date;
@@ -36,49 +35,39 @@ public class DoctorTimeSlot {
         return free;
     }
 
+    /**
+     * Get a list of possible time slots, including whether they are free or not
+     * @param date The date for which time slots shall be returned.
+     * @param doctor The doctor whose schedule shall be taken.
+     * @return list of time slots
+     * @throws SQLException
+     * @throws UnsupportedDataTypeException
+     */
     public static ArrayList<DoctorTimeSlot> getFreeTimeSlots(LocalDate date, Doctor doctor) throws SQLException, UnsupportedDataTypeException {
         ArrayList<Appointment> appointments = Database.getDoctorsAppointments(doctor.getId(), date);
 
         //Generate times
-        Set<String> times = new HashSet<>();
+        ArrayList<LocalDateTime> times = new ArrayList<>();
         LocalTime openingTime = LocalTime.of(8, 0);
         LocalTime closingTime = LocalTime.of(16, 0);
         for (LocalTime i = openingTime; i.isBefore(closingTime); i = i.plusMinutes(30)) {
-            times.add("%s %s".formatted(
-                    date.format(Database.dateFormatter),
-                    i.format(Database.timeFormatterAppointment)
-            ));
+            times.add(LocalDateTime.of(date, i));
         }
 
         //Get busy times (i.e. already reserved by another patient) from database
-        Set<String> busyTimes = new HashSet<>();
+        ArrayList<LocalDateTime> busyTimes = new ArrayList<>();
         for (Appointment a : appointments) {
-            busyTimes.add("%s %s".formatted(
-                    a.getDate().format(Database.dateFormatter),
-                    a.getTime().format(Database.timeFormatterAppointment)
-            ));
-            System.out.println(busyTimes.size());
+            busyTimes.add(a.getDateTime());
         }
-
-        //Make set to list and order it (because set is unordered)
-        ArrayList<String> timesList = new ArrayList<>(times);
-        Collections.sort(timesList); //reason why this is a string list: so that it's comparable (sorting)
 
         //Create final list
         ArrayList<DoctorTimeSlot> timeSlots = new ArrayList<>();
-        for (String time : timesList) {
-            String dateString = time.split(" ")[0];
-            String timeOfDay = time.split(" ")[1];
-
-            //load them into LocalDate and LocalTime objects
-            LocalDate d = LocalDate.parse(dateString, Database.dateFormatter);
-            LocalTime t = LocalTime.parse(timeOfDay, Database.timeFormatterAppointment);
-
+        for (LocalDateTime time : times) {
             //and finally into DoctorTimeSlot objects
-            boolean timeIsInPast = LocalDateTime.of(d,t).isBefore(LocalDateTime.now());
+            boolean timeIsInPast = time.isBefore(LocalDateTime.now());
             boolean timeIsBusy = busyTimes.contains(time);
             boolean free = !timeIsInPast && !timeIsBusy; //free if not in the past and not busy
-            timeSlots.add(new DoctorTimeSlot(d, t, free));
+            timeSlots.add(new DoctorTimeSlot(time.toLocalDate(), time.toLocalTime(), free));
         }
 
         return timeSlots;
