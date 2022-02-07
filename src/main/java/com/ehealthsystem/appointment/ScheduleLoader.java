@@ -94,8 +94,14 @@ public abstract class ScheduleLoader {
                 }
                 time.setTextFill(Color.web("#FF0000"));
                 selectedTime = LocalTime.parse(timeStr, Session.timeFormatterForSchedule);
+                selectedTimeChanged();
             }
         });
+    }
+
+    //Can be used as handlers in inheriting/extending classes
+    protected void selectedTimeChanged() {
+
     }
 
     /**

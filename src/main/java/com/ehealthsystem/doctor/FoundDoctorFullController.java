@@ -25,6 +25,8 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class FoundDoctorFullController extends ScheduleLoader {
 
@@ -171,6 +173,25 @@ public class FoundDoctorFullController extends ScheduleLoader {
      */
     private boolean loadSchedule() throws SQLException, UnsupportedDataTypeException {
         return loadSchedule(datePicker.getValue(), doctor.getDoctor(), dateLabel, makeAppointmentButton);
+    }
+
+    protected void selectedTimeChanged() {
+        //update reminder combo box choices
+        //don't offer reminder times that would be in the past
+        reminderComboBox.getItems().clear(); //avoid hassle of re-adding choices when you previously removed them
+        for (ReminderTime reminderOption : ReminderTime.values()) {
+            LocalDateTime appointmentTime = LocalDateTime.of(datePicker.getValue(), selectedTime);
+            LocalDateTime reminderTime = appointmentTime.minusMinutes(reminderOption.getMinutes());
+            if (!reminderTime.isBefore(LocalDateTime.now())) //reminder won't be in past //works with "No reminder" option
+            {
+                reminderComboBox.getItems().add(reminderOption);
+            }
+        }
+
+        //Now the box is empty (no choice made)
+        ReminderTime lastChoice = (ReminderTime) reminderComboBox.getItems().get(reminderComboBox.getItems().size() - 1);
+        ReminderTime choice = reminderComboBox.getItems().contains(ReminderTime.THREE_DAYS) ? ReminderTime.THREE_DAYS : lastChoice ; //"3 days" if available, otherwise next max option
+        reminderComboBox.setValue(choice);
     }
 
     /**
