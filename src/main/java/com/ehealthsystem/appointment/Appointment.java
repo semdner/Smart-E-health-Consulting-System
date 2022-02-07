@@ -43,6 +43,9 @@ public class Appointment {
      * Only to be used if a new appointment is created.
      */
     private void insertIntoDb() throws SQLException, UnsupportedDataTypeException {
+        if(healthProblemDescription == null) {
+            healthProblemDescription = "";
+        }
         Object[][] parameters = {
                 {"user", user},
                 {"doctor_id", doctor},
