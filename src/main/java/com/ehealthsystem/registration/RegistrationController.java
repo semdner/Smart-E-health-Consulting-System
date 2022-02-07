@@ -31,6 +31,9 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -63,7 +66,13 @@ public class RegistrationController implements Initializable {
     DatePicker birthdayPicker;
 
     @FXML
-    ChoiceBox<String> genderBox;
+    RadioButton genderChoiceMale;
+    @FXML
+    RadioButton genderChoiceFemale;
+    @FXML
+    RadioButton genderChoiceOther;
+
+    List<RadioButton> genderRadioButtons;
 
     @FXML
     PasswordField passwordField;
@@ -84,6 +93,7 @@ public class RegistrationController implements Initializable {
 
     @FXML
     TextField birthdayEditor;
+    private String gender;
 
     /**
      * fist method called when scene is switched.
@@ -93,8 +103,7 @@ public class RegistrationController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String[] choices = {"male", "female", "other"};
-        genderBox.getItems().addAll(choices);
+        genderRadioButtons = Arrays.asList(genderChoiceMale, genderChoiceFemale, genderChoiceOther);
         Platform.runLater(() -> firstNameTextField.requestFocus()); //https://stackoverflow.com/a/38374747/1803901
 
         birthdayPicker.valueProperty().addListener((observable, oldDate, newDate) -> {
@@ -162,7 +171,7 @@ public class RegistrationController implements Initializable {
                                     numberTextField.getText(),
                                     zipTextField.getText(),
                                     birthdayPicker.getValue(),
-                                    genderBox.getValue(),
+                                    gender,
                                     passwordField.getText(),
                                     insuranceNameTextField.getText(),
                                     privateInsuranceCheckBox.isSelected(),
@@ -432,13 +441,21 @@ public class RegistrationController implements Initializable {
         return true;
     }
 
+    public void handleGenderChoice(ActionEvent event) {
+        RadioButton source = ((RadioButton) event.getSource());
+        gender = source.getText();
+        for (RadioButton choice : genderRadioButtons) {
+            choice.setSelected(choice == source);
+        }
+    }
+
     /**
      * Helper method for the handleRegistrationButton method.
      * Used to validate the gender correctness.
      * @return true if gender is entered correctly
      */
     public boolean validateGender() {
-        if(!genderBox.getSelectionModel().isEmpty()) {
+        if(gender != null) {
             errorLabel.setVisible(false);
             return true;
         } else {
