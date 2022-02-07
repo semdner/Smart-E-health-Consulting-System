@@ -11,6 +11,7 @@ import com.google.maps.model.LatLng;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class GeoDistance {
     /**
@@ -110,6 +111,8 @@ public class GeoDistance {
                         d
                 ));
         }
+
+        result.sort(Comparator.comparingDouble(o -> o.distance)); //show doctors ordered by distance ascending
 
         return result;
     }
