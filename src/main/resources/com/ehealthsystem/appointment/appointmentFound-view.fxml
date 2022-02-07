@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.appointment.AppointmentFoundController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../Layout1.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.appointment.AppointmentFoundController">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="903.0" BorderPane.alignment="CENTER">
          <children>
@@ -53,7 +53,7 @@
       </AnchorPane>
    </center>
    <bottom>
-      <AnchorPane prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: eaeaea;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="backButton" layoutX="7.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleBackButton" text="&lt;" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="965.0" AnchorPane.topAnchor="7.5" />
             <ProgressBar fx:id="progressBar" layoutX="366.0" layoutY="13.0" prefHeight="15.0" prefWidth="268.0" progress="1.0" AnchorPane.bottomAnchor="12.5" AnchorPane.leftAnchor="366.0" AnchorPane.rightAnchor="366.0" AnchorPane.topAnchor="12.5" />

@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.doctor.FoundDoctorFullController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../Layout1.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.doctor.FoundDoctorFullController">
    <top>
       <MenuBar disable="true" BorderPane.alignment="CENTER">
         <menus>
@@ -115,8 +115,8 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="datePicker" editable="false" focusTraversable="false" layoutX="86.0" layoutY="8.0" onAction="#handleDateChoice" prefHeight="25.0" prefWidth="105.0" showWeekNumbers="true" />
-                        <Separator layoutX="-23.0" layoutY="30.0" prefHeight="3.0" prefWidth="64.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="426.0" AnchorPane.topAnchor="32.0" />
+                        <DatePicker fx:id="datePicker" editable="false" focusTraversable="false" layoutX="86.0" layoutY="8.0" onAction="#handleDateChoice" prefHeight="25.0" prefWidth="105.0" showWeekNumbers="true" style="-fx-background-color: #9E9E9E;" />
+                        <Separator layoutX="-23.0" layoutY="30.0" prefHeight="3.0" prefWidth="64.0" style="-fx-background-color: #9E9E9E;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="426.0" AnchorPane.topAnchor="32.0" />
                         <GridPane fx:id="scheduleGridPane" layoutX="150.0" layoutY="35.0" AnchorPane.leftAnchor="10.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

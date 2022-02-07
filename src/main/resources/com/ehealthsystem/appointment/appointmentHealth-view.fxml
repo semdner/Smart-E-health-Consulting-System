@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.appointment.AppointmentHealthController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../Layout1.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.appointment.AppointmentHealthController">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -85,7 +85,7 @@
       </AnchorPane>
    </center>
    <bottom>
-      <AnchorPane prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: eaeaea;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="continueButton" layoutX="961.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleContinueButton" text="&gt;" AnchorPane.bottomAnchor="7.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.5" />
             <Button fx:id="backButton" layoutX="7.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleBackButton" text="&lt;" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="7.5" />

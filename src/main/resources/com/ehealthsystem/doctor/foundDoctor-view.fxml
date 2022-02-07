@@ -10,8 +10,11 @@
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="315.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.doctor.FoundDoctorController">
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="315.0" stylesheets="@../Layout1.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.doctor.FoundDoctorController">
+
    <children>
-      <AnchorPane prefHeight="110.0" prefWidth="315.0" style="-fx-background-color: F0F0F0;">
+      <AnchorPane prefHeight="110.0" prefWidth="315.0" style="-fx-background-color: 4CAF50;">
          <children>
             <GridPane layoutX="11.0" layoutY="-8.0" prefHeight="60.0" prefWidth="294.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
               <columnConstraints>
@@ -63,7 +66,7 @@
             </GridPane>
          </children>
       </AnchorPane>
-      <AnchorPane focusTraversable="true" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: eaeaea;">
+      <AnchorPane focusTraversable="true" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: 4CAF50;">
          <children>
             <Button fx:id="showMoreButton" focusTraversable="false" layoutX="116.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleShowMoreButton" prefHeight="25.0" prefWidth="83.0" text="Show more" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="6.0" />
          </children>

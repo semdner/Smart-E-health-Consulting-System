@@ -1,0 +1,54 @@
+* {
+
+dark-primary-color: #616161;
+default-primary-color: #607D8B;
+light-primary-color: #F5F5F5;
+text-primary-color: #212121;
+accent-color: #9E9E9E;
+primary-text-color: #212121;
+secondary-text-color: #757575;
+divider-color: #BDBDBD;
+}
+
+.root{
+    -fx-background-color: accent-color;
+}
+
+.choice-box{
+    -fx-background-color: secondary-text-color;
+}
+
+.button{
+    -fx-background-color: secondary-text-color;
+}
+
+.text-field{
+    -fx-background-color: secondary-text-color;
+    -fx-progress-color: black;
+}
+
+.separator{
+    -fx-background-color: divider-color;
+}
+
+.label{
+
+    -fx-font-family: Garamond, serif;
+}
+
+.text-area{
+    -fx-font-family: Garamond, serif;
+    -fx-background-color: divider-color;
+}
+
+.datePicker{
+    -fx-background-color: accent-color;
+}
+
+.slider{
+    -fx-background-color: accent-color;
+}
+
+.combo-box{
+    -fx-background-color: secondary-text-color;
+}
