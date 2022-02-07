@@ -176,7 +176,7 @@
                </font>
             </Label>
             <Separator layoutX="10.0" layoutY="40.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="550.0" AnchorPane.topAnchor="35.0" />
-            <Button fx:id="editButton" layoutX="21.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleEditButton" prefWidth="60.0" text="edit" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+            <Button fx:id="editButton" layoutX="21.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleEditButton" prefWidth="60.0" text="Edit" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
          </children></AnchorPane>
    </center>
    <right>
@@ -206,7 +206,7 @@
                               </ScrollPane>
                               <AnchorPane prefHeight="35.0" prefWidth="250.0">
                                  <children>
-                                    <Button fx:id="makeAppointmentButton1" layoutX="70.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleMakeAppointmentButton" text="new appointment" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="10.0" />
+                                    <Button fx:id="makeAppointmentButton1" layoutX="55.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleMakeAppointmentButton" prefHeight="25.0" prefWidth="125.0" text="New appointment" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="10.0" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -239,7 +239,7 @@
                               </ScrollPane>
                               <AnchorPane prefHeight="47.0" prefWidth="250.0">
                                  <children>
-                                    <Button fx:id="makeAppointmentButton2" layoutX="67.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleMakeAppointmentButton" text="new appointment" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="10.0" />
+                                    <Button fx:id="makeAppointmentButton2" layoutX="67.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleMakeAppointmentButton" text="New appointment" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="10.0" />
                                  </children>
                               </AnchorPane>
                            </children>
