@@ -50,21 +50,20 @@
                            <children>
                               <GridPane fx:id="healthGridPane" layoutX="14.0" layoutY="14.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                 <columnConstraints>
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" prefWidth="30.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="121.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="408.5" minWidth="10.0" prefWidth="408.5" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="408.5" minWidth="10.0" prefWidth="408.5" />
-                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" prefWidth="30.0" />
                                 </columnConstraints>
                                 <rowConstraints>
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label text="ICD">
+                                    <Label text="ICD" GridPane.columnIndex="1">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Health problem" GridPane.columnIndex="1">
+                                    <Label text="Health problem" GridPane.columnIndex="2">
                                        <font>
                                           <Font size="15.0" />
                                        </font>

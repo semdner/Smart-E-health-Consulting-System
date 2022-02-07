@@ -108,10 +108,10 @@ public class AppointmentHealthController implements Initializable {
             }
 
             int c = 0;
+            healthGridPane.add(selection, c++, i+1);
             healthGridPane.add(ICD, c++, i+1);
             healthGridPane.add(health_problem, c++, i+1);
             //healthGridPane.add(medication, c++, i+1);
-            healthGridPane.add(selection, c++, i+1);
         }
     }
 
