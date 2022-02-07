@@ -70,7 +70,7 @@ public class SendEmail {
     }
 
     public static void validateEmail(String recipient) throws MessagingException, UnsupportedEncodingException {
-        final int CODE_LENGTH = 8;
+        final int CODE_LENGTH = 6;
 
         int minimum = (int) Math.pow(10, CODE_LENGTH - 1); // minimum value with 2 digits is 10 (10^1)
         int maximum = (int) Math.pow(10, CODE_LENGTH) - 1; // maximum value with 2 digits is 99 (10^2 - 1)
