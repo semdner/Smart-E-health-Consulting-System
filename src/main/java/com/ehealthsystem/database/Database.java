@@ -302,6 +302,14 @@ public class Database {
         return loadUsersFromResultSet(rs).get(0);
     }
 
+    public static boolean isUsernameTaken(String username) throws SQLException {
+        String query = "SELECT * FROM user WHERE username = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, username);
+        ResultSet rs = statement.executeQuery();
+        return rs.next();
+    }
+
     /**
      * Get a user object with all user's details loaded from the database
      * @param usernameOrEmail since a user can enter both username or email in the text field

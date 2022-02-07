@@ -192,7 +192,7 @@ public class RegistrationController implements Initializable {
      * Used to check if information are right/wrong while typing.
      * @param event KeyEvent the Textbox reacts to
      */
-    public void handleUsername(KeyEvent event) {
+    public void handleUsername(KeyEvent event) throws SQLException {
         validateUsername();
     }
 
@@ -201,12 +201,15 @@ public class RegistrationController implements Initializable {
      * Used to validate the username correctness.
      * @return true if username is entered correctly
      */
-    public boolean validateUsername() {
+    public boolean validateUsername() throws SQLException {
         if (usernameTextField.getText().isBlank()) {
             fieldError(usernameTextField, "Username cannot be blank");
             return false;
         } else if (usernameTextField.getText().length() < 5) {
             fieldError(usernameTextField, "Username needs to be at least 5 characters long");
+            return false;
+        } else if (Database.isUsernameTaken(usernameTextField.getText())) {
+            fieldError(usernameTextField, "Username already in use");
             return false;
         } else {
             hideError(usernameTextField);
