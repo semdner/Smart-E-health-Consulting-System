@@ -22,8 +22,15 @@ import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for admin-view.fxml.
+ * Used to handle the interaction between user and program for the scene
+ */
 public class AdminController implements Initializable {
 
+    /**
+     * The defined with fx:id defined components of the admin-view
+     */
     @FXML
     TableView<UserTableView> userTableView;
 
@@ -66,18 +73,32 @@ public class AdminController implements Initializable {
     @FXML
     Button deleteButton;
 
+    /**
+     * The selected row to determine if and which row is currently selected
+     */
     UserTableView selectedRow = new UserTableView(null, null, null, null, null, null, null, null, null, null, false, null);
 
+    /**
+     * First method when scene is switches used to call the needed function for loading user inforamtion
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             loadUsersFromDatabase();
-        } catch (SQLException | UnsupportedDataTypeException e) {
+        } catch (SQLException  e) {
             e.printStackTrace();
         }
     }
 
-    private void loadUsersFromDatabase() throws SQLException, UnsupportedDataTypeException {
+    /**
+     * Load the users from the data base and store them in an observable.
+     * Define which Column of the Tableview corresponds to which value of the attributes of the UserTableView class and fill the table
+     * @throws SQLException throws sql exception if the method of causes one
+     * @throws UnsupportedDataTypeException If a type of the
+     */
+    private void loadUsersFromDatabase() throws SQLException {
         ObservableList<UserTableView> users = Database.getUserForTableView();
         username.setCellValueFactory(new PropertyValueFactory<UserTableView, String>("username"));
         email.setCellValueFactory(new PropertyValueFactory<UserTableView, String>("email"));
@@ -100,6 +121,9 @@ public class AdminController implements Initializable {
         });
     }
 
+    /**
+     * Add the Event Handler for dynamically for the columns
+     */
     private void handleEdit() {
         username.setCellFactory(TextFieldTableCell.forTableColumn());
         username.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserTableView, String>>() {
@@ -301,6 +325,12 @@ public class AdminController implements Initializable {
         });
     }
 
+    /**
+     * Deltes a selected user from the database if the delete button is clicked
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     public void handleDeleteButton(ActionEvent event) throws IOException, SQLException {
         if(selectedRow.getUsername() != null) {
             Database.deleteUserInformation(selectedRow, selectedRow.getUsername());
@@ -308,6 +338,11 @@ public class AdminController implements Initializable {
         }
     }
 
+    /**
+     * logs the admin out
+     * @param event
+     * @throws IOException
+     */
     public void handleLogout(ActionEvent event) throws IOException {
         Session.logout();
     }

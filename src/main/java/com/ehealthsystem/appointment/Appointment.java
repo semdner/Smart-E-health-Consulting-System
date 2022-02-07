@@ -11,6 +11,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+/**
+ * Represents an appointment with all the attributes.
+ *
+ */
 public class Appointment {
     public final String tableName = "appointment";
     private int id, doctor, minutesBeforeReminder, duration;
@@ -58,18 +62,35 @@ public class Appointment {
         id = Database.insert(tableName, parameters);
     }
 
+    /**
+     * Get the appointment id returned
+     * @return return id as integer
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * return the doctor selected for the appointment
+     * @return return doctor as object of the class Doctor
+     * @throws SQLException if the sql query wouldn't find a doctor in the database it throws an exception
+     */
     public Doctor getDoctor() throws SQLException {
         return Database.loadDoctorFromId(doctor); //lazy-load and also don't store
     }
 
+    /**
+     * get the set date of the appointment
+     * @return return the date as an object of the type LocalDate
+     */
     public LocalDate getDate() {
         return date;
     }
 
+    /**
+     * get the set time of the appointment
+     * @return return the time as an object of the type LocalTime
+     */
     public LocalTime getTime() {
         return time;
     }
@@ -78,10 +99,19 @@ public class Appointment {
         return LocalDateTime.of(date, time);
     }
 
+    /**
+     * get the appointment lies in the past.
+     * Used for the sorting in upcoming and past appointments
+     * @return return true or false depending on the date
+     */
     public boolean isInThePast() {
         return getDateTime().isBefore(LocalDateTime.now());
     }
 
+    /**
+     * get the time of the reminder set in minutes
+     * @return return time as int
+     */
     public int getMinutesBeforeReminder() {
         return minutesBeforeReminder;
     }
@@ -90,10 +120,18 @@ public class Appointment {
         return duration;
     }
 
+    /**
+     * get the username of the that made the appointment
+     * @return return the username as a string
+     */
     public String getUser() {
         return user;
     }
 
+    /**
+     * get the health problem description that was set
+     * @return return the description as a String
+     */
     public String getHealthProblemDescription() {
         return healthProblemDescription;
     }
@@ -123,11 +161,23 @@ public class Appointment {
         return statement.executeUpdate() == 1;
     }
 
+    /**
+     * Set the date appointment when shifting it.
+     * @param date the new selected date
+     * @throws SQLException if the datebase class throws a exception
+     * @throws UnsupportedDataTypeException
+     */
     public void setDate(LocalDate date) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"date", date}});
         this.date = date;
     }
 
+    /**
+     * Set the time appointment when shifting it.
+     * @param time the new selected time
+     * @throws SQLException if the datebase class throws a exception
+     * @throws UnsupportedDataTypeException
+     */
     public void setTime(LocalTime time) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"time", time}});
         this.time = time;
