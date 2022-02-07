@@ -17,7 +17,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.appointment.AppointmentFoundController">
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="903.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="903.0" style="-fx-background-color: #9E9E9E;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="9.0" layoutY="11.0" prefHeight="30.0" prefWidth="133.0" text="Found doctors" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="857.0" AnchorPane.topAnchor="5.0">
                <font>
@@ -25,9 +25,9 @@
                </font>
             </Label>
             <Separator layoutX="10.0" layoutY="34.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="857.0" AnchorPane.topAnchor="35.0" />
-            <ScrollPane hbarPolicy="NEVER" layoutX="400.0" layoutY="168.0" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0">
+            <ScrollPane hbarPolicy="NEVER" layoutX="400.0" layoutY="168.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9E9E9E;" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="967.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="453.0" prefWidth="967.0" style="-fx-background-color: #9E9E9E;">
                      <children>
                         <GridPane fx:id="doctorGridPane" layoutX="57.0" layoutY="192.0" prefWidth="900.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                           <columnConstraints>
