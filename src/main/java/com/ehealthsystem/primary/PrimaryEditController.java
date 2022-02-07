@@ -82,7 +82,7 @@ public class PrimaryEditController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String[] choices = {"male", "female", "other"};
+        String[] choices = {"Male", "Female", "Other"};
         genderBox.getItems().addAll(choices);
         loadUserDetails();
     }
