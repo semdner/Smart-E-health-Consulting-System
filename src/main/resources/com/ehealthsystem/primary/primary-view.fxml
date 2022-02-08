@@ -175,7 +175,7 @@
                    <Font name="Segoe UI Bold" size="20.0" />
                </font>
             </Label>
-            <Separator layoutX="10.0" layoutY="40.0" prefHeight="3.0" prefWidth="204.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="536.0" AnchorPane.topAnchor="35.0" />
+            <Separator layoutX="10.0" layoutY="40.0" prefHeight="3.0" prefWidth="204.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="540.0" AnchorPane.topAnchor="35.0" />
             <Button fx:id="editButton" layoutX="21.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleEditButton" prefWidth="60.0" text="Edit" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
          </children></AnchorPane>
    </center>
