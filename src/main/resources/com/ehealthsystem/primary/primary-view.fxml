@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../Layout1.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.primary.PrimaryController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.primary.PrimaryController">
    <top>
       <MenuBar prefHeight="25.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
         <menus>
@@ -60,7 +60,7 @@
                <children>
                   <Label text="Username">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label fx:id="usernameLabel" text="Label" GridPane.columnIndex="1">
@@ -70,7 +70,7 @@
                   </Label>
                   <Label text="Email" GridPane.rowIndex="1">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label fx:id="emailLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -80,7 +80,7 @@
                   </Label>
                   <Label text="First name" GridPane.rowIndex="2">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label fx:id="firstNameLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -90,7 +90,7 @@
                   </Label>
                   <Label text="Last name" GridPane.rowIndex="3">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label fx:id="lastNameLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -100,7 +100,7 @@
                   </Label>
                   <Label text="Street" GridPane.rowIndex="4">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label fx:id="streetLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -110,7 +110,7 @@
                   </Label>
                   <Label text="House number" GridPane.rowIndex="5">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label fx:id="houseNoLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -120,7 +120,7 @@
                   </Label>
                   <Label text="Zip code" GridPane.rowIndex="6">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label fx:id="zipLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6">
@@ -130,7 +130,7 @@
                   </Label>
                   <Label text="Birthday" GridPane.rowIndex="7">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label fx:id="birthdayLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7">
@@ -140,7 +140,7 @@
                   </Label>
                   <Label text="Gender" GridPane.rowIndex="8">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label fx:id="genderLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8">
@@ -150,7 +150,7 @@
                   </Label>
                   <Label text="Private insurance" GridPane.rowIndex="10">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label fx:id="privateInsuranceLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="10">
@@ -160,7 +160,7 @@
                   </Label>
                   <Label layoutX="10.0" layoutY="286.0" text="Insurance name" GridPane.rowIndex="9">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label fx:id="insuranceNameLabel" layoutX="375.0" layoutY="256.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="9">
@@ -170,12 +170,12 @@
                   </Label>
                </children>
             </GridPane>
-            <Label layoutX="10.0" layoutY="11.0" prefHeight="25.0" prefWidth="190.0" text="Personal information" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="550.0" AnchorPane.topAnchor="5.0">
+            <Label layoutX="10.0" layoutY="11.0" prefHeight="30.0" prefWidth="212.0" text="Personal information" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="528.0" AnchorPane.topAnchor="5.0">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Separator layoutX="10.0" layoutY="40.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="550.0" AnchorPane.topAnchor="35.0" />
+            <Separator layoutX="10.0" layoutY="40.0" prefHeight="3.0" prefWidth="204.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="536.0" AnchorPane.topAnchor="35.0" />
             <Button fx:id="editButton" layoutX="21.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleEditButton" prefWidth="60.0" text="Edit" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
          </children></AnchorPane>
    </center>
@@ -188,7 +188,7 @@
                      <children>
                         <VBox minHeight="546.0" minWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <ScrollPane blendMode="MULTIPLY" hbarPolicy="NEVER" prefHeight="507.0" prefWidth="250.0" vbarPolicy="ALWAYS">
+                              <ScrollPane hbarPolicy="NEVER" prefHeight="507.0" prefWidth="250.0" vbarPolicy="ALWAYS">
                                 <content>
                                   <AnchorPane minHeight="110.0" minWidth="0.0" prefWidth="235.0">
                                        <children>
@@ -201,7 +201,8 @@
                                             </rowConstraints>
                                           </GridPane>
                                           <Label fx:id="upcomingAppointmentsErrorLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="498.0" prefWidth="235.0" text="Label" textAlignment="CENTER" visible="false" AnchorPane.bottomAnchor="-388.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                       </children></AnchorPane>
+                                       </children>
+                                    </AnchorPane>
                                 </content>
                               </ScrollPane>
                               <AnchorPane prefHeight="35.0" prefWidth="250.0">
@@ -221,7 +222,7 @@
                      <children>
                         <VBox prefHeight="546.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <ScrollPane hbarPolicy="NEVER" prefHeight="625.0" prefWidth="250.0" vbarPolicy="ALWAYS">
+                              <ScrollPane hbarPolicy="NEVER" prefHeight="625.0" prefWidth="250.0" stylesheets="@../Layout1.css" vbarPolicy="ALWAYS">
                                  <content>
                                     <AnchorPane minHeight="110.0" prefHeight="0.0" prefWidth="235.0">
                                        <children>

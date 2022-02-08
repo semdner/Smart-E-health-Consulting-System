@@ -35,10 +35,10 @@
          <children>
             <Label layoutX="10.0" layoutY="11.0" text="Health information" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="590.8" AnchorPane.topAnchor="5.0">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Separator layoutX="10.0" layoutY="40.0" prefHeight="3.0" prefWidth="168.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="822.0" AnchorPane.topAnchor="35.0" />
+            <Separator layoutX="10.0" layoutY="36.0" prefHeight="2.0" prefWidth="184.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="806.0" AnchorPane.topAnchor="36.0" />
             <TableView fx:id="healthTableView" editable="true" prefHeight="458.0" prefWidth="980.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
               <columns>
                 <TableColumn fx:id="ICD" minWidth="93.0" prefWidth="110.0" text="ICD" />

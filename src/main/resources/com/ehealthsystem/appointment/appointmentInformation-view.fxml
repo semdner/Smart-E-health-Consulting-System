@@ -17,19 +17,18 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../Layout1.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.appointment.AppointmentInformationController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.appointment.AppointmentInformationController">
 
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="9.0" layoutY="11.0" prefHeight="25.0" prefWidth="254.0" text="Appointment information" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="480.0" AnchorPane.topAnchor="5.0">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
 
-            <Separator layoutX="10.0" layoutY="34.0" prefHeight="2.0" prefWidth="231.0" style="-fx-background-color: black; -fx-color: black;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="509.0" AnchorPane.topAnchor="35.0" />
+            <Separator layoutX="10.0" layoutY="34.0" prefHeight="2.0" prefWidth="231.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="509.0" AnchorPane.topAnchor="35.0" />
             <GridPane layoutX="53.0" layoutY="68.0" prefHeight="138.0" prefWidth="730.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
 
               <columnConstraints>
@@ -45,19 +44,19 @@
                <children>
                   <Label text="Max. distance to doctor [km]">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Health problem" GridPane.rowIndex="1">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Slider fx:id="searchDistanceSlider" blockIncrement="5.0" focusTraversable="false" majorTickUnit="5.0" max="150.0" min="5.0" minorTickCount="0" prefWidth="365.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="25.0" GridPane.columnIndex="1" />
                   <TextField fx:id="healthProblemField" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Additional Comment" GridPane.rowIndex="2">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <ComboBox fx:id="healthProblemChoiceBox" focusTraversable="false" prefHeight="25.0" prefWidth="206.0" promptText="" GridPane.columnIndex="1" GridPane.rowIndex="1" />

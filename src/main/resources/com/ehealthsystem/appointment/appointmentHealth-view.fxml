@@ -18,13 +18,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../Layout1.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.appointment.AppointmentHealthController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.appointment.AppointmentHealthController">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="9.0" layoutY="11.0" prefHeight="30.0" prefWidth="195.0" text="Health information" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="795.0" AnchorPane.topAnchor="5.0">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
             <Separator layoutX="10.0" layoutY="34.0" prefHeight="2.0" prefWidth="173.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="817.0" AnchorPane.topAnchor="35.0" />

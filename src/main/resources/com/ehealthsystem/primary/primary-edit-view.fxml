@@ -69,52 +69,52 @@
                <children>
                   <Label text="Username">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Email" GridPane.rowIndex="1">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="First name" GridPane.rowIndex="2">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Last name" GridPane.rowIndex="3">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Street" GridPane.rowIndex="4">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="House number" GridPane.rowIndex="5">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Zip code" GridPane.rowIndex="6">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Birthday" GridPane.rowIndex="7">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Gender" GridPane.rowIndex="8">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Private insurance" GridPane.rowIndex="10">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <TextField fx:id="usernameTextField" GridPane.columnIndex="1" />
@@ -128,7 +128,7 @@
                   <ChoiceBox fx:id="genderBox" minWidth="0.0" prefHeight="25.0" prefWidth="365.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <Label layoutX="10.0" layoutY="286.0" text="Insurance name" GridPane.rowIndex="9">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <TextField fx:id="insuranceNameTextField" layoutX="375.0" layoutY="193.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
@@ -148,15 +148,15 @@
                   <Label fx:id="errorLabel" prefWidth="365.0" text="new password cannot be the same as your old password." textFill="RED" visible="false" GridPane.rowIndex="14" />
                   <Label layoutX="10.0" layoutY="315.0" text="Change password" GridPane.rowIndex="11">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <CheckBox fx:id="changePasswordCheckbox" layoutX="375.0" layoutY="317.0" mnemonicParsing="false" onAction="#changePasswordCheckboxChanged" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                </children>
             </GridPane>
-            <Label layoutX="10.0" layoutY="11.0" text="Personal information" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="550.0" AnchorPane.topAnchor="5.0">
+            <Label layoutX="10.0" layoutY="11.0" prefHeight="30.0" prefWidth="200.0" text="Personal information" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="540.0" AnchorPane.topAnchor="5.0">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
             <Separator layoutX="10.0" layoutY="40.0" prefHeight="2.0" prefWidth="187.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="553.0" AnchorPane.topAnchor="35.0" />

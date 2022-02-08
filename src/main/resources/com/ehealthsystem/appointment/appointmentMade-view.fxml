@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../Layout1.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.appointment.AppointmentMadeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.appointment.AppointmentMadeController">
    <top>
       <MenuBar disable="true" BorderPane.alignment="CENTER">
          <menus>
@@ -51,7 +51,7 @@
                      <children>
                         <Label layoutX="14.0" layoutY="14.0" prefHeight="21.0" prefWidth="144.0" text="Doctor information" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="346.0" AnchorPane.topAnchor="10.0">
                            <font>
-                              <Font size="15.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
                         <Separator layoutX="10.0" layoutY="32.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="346.0" AnchorPane.topAnchor="32.0" />
@@ -68,17 +68,17 @@
                            <children>
                               <Label text="Doctor">
                                  <font>
-                                    <Font size="15.0" />
+                                    <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
                               <Label text="Address" GridPane.rowIndex="1">
                                  <font>
-                                    <Font size="15.0" />
+                                    <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
                               <Label text="Specialization" GridPane.rowIndex="2">
                                  <font>
-                                    <Font size="15.0" />
+                                    <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
                               <Label fx:id="doctorLabel" text="Label" GridPane.columnIndex="1">
@@ -104,7 +104,7 @@
                      <children>
                         <Label layoutX="9.0" layoutY="11.0" prefHeight="19.0" prefWidth="194.0" text="Appointment information" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="296.0" AnchorPane.topAnchor="10.0">
                            <font>
-                              <Font size="15.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
                         <Separator layoutX="-23.0" layoutY="30.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="296.0" AnchorPane.topAnchor="32.0" />
@@ -121,17 +121,17 @@
                            <children>
                               <Label text="Date">
                                  <font>
-                                    <Font size="15.0" />
+                                    <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
                               <Label text="Time" GridPane.rowIndex="1">
                                  <font>
-                                    <Font size="15.0" />
+                                    <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
                               <Label text="Health problem" GridPane.rowIndex="2">
                                  <font>
-                                    <Font size="15.0" />
+                                    <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
                               <Label fx:id="dateLabel" text="Label" GridPane.columnIndex="1">
@@ -159,7 +159,7 @@
                <children>
                   <Label layoutX="14.0" layoutY="14.0" prefHeight="21.0" prefWidth="75.0" text="Route" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="915.0" AnchorPane.topAnchor="10.0">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Separator layoutX="-19.0" layoutY="30.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="920.0" AnchorPane.topAnchor="32.0" />

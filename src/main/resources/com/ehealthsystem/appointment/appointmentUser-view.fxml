@@ -20,10 +20,10 @@
          <children>
             <Label layoutX="9.0" layoutY="11.0" text="Personal information" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Separator layoutX="10.0" layoutY="34.0" prefHeight="3.0" prefWidth="186.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="554.0" AnchorPane.topAnchor="35.0" />
+            <Separator layoutX="10.0" layoutY="36.0" prefHeight="2.0" prefWidth="202.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="538.0" AnchorPane.topAnchor="36.0" />
             <Label layoutX="10.0" layoutY="46.0" text="Please ensure that your information is up-to-date. You may change it on the home page." />
             <GridPane layoutX="72.0" layoutY="68.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0">
               <columnConstraints>
@@ -46,52 +46,52 @@
                <children>
                   <Label text="Username">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Email" GridPane.rowIndex="1">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="First name" GridPane.rowIndex="2">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Last name" GridPane.rowIndex="3">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Street" GridPane.rowIndex="4">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="House no." GridPane.rowIndex="5">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Zip code" GridPane.rowIndex="6">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Birthday" GridPane.rowIndex="7">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Gender" GridPane.rowIndex="8">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Private insurance" GridPane.rowIndex="10">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label fx:id="usernameLabel" text="Label" GridPane.columnIndex="1">
@@ -146,7 +146,7 @@
                   </Label>
                   <Label layoutX="10.0" layoutY="286.0" text="Insurance name" GridPane.rowIndex="9">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label fx:id="insuranceNameLabel" layoutX="375.0" layoutY="256.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="9">

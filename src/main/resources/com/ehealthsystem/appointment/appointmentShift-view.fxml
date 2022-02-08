@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../Layout1.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.appointment.AppointmentShiftController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.appointment.AppointmentShiftController">
    <top>
       <MenuBar disable="true" BorderPane.alignment="CENTER">
          <menus>
@@ -39,7 +39,7 @@
                <children>
                   <Label prefHeight="21.0" prefWidth="195.0" text="Appointment information" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Separator prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="330.0" AnchorPane.topAnchor="32.0" />
@@ -59,17 +59,17 @@
                      <children>
                         <Label text="Doctor">
                            <font>
-                              <Font size="15.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
                         <Label text="Address" GridPane.rowIndex="1">
                            <font>
-                              <Font size="15.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
                         <Label text="Specialization" GridPane.rowIndex="2">
                            <font>
-                              <Font size="15.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
                         <Label fx:id="doctorLabel" text="Label" GridPane.columnIndex="1">
@@ -89,17 +89,17 @@
                         </Label>
                         <Label text="Date" GridPane.rowIndex="3">
                            <font>
-                              <Font size="15.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
                         <Label text="Time" GridPane.rowIndex="4">
                            <font>
-                              <Font size="15.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
                         <Label text="Health problem" GridPane.rowIndex="5">
                            <font>
-                              <Font size="15.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
                         <Label fx:id="dateLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -125,7 +125,7 @@
                <children>
                   <Label prefHeight="21.0" prefWidth="167.0" text="New time" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Separator prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="32.0" />
@@ -140,7 +140,7 @@
                      <children>
                         <Label text="Date">
                            <font>
-                              <Font size="15.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
                         <DatePicker fx:id="datePicker" focusTraversable="false" onAction="#handleDateChoice" showWeekNumbers="true" GridPane.columnIndex="1" />
