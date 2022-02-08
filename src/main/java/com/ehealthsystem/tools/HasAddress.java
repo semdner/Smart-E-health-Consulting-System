@@ -1,6 +1,6 @@
 package com.ehealthsystem.tools;
 
-import com.ehealthsystem.map.GeoCoder;
+import com.ehealthsystem.map.Geocoder;
 import com.google.maps.errors.ApiException;
 
 import java.io.IOException;
@@ -16,6 +16,6 @@ public interface HasAddress {
     }
 
     default String getFormattedAddressWithPlaceName() throws IOException, InterruptedException, ApiException {
-        return Objects.requireNonNull(GeoCoder.geocode(getFormattedAddress())).formattedAddress;
+        return Objects.requireNonNull(Geocoder.geocode(getFormattedAddress())).formattedAddress;
     }
 }

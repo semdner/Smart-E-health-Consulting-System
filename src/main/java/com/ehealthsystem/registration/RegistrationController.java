@@ -2,7 +2,7 @@ package com.ehealthsystem.registration;
 
 import com.ehealthsystem.database.Database;
 import com.ehealthsystem.mail.SendEmail;
-import com.ehealthsystem.map.GeoCoder;
+import com.ehealthsystem.map.Geocoder;
 import com.ehealthsystem.tools.BirthdayCheck;
 import com.ehealthsystem.tools.EmailCheck;
 import com.ehealthsystem.tools.SceneSwitch;
@@ -11,7 +11,6 @@ import com.ehealthsystem.user.User;
 import com.google.maps.errors.ApiException;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,9 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -31,7 +28,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -371,7 +367,7 @@ public class RegistrationController implements Initializable {
      */
     private boolean validateAddress() throws IOException, InterruptedException, ApiException {
         try {
-            GeoCoder.geocode("%s %s, %s".formatted(streetTextField.getText(), numberTextField.getText(), zipTextField.getText()));
+            Geocoder.geocode("%s %s, %s".formatted(streetTextField.getText(), numberTextField.getText(), zipTextField.getText()));
             return true;
         } catch (ArrayIndexOutOfBoundsException e) { //[0] in geocode()
             showError("Unknown address, did you enter everything correctly?");
