@@ -20,8 +20,17 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for creating a pdf-document.
+ */
 public class CreatePDF {
 
+    /**
+     * Method to create a pdf-document with the health-information of the user.
+     * @param dest path where the created pdf-doc should be saved.
+     * @throws IOException pdf-document is not able to be saved.
+     * @throws SQLException connection issues with the database.
+     */
     public static void create_Pdf(String dest) throws IOException, SQLException {
         if(dest.isBlank()){
             System.out.println("Saving PDFFile was cancelled!"); return;
@@ -163,6 +172,10 @@ public class CreatePDF {
 
     }
 
+    /**
+     *
+     * @param table
+     */
     private static void InsuranceData(Table table) {
         String insuranceType = Session.user.isPrivateInsurance() ? "Private" : "Public";
 

@@ -46,6 +46,10 @@ public class LoginController {
             loadPrimaryWindow(event);
     }
 
+    /**
+     *
+     * @return
+     */
     private boolean validateAdmin() {
         return emailTextField.getText().equals("admin");
     }

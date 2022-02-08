@@ -44,7 +44,7 @@ public class HealthInformationController implements Initializable {
     ChoiceBox healthChoiceBox;
 
     /**
-     * representes the selected row to determine which row needs to be deleted when event is triggered
+     * represents the selected row to determine which row needs to be deleted when event is triggered
      */
     HealthInformationTableView selectedRow = new HealthInformationTableView(null, null);
 
@@ -87,7 +87,7 @@ public class HealthInformationController implements Initializable {
     }
 
     /**
-     * delete a row in the Tableview
+     * deletes a users health problem (a row) in the Tableview
      * @param event the event that triggered the method
      * @throws SQLException
      * @throws IOException
@@ -100,7 +100,7 @@ public class HealthInformationController implements Initializable {
     }
 
     /**
-     * Adds an health problem to the user
+     * Adds a health problem to the user
      * @param event the event that triggered the method
      * @throws SQLException
      * @throws IOException

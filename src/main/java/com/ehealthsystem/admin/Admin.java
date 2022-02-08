@@ -6,8 +6,11 @@ package com.ehealthsystem.admin;
 public class Admin {
     private String name;
 
+    /**
+     * Constructor to set name of admin
+     * @param name name of admin
+     */
     public Admin(String name) {
         this.name = name;
     }
-
 }

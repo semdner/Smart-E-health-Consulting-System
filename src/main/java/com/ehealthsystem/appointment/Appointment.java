@@ -95,6 +95,10 @@ public class Appointment {
         return time;
     }
 
+    /**
+     * get the set date & time of the appointment
+     * @return return the date & time as an object of the type LocalTime
+     */
     public LocalDateTime getDateTime() {
         return LocalDateTime.of(date, time);
     }
@@ -116,6 +120,10 @@ public class Appointment {
         return minutesBeforeReminder;
     }
 
+    /**
+     * ???
+     * @return ???
+     */
     public int getDuration() {
         return duration;
     }

@@ -277,6 +277,7 @@ public class PrimaryController implements Initializable {
      * @param event the event that causes the execution of the method
      * @throws SQLException
      * @throws IOException
+     * @see CreatePDF for explanation of the exception
      */
     public void handlepdfButton(ActionEvent event) throws SQLException, IOException {
         String dest = fileChooserSave.chooseDest(Main.getPrimaryStage());

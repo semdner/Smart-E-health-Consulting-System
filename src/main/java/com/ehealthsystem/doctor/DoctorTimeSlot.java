@@ -12,25 +12,46 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
+/**
+ * Class for creating a time slot(appointment) for a doctor
+ */
 public class DoctorTimeSlot {
     private LocalDate date;
     private LocalTime time;
     private boolean free;
 
+    /**
+     * Constructor which sets the attributes when creating a new object(Doctor Time Slot).
+     * @param date set the date of the time slot.
+     * @param time set the time of the time slot.
+     * @param free set the availability of the doctor.
+     */
     public DoctorTimeSlot(LocalDate date, LocalTime time, boolean free) {
         this.date = date;
         this.time = time;
         this.free = free;
     }
 
+    /**
+     * Return the Date of the Time slot.
+     * @return The date is an object of the type LocalDate.
+     */
     public LocalDate getDate() {
         return date;
     }
 
+    /**
+     * Return the time of the time slot.
+     * @return The time is an object of the type LocalTime.
+     */
     public LocalTime getTime() {
         return time;
     }
 
+    /**
+     * Return the availability of the Doctor.
+     * @return The availability as a Boolean.
+     */
     public boolean getFree() {
         return free;
     }

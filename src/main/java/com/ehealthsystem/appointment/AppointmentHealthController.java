@@ -202,7 +202,7 @@ public class AppointmentHealthController implements Initializable {
     }
 
     /**
-     * deselects all the checkboxes/health informatino in the gridpane
+     * deselects all the checkboxes/health information in the gridpane
      * @param event the event triggered the method
      */
     public void handleDeselectAllButton(ActionEvent event) {
@@ -216,7 +216,7 @@ public class AppointmentHealthController implements Initializable {
     }
 
     /**
-     * if a check box is selected and add the health informaiton to the gridpane
+     * if a check box is selected and add the health information to the gridpane
      * @param c the checkbox selected
      * @param h the health information of the row
      * @param selected paramter to determine if checkbox is selected

@@ -190,7 +190,7 @@ public class AppointmentMadeController {
     }
 
     /**
-     * return to primary view without an changes made
+     * return to primary view without any changes made
      * @param event the event that is triggered the method call
      * @throws IOException
      */

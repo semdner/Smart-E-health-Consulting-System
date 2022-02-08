@@ -790,18 +790,18 @@ public class Database {
             user_id = rs.getInt("user_id");
         }
 
-        String queryDeleteion = "DELETE FROM user WHERE user_id = ?;";
-        statement = connection.prepareStatement(queryDeleteion);
+        String queryDeletion = "DELETE FROM user WHERE user_id = ?;";
+        statement = connection.prepareStatement(queryDeletion);
         statement.setInt(1, user_id);
         statement.executeUpdate();
 
-        queryDeleteion = "DELETE FROM health_status WHERE user_id = ?;";
-        statement = connection.prepareStatement(queryDeleteion);
+        queryDeletion = "DELETE FROM health_status WHERE user_id = ?;";
+        statement = connection.prepareStatement(queryDeletion);
         statement.setInt(1, user_id);
         statement.executeUpdate();
 
-        queryDeleteion = "DELETE FROM appointment WHERE user = '" + username + "';";
-        statement = connection.prepareStatement(queryDeleteion);
+        queryDeletion = "DELETE FROM appointment WHERE user = '" + username + "';";
+        statement = connection.prepareStatement(queryDeletion);
         statement.executeUpdate();
     }
 }

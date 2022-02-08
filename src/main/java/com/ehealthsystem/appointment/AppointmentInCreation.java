@@ -7,6 +7,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+/**
+ * Class for creating an Appointment by the user.
+ */
 public class AppointmentInCreation {
     public ArrayList<DoctorDistance> doctorList = new ArrayList<>();
     //Data that will be stored in the final appointment
@@ -20,58 +23,118 @@ public class AppointmentInCreation {
     private String healthProblemChoice;
     private ArrayList<HealthInformation> healthInformation = new ArrayList<>();
 
+    /**
+     * ??? Creates an appointment ???.
+     */
     public AppointmentInCreation() {
     }
 
+    /**
+     * Sets the date of the appointment.
+     * @param date the date of the appointment.
+     */
     public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public void setTime(LocalTime time) {
-        this.time = time;
-    }
-
-    public void setHealthProblem(String healthProblem) {
-        this.healthProblem = healthProblem;
-    }
-
-    public String getHealthProblem() {
-        return healthProblem;
-    }
-
-    public String getSpecialization() {
-        return specialization;
-    }
-
-    public void setDistance(double distance) {
-        this.distance = distance;
-    }
-
-    public void setHealthInformation(ArrayList<HealthInformation> healthInformation) {
-        this.healthInformation = healthInformation;
-    }
-
-    public ArrayList<HealthInformation> getHealthInformation() {
-        return healthInformation;
-    }
-
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
-    }
-
-    public void setHealthProblemChoice(String healthProblemChoice){this.healthProblemChoice = healthProblemChoice;}
-
-    public String getHealthProblemChoice(){return healthProblemChoice;}
-
+    /**
+     * Returns the date of the appointment.
+     * @return The time as an object of the type LocalTime.
+     */
     public LocalDate getDate() {
         return date;
     }
 
+    /**
+     * Sets the time of the appointment
+     * @param time the time of the appointment
+     */
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
+
+    /**
+     * Returns the time of the appointment.
+     * @return The time as an object of the type LocalTime.
+     */
     public LocalTime getTime() {
         return time;
     }
 
+    /**
+     * Sets the Healthproblem of the user.
+     * @param healthProblem the healthproblem of the user.
+     */
+    public void setHealthProblem(String healthProblem) {
+        this.healthProblem = healthProblem;
+    }
+
+    /**
+     * Returns the healthproblem of the user.
+     * @return The healthproblem as a String.
+     */
+    public String getHealthProblem() {
+        return healthProblem;
+    }
+
+    /**
+     * Sets the specialization of the doctor.
+     * @param specialization the specialization of the doctor.
+     */
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
+    }
+
+    /**
+     * Return the specialization of the doctor.
+     * @return The specialization as a String.
+     */
+    public String getSpecialization() {
+        return specialization;
+    }
+
+    /**
+     * Sets the distance between doctor and user.
+     * @param distance the distance in km between doctor and user.
+     */
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    /**
+     * Returns the distance of the Doctor.
+     * @return The distance as double.
+     */
     public double getDistance() {
         return distance;
     }
+
+    /**
+     * Sets the Healthinformation of a user.
+     * @param healthInformation the list in which the Healthinformation of a user is stored.
+     */
+    public void setHealthInformation(ArrayList<HealthInformation> healthInformation) {
+        this.healthInformation = healthInformation;
+    }
+
+    /**
+     * Returns the Healthinformation of the user as a List.
+     * @return The Healthinformation as an Arraylist.
+     */
+    public ArrayList<HealthInformation> getHealthInformation() {
+        return healthInformation;
+    }
+
+    /**
+     * Sets the healthproblem of the user.
+     * @param healthProblemChoice the healthproblem of the user.
+     */
+    public void setHealthProblemChoice(String healthProblemChoice){this.healthProblemChoice = healthProblemChoice;}
+
+    /**
+     * Returns the healthproblem chosen by the user.
+     * @return The healthproblemchoice as a String.
+     */
+    public String getHealthProblemChoice(){return healthProblemChoice;}
+
 }

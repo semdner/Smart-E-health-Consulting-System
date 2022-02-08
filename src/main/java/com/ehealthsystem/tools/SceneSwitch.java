@@ -58,6 +58,15 @@ public class SceneSwitch {
         stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
     }
 
+    /**
+     * ???
+     * @param event
+     * @param appointment
+     * @throws IOException
+     * @throws SQLException
+     * @throws InterruptedException
+     * @throws ApiException
+     */
     public static void loadAppointmentMadeView(Event event, Appointment appointment) throws IOException, SQLException, InterruptedException, ApiException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/ehealthsystem/appointment/appointmentMade-view.fxml"));
         Parent root = loader.load();

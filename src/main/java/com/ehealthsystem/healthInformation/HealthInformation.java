@@ -1,7 +1,7 @@
 package com.ehealthsystem.healthInformation;
 
 /**
- * Represents the users health information
+ * Represents the health information for the user
  */
 public class HealthInformation {
 
@@ -21,7 +21,7 @@ public class HealthInformation {
 
     /**
      * get ICD returned
-     * @return
+     * @return The ICD as a String.
      */
     public String getICD() {
         return ICD;
@@ -29,7 +29,7 @@ public class HealthInformation {
 
     /**
      * get the disease returned
-     * @return
+     * @return The disease as a String.
      */
     public String getDisease() {
         return disease;
@@ -37,7 +37,7 @@ public class HealthInformation {
 
     /**
      * get the medication returned
-     * @return
+     * @return The medication as a String.
      */
     public String getMedication() {
         return medication;

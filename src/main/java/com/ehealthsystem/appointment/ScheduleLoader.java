@@ -82,6 +82,11 @@ public abstract class ScheduleLoader {
         }
     }
 
+    /**
+     * ???
+     * @param time
+     * @param timeButton
+     */
     private void handleTimeButton(Label time, Button timeButton) {
         timeLabelList.add(time);
         String timeStr = time.getText();
@@ -100,6 +105,10 @@ public abstract class ScheduleLoader {
     }
 
     //Can be used as handlers in inheriting/extending classes
+
+    /**
+     * ???
+     */
     protected void selectedTimeChanged() {
 
     }
