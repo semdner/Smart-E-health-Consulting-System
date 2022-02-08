@@ -55,7 +55,14 @@ public class AppointmentInformationController implements Initializable {
 
     public void handleContinueButton(ActionEvent event) throws IOException, InterruptedException, ApiException, SQLException {
         if (saveData()) {
-            Session.appointment.doctorList = GeoDistance.filterDoctorsInRangeWithLocalCalculation(Database.getDoctorsBySpecialization(Session.appointment.getSpecialization()), Session.getUserGeo().geometry.location, Session.appointment.getDistance());
+            Session.appointment.doctorList =
+                    GeoDistance.filterDoctorsInRangeWithLocalCalculation(
+                            Database.getDoctorsBySpecialization(
+                                    Session.appointment.getSpecialization()
+                            ),
+                            Session.getUserGeo().geometry.location,
+                            Session.appointment.getDistance()
+                    );
             if(Session.appointment.doctorList.isEmpty()) {
                 errorLabel.setText("No doctors with that category in range.");
                 errorLabel.setVisible(true);
