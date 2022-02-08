@@ -1,5 +1,12 @@
 
 
+.text-area{
+    -fx-font: segoe UI, Regular;
+}
+
+.text-field{
+    -fx-font: segoe UI, Regular;
+}
 
 
 .combo-box{
