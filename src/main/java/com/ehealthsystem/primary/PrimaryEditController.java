@@ -232,6 +232,11 @@ public class PrimaryEditController implements Initializable {
         }
     }
 
+    /**
+     * Update private insurance name when save button is pressed
+     * @param text
+     * @throws SQLException
+     */
     private void updateInsuranceName(String text) throws SQLException, UnsupportedDataTypeException {
         Session.user.setInsuranceName(text);
     }

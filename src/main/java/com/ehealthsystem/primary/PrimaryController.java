@@ -31,6 +31,9 @@ import java.util.ResourceBundle;
  */
 public class PrimaryController implements Initializable {
 
+    /**
+     * All attributes with a fx:id assigned in the view
+     */
     @FXML
     Label usernameLabel;
 
