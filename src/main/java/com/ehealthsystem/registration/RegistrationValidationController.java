@@ -18,8 +18,15 @@ import java.sql.SQLException;
 
 public class RegistrationValidationController {
 
+    /**
+     * the generated validation code.
+     * Used to compare the generated validation code with the validation code entered by the user
+     */
     static String validation;
 
+    /**
+     * all attribues with a fx:id set
+     */
     @FXML
     TextField codeTextField;
 
@@ -29,11 +36,22 @@ public class RegistrationValidationController {
     User newUser;
     String password;
 
+    /**
+     * The first method called when switching scenes
+     * @param user the user that wants to create a new account
+     * @param password the new users password (used to insert him later into the database)
+     */
     public void start(User user, String password) {
         this.password = password;
         newUser = user;
     }
 
+    /**
+     * Scene switch, if validation was successful, to the primary scne
+     * @param event the event that event that triggered the method
+     * @throws SQLException
+     * @throws IOException
+     */
     public void handleRegistrationButton(ActionEvent event) throws SQLException, IOException {
         if(validateCode()) {
             Session.user = newUser;
@@ -45,6 +63,11 @@ public class RegistrationValidationController {
         }
     }
 
+    /**
+     * Compare the generated code with the user input.
+     * If they are equal the validation is successful.
+     * @return
+     */
     public boolean validateCode() {
         if(codeTextField.getText().equals(validation)) {
             return true;
@@ -53,14 +76,30 @@ public class RegistrationValidationController {
         }
     }
 
+    /**
+     * If the Label is pressed a new code is sent to the user
+     * @param event the event that event that triggered the method
+     * @throws MessagingException
+     * @throws IOException
+     * @throws SQLException
+     */
     public void handleResendLabel(MouseEvent event) throws MessagingException, IOException, SQLException {
         SendEmail.validateEmail(newUser.getMail());
     }
 
+    /**
+     * switch to the registration
+     * @param event the event that event that triggered the method
+     * @throws IOException
+     */
     public void handleBackButton(ActionEvent event) throws IOException {
         SceneSwitch.switchToCentered(event, "main/main-view.fxml", "Welcome");
     }
 
+    /**
+     * set the generated validation code for comparing them to the user input.
+     * @param validation the generated validation code of the passed from the email class
+     */
     public static void setValidation(String validation) {
         RegistrationValidationController.validation = validation;
     }

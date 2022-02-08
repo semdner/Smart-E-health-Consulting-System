@@ -38,9 +38,14 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Method for managing the Registration of a new user
+ */
 public class RegistrationController implements Initializable {
 
-
+    /**
+     * all attributes with a fx:id assigned in the view
+     */
     @FXML
     TextField usernameTextField;
 
@@ -88,8 +93,6 @@ public class RegistrationController implements Initializable {
 
     @FXML
     Label errorLabel;
-    @FXML
-    Label loginLabel;
 
     @FXML
     TextField birthdayEditor;
@@ -228,6 +231,10 @@ public class RegistrationController implements Initializable {
         }
     }
 
+    /**
+     * Used to validate the Birthday when user inputs the date into the textfield.
+     * @param event the event that triggered the methods execution
+     */
     public void handleBirthdayEditor(KeyEvent event){
         validateBirthday();
     }
@@ -355,6 +362,13 @@ public class RegistrationController implements Initializable {
         }
     }
 
+    /**
+     * check if the address exist to validate the users input.
+     * @return
+     * @throws IOException
+     * @throws InterruptedException
+     * @throws ApiException
+     */
     private boolean validateAddress() throws IOException, InterruptedException, ApiException {
         try {
             GeoCoder.geocode("%s %s, %s".formatted(streetTextField.getText(), numberTextField.getText(), zipTextField.getText()));
@@ -365,10 +379,20 @@ public class RegistrationController implements Initializable {
         }
     }
 
+    /**
+     * Method called when the insurance name is typed in.
+     * Used to validate that the user input is not empty
+     * @param keyEvent the event that triggers the method execution
+     */
     public void handleInsuranceName(KeyEvent keyEvent) {
         validateInsuranceName();
     }
 
+    /**
+     * Check if the insurance name is empty.
+     * If yes throw an error and return false and if not the opposite.
+     * @return
+     */
     private boolean validateInsuranceName() {
         if(insuranceNameTextField.getText().isBlank()) {
             fieldError(insuranceNameTextField, "Insurance name cannot be blank");
