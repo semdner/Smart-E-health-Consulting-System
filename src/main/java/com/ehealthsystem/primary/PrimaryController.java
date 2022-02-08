@@ -143,7 +143,7 @@ public class PrimaryController implements Initializable {
             pastAppointmentsErrorLabel.setVisible(true);
         }
 
-        System.out.println("Users appointments: " + appointments.size());
+        //System.out.println("Users appointments: " + appointments.size());
     }
 
     /**
