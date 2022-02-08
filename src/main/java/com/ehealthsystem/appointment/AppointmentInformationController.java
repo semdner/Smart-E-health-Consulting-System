@@ -17,8 +17,14 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+/**
+ * Class which manages the appointment data
+ */
 public class AppointmentInformationController implements Initializable {
 
+    /**
+     * attributes with a fix:id in the view
+     */
     @FXML
     Slider searchDistanceSlider;
 
@@ -31,6 +37,12 @@ public class AppointmentInformationController implements Initializable {
     @FXML
     Label errorLabel;
 
+    /**
+     * First method that is called when switching the scene.
+     * Used to set the default values of the all the scene components.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -53,6 +65,15 @@ public class AppointmentInformationController implements Initializable {
         }
     }
 
+    /**
+     * handle the event that is triggered when pressing the continue button.
+     * Save the selected appointment information and determine if something is left empty.
+     * @param event the event that triggered the method
+     * @throws IOException
+     * @throws InterruptedException
+     * @throws ApiException
+     * @throws SQLException
+     */
     public void handleContinueButton(ActionEvent event) throws IOException, InterruptedException, ApiException, SQLException {
         if (saveData()) {
             Session.appointment.doctorList = GeoDistance.filterDoctorsInRangeWithLocalCalculation(Database.getDoctorsBySpecialization(Session.appointment.getSpecialization()), Session.getUserGeo().geometry.location, Session.appointment.getDistance());
@@ -65,6 +86,11 @@ public class AppointmentInformationController implements Initializable {
         }
     }
 
+    /**
+     * Save the appointment data
+     * @return
+     * @throws SQLException
+     */
     private boolean saveData() throws SQLException {
         boolean okay = true;
         Session.appointment.setDistance(searchDistanceSlider.getValue());
@@ -87,11 +113,21 @@ public class AppointmentInformationController implements Initializable {
         return okay;
     }
 
+    /**
+     * switch to the last scene if the button is pressed.
+     * @param event the event that triggered the method
+     * @throws IOException
+     * @throws SQLException
+     */
     public void handleBackButton(ActionEvent event) throws IOException, SQLException {
         saveData();
         SceneSwitch.switchTo(event, "appointment/appointmentHealth-view.fxml", "Make appointment");
     }
 
+    /**
+     * triggers error method if field is left empty.
+     * @return
+     */
     public boolean validateHealthProblem() {
         // Health problem is used very often in other views in combination with appointment details,
         // it would be bad if nothing is displayed there. Therefore, mandate the patient to provide it!
@@ -104,7 +140,10 @@ public class AppointmentInformationController implements Initializable {
         }
     }
 
-
+    /**
+     * determine which health problem was selected.
+     * @return
+     */
     public boolean validateHealthProblemChoiceBox(){
         if(healthProblemChoiceBox.getValue() == null){
             errorLabel.setText("Please provide your health problem.");

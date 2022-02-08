@@ -18,8 +18,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Class for loading the health information
+ */
 public class AppointmentHealthController implements Initializable {
 
+    /**
+     *  attributes with a fx:id of the view
+     */
     @FXML
     GridPane healthGridPane;
 
@@ -32,12 +38,24 @@ public class AppointmentHealthController implements Initializable {
     @FXML
     Label errorLabel;
 
+    /**
+     * stores all from the user selected health informaiton
+     */
     private ArrayList<HealthInformation> selectedHealthInformation = new ArrayList<>();
+
+    /**
+     * stores all the from the database loaded health information
+     */
     private ArrayList<HealthInformation> allHealthInformation = new ArrayList<>();
+
+    /**
+     * stores all the checkboxes to determine which is selected
+     */
     private ArrayList<CheckBox> numberOfCheckBoxes = new ArrayList<>();
 
     /**
-     *
+     * First method that is called when scene is switched.
+     * Used to call the method for initalizing the health information
      * @param url
      * @param resourceBundle
      */
@@ -117,10 +135,10 @@ public class AppointmentHealthController implements Initializable {
 
     /**
      * set the style for labels and buttons
-     * @param ICD
-     * @param health_problem
-     * @param medication
-     * @param selection
+     * @param ICD the parameter of the first column of the grid pane
+     * @param health_problem the parameter of the second column of the gridpane
+     * @param medication the third parameter of the gridpane
+     * @param selection the created checkbox of a row
      */
     private void setStyle(Label ICD, Label health_problem, Label medication, CheckBox selection) {
         ICD.setStyle("-fx-font-size: 15px;");
@@ -149,7 +167,11 @@ public class AppointmentHealthController implements Initializable {
         });
     }
 
-    //Compare the data instead of the object because the object is a different one when switching scenes
+
+    /**
+     * Compare the data instead of the object because the object is a different one when switching scenes
+     * @param c
+     */
     private void removeMatchingHealthInformation(HealthInformation c) {
         for (int i = 0; i < selectedHealthInformation.size(); i++) {
             HealthInformation e = selectedHealthInformation.get(i);
@@ -165,6 +187,10 @@ public class AppointmentHealthController implements Initializable {
         );
     }
 
+    /**
+     * select all the checkboxes/health information in the gridpane
+     * @param event the event triggered the method
+     */
     public void handleSelectAllButton(ActionEvent event) {
         for (int i = 0; i < numberOfCheckBoxes.size(); i++) {
             if(numberOfCheckBoxes.get(i).isSelected()) {
@@ -175,6 +201,10 @@ public class AppointmentHealthController implements Initializable {
         }
     }
 
+    /**
+     * deselects all the checkboxes/health informatino in the gridpane
+     * @param event the event triggered the method
+     */
     public void handleDeselectAllButton(ActionEvent event) {
         for (int i = 0; i < numberOfCheckBoxes.size(); i++) {
             if(numberOfCheckBoxes.get(i).isSelected()) {
@@ -185,6 +215,12 @@ public class AppointmentHealthController implements Initializable {
         }
     }
 
+    /**
+     * if a check box is selected and add the health informaiton to the gridpane
+     * @param c the checkbox selected
+     * @param h the health information of the row
+     * @param selected paramter to determine if checkbox is selected
+     */
     private void manuallySelect(CheckBox c, HealthInformation h, boolean selected) {
         if (c.isSelected() == selected) return;
         c.setSelected(selected);

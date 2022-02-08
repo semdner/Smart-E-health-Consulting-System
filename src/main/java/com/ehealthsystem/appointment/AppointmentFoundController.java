@@ -21,8 +21,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Class which contains loads all the founds doctors based on the search distance
+ */
 public class AppointmentFoundController implements Initializable {
 
+    /**
+     *  attributes with a fx:id of the view
+     */
     @FXML
     Label errorLabel;
 
