@@ -2,22 +2,4 @@
     -fx-font-family: segoe UI, Regular;
     -fx-font-size: 11px;
 }
-
-
-.combo-box{
-    -fx-background-color: #BDBDBD;
-}
-
-.combo-box .list-cell{
-    -fx-background-color:#BDBDBD;
-}
-
-/*Edit Cell Color Only when cursor hover cell */
-.combo-box .list-cell:hover{
-    -fx-background-color:#BDBDBD;
-}
-
-/*Edit Cell Color Only when selected */
-.combo-box .list-cell:selected{
-    -fx-background-color:#BDBDBD;
 }
