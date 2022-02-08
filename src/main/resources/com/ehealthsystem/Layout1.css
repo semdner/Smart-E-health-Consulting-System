@@ -2,27 +2,37 @@
 
 * {
 
-dark-primary-color: #616161;
-default-primary-color: #607D8B;
-light-primary-color: #F5F5F5;
-text-primary-color: #212121;
-accent-color: #9E9E9E;
+dark-primary-color: #388E3C;
+default-primary-color: #4CAF50;
+light-primary-color: #C8E6C9;
+text-primary-color:#FFFFFF;
+accent-color: #4CAF50;
 primary-text-color: #212121;
 secondary-text-color: #757575;
 divider-color: #BDBDBD;
+
     
 }
 
 .root{
-    -fx-background-color: accent-color;
+    -fx-background-color: light-primary-color;
 }
 
 .choice-box{
     -fx-background-color: secondary-text-color;
 }
 
+.scroll-pane{
+    -fx-background-color: accent-color;
+}
+
 .button{
     -fx-background-color: secondary-text-color;
+}
+
+.button:pressed {
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 20,0,0,0 );
 }
 
 .text-field{
@@ -49,7 +59,7 @@ divider-color: #BDBDBD;
 }
 
 .slider{
-    -fx-background-color: accent-color;
+    -fx-background-color: light-primary-color;
 }
 
 .combo-box{

@@ -188,7 +188,7 @@
                      <children>
                         <VBox minHeight="546.0" minWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <ScrollPane hbarPolicy="NEVER" prefHeight="625.0" prefWidth="250.0" vbarPolicy="ALWAYS">
+                              <ScrollPane blendMode="MULTIPLY" hbarPolicy="NEVER" prefHeight="507.0" prefWidth="250.0" vbarPolicy="ALWAYS">
                                 <content>
                                   <AnchorPane minHeight="110.0" minWidth="0.0" prefWidth="235.0">
                                        <children>
