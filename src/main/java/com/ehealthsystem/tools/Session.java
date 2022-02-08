@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Class to manage a Session of a logged in user/admin.
+ */
 public class Session {
     public static User user; //user that is currently logged in
     public static Admin admin;
@@ -31,20 +34,41 @@ public class Session {
         user = Database.getUserByUsernameOrEmail(email);
     }
 
+    /**
+     * Called when the admin logs-in.
+     * A new object of the type admin is created,that represents the logged in admin.
+     * @param name
+     * @throws SQLException
+     * @throws UnsupportedDataTypeException
+     */
     public static void loginAdmin(String name) throws SQLException, UnsupportedDataTypeException {
         admin = new Admin("admin");
     }
 
+    /**
+     * return the users geo data in a formatted way
+     * @return GeoCodingResult of user
+     * @throws IOException
+     * @throws InterruptedException
+     * @throws ApiException
+     */
     public static GeocodingResult getUserGeo() throws IOException, InterruptedException, ApiException {
         if (userGeo == null) //lazy-load, store
             userGeo = GeoCoder.geocode(Session.user.getFormattedAddress());
         return userGeo;
     }
 
+    /**
+     * set the sessions users geodata to null
+     */
     public static void invalidateUserGeo() {
         userGeo = null;
     }
 
+    /**
+     * logout sessions user by setting the attribute to null and switch scene
+     * @throws IOException
+     */
     public static void logout() throws IOException {
         user = null;
         admin = null;
