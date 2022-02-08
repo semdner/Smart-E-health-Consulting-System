@@ -16,8 +16,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * manages all the found doctors of a distance search
+ */
 public class FoundDoctorController {
 
+    /**
+     * all attributes with a fx:id in the view
+     */
     @FXML
     private Label doctorLabel;
 
@@ -33,9 +39,22 @@ public class FoundDoctorController {
     @FXML
     private Button showMoreButton;
 
+    /**
+     * distance to the doctor
+     */
     DoctorDistance doctor = new DoctorDistance();
+
+    /**
+     * the doctors geodata in formatted form
+     */
     String doctorGeoData;
 
+    /**
+     * Method to set he doctors information when scene is loaded from outside
+     * @param doctor the doctor selected
+     * @param doctorGeoData the doctors geodata
+     * @param distance the distance from user to doctor
+     */
     public void setData(DoctorDistance doctor, String doctorGeoData, double distance) {
         doctorLabel.setText(doctor.getDoctor().getLastName());
         addressLabel.setText(doctor.getDoctor().getStreet() + " " + doctor.getDoctor().getHouseNumber());

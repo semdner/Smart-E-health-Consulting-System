@@ -28,8 +28,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+/**
+ * Class for managing the full view of a selected doctor
+ */
 public class FoundDoctorFullController extends ScheduleLoader {
 
+    /**
+     * all attributes with a fx:id assigned in the view
+     */
     @FXML
     Label doctorLabel;
 
@@ -268,6 +274,12 @@ public class FoundDoctorFullController extends ScheduleLoader {
         engine.load(getClass().getResource("/com/ehealthsystem/map/map.html").toString());
     }
 
+    /**
+     * check if a valid date is picked
+     * @param event event that triggered the method
+     * @throws SQLException
+     * @throws UnsupportedDataTypeException
+     */
     public void handleDateChoice(ActionEvent event) throws SQLException, UnsupportedDataTypeException { //not triggered when the same day is re-selected
         selectedTime = null;
         if (datePicker.getValue().isBefore(LocalDate.now())) {
