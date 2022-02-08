@@ -23,8 +23,14 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * Class for manager an ready made appointment
+ */
 public class AppointmentMadeController {
 
+    /**
+     * all attributes with a fx:id in the view
+     */
     @FXML
     Label doctorLabel;
 
@@ -52,9 +58,24 @@ public class AppointmentMadeController {
     @FXML
     Button cancelAppointmentButton;
 
+    /**
+     * contains the laodedAppointment
+     */
     Appointment loadedAppointment;
+
+    /**
+     * contains the doctor geodata for loading the map
+     */
     String doctorGeoData;
 
+    /**
+     * first method called when scene is switched
+     * @param appointment the selected Appointment is passed
+     * @throws SQLException
+     * @throws IOException
+     * @throws InterruptedException
+     * @throws ApiException
+     */
     public void start(Appointment appointment) throws SQLException, IOException, InterruptedException, ApiException {
         loadedAppointment = appointment;
         loadAppointment();
@@ -66,6 +87,9 @@ public class AppointmentMadeController {
         loadGMap();
     }
 
+    /**
+     * load the appointment information
+     */
     private void loadAppointment() {
         dateLabel.setText(loadedAppointment.getDate().format(Session.dateFormatter));
         System.out.println(dateLabel.getText() + " " + loadedAppointment.getDate());
@@ -73,13 +97,24 @@ public class AppointmentMadeController {
         healthProblemLabel.setText(loadedAppointment.getHealthProblemDescription());
     }
 
+    /**
+     * load the doctors informaiton
+     * @throws SQLException
+     * @throws IOException
+     * @throws InterruptedException
+     * @throws ApiException
+     */
     private void loadDoctor() throws SQLException, IOException, InterruptedException, ApiException {
         doctorLabel.setText(loadedAppointment.getDoctor().getLastName());
         doctorGeoData = loadedAppointment.getDoctor().getFormattedAddressWithPlaceName();
         addressLabel.setText(doctorGeoData);
         specializationsLabel.setText(StringEnumerator.enumerate(loadedAppointment.getDoctor().getSpecializations()));
+        healthProblemLabel.setText(loadedAppointment.getHealthProblemDescription());
     }
 
+    /**
+     * load google maps into with webengine
+     */
     private void loadGMap() {
         WebEngine engine = mapWebView.getEngine();
 
@@ -97,6 +132,14 @@ public class AppointmentMadeController {
         engine.load(getClass().getResource("/com/ehealthsystem/map/map.html").toString());
     }
 
+    /**
+     * Switch to edit appointment scene when button is pressed
+     * @param event the event that is triggered the method call
+     * @throws IOException
+     * @throws SQLException
+     * @throws InterruptedException
+     * @throws ApiException
+     */
     public void handleEditAppointmentButton(ActionEvent event) throws IOException, SQLException, InterruptedException, ApiException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/ehealthsystem/appointment/appointmentShift-view.fxml"));
         Parent root = loader.load();
@@ -110,6 +153,13 @@ public class AppointmentMadeController {
         stage.setScene(primaryScene);
     }
 
+    /**
+     * Cancel the selected appointment
+     * @param event the event that is triggered the method call
+     * @throws SQLException
+     * @throws IOException
+     * @throws MessagingException
+     */
     public void handleCancelButton(ActionEvent event) throws SQLException, IOException, MessagingException {
         loadedAppointment.delete();
 
@@ -129,6 +179,11 @@ public class AppointmentMadeController {
         SceneSwitch.switchTo(event,"primary/primary-view.fxml", "E-Health-System");
     }
 
+    /**
+     * return to primary view without an changes made
+     * @param event the event that is triggered the method call
+     * @throws IOException
+     */
     public void handleBackButton(ActionEvent event) throws IOException {
         SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
     }

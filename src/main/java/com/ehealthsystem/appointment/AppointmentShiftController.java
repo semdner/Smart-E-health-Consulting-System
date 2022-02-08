@@ -19,8 +19,14 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * Class for managing the appointment shifting
+ */
 public class AppointmentShiftController extends ScheduleLoader {
 
+    /**
+     * attributes with a fx:id assigned in the view
+     */
     @FXML
     Label doctorLabel;
 
@@ -48,14 +54,32 @@ public class AppointmentShiftController extends ScheduleLoader {
     @FXML
     Button shiftAppointmentButton;
 
+    /**
+     * the appointment to shift which is loaded in the scene
+     */
     static Appointment loadedAppointment;
 
+    /**
+     * first method called when switching scenes
+     * @param appointment the apponitment selected to shift
+     * @throws SQLException
+     * @throws IOException
+     * @throws InterruptedException
+     * @throws ApiException
+     */
     public void start(Appointment appointment) throws SQLException, IOException, InterruptedException, ApiException {
         loadedAppointment = appointment;
         loadCurrentAppointment();
         loadShiftAppointment();
     }
 
+    /**
+     * set the data to current appointment informaton section
+     * @throws SQLException
+     * @throws IOException
+     * @throws InterruptedException
+     * @throws ApiException
+     */
     private void loadCurrentAppointment() throws SQLException, IOException, InterruptedException, ApiException {
         doctorLabel.setText(loadedAppointment.getDoctor().getLastName());
         addressLabel.setText(loadedAppointment.getDoctor().getFormattedAddressWithPlaceName());
@@ -65,15 +89,32 @@ public class AppointmentShiftController extends ScheduleLoader {
         healthProblemLabel.setText(loadedAppointment.getHealthProblemDescription());
     }
 
+    /**
+     * set the current data to the appointment shift section
+     * @throws SQLException
+     * @throws UnsupportedDataTypeException
+     */
     private void loadShiftAppointment() throws SQLException, UnsupportedDataTypeException {
         datePicker.setValue(loadedAppointment.getDate());
         loadSchedule();
     }
 
+    /**
+     * load the doctors schedule
+     * @throws SQLException
+     * @throws UnsupportedDataTypeException
+     */
     private void loadSchedule() throws SQLException, UnsupportedDataTypeException {
         loadSchedule(datePicker.getValue(), loadedAppointment.getDoctor(), selectedDateLabel, shiftAppointmentButton);
     }
 
+    /**
+     * Shift the appointment when the button was pressed
+     * @param event event that triggered the method call
+     * @throws SQLException
+     * @throws IOException
+     * @throws MessagingException
+     */
     public void handleShiftAppointmentButton(ActionEvent event) throws SQLException, IOException, MessagingException {
         if(selectedTime == null) {
             errorLabel.setText(NO_TIME_SELECTED);
@@ -105,10 +146,24 @@ public class AppointmentShiftController extends ScheduleLoader {
         SceneSwitch.switchTo(event,"primary/primary-view.fxml", "E-Health-System");
     }
 
+    /**
+     * Go back to the last scene without shifting the appointment
+     * @param event event that triggered the method call
+     * @throws IOException
+     * @throws SQLException
+     * @throws InterruptedException
+     * @throws ApiException
+     */
     public void handleBackButton(ActionEvent event) throws IOException, SQLException, InterruptedException, ApiException {
         SceneSwitch.loadAppointmentMadeView(event, loadedAppointment);
     }
 
+    /**
+     * Check if date is not in the past
+     * @param event event that triggered the method call
+     * @throws SQLException
+     * @throws UnsupportedDataTypeException
+     */
     public void handleDateChoice(ActionEvent event) throws SQLException, UnsupportedDataTypeException { //not triggered when the same day is re-selected
         selectedTime = null;
         if (datePicker.getValue().isBefore(LocalDate.now())) {
