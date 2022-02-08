@@ -69,52 +69,52 @@
                <children>
                   <Label text="Username">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                         <Font name="Segoe UI Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Email" GridPane.rowIndex="1">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                         <Font name="Segoe UI Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="First name" GridPane.rowIndex="2">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                         <Font name="Segoe UI Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Last name" GridPane.rowIndex="3">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                         <Font name="Segoe UI Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Street" GridPane.rowIndex="4">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                         <Font name="Segoe UI Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="House number" GridPane.rowIndex="5">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                         <Font name="Segoe UI Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Zip code" GridPane.rowIndex="6">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="Segoe UI Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Birthday" GridPane.rowIndex="7">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="Segoe UI Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Gender" GridPane.rowIndex="8">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="Segoe UI Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Private insurance" GridPane.rowIndex="10">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="Segoe UI Bold" size="15.0" />
                      </font>
                   </Label>
                   <TextField fx:id="usernameTextField" GridPane.columnIndex="1" />
@@ -156,7 +156,7 @@
             </GridPane>
             <Label layoutX="10.0" layoutY="11.0" prefHeight="30.0" prefWidth="200.0" text="Personal information" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="540.0" AnchorPane.topAnchor="5.0">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                   <Font name="Segoe UI Bold" size="20.0" />
                </font>
             </Label>
             <Separator layoutX="10.0" layoutY="40.0" prefHeight="2.0" prefWidth="187.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="553.0" AnchorPane.topAnchor="35.0" />
