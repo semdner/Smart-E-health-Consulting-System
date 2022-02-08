@@ -790,9 +790,8 @@ public class Database {
             user_id = rs.getInt("user_id");
         }
 
-        String queryDeletion = "DELETE FROM user WHERE user_id = ?;";
+        String queryDeletion = "DELETE FROM appointment WHERE user = '" + username + "';";
         statement = connection.prepareStatement(queryDeletion);
-        statement.setInt(1, user_id);
         statement.executeUpdate();
 
         queryDeletion = "DELETE FROM health_status WHERE user_id = ?;";
@@ -800,8 +799,9 @@ public class Database {
         statement.setInt(1, user_id);
         statement.executeUpdate();
 
-        queryDeletion = "DELETE FROM appointment WHERE user = '" + username + "';";
+        queryDeletion = "DELETE FROM user WHERE user_id = ?;";
         statement = connection.prepareStatement(queryDeletion);
+        statement.setInt(1, user_id);
         statement.executeUpdate();
     }
 }
