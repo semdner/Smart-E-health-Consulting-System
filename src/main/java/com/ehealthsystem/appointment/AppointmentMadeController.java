@@ -175,6 +175,16 @@ public class AppointmentMadeController {
                 ),
                 "This is to confirm that your appointment with the doctor %s was cancelled.".formatted(loadedAppointment.getDoctor().getLastName()),false
         );
+        SendEmail.sendMail(
+                Session.user.getMail(),
+                "Your patient has cancelled the appointment",
+                "This is to inform you that your appointment with the patient %s %s on the %s %s has been cancelled".formatted(
+                        Session.user.getFirstName(),
+                        Session.user.getLastName(),
+                        loadedAppointment.getDate().format(Session.dateFormatter),
+                        loadedAppointment.getTime().format(Session.timeFormatter)
+                ), false
+        );
 
         SceneSwitch.switchTo(event,"primary/primary-view.fxml", "E-Health-System");
     }
