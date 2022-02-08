@@ -1,11 +1,16 @@
-
+.label{
+    -fx-font-family: segoe UI, Regular;
+    -fx-font-size: 11px;
+}
 
 .text-area{
-    -fx-font: segoe UI, Regular;
+    -fx-font-family: segoe UI, Regular;
+    -fx-font-size: 11px;
 }
 
 .text-field{
-    -fx-font: segoe UI, Regular;
+    -fx-font-family: segoe UI, Regular;
+    -fx-font-size: 11px;
 }
 
 
