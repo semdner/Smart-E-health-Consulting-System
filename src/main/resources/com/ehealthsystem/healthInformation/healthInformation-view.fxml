@@ -15,7 +15,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../Layout1.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.healthInformation.HealthInformationController">
    <top>
-      <MenuBar disable="true" prefHeight="25.0" prefWidth="1000.0" style="-fx-background-color: #4CAF50;" BorderPane.alignment="CENTER">
+      <MenuBar disable="true" prefHeight="25.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>

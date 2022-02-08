@@ -19,7 +19,7 @@ divider-color: #BDBDBD;
 }
 
 .choice-box{
-    -fx-background-color: secondary-text-color;
+    -fx-background-color: #BDBDBD;
 }
 
 .scroll-pane{
@@ -27,7 +27,7 @@ divider-color: #BDBDBD;
 }
 
 .button{
-    -fx-background-color: secondary-text-color;
+    -fx-background-color: #BDBDBD;
 }
 
 .button:pressed {
@@ -36,7 +36,7 @@ divider-color: #BDBDBD;
 }
 
 .text-field{
-    -fx-background-color: secondary-text-color;
+    -fx-background-color: #BDBDBD;
     -fx-progress-color: black;
 }
 
@@ -63,12 +63,12 @@ divider-color: #BDBDBD;
 }
 
 .combo-box{
-    -fx-background-color: secondary-text-color;
+    -fx-background-color: #BDBDBD;
 }
 
 .combo-box .list-cell{
 
-    -fx-background-color:secondary-text-color;
+    -fx-background-color:#BDBDBD;
 
 
 }
@@ -76,12 +76,12 @@ divider-color: #BDBDBD;
 /*Edit Cell Color Only when cursor hover cell */
 .combo-box .list-cell:hover{
 
-    -fx-background-color:secondary-text-color;
+    -fx-background-color:#BDBDBD;
 }
 
 /*Edit Cell Color Only when selected */
 .combo-box .list-cell:selected{
 
-    -fx-background-color:secondary-text-color;
+    -fx-background-color:#BDBDBD;
 
 }

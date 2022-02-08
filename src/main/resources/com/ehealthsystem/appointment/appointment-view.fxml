@@ -60,7 +60,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="20.0" prefWidth="220.0">
          <children>
-            <Button fx:id="showMoreButton" blendMode="SRC_ATOP" layoutX="47.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleShowMoreButton" prefHeight="22.0" prefWidth="120.0" style="-fx-background-color: #757575;" text="Show details" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="3.0">
+            <Button fx:id="showMoreButton" blendMode="SRC_ATOP" layoutX="47.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleShowMoreButton" prefHeight="22.0" prefWidth="120.0" text="Show details" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="3.0">
                <font>
                   <Font size="11.0" />
                </font>
