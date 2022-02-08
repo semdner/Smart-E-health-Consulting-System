@@ -177,8 +177,8 @@ public class AppointmentMadeController {
         );
         SendEmail.sendMail(
                 Session.user.getMail(),
-                "Your patient has cancelled the appointment",
-                "This is to inform you that your appointment with the patient %s %s on the %s %s has been cancelled".formatted(
+                "Your patient has cancelled an appointment",
+                "This is to inform you that your appointment with the patient %s %s on %s at %s has been cancelled".formatted(
                         Session.user.getFirstName(),
                         Session.user.getLastName(),
                         loadedAppointment.getDate().format(Session.dateFormatter),
