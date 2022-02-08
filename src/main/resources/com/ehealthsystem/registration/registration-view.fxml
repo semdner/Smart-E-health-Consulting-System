@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../Layout1.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.registration.RegistrationController">
 
 
@@ -25,7 +24,7 @@
                   <HBox alignment="CENTER" prefHeight="150.0" prefWidth="627.0">
                      <children>
 
-                            <Label alignment="CENTER" text="E-HEALTH&#10;SYSTEM" textAlignment="CENTER" textFill="#757575">
+                            <Label fx:id="ehealthlogo" alignment="CENTER" text="E-HEALTH&#10;SYSTEM" textAlignment="CENTER">
                                 <font>
                                     <Font name="System Bold" size="40.0" />
                                 </font>

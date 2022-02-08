@@ -22,13 +22,13 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="codeTextField" layoutX="50.0" layoutY="116.0" prefHeight="25.0" prefWidth="250.0" />
-            <Button fx:id="ContinueButton" layoutX="50.0" layoutY="151.0" mnemonicParsing="false" onAction="#handleRegistrationButton" prefWidth="250.0" text="Finish registration" />
-            <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="23.0" text="Invalid email format. Please try again" textFill="RED" visible="false" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
-            <Label layoutX="50.0" layoutY="100.0" text="Code" AnchorPane.bottomAnchor="183.0" />
-            <Label fx:id="resendLabel" layoutX="230.0" layoutY="99.0" onMouseClicked="#handleResendLabel" text="Resend code" textFill="#1849da" underline="true" AnchorPane.bottomAnchor="184.0" />
-            <Button fx:id="backButton" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleBackButton" text="&lt; Back" />
-            <Label layoutX="32.0" layoutY="54.0" text="Please enter the confirmation code sent to your inbox." />
+            <TextField fx:id="codeTextField" layoutX="50.0" layoutY="110.0" prefHeight="25.0" prefWidth="250.0" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="110.0" />
+            <Button fx:id="ContinueButton" layoutX="50.0" layoutY="145.0" mnemonicParsing="false" onAction="#handleRegistrationButton" prefWidth="250.0" text="Finish registration" />
+            <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="190.0" text="Invalid email format. Please try again" textFill="RED" visible="false" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+            <Label layoutX="50.0" layoutY="93.0" text="Code" AnchorPane.bottomAnchor="191.0" />
+            <Label fx:id="resendLabel" layoutX="216.0" layoutY="93.0" onMouseClicked="#handleResendLabel" text="Resend code" textFill="#1849da" underline="true" AnchorPane.bottomAnchor="191.0" AnchorPane.leftAnchor="216.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="93.0" />
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleBackButton" text="&lt; Back" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="44.0" prefHeight="36.0" prefWidth="250.0" text="Please enter the confirmation code&#10;sent to your inbox." textAlignment="CENTER" AnchorPane.bottomAnchor="216.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="44.0" />
          </children>
       </AnchorPane>
    </center>

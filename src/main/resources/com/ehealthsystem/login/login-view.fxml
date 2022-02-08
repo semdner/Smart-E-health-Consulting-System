@@ -16,7 +16,7 @@
    <top>
       <AnchorPane prefHeight="150.0" prefWidth="350.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="79.0" layoutY="23.0" text="E-HEALTH&#10;SYSTEM" textAlignment="CENTER">
+            <Label fx:id="ehealthlogo" alignment="CENTER" layoutX="79.0" layoutY="23.0" text="E-HEALTH&#10;SYSTEM" textAlignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="53.0" AnchorPane.topAnchor="30.0">
                <font>
                   <Font name="System Bold" size="40.0" />
                </font>
