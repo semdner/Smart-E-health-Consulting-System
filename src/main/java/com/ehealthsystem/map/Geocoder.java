@@ -6,7 +6,7 @@ import com.google.maps.model.GeocodingResult;
 
 import java.io.IOException;
 
-public class GeoCoder {
+public class Geocoder {
 
     /**
      * Verifies an address
@@ -22,7 +22,7 @@ public class GeoCoder {
             return null;
         }
 
-        System.out.println("GeoCoder: " + formattedAddress);
+        System.out.println("Geocoder: " + formattedAddress);
         GeocodingResult[] results = GeocodingApi.geocode(Context.getContext(), formattedAddress).language("de-DE").await();
         return results[0];
     }

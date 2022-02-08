@@ -3,7 +3,7 @@ package com.ehealthsystem.tools;
 import com.ehealthsystem.admin.Admin;
 import com.ehealthsystem.appointment.AppointmentInCreation;
 import com.ehealthsystem.database.Database;
-import com.ehealthsystem.map.GeoCoder;
+import com.ehealthsystem.map.Geocoder;
 import com.ehealthsystem.user.User;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.GeocodingResult;
@@ -54,7 +54,7 @@ public class Session {
      */
     public static GeocodingResult getUserGeo() throws IOException, InterruptedException, ApiException {
         if (userGeo == null) //lazy-load, store
-            userGeo = GeoCoder.geocode(Session.user.getFormattedAddress());
+            userGeo = Geocoder.geocode(Session.user.getFormattedAddress());
         return userGeo;
     }
 
