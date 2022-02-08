@@ -1,3 +1,18 @@
+.root{
+    -fx-font-family: "Segoe UI";
+}
+.text{
+    -fx-font-family: "Segoe UI";
+}
 .text-field{
-    -fx-font-family: segoe UI, Regular;
+    -fx-font-family: "Segoe UI";
+}
+.combo-box{
+    -fx-font-family: "Segoe UI";
+}
+.label{
+    -fx-font-family: "Segoe UI";
+}
+.button{
+    -fx-font-family: "Segoe UI";
 }
