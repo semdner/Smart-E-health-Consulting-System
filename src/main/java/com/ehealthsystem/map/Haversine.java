@@ -18,12 +18,12 @@ public class Haversine {
         //Thank you, https://www.movable-type.co.uk/scripts/latlong.html (accessed 2022-01-26)
         //The following code is the first JavaScript snippet on the webpage, ported to Java (just data types adjusted)
         long R = (long) 6371e3; //meters
-        double φ1 = lat1 * Math.PI/180; // φ, λ in radians
-        double φ2 = lat2 * Math.PI/180;
-        double Δφ = (lat2-lat1) * Math.PI/180;
-        double Δλ = (lon2-lon1) * Math.PI/180;
+        double phi1 = lat1 * Math.PI/180; // φ, λ in radians
+        double phi2 = lat2 * Math.PI/180;
+        double deltaPhi = (lat2-lat1) * Math.PI/180;
+        double deltaLambda = (lon2-lon1) * Math.PI/180;
 
-        double a = (Math.sin(Δφ/2) * Math.sin(Δφ/2)) + (Math.cos(φ1) * Math.cos(φ2)) * (Math.sin(Δλ/2) * Math.sin(Δλ/2));
+        double a = (Math.sin(deltaPhi/2) * Math.sin(deltaPhi/2)) + (Math.cos(phi1) * Math.cos(phi2)) * (Math.sin(deltaLambda/2) * Math.sin(deltaLambda/2));
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
         double d = R * c; // in meters
