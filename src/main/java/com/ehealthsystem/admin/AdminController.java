@@ -1,6 +1,7 @@
 package com.ehealthsystem.admin;
 
 import com.ehealthsystem.database.Database;
+import com.ehealthsystem.tools.BirthdayCheck;
 import com.ehealthsystem.tools.EmailCheck;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
@@ -19,7 +20,9 @@ import javax.activation.UnsupportedDataTypeException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 
 /**
@@ -197,7 +200,22 @@ public class AdminController implements Initializable {
             public void handle(TableColumn.CellEditEvent<UserTableView, String> userTableViewStringCellEditEvent) {
                 UserTableView user = userTableViewStringCellEditEvent.getRowValue();
                 String identifier = user.getUsername();
-                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+                if(!userTableViewStringCellEditEvent.getNewValue().isBlank()){
+                    LocalDate date;
+                    try {
+                        date = LocalDate.parse(userTableViewStringCellEditEvent.getNewValue(), DateTimeFormatter.ofPattern("d.M.yyyy"));
+                    } catch (DateTimeParseException e) {
+                        return;
+                    }
+                }
+
+                LocalDate date;
+                date = LocalDate.parse(userTableViewStringCellEditEvent.getNewValue(), DateTimeFormatter.ofPattern("d.M.yyyy"));
+                if(!BirthdayCheck.isOldEnough(date)) {
+                    return;
+                }
+                
                 user.setBirthDate(userTableViewStringCellEditEvent.getNewValue());
                 Object[][] parameters = {{"birthday", user.getBirthDate()}};
                 try {
