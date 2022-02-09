@@ -97,7 +97,7 @@ public class Appointment {
 
     /**
      * get the set date & time of the appointment
-     * @return return the date & time as an object of the type LocalTime
+     * @return return the date & time as an object of the type LocalDateTime
      */
     public LocalDateTime getDateTime() {
         return LocalDateTime.of(date, time);
@@ -121,8 +121,8 @@ public class Appointment {
     }
 
     /**
-     * ???
-     * @return ???
+     * For future use: Get the appointment's duration
+     * @return the duration of the appointment in minutes
      */
     public int getDuration() {
         return duration;

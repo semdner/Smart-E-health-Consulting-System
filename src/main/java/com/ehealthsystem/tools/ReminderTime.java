@@ -1,11 +1,11 @@
 package com.ehealthsystem.tools;
 
 /**
- * Method for reminding the user about his appointment.
+ * Enumeration of all possible reminder times for an appointment.
  */
 public enum ReminderTime { //https://stackoverflow.com/q/27801119/18039017
     /**
-     * The user can choose the time he wants to be reminded before his appointment
+     * The user can choose the time they want to be reminded at for their appointment.
      */
     NO_REMINDER("No reminder", 0),
     TEN_MINUTES("10 minutes", 10),
@@ -13,13 +13,13 @@ public enum ReminderTime { //https://stackoverflow.com/q/27801119/18039017
     THREE_DAYS("3 days", 3*24*60),
     ONE_WEEK("1 week", 7*24*60);
 
-    private String label;
-    private int minutes;
+    private final String label;
+    private final int minutes;
 
     /**
-     * Constructor to set the time for the reminding
-     * @param label The time as a String/Enum constant.
-     * @param minutes The time in minutes
+     * Constructor to set details for a reminder option
+     * @param label Label for the reminder time
+     * @param minutes The reminder time in minutes
      */
     ReminderTime(String label, int minutes) {
         this.label = label;
@@ -43,8 +43,8 @@ public enum ReminderTime { //https://stackoverflow.com/q/27801119/18039017
     }
 
     /**
-     * Gets the name of this enum constant.
-     * @return Name of the enum constant.
+     * Get the reminder time, written out as spoken.
+     * @return string describing the time
      */
     public String getLabel() {
         return label;

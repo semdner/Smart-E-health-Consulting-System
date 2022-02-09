@@ -62,10 +62,6 @@ public class SceneSwitch {
      * Switches scene and displays the appointment the user has made.
      * @param event Trigger to invoke this method.
      * @param appointment The appointment made by the user.
-     * @throws IOException
-     * @throws SQLException Throws Exception during connection issues with the Database.
-     * @throws InterruptedException
-     * @throws ApiException
      */
     public static void loadAppointmentMadeView(Event event, Appointment appointment) throws IOException, SQLException, InterruptedException, ApiException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/ehealthsystem/appointment/appointmentMade-view.fxml"));

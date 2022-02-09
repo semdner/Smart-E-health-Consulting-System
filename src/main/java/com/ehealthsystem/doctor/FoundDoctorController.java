@@ -45,14 +45,14 @@ public class FoundDoctorController {
     DoctorDistance doctor = new DoctorDistance();
 
     /**
-     * the doctors geodata in formatted form
+     * the doctor's geo data in formatted form
      */
     String doctorGeoData;
 
     /**
-     * Method to set he doctors information when scene is loaded from outside
+     * Method to set the doctor's information when scene is loaded from outside
      * @param doctor the doctor selected
-     * @param doctorGeoData the doctors geodata
+     * @param doctorGeoData the doctor's geo data
      * @param distance the distance from user to doctor
      */
     public void setData(DoctorDistance doctor, String doctorGeoData, double distance) {

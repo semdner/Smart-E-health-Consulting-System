@@ -16,13 +16,6 @@ public class Doctor implements HasAddress {
     String zip;
     LatLng location;
 
-    /**
-     * ???
-     */
-    public Doctor() {
-
-    }
-
     public Doctor(int id, String firstName, String lastName, String street, String number, String zip, LatLng location) {
         this.id = id;
         this.firstName = firstName;
@@ -82,7 +75,7 @@ public class Doctor implements HasAddress {
     }
 
     /**
-     * Returns the location of doctor´s office from google maps.
+     * Returns the location of doctor´s office (stored with the doctor in the database).
      * @return The location as a coordinate.
      */
     public LatLng getLocation() {
@@ -90,9 +83,9 @@ public class Doctor implements HasAddress {
     }
 
     /**
-     * Returns a List of the specialization of a doctor.
-     * @return The specialization as an ArrayList.
-     * @throws SQLException If connection issues with the Database.
+     * Returns a List of the specializations of a doctor.
+     * @return The doctor's specializations as an ArrayList.
+     * @throws SQLException If connection issues with the Database occur.
      */
     public ArrayList<String> getSpecializations() throws SQLException {
         return Database.loadDoctorSpecializations(id); //lazy-load and also don't store

@@ -37,7 +37,7 @@ public class RegistrationValidationController {
     /**
      * The first method called when switching scenes
      * @param user the user that wants to create a new account
-     * @param password the new user password (used to insert him later into the database)
+     * @param password the new user's password (used to insert them later into the database)
      */
     public void start(User user, String password) {
         this.password = password;
@@ -64,7 +64,7 @@ public class RegistrationValidationController {
     /**
      * Compare the generated code with the user input.
      * If they are equal the validation is successful.
-     * @return True if the user input matches with the generated code he received.
+     * @return True if the user input matches with the generated code that was sent to them.
      */
     public boolean validateCode() {
         if(codeTextField.getText().equals(validation)) {

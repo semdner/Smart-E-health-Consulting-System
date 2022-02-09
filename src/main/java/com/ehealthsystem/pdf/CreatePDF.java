@@ -21,61 +21,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class for creating a pdf-document.
+ * Class for creating a PDF document.
  */
 public class CreatePDF {
 
     /**
-     * Method to create a pdf-document with the health-information and data of the user.
-     * @param dest path where the created pdf-doc should be saved.
+     * Method to create a PDF document with the health information and data of the user.
+     * @param dest path where the created PDF doc should be saved.
      * @param forAppointment true if only the health information for the appointment in creation shall be included
-     * @throws IOException pdf-document is not able to be saved.
-     * @throws SQLException connection issues with the database.
+     * @throws IOException PDF document is not able to be saved.
+     * @throws SQLException if a connection issue with the database occurs
      */
     public static void create_Pdf(String dest, boolean forAppointment) throws IOException, SQLException {
 
-        //If the user does not choose a destination for the file the method(create_Pdf()) will be aborted
+        //If the user does not choose a destination for the file, the method(create_Pdf()) will be aborted
         if(dest.isBlank()){
-            System.out.println("Saving PDFFile was cancelled!"); return;
+            System.out.println("Saving PDF file was cancelled!"); return;
         }
-
-
-        //Connection with the Database.
-        Connection con = null;
-        String fileName = "ehealth.sqlite3";
-
-        try {
-            con = DriverManager.getConnection("jdbc:sqlite:" + fileName);
-            System.out.println("Connection was successful!");
-        } catch (SQLException e) {
-            System.out.println("Connection failed!");
-            e.printStackTrace();
-        }
-
-
 
         //Creating the Document as a pdf and setting the page size.
         PdfDocument pdfDoc = new PdfDocument(new PdfWriter(dest));
         pdfDoc.setDefaultPageSize(PageSize.A4);
         Document document = new Document(pdfDoc);
 
-
         //Used fonts in the document.
         PdfFont bold = PdfFontFactory.createFont(FontConstants.TIMES_BOLD);
-
-
 
         //getting "PageSize" for Centering Text -> HEADLINE
         Rectangle pageSize = pdfDoc.getDefaultPageSize();
         float width = pageSize.getWidth() - document.getLeftMargin() - document.getRightMargin();
-
 
         //Static text/headlines for the document
         Text title = new Text("Health Information").setFont(bold).setFontSize(20f);
         Text headline1 = new Text("\n" + "Personal Information:").setFont(bold).setFontSize(14f);
         Text headline2 = new Text("\n" + "Medical Conditions:").setFont(bold).setFontSize(14f);
         Text headline3 = new Text("\n" + "Insurance:").setFont(bold).setFontSize(14f);
-
 
         //Creating Table where the data will be stored
         float[] col1 = {75f, 200f, 70f, 1f};
@@ -87,13 +67,11 @@ public class CreatePDF {
         float[] col3 = {125f, 150f, 70f, 1f};
         Table table4 = new Table(col3);
 
-
         //Adding Data into the Table.
         PersonalData1(table1);
         PersonalData2(table2);
         Disease(table3, forAppointment);
         InsuranceData(table4);
-
 
         //Adding the prepared data into the document.
         // Headline
@@ -109,7 +87,7 @@ public class CreatePDF {
         document.add(new Paragraph().add(headline3));
         document.add(table4);
 
-        //always closing the document at the end, so it can be saved.
+        //always close the document in the end, so it can be saved.
         document.close();
     }
 
@@ -155,7 +133,7 @@ public class CreatePDF {
     }
 
     /**
-     * Method to add the healthproblems of the user into the table.
+     * Method to add the health-problems of the user into the table.
      * @param table The provided table for the data.
      * @param forAppointment true if only the health information for the appointment in creation shall be included
      * @throws SQLException Throws Exception during connection issues with the Database.

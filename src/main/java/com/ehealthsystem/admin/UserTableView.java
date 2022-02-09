@@ -142,7 +142,7 @@ public class UserTableView {
 
     /**
      * set the value of the private attribute password.
-     * @param password the users password in a hashed form.
+     * @param password the users password in plain-text.
      */
     public void setPassword(String password) throws SQLException {
         String query = "UPDATE user SET password = ? WHERE email = ?";

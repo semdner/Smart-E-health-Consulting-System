@@ -3,7 +3,7 @@ package com.ehealthsystem.healthInformation;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
- * Health information in a form that are stored as an observable
+ * Health information in a stored in an observable format
  */
 public class HealthInformationTableView {
     private SimpleStringProperty ICD, healthProblem;

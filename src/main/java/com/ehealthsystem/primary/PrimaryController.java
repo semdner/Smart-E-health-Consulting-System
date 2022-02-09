@@ -147,7 +147,7 @@ public class PrimaryController implements Initializable {
     }
 
     /**
-     * Call the setter methods for setting the user data to show him his user information
+     * Call the setter methods for setting the user data to show them his user information
      */
     private void loadUserDetails() {
         setUsernameLabel(Session.user.getUsername());

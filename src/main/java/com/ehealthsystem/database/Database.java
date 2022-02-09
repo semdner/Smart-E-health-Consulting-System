@@ -550,7 +550,7 @@ public class Database {
     }
 
     /**
-     * DEPRECATED: FoundDoctorFullController.getFreeTimeSlots() is used instead
+     * @deprecated : FoundDoctorFullController.getFreeTimeSlots() is used instead
      */
     public static ArrayList<DoctorTimeSlot> getDoctorsFreeTimes(Doctor doctor, LocalDate selectedDate) throws SQLException {
         String dateStr = selectedDate.format(dateFormatter);

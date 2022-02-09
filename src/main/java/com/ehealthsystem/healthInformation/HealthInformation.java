@@ -1,7 +1,7 @@
 package com.ehealthsystem.healthInformation;
 
 /**
- * Represents the health information for the user
+ * Represents the health information of a user
  */
 public class HealthInformation {
 

@@ -8,7 +8,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
- * Class for creating an Appointment by the user.
+ * Class for storing the creation progress of an Appointment by the user.
  */
 public class AppointmentInCreation {
     public ArrayList<DoctorDistance> doctorList = new ArrayList<>();
@@ -22,12 +22,6 @@ public class AppointmentInCreation {
     private String specialization;
     private String healthProblemChoice;
     private ArrayList<HealthInformation> healthInformation = new ArrayList<>();
-
-    /**
-     * ??? Creates an appointment ???.
-     */
-    public AppointmentInCreation() {
-    }
 
     /**
      * Sets the date of the appointment.
@@ -62,8 +56,8 @@ public class AppointmentInCreation {
     }
 
     /**
-     * Sets the Healthproblem of the user.
-     * @param healthProblem the healthproblem of the user.
+     * Sets the health problem of the user.
+     * @param healthProblem the health problem of the user as a string.
      */
     public void setHealthProblem(String healthProblem) {
         this.healthProblem = healthProblem;
@@ -94,7 +88,7 @@ public class AppointmentInCreation {
     }
 
     /**
-     * Sets the distance between doctor and user.
+     * Sets the maximum distance between doctor and user.
      * @param distance the distance in km between doctor and user.
      */
     public void setDistance(double distance) {
@@ -102,7 +96,7 @@ public class AppointmentInCreation {
     }
 
     /**
-     * Returns the distance of the Doctor.
+     * Returns the saved maximum distance to a Doctor.
      * @return The distance as double.
      */
     public double getDistance() {
@@ -110,16 +104,16 @@ public class AppointmentInCreation {
     }
 
     /**
-     * Sets the Healthinformation of a user.
-     * @param healthInformation the list in which the Healthinformation of a user is stored.
+     * Sets the health information of a user.
+     * @param healthInformation the list in which the health information of a user is stored.
      */
     public void setHealthInformation(ArrayList<HealthInformation> healthInformation) {
         this.healthInformation = healthInformation;
     }
 
     /**
-     * Returns the Healthinformation of the user as a List.
-     * @return The Healthinformation as an Arraylist.
+     * Returns the health information of the user as a List.
+     * @return The health information as an Arraylist.
      */
     public ArrayList<HealthInformation> getHealthInformation() {
         return healthInformation;

@@ -83,9 +83,9 @@ public abstract class ScheduleLoader {
     }
 
     /**
-     * ???
-     * @param time
-     * @param timeButton
+     * Sets up a clickable button that handles the click on an appointment time
+     * @param time the time label for the associated button
+     * @param timeButton the button to set up
      */
     private void handleTimeButton(Label time, Button timeButton) {
         timeLabelList.add(time);
@@ -94,8 +94,8 @@ public abstract class ScheduleLoader {
         timeButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                for (int i = 0; i<timeLabelList.size(); i++) {
-                    timeLabelList.get(i).setTextFill(Color.web("#000000"));
+                for (Label label : timeLabelList) {
+                    label.setTextFill(Color.web("#000000"));
                 }
                 time.setTextFill(Color.web("#FF0000"));
                 selectedTime = LocalTime.parse(timeStr, Session.timeFormatterForSchedule);
@@ -104,10 +104,9 @@ public abstract class ScheduleLoader {
         });
     }
 
-    //Can be used as handlers in inheriting/extending classes
-
     /**
-     * ???
+     * Handler that triggers whenever the user selected another time.
+     * Empty in this abstract class, but can be overwritten in inheriting/extending classes to easily add functionality
      */
     protected void selectedTimeChanged() {
 

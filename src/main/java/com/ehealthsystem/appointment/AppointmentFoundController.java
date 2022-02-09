@@ -50,7 +50,7 @@ public class AppointmentFoundController implements Initializable {
     }
 
     /**
-     * dynamically load the doctors in the gridpane
+     * dynamically load the doctors in the grid pane
      * @param doctorList the list of all doctors which matches the distance
      * @throws IOException
      */

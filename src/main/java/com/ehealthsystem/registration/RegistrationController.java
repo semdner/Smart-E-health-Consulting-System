@@ -122,7 +122,7 @@ public class RegistrationController implements Initializable {
 
     /**
      * Set a fields background red when the input is invalid.
-     * @param field The Textfield in the registration.
+     * @param field The text field in the registration form.
      */
     private void redBackground(TextField field) {
         field.setStyle("-fx-control-inner-background: #ffb3b3;");
@@ -140,7 +140,7 @@ public class RegistrationController implements Initializable {
 
     /**
      * Hide an error on a field. Field's color will be reset and error message will not be displayed.
-     * @param field The Textfield in the registration.
+     * @param field The text field in the registration.
      */
     private void hideError(TextField field) {
         errorLabel.setVisible(false);
@@ -149,7 +149,7 @@ public class RegistrationController implements Initializable {
 
     /**
      * Reset a fields background
-     * @param field The Textfield in the registration.
+     * @param field The text field in the registration.
      */
     private void normalBackground(TextField field) {
         field.setStyle("-fx-control-inner-background: #cce6ff;");
@@ -228,7 +228,7 @@ public class RegistrationController implements Initializable {
     }
 
     /**
-     * Used to validate the Birthday when user inputs the date into the textfield.
+     * Used to validate the Birthday when user inputs the date into the text field.
      * @param event the event that triggered the methods execution
      */
     public void handleBirthdayEditor(KeyEvent event){
@@ -360,7 +360,7 @@ public class RegistrationController implements Initializable {
 
     /**
      * check if the address exist to validate the users input.
-     * @return True if the address exist, else it shows an error message.
+     * @return True if the address exist, else false in addition to showing an error message.
      * @throws IOException
      * @throws InterruptedException
      * @throws ApiException
@@ -387,7 +387,7 @@ public class RegistrationController implements Initializable {
     /**
      * Check if the insurance name is empty.
      * If yes throw an error and return false and if not the opposite.
-     * @return An error if there is no input for the insurance name.
+     * @return if the insurance name is valid
      */
     private boolean validateInsuranceName() {
         if(insuranceNameTextField.getText().isBlank()) {
@@ -535,7 +535,7 @@ public class RegistrationController implements Initializable {
 
     /**
      * Method called when back button is pressed.
-     * @param event Trigger to invoke this Method.
+     * @param event Trigger to invoke this method.
      */
     public void handleBackButton(ActionEvent event) throws IOException {
         SceneSwitch.switchToCentered(event, "main/main-view.fxml", "Welcome");

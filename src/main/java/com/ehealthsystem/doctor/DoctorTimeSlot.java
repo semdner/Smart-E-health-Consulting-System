@@ -13,7 +13,7 @@ import java.time.LocalTime;
 import java.util.*;
 
 /**
- * Class for creating a time slot(appointment) for a doctor
+ * Class used to represent a time slot (for whatever doctor that is currently shown in the UI)
  */
 public class DoctorTimeSlot {
     private LocalDate date;
@@ -21,7 +21,7 @@ public class DoctorTimeSlot {
     private boolean free;
 
     /**
-     * Constructor which sets the attributes when creating a new object(Doctor Time Slot).
+     * Constructor which sets the attributes when creating a new object (Doctor time slot).
      * @param date set the date of the time slot.
      * @param time set the time of the time slot.
      * @param free set the availability of the doctor.

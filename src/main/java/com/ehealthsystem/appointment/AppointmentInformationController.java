@@ -148,8 +148,8 @@ public class AppointmentInformationController implements Initializable {
     }
 
     /**
-     * The User has to submit the chosen healthproblems. ???
-     * @return If the user does not choose a healthproblem he receives a error message.
+     * Check if the user provided a health problem as a reason for making an appointment
+     * @return boolean if the choice of health problem is valid
      */
     public boolean validateHealthProblemChoiceBox(){
         if(healthProblemChoiceBox.getValue() == null){

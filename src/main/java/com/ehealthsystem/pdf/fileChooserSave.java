@@ -9,14 +9,14 @@ import java.sql.SQLException;
 
 /**
  * Class for file save dialogs.
- * Used to save the pdf-document in the directory chosen by the user.
+ * Used to save the PDF document in the directory and under the file name chosen by the user.
  */
 public class fileChooserSave {
 
     /**
      * Method to invoke the file save dialog.
-     * @param stage stage where the file save dialog is loaded into.
-     * @return path where the pdf-document should be saved.
+     * @param stage stage where the file save dialog is to be shown for.
+     * @return Path where the PDF document shall be saved.
      */
     public static String chooseDest(Stage stage) {
         FileChooser fileChooser = new FileChooser();

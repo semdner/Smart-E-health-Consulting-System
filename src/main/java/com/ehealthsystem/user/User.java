@@ -61,9 +61,9 @@ public class User implements HasAddress {
     /**
      * Inserts this user into the database.
      * Only to be used if a new user is created.
-     * @param password The password is going to be hashed if the new user is inserted into the Database.
+     * @param password The password in plain-text that is to be stored for this user in a hashed form in the database
      * @throws SQLException Throws Exception during connection issues with the Database.
-     * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
+     * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format for the database.
      */
     public void insertIntoDb(String password) throws SQLException, UnsupportedDataTypeException {
         Object[][] parameters = {
@@ -88,7 +88,7 @@ public class User implements HasAddress {
      * Used by the user to change their own password
      * @param currentPassword Verifying the current password of the user.
      * @param newPassword Sets a new password if the current password is valid.
-     * @return True if the new password is set.
+     * @return True if the new password is set, false if the process was aborted because current password is wrong.
      * @throws SQLException Throws Exception during connection issues with the Database.
      */
     public boolean changePassword(String currentPassword, String newPassword) throws SQLException {
@@ -331,7 +331,7 @@ public class User implements HasAddress {
 
     /**
      * get the insurance type returned
-     * @return The type of the insurance from user.
+     * @return The type of the insurance of the user.
      */
     public boolean isPrivateInsurance() {
         return privateInsurance;

@@ -110,7 +110,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
     }
 
     /**
-     * DEPRECATED: replaced by interactive route display: loadGMap()
+     * @deprecated : replaced by interactive route display: {@link #loadGMap()}
      * Load a static map image using OpenStreetMap data into the webview
      */
     private void loadOsmMap() throws IOException, InterruptedException, ApiException {

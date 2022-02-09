@@ -17,16 +17,21 @@ import java.time.format.DateTimeFormatter;
  * Class to manage a Session of a logged-in user/admin.
  */
 public class Session {
+    //Attributes required for a session of a user
     /**
-     * Attributes required for a session of a user
+     * User that is currently logged in
      */
-    public static User user; //user that is currently logged in
+    public static User user;
     public static Admin admin;
-    public static AppointmentInCreation appointment; //an appointment that is currently created
+    /** An appointment that is currently created */
+    public static AppointmentInCreation appointment;
     private static GeocodingResult userGeo;
-    public static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy"); //date pattern used in the UI
-    public static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("H:mm"); //time pattern used in the UI
-    public static final DateTimeFormatter timeFormatterForSchedule = DateTimeFormatter.ofPattern("HH:mm"); //time pattern used for the schedule grid pane
+    /** date pattern used in the UI */
+    public static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    /** time pattern used in the UI */
+    public static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("H:mm");
+    /** time pattern used for the schedule grid pane */
+    public static final DateTimeFormatter timeFormatterForSchedule = DateTimeFormatter.ofPattern("HH:mm");
 
     /**
      * To be called on login to load user object for the user to be called by further methods
@@ -49,11 +54,9 @@ public class Session {
     }
 
     /**
-     * return the user´s geo data in a formatted way
+     * return the user´s geolocation, determined using Google Maps
      * @return GeoCodingResult of user
-     * @throws IOException
-     * @throws InterruptedException
-     * @throws ApiException
+     * @throws ApiException if the Google Maps API couldn't be connected to
      */
     public static GeocodingResult getUserGeo() throws IOException, InterruptedException, ApiException {
         if (userGeo == null) //lazy-load, store
@@ -62,15 +65,15 @@ public class Session {
     }
 
     /**
-     * set the sessions users geo-data to null
+     * Delete cached information of user's geolocation.
+     * Called for example when they change their address in their personal information section.
      */
     public static void invalidateUserGeo() {
         userGeo = null;
     }
 
     /**
-     * logout sessions user by setting the attribute to null and switch scene
-     * @throws IOException Throws Exception during connection issues.
+     * Logout the session's user by setting the attribute to null and showing the main view (login, register)
      */
     public static void logout() throws IOException {
         user = null;

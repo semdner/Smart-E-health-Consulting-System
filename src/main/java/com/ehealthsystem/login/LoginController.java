@@ -47,8 +47,8 @@ public class LoginController {
     }
 
     /**
-     *
-     * @return
+     * Check if the user that is currently logging in is the system's administrator
+     * @return whether the admin is logging in
      */
     private boolean validateAdmin() {
         return emailTextField.getText().equals("admin");
