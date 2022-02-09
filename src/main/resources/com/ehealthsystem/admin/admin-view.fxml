@@ -32,7 +32,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="10.0" layoutY="11.0" text="Admin panel" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="875.0" AnchorPane.topAnchor="5.0">
+            <Label layoutX="10.0" layoutY="11.0" prefHeight="24.0" prefWidth="125.0" text="Admin panel" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="865.0" AnchorPane.topAnchor="5.0">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
