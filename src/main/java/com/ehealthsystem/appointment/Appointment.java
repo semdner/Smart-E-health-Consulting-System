@@ -96,8 +96,8 @@ public class Appointment {
     }
 
     /**
-     * get the set date & time of the appointment
-     * @return return the date & time as an object of the type LocalDateTime
+     * get the set date and time of the appointment
+     * @return return the date and time as an object of the type LocalDateTime
      */
     public LocalDateTime getDateTime() {
         return LocalDateTime.of(date, time);
