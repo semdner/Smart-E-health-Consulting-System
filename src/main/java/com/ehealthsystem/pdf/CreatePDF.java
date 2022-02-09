@@ -31,7 +31,7 @@ public class CreatePDF {
      * @throws IOException pdf-document is not able to be saved.
      * @throws SQLException connection issues with the database.
      */
-    public static void create_Pdf(String dest) throws IOException, SQLException {
+    public static void create_Pdf(String dest, boolean health) throws IOException, SQLException {
 
         //If the user does not choose a destination for the file the method(create_Pdf()) will be aborted
         if(dest.isBlank()){
@@ -90,7 +90,11 @@ public class CreatePDF {
         //Adding Data into the Table.
         PersonalData1(table1);
         PersonalData2(table2);
-        Disease(table3);
+        if(health){
+            Disease(table3,true);
+        }else {
+            Disease(table3, false);
+        }
         InsuranceData(table4);
 
 
@@ -158,11 +162,17 @@ public class CreatePDF {
      * @param table The provided table for the data.
      * @throws SQLException Throws Exception during connection issues with the Database.
      */
-    private static void Disease(Table table) throws SQLException {
+    private static void Disease(Table table, boolean health) throws SQLException {
         ArrayList<HealthInformation> healthInformation = Database.getHealthInformation(Session.user.getMail());
+        ArrayList<HealthInformation> healthInformations = Session.appointment.getHealthInformation();
         if (healthInformation.size() == 0) {
             table.addCell(new Cell().add("--- None ---").setBorder(Border.NO_BORDER));
-        } else {
+        } else if(health){
+                for(HealthInformation h : healthInformations){
+                    Paragraph x = new Paragraph(h.getICD() + ": " + h.getDisease());
+                    table.addCell(new Cell().add(x).setBorder(Border.NO_BORDER));
+                }
+            } else{
             for (HealthInformation h : healthInformation) {
                 Paragraph x = new Paragraph(h.getICD() + ": " + h.getDisease());
                 table.addCell(new Cell().add(x).setBorder(Border.NO_BORDER));
