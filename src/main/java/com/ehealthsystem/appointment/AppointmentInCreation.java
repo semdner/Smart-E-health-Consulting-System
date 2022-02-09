@@ -39,7 +39,7 @@ public class AppointmentInCreation {
 
     /**
      * Returns the date of the appointment.
-     * @return The time as an object of the type LocalTime.
+     * @return The time as an object of the type LocalDate.
      */
     public LocalDate getDate() {
         return date;

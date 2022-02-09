@@ -11,9 +11,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- * The class represents a user of the database
+ * The class represents a user and his attributes
  */
 public class User implements HasAddress {
+    /**
+     * Attributes of the user.
+     */
     private String username, email, firstName, lastName, street, houseNo, gender;
     private String zipCode;
     private LocalDate birthDate;
@@ -22,21 +25,22 @@ public class User implements HasAddress {
 
     /**
      * Creates a new user object representing a row in the database
-     * @param username
-     * @param insertIntoDb
-     * true if this is a new user that is inserted to the database,
-     * false if the object shall solely represent a user that is already saved in the database (i.e. result of a SELECT query)
-     * or also false if object is for bridging the step from registration to email validation
-     * @param password
-     * @param firstName
-     * @param lastName
-     * @param email
-     * @param street
-     * @param houseNo
-     * @param zipCode
-     * @param birthDate
-     * @param privateInsurance
-     * @throws SQLException
+     * @param username Username of the user.
+     * @param password Password chosen by the user.
+     * @param firstName First name of the user.
+     * @param lastName Last name of the user.
+     * @param email E-mail address of the user.
+     * @param street Street where the user lives.
+     * @param houseNo House no. of the street.
+     * @param zipCode Zip code where the user lives.
+     * @param birthDate Birthdate of the user.
+     * @param privateInsurance Type of insurance.
+     * @param insertIntoDb Inserts the user in to the Database.
+     *      * true if this is a new user that is inserted to the database,
+     *      * false if the object shall solely represent a user that is already saved in the database (i.e. result of a SELECT query)
+     *      * or also false if object is for bridging the step from registration to email validation
+     * @throws SQLException Throws Exception during connection issues.
+     * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public User(String username, String email, String firstName, String lastName, String street, String houseNo, String zipCode, LocalDate birthDate, String gender, String password, String insuranceName, boolean privateInsurance, boolean insertIntoDb) throws SQLException, UnsupportedDataTypeException {
         this.username = username;
@@ -57,8 +61,9 @@ public class User implements HasAddress {
     /**
      * Inserts this user into the database.
      * Only to be used if a new user is created.
-     * @param password
-     * @throws SQLException
+     * @param password The password is going to be hashed if the new user is inserted into the Database.
+     * @throws SQLException Throws Exception during connection issues.
+     * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void insertIntoDb(String password) throws SQLException, UnsupportedDataTypeException {
         Object[][] parameters = {
@@ -81,10 +86,10 @@ public class User implements HasAddress {
     /**
      * Change a user's password
      * Used by the user to change their own password
-     * @param currentPassword
-     * @param newPassword
-     * @return
-     * @throws SQLException
+     * @param currentPassword Verifying the current password of the user.
+     * @param newPassword Sets a new password if the current password is valid.
+     * @return True if the new password is set.
+     * @throws SQLException Throws Exception during connection issues.
      */
     public boolean changePassword(String currentPassword, String newPassword) throws SQLException {
         if (!Database.checkPassword(email, currentPassword))
@@ -96,9 +101,9 @@ public class User implements HasAddress {
     /**
      * Set a user's password
      * Used as helper function but also by admin, which is why it's public
-     * @param email
-     * @param password
-     * @throws SQLException
+     * @param email The E-mail of the user which password is being set.
+     * @param password The password of the user set e.g. by the doctor.
+     * @throws SQLException Throws Exception during connection issues.
      */
     private void setPassword(String email, String password) throws SQLException {
         String query = "UPDATE user SET password = ? WHERE email = ?";
@@ -110,8 +115,9 @@ public class User implements HasAddress {
 
     /**
      * Updates this user's entry in the database
-     * @param newValues
-     * @throws SQLException
+     * @param newValues Attributes(values) of the user.
+     * @throws SQLException Throws Exception during connection issues.
+     * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     private void update(Object[][] newValues) throws SQLException, UnsupportedDataTypeException {
         Database.update(
@@ -123,9 +129,9 @@ public class User implements HasAddress {
 
     /**
      * set and update the username in the database
-     * @param username 
-     * @throws SQLException
-     * @throws UnsupportedDataTypeException
+     * @param username The username of the user.
+     * @throws SQLException Throws Exception during connection issues.
+     * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setUsername(String username) throws SQLException, UnsupportedDataTypeException {
         this.username = username;
@@ -134,9 +140,9 @@ public class User implements HasAddress {
 
     /**
      * set and update email in the database
-     * @param email
-     * @throws SQLException
-     * @throws UnsupportedDataTypeException
+     * @param email The e-mail address of the user-
+     * @throws SQLException Throws Exception during connection issues.
+     * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setEmail(String email) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"email", email}});
@@ -145,9 +151,9 @@ public class User implements HasAddress {
 
     /**
      * set and update the first name in the database
-     * @param firstName
-     * @throws SQLException
-     * @throws UnsupportedDataTypeException
+     * @param firstName the first name of the user.
+     * @throws SQLException Throws Exception during connection issues.
+     * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setFirstName(String firstName) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"first_name", firstName}});
@@ -156,9 +162,9 @@ public class User implements HasAddress {
 
     /**
      * set and update the last name in the database
-     * @param lastName
-     * @throws SQLException
-     * @throws UnsupportedDataTypeException
+     * @param lastName The last name of the user.
+     * @throws SQLException Throws Exception during connection issues.
+     * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setLastName(String lastName) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"last_name", lastName}});
@@ -167,9 +173,9 @@ public class User implements HasAddress {
 
     /**
      * set and update street in the database
-     * @param street
-     * @throws SQLException
-     * @throws UnsupportedDataTypeException
+     * @param street The street where the user lives.
+     * @throws SQLException Throws Exception during connection issues.
+     * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setStreet(String street) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"street", street}});
@@ -178,9 +184,9 @@ public class User implements HasAddress {
 
     /**
      * set and update house no. in the database
-     * @param houseNo
-     * @throws SQLException
-     * @throws UnsupportedDataTypeException
+     * @param houseNo The house no. of the street.
+     * @throws SQLException Throws Exception during connection issues.
+     * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setHouseNo(String houseNo) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"number", houseNo}});
@@ -189,9 +195,9 @@ public class User implements HasAddress {
 
     /**
      * set and update zip code in the database
-     * @param zipCode
-     * @throws SQLException
-     * @throws UnsupportedDataTypeException
+     * @param zipCode The zip code where the user lives.
+     * @throws SQLException Throws Exception during connection issues.
+     * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setZipCode(String zipCode) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"zip", zipCode}});
@@ -200,9 +206,9 @@ public class User implements HasAddress {
 
     /**
      * set and update the birthday in the database
-     * @param birthDate
-     * @throws SQLException
-     * @throws UnsupportedDataTypeException
+     * @param birthDate The birthday from user.
+     * @throws SQLException Throws Exception during connection issues.
+     * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setBirthDate(LocalDate birthDate) throws SQLException, UnsupportedDataTypeException {
         String bd = birthDate.format(Database.dateFormatter);
@@ -212,9 +218,9 @@ public class User implements HasAddress {
 
     /**
      * set and update the gender in the database
-     * @param gender
-     * @throws SQLException
-     * @throws UnsupportedDataTypeException
+     * @param gender The gender of the user.
+     * @throws SQLException Throws Exception during connection issues.
+     * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setGender(String gender) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"sex", gender}});
@@ -223,9 +229,9 @@ public class User implements HasAddress {
 
     /**
      * set and update the insurance name in the database
-     * @param insuranceName
-     * @throws SQLException
-     * @throws UnsupportedDataTypeException
+     * @param insuranceName The name of the insurance.
+     * @throws SQLException Throws Exception during connection issues.
+     * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setInsuranceName(String insuranceName) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"insurance_name", insuranceName}});
@@ -234,9 +240,9 @@ public class User implements HasAddress {
 
     /**
      * set and update the insurance type in the database
-     * @param privateInsurance
-     * @throws SQLException
-     * @throws UnsupportedDataTypeException
+     * @param privateInsurance The type of the Insurance.
+     * @throws SQLException Throws Exception during connection issues.
+     * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setPrivateInsurance(boolean privateInsurance) throws SQLException, UnsupportedDataTypeException {
         update(new Object[][]{{"private_insurance", privateInsurance}});
@@ -245,7 +251,7 @@ public class User implements HasAddress {
 
     /**
      * get the username returned
-     * @return
+     * @return The username of the user.
      */
     public String getUsername() {
         return username;
@@ -253,7 +259,7 @@ public class User implements HasAddress {
 
     /**
      * get the first name returned
-     * @return
+     * @return The first name of the user.
      */
     public String getFirstName() {
         return firstName;
@@ -261,7 +267,7 @@ public class User implements HasAddress {
 
     /**
      * get the last name returned
-     * @return
+     * @return The last name of the user.
      */
     public String getLastName() {
         return lastName;
@@ -269,7 +275,7 @@ public class User implements HasAddress {
 
     /**
      * get the mail returned
-     * @return
+     * @return The E-mail of the user.
      */
     public String getMail() {
         return email;
@@ -277,7 +283,7 @@ public class User implements HasAddress {
 
     /**
      * get the street returned
-     * @return
+     * @return The street where the user lives.
      */
     public String getStreet() {
         return street;
@@ -285,7 +291,7 @@ public class User implements HasAddress {
 
     /**
      * get the house number returned
-     * @return
+     * @return The house no. of the street.
      */
     public String getHouseNumber() {
         return houseNo;
@@ -293,7 +299,7 @@ public class User implements HasAddress {
 
     /**
      * get the gender returned
-     * @return
+     * @return The gender of the user.
      */
     public String getGender() {
         return gender;
@@ -301,7 +307,7 @@ public class User implements HasAddress {
 
     /**
      * get the insurance name returned
-     * @return
+     * @return The insurance name.
      */
     public String getInsuranceName() {
         return insuranceName;
@@ -309,7 +315,7 @@ public class User implements HasAddress {
 
     /**
      * get the zip returned
-     * @return
+     * @return The zip code of the users place of residence.
      */
     public String getZipCode() {
         return zipCode;
@@ -317,7 +323,7 @@ public class User implements HasAddress {
 
     /**
      * get the birthday returned
-     * @return
+     * @return The birthdate of the user as an object of the type LocalDate.
      */
     public LocalDate getBirthDate() {
         return birthDate;
@@ -325,16 +331,16 @@ public class User implements HasAddress {
 
     /**
      * get the insurance type returned
-     * @return
+     * @return The type of the insurance from user.
      */
     public boolean isPrivateInsurance() {
         return privateInsurance;
     }
 
     /**
-     * Wrapper to get users appointments from the user object
-     * @return usersAppointments
-     * @throws SQLException
+     * Wrapper to get users appointments from the user object.
+     * @return The appointments of the user.
+     * @throws SQLException Throws Exception during connection issues.
      */
     public ArrayList<Appointment> getAppointments() throws SQLException, UnsupportedDataTypeException {
         return Database.getUsersAppointments(username); //lazy-load and also don't store

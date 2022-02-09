@@ -14,9 +14,12 @@ import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Class to manage a Session of a logged in user/admin.
+ * Class to manage a Session of a logged-in user/admin.
  */
 public class Session {
+    /**
+     * Attributes required for a session of a user
+     */
     public static User user; //user that is currently logged in
     public static Admin admin;
     public static AppointmentInCreation appointment; //an appointment that is currently created
@@ -28,7 +31,7 @@ public class Session {
     /**
      * To be called on login to load user object for the user to be called by further methods
      * @param email the email of the user to log in
-     * @throws SQLException
+     * @throws SQLException Throws Exception during connection issues.
      */
     public static void loginUser(String email) throws SQLException, UnsupportedDataTypeException {
         user = Database.getUserByUsernameOrEmail(email);
@@ -37,16 +40,16 @@ public class Session {
     /**
      * Called when the admin logs-in.
      * A new object of the type admin is created,that represents the logged in admin.
-     * @param name
-     * @throws SQLException
-     * @throws UnsupportedDataTypeException
+     * @param name Name of the admin.
+     * @throws SQLException Throws Exception during connection issues.
+     * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
-    public static void loginAdmin(String name) throws SQLException, UnsupportedDataTypeException {
+    public static void loginAdmin(String name) /* throws SQLException, UnsupportedDataTypeException */{
         admin = new Admin("admin");
     }
 
     /**
-     * return the users geo data in a formatted way
+     * return the user´s geo data in a formatted way
      * @return GeoCodingResult of user
      * @throws IOException
      * @throws InterruptedException
@@ -59,7 +62,7 @@ public class Session {
     }
 
     /**
-     * set the sessions users geodata to null
+     * set the sessions users geo-data to null
      */
     public static void invalidateUserGeo() {
         userGeo = null;
@@ -67,7 +70,7 @@ public class Session {
 
     /**
      * logout sessions user by setting the attribute to null and switch scene
-     * @throws IOException
+     * @throws IOException Throws Exception during connection issues.
      */
     public static void logout() throws IOException {
         user = null;

@@ -59,11 +59,11 @@ public class SceneSwitch {
     }
 
     /**
-     * ???
-     * @param event
-     * @param appointment
+     * Switches scene and displays the appointment the user has made.
+     * @param event Trigger to invoke this method.
+     * @param appointment The appointment made by the user.
      * @throws IOException
-     * @throws SQLException
+     * @throws SQLException Throws Exception during connection issues.
      * @throws InterruptedException
      * @throws ApiException
      */

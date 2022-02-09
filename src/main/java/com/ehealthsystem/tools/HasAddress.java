@@ -6,6 +6,9 @@ import com.google.maps.errors.ApiException;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ *  ???
+ */
 public interface HasAddress {
     String getStreet();
     String getHouseNumber();
