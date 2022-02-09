@@ -98,7 +98,7 @@ public class SendEmail {
     public static Message prepareMessageWithAttachment(Session session, String myAccount, String recipient, String subject, String textContent) throws MessagingException, SQLException, IOException {
         Message message = new MimeMessage(session);
 
-        message.setFrom(new InternetAddress(myAccount));
+        message.setFrom(new InternetAddress(myAccount, "E-Health System"));
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
         message.setSubject(subject);
 
@@ -115,7 +115,7 @@ public class SendEmail {
         Path temp = Files.createTempFile("export", ".pdf");
 
         String absolutePath = temp.toString();
-        CreatePDF.create_Pdf(absolutePath,true);
+        CreatePDF.create_Pdf(absolutePath, true);
         messageBodyPart = new MimeBodyPart();
         FileDataSource source = new FileDataSource(absolutePath);
         messageBodyPart.setDataHandler(new DataHandler(source));

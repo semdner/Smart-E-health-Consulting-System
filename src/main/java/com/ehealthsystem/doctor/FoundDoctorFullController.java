@@ -224,8 +224,6 @@ public class FoundDoctorFullController extends ScheduleLoader {
         }
 
         ReminderTime reminderChoice = ((ReminderTime) reminderComboBox.getValue());
-        System.out.println(reminderChoice);
-        System.out.println(reminderChoice.getMinutes());
         Session.appointment.setTime(selectedTime);
         Appointment appointment = new Appointment(
                 true,
@@ -250,9 +248,9 @@ public class FoundDoctorFullController extends ScheduleLoader {
                 "You successfully made an appointment with the doctor %s on %s at %s. Their address is %s.".formatted(appointment.getDoctor().getLastName(), date, time, doctorGeoData)
                         + (reminderChoice.getMinutes() != 0 ? " A reminder email will be sent to you %s ahead.".formatted(reminderChoice.getLabel()) : ""),false
         );
-        SendEmail.sendMail(Session.user.getMail(),"Patient Health Information","Here is the health problem of your patient: %s,  %s".formatted(
-                appointment.getHealthProblemDescription(),
-                Session.appointment.getHealthProblemChoice()
+        SendEmail.sendMail(Session.user.getMail(),"Patient Health Information","Here is the health problem of your patient: %s, %s".formatted(
+                Session.appointment.getHealthProblemChoice(),
+                appointment.getHealthProblemDescription()
         ),true);
         SceneSwitch.switchTo(event, "primary/primary-view.fxml", "E-Health System");
     }

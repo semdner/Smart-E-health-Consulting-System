@@ -18,7 +18,7 @@ import java.time.LocalTime;
 public class Appointment {
     public final String tableName = "appointment";
     private int id, doctor, minutesBeforeReminder, duration;
-    private String user, healthProblemDescription, healthInformation;
+    private String user, healthProblemDescription;
     private LocalDate date;
     private LocalTime time;
 

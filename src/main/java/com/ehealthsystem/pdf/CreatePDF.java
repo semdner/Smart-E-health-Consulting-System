@@ -28,10 +28,11 @@ public class CreatePDF {
     /**
      * Method to create a pdf-document with the health-information and data of the user.
      * @param dest path where the created pdf-doc should be saved.
+     * @param forAppointment true if only the health information for the appointment in creation shall be included
      * @throws IOException pdf-document is not able to be saved.
      * @throws SQLException connection issues with the database.
      */
-    public static void create_Pdf(String dest, boolean health) throws IOException, SQLException {
+    public static void create_Pdf(String dest, boolean forAppointment) throws IOException, SQLException {
 
         //If the user does not choose a destination for the file the method(create_Pdf()) will be aborted
         if(dest.isBlank()){
@@ -90,11 +91,7 @@ public class CreatePDF {
         //Adding Data into the Table.
         PersonalData1(table1);
         PersonalData2(table2);
-        if(health){
-            Disease(table3,true);
-        }else {
-            Disease(table3, false);
-        }
+        Disease(table3, forAppointment);
         InsuranceData(table4);
 
 
@@ -160,19 +157,14 @@ public class CreatePDF {
     /**
      * Method to add the healthproblems of the user into the table.
      * @param table The provided table for the data.
+     * @param forAppointment true if only the health information for the appointment in creation shall be included
      * @throws SQLException Throws Exception during connection issues with the Database.
      */
-    private static void Disease(Table table, boolean health) throws SQLException {
-        ArrayList<HealthInformation> healthInformation = Database.getHealthInformation(Session.user.getMail());
-        ArrayList<HealthInformation> healthInformations = Session.appointment.getHealthInformation();
+    private static void Disease(Table table, boolean forAppointment) throws SQLException {
+        ArrayList<HealthInformation> healthInformation = forAppointment ? Session.appointment.getHealthInformation() : Database.getHealthInformation(Session.user.getMail());
         if (healthInformation.size() == 0) {
             table.addCell(new Cell().add("--- None ---").setBorder(Border.NO_BORDER));
-        } else if(health){
-                for(HealthInformation h : healthInformations){
-                    Paragraph x = new Paragraph(h.getICD() + ": " + h.getDisease());
-                    table.addCell(new Cell().add(x).setBorder(Border.NO_BORDER));
-                }
-            } else{
+        } else {
             for (HealthInformation h : healthInformation) {
                 Paragraph x = new Paragraph(h.getICD() + ": " + h.getDisease());
                 table.addCell(new Cell().add(x).setBorder(Border.NO_BORDER));
