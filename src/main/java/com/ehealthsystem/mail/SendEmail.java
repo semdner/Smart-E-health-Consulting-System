@@ -98,7 +98,7 @@ public class SendEmail {
     public static Message prepareMessageWithAttachment(Session session, String myAccount, String recipient, String subject, String textContent) throws MessagingException, SQLException, IOException {
         Message message = new MimeMessage(session);
 
-        message.setFrom(new InternetAddress(myAccount));
+        message.setFrom(new InternetAddress(myAccount, "E-Health System"));
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
         message.setSubject(subject);
 
