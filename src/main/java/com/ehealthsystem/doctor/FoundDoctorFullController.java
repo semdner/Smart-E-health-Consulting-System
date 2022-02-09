@@ -224,8 +224,6 @@ public class FoundDoctorFullController extends ScheduleLoader {
         }
 
         ReminderTime reminderChoice = ((ReminderTime) reminderComboBox.getValue());
-        System.out.println(reminderChoice);
-        System.out.println(reminderChoice.getMinutes());
         Session.appointment.setTime(selectedTime);
         Appointment appointment = new Appointment(
                 true,
