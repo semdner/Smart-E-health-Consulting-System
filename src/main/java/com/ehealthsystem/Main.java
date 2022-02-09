@@ -32,6 +32,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("main/main-view.fxml"));
         Scene mainScene = new Scene(root);
         primaryStage.setTitle("Welcome");
+        primaryStage.getIcons().add(new Image("file:src/main/resources/com/ehealthsystem/icon/icon.png"));
         primaryStage.setScene(mainScene);
         primaryStage.show();
     }
