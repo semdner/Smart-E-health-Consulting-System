@@ -115,7 +115,7 @@ public class SendEmail {
         Path temp = Files.createTempFile("export", ".pdf");
 
         String absolutePath = temp.toString();
-        CreatePDF.create_Pdf(absolutePath,true);
+        CreatePDF.create_Pdf(absolutePath, true);
         messageBodyPart = new MimeBodyPart();
         FileDataSource source = new FileDataSource(absolutePath);
         messageBodyPart.setDataHandler(new DataHandler(source));
