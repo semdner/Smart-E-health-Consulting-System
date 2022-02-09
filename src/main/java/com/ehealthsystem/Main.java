@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -28,7 +29,6 @@ public class Main extends Application {
         this.primaryStage = primaryStage;
         initDB();
         ReminderScheduler.setupReminders();
-
         Parent root = FXMLLoader.load(getClass().getResource("main/main-view.fxml"));
         Scene mainScene = new Scene(root);
         primaryStage.setTitle("Welcome");
