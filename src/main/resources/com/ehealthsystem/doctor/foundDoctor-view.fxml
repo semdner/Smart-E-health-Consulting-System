@@ -13,7 +13,7 @@
 
 
    <children>
-      <AnchorPane prefHeight="110.0" prefWidth="315.0" style="-fx-background-color: 4CAF50;">
+      <AnchorPane prefHeight="110.0" prefWidth="315.0" style="-fx-background-color: F0F0F0;">
          <children>
             <GridPane layoutX="11.0" layoutY="-8.0" prefHeight="60.0" prefWidth="294.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
               <columnConstraints>
