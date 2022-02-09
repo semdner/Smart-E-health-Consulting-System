@@ -96,7 +96,6 @@ public class AdminController implements Initializable {
      * Load the users from the data base and store them in an observable.
      * Define which Column of the Tableview corresponds to which value of the attributes of the UserTableView class and fill the table
      * @throws SQLException throws sql exception if the method of causes one
-     * @throws UnsupportedDataTypeException If a type of the
      */
     private void loadUsersFromDatabase() throws SQLException {
         ObservableList<UserTableView> users = Database.getUserForTableView();

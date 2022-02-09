@@ -96,7 +96,6 @@ public class AppointmentUserController implements Initializable {
 
     /**
      * Load user information when button is pressed
-     * @throws SQLException
      */
     public void loadUserDetails() {
         User currentUser = Session.user;

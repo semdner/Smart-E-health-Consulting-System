@@ -46,8 +46,6 @@ public class Session {
      * Called when the admin logs-in.
      * A new object of the type admin is created,that represents the logged in admin.
      * @param name Name of the admin.
-     * @throws SQLException Throws Exception during connection issues.
-     * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public static void loginAdmin(String name) /* throws SQLException, UnsupportedDataTypeException */{
         admin = new Admin("admin");
