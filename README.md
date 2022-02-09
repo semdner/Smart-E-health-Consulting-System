@@ -1,6 +1,12 @@
-# Smart E-health Consulting System
+<div align="center">
+  <h3 align="center">mart E-health Consulting System</h3>
+  <p align="center">
+    A simple software to search, make and manage medical appointments.
+  </p>
+</div>
 
-> Java Project: Smart E-health Consulting System
+
+## About The Project
 
 ## Contact
 
