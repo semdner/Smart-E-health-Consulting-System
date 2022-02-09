@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.appointment.AppointmentInformationController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../Layout1.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.appointment.AppointmentInformationController">
 
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -28,7 +28,7 @@
                </font>
             </Label>
 
-            <Separator layoutX="10.0" layoutY="34.0" prefHeight="2.0" prefWidth="231.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="509.0" AnchorPane.topAnchor="35.0" />
+            <Separator layoutX="10.0" layoutY="34.0" prefHeight="2.0" prefWidth="231.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="495.0" AnchorPane.topAnchor="35.0" />
             <GridPane layoutX="53.0" layoutY="68.0" prefHeight="138.0" prefWidth="730.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
 
               <columnConstraints>

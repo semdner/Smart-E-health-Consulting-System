@@ -18,12 +18,12 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="9.0" layoutY="11.0" text="Personal information" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+            <Label layoutX="10.0" layoutY="4.0" prefHeight="32.0" prefWidth="212.0" text="Personal information" AnchorPane.bottomAnchor="497.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="528.0" AnchorPane.topAnchor="4.0">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Separator layoutX="10.0" layoutY="36.0" prefHeight="2.0" prefWidth="202.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="538.0" AnchorPane.topAnchor="36.0" />
+            <Separator layoutX="10.0" layoutY="36.0" prefHeight="2.0" prefWidth="202.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="540.0" AnchorPane.topAnchor="35.0" />
             <Label layoutX="10.0" layoutY="46.0" text="Please ensure that your information is up-to-date. You may change it on the home page." />
             <GridPane layoutX="72.0" layoutY="68.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0">
               <columnConstraints>

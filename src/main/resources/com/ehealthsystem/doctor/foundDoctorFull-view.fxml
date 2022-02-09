@@ -115,7 +115,7 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="datePicker" editable="false" focusTraversable="false" layoutX="86.0" layoutY="8.0" onAction="#handleDateChoice" prefHeight="25.0" prefWidth="105.0" showWeekNumbers="true" />
+                        <DatePicker fx:id="datePicker" editable="false" focusTraversable="false" layoutX="86.0" layoutY="8.0" onAction="#handleDateChoice" prefHeight="25.0" prefWidth="125.0" showWeekNumbers="true" />
                         <Separator layoutX="-23.0" layoutY="30.0" prefHeight="3.0" prefWidth="64.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="426.0" AnchorPane.topAnchor="32.0" />
                         <GridPane fx:id="scheduleGridPane" layoutX="150.0" layoutY="35.0" AnchorPane.leftAnchor="10.0">
                           <columnConstraints>

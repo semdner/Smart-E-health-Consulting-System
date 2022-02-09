@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.primary.PrimaryController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../Layout1.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.primary.PrimaryController">
    <top>
       <MenuBar prefHeight="25.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
         <menus>
@@ -170,7 +170,7 @@
                   </Label>
                </children>
             </GridPane>
-            <Label fx:id="personalInformation" layoutX="10.0" layoutY="11.0" prefHeight="30.0" prefWidth="212.0" text="Personal information" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="528.0" AnchorPane.topAnchor="5.0">
+            <Label fx:id="personalInformation" layoutX="10.0" layoutY="11.0" prefHeight="30.0" prefWidth="212.0" text="Personal information" AnchorPane.bottomAnchor="538.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="528.0" AnchorPane.topAnchor="5.0">
                <font>
                    <Font name="Segoe UI Bold" size="20.0" />
                </font>

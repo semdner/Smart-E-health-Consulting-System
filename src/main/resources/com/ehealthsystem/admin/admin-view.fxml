@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.admin.AdminController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../Layout1.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ehealthsystem.admin.AdminController">
    <top>
       <MenuBar prefHeight="25.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
         <menus>
@@ -32,12 +32,12 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="10.0" layoutY="11.0" text="Admin panel" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="590.8" AnchorPane.topAnchor="5.0">
+            <Label layoutX="10.0" layoutY="11.0" text="Admin panel" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="875.0" AnchorPane.topAnchor="5.0">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Separator layoutX="10.0" layoutY="40.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="590.0" AnchorPane.topAnchor="35.0" />
+            <Separator layoutX="10.0" layoutY="40.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="875.0" AnchorPane.topAnchor="35.0" />
             <TableView fx:id="userTableView" editable="true" prefHeight="487.0" prefWidth="980.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
               <columns>
                 <TableColumn fx:id="username" minWidth="100.0" prefWidth="100.0" text="username" />
