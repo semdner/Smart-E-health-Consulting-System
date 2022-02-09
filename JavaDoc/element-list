@@ -1,0 +1,16 @@
+com.ehealthsystem
+com.ehealthsystem.admin
+com.ehealthsystem.appointment
+com.ehealthsystem.database
+com.ehealthsystem.doctor
+com.ehealthsystem.doctor.specialization
+com.ehealthsystem.healthInformation
+com.ehealthsystem.login
+com.ehealthsystem.mail
+com.ehealthsystem.map
+com.ehealthsystem.pdf
+com.ehealthsystem.primary
+com.ehealthsystem.registration
+com.ehealthsystem.reminder
+com.ehealthsystem.tools
+com.ehealthsystem.user
