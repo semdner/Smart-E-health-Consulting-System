@@ -112,8 +112,8 @@ public class RegistrationController implements Initializable {
     }
 
     /**
-     * Show the error label
-     * @param error
+     * Shows an individual error label when the input is invalid.
+     * @param error The error text.
      */
     private void showError(String error) {
         errorLabel.setText(error);
@@ -121,8 +121,8 @@ public class RegistrationController implements Initializable {
     }
 
     /**
-     * Set a fields background red
-     * @param field
+     * Set a fields background red when the input is invalid.
+     * @param field The Textfield in the registration.
      */
     private void redBackground(TextField field) {
         field.setStyle("-fx-control-inner-background: #ffb3b3;");
@@ -140,7 +140,7 @@ public class RegistrationController implements Initializable {
 
     /**
      * Hide an error on a field. Field's color will be reset and error message will not be displayed.
-     * @param field
+     * @param field The Textfield in the registration.
      */
     private void hideError(TextField field) {
         errorLabel.setVisible(false);
@@ -149,7 +149,7 @@ public class RegistrationController implements Initializable {
 
     /**
      * Reset a fields background
-     * @param field
+     * @param field The Textfield in the registration.
      */
     private void normalBackground(TextField field) {
         field.setStyle("-fx-control-inner-background: #cce6ff;");
@@ -360,7 +360,7 @@ public class RegistrationController implements Initializable {
 
     /**
      * check if the address exist to validate the users input.
-     * @return
+     * @return True if the address exist, else it shows an error message.
      * @throws IOException
      * @throws InterruptedException
      * @throws ApiException
@@ -387,7 +387,7 @@ public class RegistrationController implements Initializable {
     /**
      * Check if the insurance name is empty.
      * If yes throw an error and return false and if not the opposite.
-     * @return
+     * @return An error if there is no input for the insurance name.
      */
     private boolean validateInsuranceName() {
         if(insuranceNameTextField.getText().isBlank()) {
@@ -500,7 +500,7 @@ public class RegistrationController implements Initializable {
     }
 
     /**
-     * Method called when Key is pressed and Reapted Password PasswordField is selected.
+     * Method called when Key is pressed and Repeated Password PasswordField is selected.
      * Used to check if information are right/wrong while typing.
      * @param event KeyEvent the Textbox reacts to
      */
@@ -535,7 +535,7 @@ public class RegistrationController implements Initializable {
 
     /**
      * Method called when back button is pressed.
-     * @param event
+     * @param event Trigger to invoke this Method.
      */
     public void handleBackButton(ActionEvent event) throws IOException {
         SceneSwitch.switchToCentered(event, "main/main-view.fxml", "Welcome");
