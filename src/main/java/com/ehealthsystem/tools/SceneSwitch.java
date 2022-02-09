@@ -63,7 +63,7 @@ public class SceneSwitch {
      * @param event Trigger to invoke this method.
      * @param appointment The appointment made by the user.
      * @throws IOException
-     * @throws SQLException Throws Exception during connection issues.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      * @throws InterruptedException
      * @throws ApiException
      */

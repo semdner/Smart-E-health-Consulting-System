@@ -1,6 +1,5 @@
 package com.ehealthsystem.registration;
 
-import com.ehealthsystem.database.Database;
 import com.ehealthsystem.mail.SendEmail;
 import com.ehealthsystem.tools.SceneSwitch;
 import com.ehealthsystem.tools.Session;
@@ -13,7 +12,6 @@ import javafx.scene.input.MouseEvent;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 
 public class RegistrationValidationController {
@@ -25,7 +23,7 @@ public class RegistrationValidationController {
     static String validation;
 
     /**
-     * all attribues with a fx:id set
+     * all attributes with a fx:id set
      */
     @FXML
     TextField codeTextField;
@@ -39,7 +37,7 @@ public class RegistrationValidationController {
     /**
      * The first method called when switching scenes
      * @param user the user that wants to create a new account
-     * @param password the new users password (used to insert him later into the database)
+     * @param password the new user password (used to insert him later into the database)
      */
     public void start(User user, String password) {
         this.password = password;
@@ -47,9 +45,9 @@ public class RegistrationValidationController {
     }
 
     /**
-     * Scene switch, if validation was successful, to the primary scne
-     * @param event the event that event that triggered the method
-     * @throws SQLException
+     * Scene switch, if validation was successful, to the primary scene
+     * @param event the event that triggered the method
+     * @throws SQLException Throws Exception during connection issues.
      * @throws IOException
      */
     public void handleRegistrationButton(ActionEvent event) throws SQLException, IOException {
@@ -66,7 +64,7 @@ public class RegistrationValidationController {
     /**
      * Compare the generated code with the user input.
      * If they are equal the validation is successful.
-     * @return
+     * @return True if the user input matches with the generated code he received.
      */
     public boolean validateCode() {
         if(codeTextField.getText().equals(validation)) {
@@ -78,10 +76,10 @@ public class RegistrationValidationController {
 
     /**
      * If the Label is pressed a new code is sent to the user
-     * @param event the event that event that triggered the method
+     * @param event the event that triggered the method
      * @throws MessagingException
      * @throws IOException
-     * @throws SQLException
+     * @throws SQLException Throws Exception during connection issues.
      */
     public void handleResendLabel(MouseEvent event) throws MessagingException, IOException, SQLException {
         SendEmail.validateEmail(newUser.getMail());
@@ -89,7 +87,7 @@ public class RegistrationValidationController {
 
     /**
      * switch to the registration
-     * @param event the event that event that triggered the method
+     * @param event the event that triggered the method
      * @throws IOException
      */
     public void handleBackButton(ActionEvent event) throws IOException {

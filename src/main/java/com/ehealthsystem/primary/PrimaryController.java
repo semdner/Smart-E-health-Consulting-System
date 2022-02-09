@@ -104,7 +104,7 @@ public class PrimaryController implements Initializable {
 
     /**
      * load the user appointments to show them in a list for managing them.
-     * @throws SQLException
+     * @throws SQLException Throws Exception during connection issues.
      * @throws IOException
      */
     private void loadUserAppointments() throws SQLException, IOException {
@@ -148,7 +148,6 @@ public class PrimaryController implements Initializable {
 
     /**
      * Call the setter methods for setting the user data to show him his user information
-     * @throws SQLException
      */
     private void loadUserDetails() {
         setUsernameLabel(Session.user.getUsername());
@@ -181,7 +180,7 @@ public class PrimaryController implements Initializable {
     }
 
     /**
-     * set the frist name on the users profile
+     * set the first name on the users profile
      * @param firstName the first name of the user logged-in in the session
      */
     private void setFirstNameLabel(String firstName) {
@@ -255,7 +254,7 @@ public class PrimaryController implements Initializable {
     /**
      * Method executed when one of the make appointment Buttons are pressed.
      * Used to switch scene to appointment form.
-     * @param event
+     * @param event Trigger to invoke this method.
      * @throws IOException
      */
     public void handleMakeAppointmentButton(ActionEvent event) throws IOException {
@@ -275,7 +274,7 @@ public class PrimaryController implements Initializable {
     /**
      * Handle the pdf generation menu item and opens the file chooser if it is pressed
      * @param event the event that causes the execution of the method
-     * @throws SQLException
+     * @throws SQLException Throws Exception during connection issues.
      * @throws IOException
      * @see CreatePDF for explanation of the exception
      */
@@ -285,7 +284,7 @@ public class PrimaryController implements Initializable {
     }
 
     /**
-     * Call the logout method of the Session class to logout the user when the logout menu item is pressed
+     * Call the logout method of the Session class to log out the user when the logout menu item is pressed
      * @param event the event that causes the execution of the method
      * @throws IOException
      */

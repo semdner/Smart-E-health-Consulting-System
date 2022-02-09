@@ -62,7 +62,7 @@ public class User implements HasAddress {
      * Inserts this user into the database.
      * Only to be used if a new user is created.
      * @param password The password is going to be hashed if the new user is inserted into the Database.
-     * @throws SQLException Throws Exception during connection issues.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void insertIntoDb(String password) throws SQLException, UnsupportedDataTypeException {
@@ -89,7 +89,7 @@ public class User implements HasAddress {
      * @param currentPassword Verifying the current password of the user.
      * @param newPassword Sets a new password if the current password is valid.
      * @return True if the new password is set.
-     * @throws SQLException Throws Exception during connection issues.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      */
     public boolean changePassword(String currentPassword, String newPassword) throws SQLException {
         if (!Database.checkPassword(email, currentPassword))
@@ -103,7 +103,7 @@ public class User implements HasAddress {
      * Used as helper function but also by admin, which is why it's public
      * @param email The E-mail of the user which password is being set.
      * @param password The password of the user set e.g. by the doctor.
-     * @throws SQLException Throws Exception during connection issues.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      */
     private void setPassword(String email, String password) throws SQLException {
         String query = "UPDATE user SET password = ? WHERE email = ?";
@@ -116,7 +116,7 @@ public class User implements HasAddress {
     /**
      * Updates this user's entry in the database
      * @param newValues Attributes(values) of the user.
-     * @throws SQLException Throws Exception during connection issues.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     private void update(Object[][] newValues) throws SQLException, UnsupportedDataTypeException {
@@ -130,7 +130,7 @@ public class User implements HasAddress {
     /**
      * set and update the username in the database
      * @param username The username of the user.
-     * @throws SQLException Throws Exception during connection issues.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setUsername(String username) throws SQLException, UnsupportedDataTypeException {
@@ -141,7 +141,7 @@ public class User implements HasAddress {
     /**
      * set and update email in the database
      * @param email The e-mail address of the user-
-     * @throws SQLException Throws Exception during connection issues.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setEmail(String email) throws SQLException, UnsupportedDataTypeException {
@@ -152,7 +152,7 @@ public class User implements HasAddress {
     /**
      * set and update the first name in the database
      * @param firstName the first name of the user.
-     * @throws SQLException Throws Exception during connection issues.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setFirstName(String firstName) throws SQLException, UnsupportedDataTypeException {
@@ -163,7 +163,7 @@ public class User implements HasAddress {
     /**
      * set and update the last name in the database
      * @param lastName The last name of the user.
-     * @throws SQLException Throws Exception during connection issues.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setLastName(String lastName) throws SQLException, UnsupportedDataTypeException {
@@ -174,7 +174,7 @@ public class User implements HasAddress {
     /**
      * set and update street in the database
      * @param street The street where the user lives.
-     * @throws SQLException Throws Exception during connection issues.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setStreet(String street) throws SQLException, UnsupportedDataTypeException {
@@ -185,7 +185,7 @@ public class User implements HasAddress {
     /**
      * set and update house no. in the database
      * @param houseNo The house no. of the street.
-     * @throws SQLException Throws Exception during connection issues.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setHouseNo(String houseNo) throws SQLException, UnsupportedDataTypeException {
@@ -196,7 +196,7 @@ public class User implements HasAddress {
     /**
      * set and update zip code in the database
      * @param zipCode The zip code where the user lives.
-     * @throws SQLException Throws Exception during connection issues.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setZipCode(String zipCode) throws SQLException, UnsupportedDataTypeException {
@@ -207,7 +207,7 @@ public class User implements HasAddress {
     /**
      * set and update the birthday in the database
      * @param birthDate The birthday from user.
-     * @throws SQLException Throws Exception during connection issues.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setBirthDate(LocalDate birthDate) throws SQLException, UnsupportedDataTypeException {
@@ -219,7 +219,7 @@ public class User implements HasAddress {
     /**
      * set and update the gender in the database
      * @param gender The gender of the user.
-     * @throws SQLException Throws Exception during connection issues.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setGender(String gender) throws SQLException, UnsupportedDataTypeException {
@@ -230,7 +230,7 @@ public class User implements HasAddress {
     /**
      * set and update the insurance name in the database
      * @param insuranceName The name of the insurance.
-     * @throws SQLException Throws Exception during connection issues.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setInsuranceName(String insuranceName) throws SQLException, UnsupportedDataTypeException {
@@ -241,7 +241,7 @@ public class User implements HasAddress {
     /**
      * set and update the insurance type in the database
      * @param privateInsurance The type of the Insurance.
-     * @throws SQLException Throws Exception during connection issues.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      * @throws UnsupportedDataTypeException Throws Exception if the input of data is invalid/in wrong format.
      */
     public void setPrivateInsurance(boolean privateInsurance) throws SQLException, UnsupportedDataTypeException {

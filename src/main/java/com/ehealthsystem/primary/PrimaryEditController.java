@@ -22,7 +22,6 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class PrimaryEditController implements Initializable {
-
     public CheckBox changePasswordCheckbox;
     public Label oldPasswordLabel;
     public Label newPasswordLabel;
@@ -90,7 +89,7 @@ public class PrimaryEditController implements Initializable {
     /**
      * Method called when cancel button is pressed.
      * Return to the primary window without saving edited user information
-     * @param event
+     * @param event Trigger to invoke this method.
      * @throws IOException
      */
     public void handleCancelButton(ActionEvent event) throws IOException {
@@ -100,9 +99,9 @@ public class PrimaryEditController implements Initializable {
     /**
      * Method called when save button is pressed.
      * Updates the edited user information in the DB
-     * @param event
+     * @param event Trigger to invoke this method.
      * @throws IOException
-     * @throws SQLException
+     * @throws SQLException Throws Exception during connection issues with the Database.
      */
     public void handleSaveButton(ActionEvent event) throws IOException, SQLException {
         updateUserInformation();
@@ -113,7 +112,7 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * scene switch to primary scene
-     * @param event
+     * @param event Trigger to invoke this method.
      * @throws IOException
      */
     public void loadScene(ActionEvent event) throws IOException {
@@ -122,7 +121,7 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * update user information when save button is pressed
-     * @throws SQLException
+     * @throws SQLException Throws Exception during connection issues with the Database.
      */
     private void updateUserInformation() throws SQLException, UnsupportedDataTypeException {
         updateUsername(usernameTextField.getText());
@@ -145,8 +144,8 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * update username when save button is pressed
-     * @param username
-     * @throws SQLException
+     * @param username The username of the user.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      */
     private void updateUsername(String username) throws SQLException, UnsupportedDataTypeException {
         if(!usernameTextField.getText().isBlank()) {
@@ -156,8 +155,8 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * update email when save button is pressed
-     * @param updateEmail
-     * @throws SQLException
+     * @param updateEmail The E-mail address of the user.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      */
     private void updateEmail(String updateEmail) throws SQLException, UnsupportedDataTypeException {
         if(EmailCheck.isValidEmailAddress(emailTextField.getText())) {
@@ -167,8 +166,8 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Update first name when save button is pressed
-     * @param firstName
-     * @throws SQLException
+     * @param firstName The first name of the user.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      */
     private void updateFirstName(String firstName) throws SQLException, UnsupportedDataTypeException {
         Session.user.setFirstName(firstName);
@@ -176,8 +175,8 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Update last name when save button is pressed
-     * @param lastName
-     * @throws SQLException
+     * @param lastName The last name of the user.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      */
     private void updateLastName(String lastName) throws SQLException, UnsupportedDataTypeException {
         Session.user.setLastName(lastName);
@@ -185,8 +184,8 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Update street when save button is pressed
-     * @param street
-     * @throws SQLException
+     * @param street The street where the user lives.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      */
     private void updateStreet(String street) throws SQLException, UnsupportedDataTypeException {
         Session.user.setStreet(street);
@@ -194,8 +193,8 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Update house number when save button is pressed
-     * @param houseNo
-     * @throws SQLException
+     * @param houseNo The house no. of the street.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      */
     private void updateNumber(String houseNo) throws SQLException, UnsupportedDataTypeException {
         Session.user.setHouseNo(houseNo);
@@ -203,8 +202,8 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Update zip when save button is pressed
-     * @param zip
-     * @throws SQLException
+     * @param zip The zip code where the user lives.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      */
     private void updateZip(String zip) throws SQLException, UnsupportedDataTypeException {
         Session.user.setZipCode(zip);
@@ -212,8 +211,8 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Update birthday when save button is pressed
-     * @param birthday
-     * @throws SQLException
+     * @param birthday The birthday of the user.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      */
     private void updateBirthday(LocalDate birthday) throws SQLException, UnsupportedDataTypeException {
         if(BirthdayCheck.isOldEnough(birthday)) {
@@ -223,8 +222,8 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Update gender when save button is pressed
-     * @param gender
-     * @throws SQLException
+     * @param gender The gender of the user.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      */
     private void updateGender(String gender) throws SQLException, UnsupportedDataTypeException {
         if(!genderBox.getSelectionModel().isEmpty()) {
@@ -234,8 +233,8 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Update private insurance name when save button is pressed
-     * @param text
-     * @throws SQLException
+     * @param text The name of the insurance.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      */
     private void updateInsuranceName(String text) throws SQLException, UnsupportedDataTypeException {
         Session.user.setInsuranceName(text);
@@ -243,8 +242,8 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Update private insurance when save button is pressed
-     * @param privateInsurance
-     * @throws SQLException
+     * @param privateInsurance The type of the insurance.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      */
     private void updatePrivateInsurance(boolean privateInsurance) throws SQLException, UnsupportedDataTypeException {
         Session.user.setPrivateInsurance(privateInsurance);
@@ -252,9 +251,9 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Update password when save button is pressed
-     * @param oldPassword
-     * @param newPassword
-     * @throws SQLException
+     * @param oldPassword The old password of the user.
+     * @param newPassword The new password of the user.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      */
     private void updatePassword(String oldPassword, String newPassword) throws SQLException {
         Session.user.changePassword(oldPassword, newPassword);
@@ -262,7 +261,6 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Load user information when button is pressed
-     * @throws SQLException
      */
     public void loadUserDetails() {
         User currentUser = Session.user;
@@ -281,7 +279,7 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Set Username Text Field to user information in DB
-     * @param username
+     * @param username The username of the user.
      */
     private void setUsernameTextField(String username) {
         usernameTextField.setText(username);
@@ -289,7 +287,7 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Set Email Text Field to user information in DB
-     * @param email
+     * @param email The e-mail address of the user.
      */
     private void setEmailTextField(String email) {
         emailTextField.setText(email);
@@ -297,7 +295,7 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Set First Name Text Field to user information in DB
-     * @param firstName
+     * @param firstName The first name of the user.
      */
     private void setFirstNameTextField(String firstName) {
         firstNameTextField.setText(firstName);
@@ -305,7 +303,7 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Set Last Name Text Field to user information in DB
-     * @param lastName
+     * @param lastName The last name of the user.
      */
     private void setLastNameTextField(String lastName) {
         lastNameTextField.setText(lastName);
@@ -313,7 +311,7 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Set Street Text Field to user information in DB
-     * @param street
+     * @param street The street where the user lives.
      */
     private void setStreetTextField(String street) {
         streetTextField.setText(street);
@@ -321,7 +319,7 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Set House Number Text Field to user information in DB
-     * @param houseNo
+     * @param houseNo The house no. of the street.
      */
     private void setHouseNoTextField(String houseNo) {
         houseNoTextField.setText(houseNo);
@@ -329,7 +327,7 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Set Zip Text Field to user information in DB
-     * @param zip
+     * @param zip The zip code where the user lives.
      */
     private void setZipTextField(String zip) {
         zipTextField.setText(zip);
@@ -337,7 +335,7 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Set Date Picker to birthday in DB
-     * @param birthday
+     * @param birthday The birthday of the user.
      */
     private void loadBirthday(LocalDate birthday) {
         birthdayPicker.setValue(birthday);
@@ -345,7 +343,7 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Set Gender Text Field to user information in DB
-     * @param gender
+     * @param gender The gender of the user.
      */
     private void setGenderTextField(String gender) {
         genderBox.setValue(gender);
@@ -357,7 +355,7 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Set private insurance Check Box to user information in DB
-     * @param privateInsurance
+     * @param privateInsurance The type of the insurance.
      */
     private void setPrivateInsuranceTextField(boolean privateInsurance) {
         privateInsuranceCheckBox.setSelected(privateInsurance);
@@ -365,8 +363,8 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Check if old password is correct
-     * @param event
-     * @throws SQLException
+     * @param event Trigger to invoke this method.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      */
     public void handleOldPassword(KeyEvent event) throws SQLException {
         if(!Database.checkPassword(Session.user.getMail(), oldPasswordField.getText())) {
@@ -379,8 +377,8 @@ public class PrimaryEditController implements Initializable {
 
     /**
      * Checks if new password is correct while typing
-     * @param event
-     * @throws SQLException
+     * @param event Trigger to invoke this method.
+     * @throws SQLException Throws Exception during connection issues with the Database.
      */
     public void handleNewPassword(KeyEvent event) throws SQLException {
         if(!newPasswordField.getText().isBlank() && oldPasswordField.getText().isBlank()) {
@@ -397,6 +395,7 @@ public class PrimaryEditController implements Initializable {
     /**
      * handle Keyboard input for Email Text Field.
      * Check if Email format matches
+     * @param event Trigger to invoke this method.
      */
     public void handleEmailTextField(KeyEvent event) {
         if(EmailCheck.isValidEmailAddress(emailTextField.getText())) {
@@ -407,6 +406,10 @@ public class PrimaryEditController implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param event Trigger to invoke this method.
+     */
     public void changePasswordCheckboxChanged(ActionEvent event) {
         boolean disable = !changePasswordCheckbox.isSelected();
         ArrayList<Control> controls = new ArrayList<>(Arrays.asList(oldPasswordLabel, oldPasswordField, newPasswordLabel, newPasswordField));

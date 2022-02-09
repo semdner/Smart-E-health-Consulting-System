@@ -26,17 +26,20 @@ import java.util.List;
 public class CreatePDF {
 
     /**
-     * Method to create a pdf-document with the health-information of the user.
+     * Method to create a pdf-document with the health-information and data of the user.
      * @param dest path where the created pdf-doc should be saved.
      * @throws IOException pdf-document is not able to be saved.
      * @throws SQLException connection issues with the database.
      */
     public static void create_Pdf(String dest) throws IOException, SQLException {
+
+        //If the user does not choose a destination for the file the method(create_Pdf()) will be aborted
         if(dest.isBlank()){
             System.out.println("Saving PDFFile was cancelled!"); return;
         }
 
-        // MySql Connection
+
+        //Connection with the Database.
         Connection con = null;
         String fileName = "ehealth.sqlite3";
 
@@ -49,69 +52,73 @@ public class CreatePDF {
         }
 
 
-        // Creating (PDF-)Document
+
+        //Creating the Document as a pdf and setting the page size.
         PdfDocument pdfDoc = new PdfDocument(new PdfWriter(dest));
         pdfDoc.setDefaultPageSize(PageSize.A4);
         Document document = new Document(pdfDoc);
 
-        // PDF Fonts
+
+        //Used fonts in the document.
         PdfFont bold = PdfFontFactory.createFont(FontConstants.TIMES_BOLD);
 
-        // Manipulating the Document
-        // getting "PageSize" for Centering Text -> HEADLINE
+
+
+        //getting "PageSize" for Centering Text -> HEADLINE
         Rectangle pageSize = pdfDoc.getDefaultPageSize();
         float width = pageSize.getWidth() - document.getLeftMargin() - document.getRightMargin();
 
-        // PDF static Text
+
+        //Static text/headlines for the document
         Text title = new Text("Health Information").setFont(bold).setFontSize(20f);
         Text headline1 = new Text("\n" + "Personal Information:").setFont(bold).setFontSize(14f);
         Text headline2 = new Text("\n" + "Medical Conditions:").setFont(bold).setFontSize(14f);
-        Text headline3 = new Text("\n" + "Allergies:").setFont(bold).setFontSize(14f);
-        Text headline4 = new Text("\n" + "Insurance:").setFont(bold).setFontSize(14f);
+        Text headline3 = new Text("\n" + "Insurance:").setFont(bold).setFontSize(14f);
 
-        // Creating Table and editing Size
+
+        //Creating Table where the data will be stored
         float[] col1 = {75f, 200f, 70f, 1f};
         Table table1 = new Table(col1);
         float[] col2 = {75f, 125f, 75f, 70f, 1f};
         Table table2 = new Table(col2);
         float[] columnList = {280f, 280f};
         Table table3 = new Table(columnList);
-        Table table4 = new Table(columnList);
         float[] col3 = {125f, 150f, 70f, 1f};
-        Table table5 = new Table(col3);
+        Table table4 = new Table(col3);
 
-        // Adding Data into Table
+
+        //Adding Data into the Table.
         PersonalData1(table1);
         PersonalData2(table2);
         Disease(table3);
-        //Allergies(table4, con);
-        InsuranceData(table5);
+        InsuranceData(table4);
 
+
+        //Adding the prepared data into the document.
         // Headline
         document.add(CenteredParagraph(title, width));
         document.add(new Paragraph().add(headline1));
-
         // Patient Information
-        //document.add(new Paragraph().add("\n"));
         document.add(table1);
         document.add(table2);
-
         // Medical Conditions
         document.add(new Paragraph().add(headline2));
         document.add(table3);
-
-        /* Allergies
-        document.add(new Paragraph().add(headline3));
-        document.add(table4); */
-
         // Insurance Information
-        document.add(new Paragraph().add(headline4));
-        document.add(table5);
+        document.add(new Paragraph().add(headline3));
+        document.add(table4);
 
+        //always closing the document at the end, so it can be saved.
         document.close();
-        //System.out.println("Pdf created!");
     }
 
+    /**
+     * Method to center the text.
+     * For this document it is only used for the headline.
+     * @param text The text which will be centered.
+     * @param width The width of the Document to calculate the center.
+     * @return The Text in the center of the document.
+     */
     private static Paragraph CenteredParagraph(Text text, float width) {
         List<TabStop> tabStops = new ArrayList<>();
         tabStops.add(new TabStop(width / 2, TabAlignment.CENTER));
@@ -123,6 +130,10 @@ public class CreatePDF {
         return output;
     }
 
+    /**
+     * Method to add first and last name of the user into the table.
+     * @param table The provided Table for the data.
+     */
     private static void PersonalData1(Table table) {
         table.addCell(new Cell().add("First Name: ").setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(Session.user.getFirstName()).setBorder(Border.NO_BORDER));
@@ -130,6 +141,10 @@ public class CreatePDF {
         table.addCell(new Cell().add(Session.user.getLastName()).setBorder(Border.NO_BORDER));
     }
 
+    /**
+     * Method to add street and birthday of the user into the table.
+     * @param table The provided Table for the data.
+     */
     private static void PersonalData2(Table table) {
         table.addCell(new Cell().add("Address: ").setBorder(Border.NO_BORDER));
         table.addCell(new Cell().add(Session.user.getStreet()).setBorder(Border.NO_BORDER));
@@ -138,6 +153,11 @@ public class CreatePDF {
         table.addCell(new Cell().add(Session.user.getBirthDate().format(Session.dateFormatter)).setBorder(Border.NO_BORDER));
     }
 
+    /**
+     * Method to add the healthproblems of the user into the table.
+     * @param table The provided table for the data.
+     * @throws SQLException Throws Exception during connection issues with the Database.
+     */
     private static void Disease(Table table) throws SQLException {
         ArrayList<HealthInformation> healthInformation = Database.getHealthInformation(Session.user.getMail());
         if (healthInformation.size() == 0) {
@@ -150,31 +170,9 @@ public class CreatePDF {
         }
     }
 
-    private static void Allergies(Table table, Connection con) throws SQLException {
-        /*Paragraph x = null;
-        ResultSet rs1;
-        String sql1 = "select Allergies from allergies";
-
-
-        PreparedStatement st1 = con.prepareStatement(sql1);
-        rs1 = st1.executeQuery();
-
-        int i = 0;
-        while(rs1.next()){
-            i++;
-            x = new Paragraph(rs1.getString("Allergies"));
-            table.addCell(new Cell().add(x).setBorder(Border.NO_BORDER));
-        }
-        if(!rs1.next() && i == 0)
-        {
-            table.addCell(new Cell().add("--- None ---").setBorder(Border.NO_BORDER));
-        }*/
-
-    }
-
     /**
-     *
-     * @param table
+     * Method to add insurance name and type into the table.
+     * @param table The provided table for the data.
      */
     private static void InsuranceData(Table table) {
         String insuranceType = Session.user.isPrivateInsurance() ? "Private" : "Public";
