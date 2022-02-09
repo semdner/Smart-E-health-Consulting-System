@@ -65,7 +65,7 @@
             </GridPane>
          </children>
       </AnchorPane>
-      <AnchorPane focusTraversable="true" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: 4CAF50;">
+      <AnchorPane focusTraversable="true" prefHeight="30.0" prefWidth="200.0">
          <children>
             <Button fx:id="showMoreButton" focusTraversable="false" layoutX="116.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleShowMoreButton" prefHeight="25.0" prefWidth="83.0" text="Show more" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="6.0" />
          </children>
