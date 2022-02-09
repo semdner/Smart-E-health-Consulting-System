@@ -8,6 +8,7 @@ import com.ehealthsystem.doctor.DoctorTimeSlot;
 import com.ehealthsystem.healthInformation.HealthInformation;
 import com.ehealthsystem.healthInformation.HealthInformationTableView;
 import com.ehealthsystem.tools.ResourceReader;
+import com.ehealthsystem.tools.Session;
 import com.ehealthsystem.user.User;
 import com.google.maps.model.LatLng;
 import javafx.collections.FXCollections;
@@ -655,11 +656,12 @@ public class Database {
             if(rs.getString("username").equals("admin")) {
                 continue;
             }
+            String date = LocalDate.parse(rs.getString("birthday"), dateFormatter).format(Session.dateFormatter);
             users.add(new UserTableView(rs.getString("username"),
                     rs.getString("email"),
                     rs.getString("first_name"),
                     rs.getString("last_name"),
-                    rs.getString("birthday"),
+                    date,
                     rs.getString("sex"),
                     rs.getString("street"),
                     rs.getString("number"),

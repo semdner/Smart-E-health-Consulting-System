@@ -200,24 +200,21 @@ public class AdminController implements Initializable {
             public void handle(TableColumn.CellEditEvent<UserTableView, String> userTableViewStringCellEditEvent) {
                 UserTableView user = userTableViewStringCellEditEvent.getRowValue();
                 String identifier = user.getUsername();
-
+                LocalDate date = null;
                 if(!userTableViewStringCellEditEvent.getNewValue().isBlank()){
-                    LocalDate date;
                     try {
                         date = LocalDate.parse(userTableViewStringCellEditEvent.getNewValue(), DateTimeFormatter.ofPattern("d.M.yyyy"));
                     } catch (DateTimeParseException e) {
                         return;
                     }
                 }
-
-                LocalDate date;
-                date = LocalDate.parse(userTableViewStringCellEditEvent.getNewValue(), DateTimeFormatter.ofPattern("d.M.yyyy"));
+                
                 if(!BirthdayCheck.isOldEnough(date)) {
                     return;
                 }
-                
+
                 user.setBirthDate(userTableViewStringCellEditEvent.getNewValue());
-                Object[][] parameters = {{"birthday", user.getBirthDate()}};
+                Object[][] parameters = {{"birthday", date.format(Database.dateFormatter)}};
                 try {
                     Database.update("user", parameters, new Object[][]{{"username", identifier}});
                 } catch (SQLException | UnsupportedDataTypeException e) {
