@@ -188,10 +188,10 @@ public class FoundDoctorFullController extends ScheduleLoader {
         for (ReminderTime reminderOption : ReminderTime.values()) {
             LocalDateTime appointmentTime = LocalDateTime.of(datePicker.getValue(), selectedTime);
             LocalDateTime reminderTime = appointmentTime.minusMinutes(reminderOption.getMinutes());
-            if (!reminderTime.isBefore(LocalDateTime.now())) //reminder won't be in past //works with "No reminder" option
-            {
-                reminderComboBox.getItems().add(reminderOption);
-            }
+            if (reminderTime.isBefore(LocalDateTime.now())) //reminder would be in the past //works with "No reminder" option
+                continue;
+
+            reminderComboBox.getItems().add(reminderOption);
         }
 
         //Now the box is empty (no choice made)
