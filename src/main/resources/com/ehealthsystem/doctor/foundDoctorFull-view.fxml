@@ -46,7 +46,7 @@
                </font>
             </Label>
             <ComboBox fx:id="reminderComboBox" layoutX="697.0" layoutY="8.0" prefHeight="25.0" prefWidth="132.0" promptText="set reminder" AnchorPane.bottomAnchor="8.0" AnchorPane.topAnchor="8.0" />
-            <Label layoutX="607.0" layoutY="12.0" text="Reminder time" />
+            <Label fx:id="reminderTimeLabel" layoutX="607.0" layoutY="12.0" text="Reminder time" />
          </children>
       </AnchorPane>
    </bottom>

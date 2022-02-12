@@ -52,6 +52,9 @@ public class FoundDoctorFullController extends ScheduleLoader {
     DatePicker datePicker;
 
     @FXML
+    Label reminderTimeLabel;
+
+    @FXML
     ComboBox reminderComboBox;
 
     @FXML
@@ -64,6 +67,11 @@ public class FoundDoctorFullController extends ScheduleLoader {
     private String userGeoData;
     private String doctorGeoData;
 
+    public void disableReminderChoice(boolean disable) {
+        reminderTimeLabel.setDisable(disable);
+        reminderComboBox.setDisable(disable);
+    }
+
     /**
      * sets reminder times, loads the map, doctor data and the doctors schedule
      * @throws IOException
@@ -74,6 +82,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
     public void start() throws IOException, InterruptedException, ApiException, SQLException {
         reminderComboBox.getItems().setAll(ReminderTime.values());
         reminderComboBox.setValue(ReminderTime.THREE_DAYS); //no need for validation if default value is valid
+        disableReminderChoice(true); //no time chosen yet
         loadGMap();
         loadDoctorData();
 
@@ -182,6 +191,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
     }
 
     protected void selectedTimeChanged() {
+        disableReminderChoice(false);
         //update reminder combo box choices
         //don't offer reminder times that would be in the past
         reminderComboBox.getItems().clear(); //avoid hassle of re-adding choices when you previously removed them
@@ -283,6 +293,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
      */
     public void handleDateChoice(ActionEvent event) throws SQLException, UnsupportedDataTypeException { //not triggered when the same day is re-selected
         selectedTime = null;
+        disableReminderChoice(true); //an appointment time needs to be selected first to determine available reminder times
         Session.appointment.setDate(datePicker.getValue());
         loadSchedule();
     }
