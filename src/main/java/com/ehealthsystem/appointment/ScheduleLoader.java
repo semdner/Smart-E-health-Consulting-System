@@ -71,9 +71,15 @@ public abstract class ScheduleLoader {
         }
 
         if (freeTimeslots <= 0) {
-            errorLabel.setText("No free appointments that day. How about another day?"); //may have many patients or (if it's today) has simply already closed for today
-            errorLabel.setVisible(true);
             primaryActionButton.setDisable(true);
+
+            if (date.isBefore(LocalDate.now())) {
+                errorLabel.setText("Can't make an appointment in the past.");
+            } else {
+                errorLabel.setText("No free appointments that day. How about another day?"); //may have many patients or (if it's today) has simply already closed for today
+            }
+            errorLabel.setVisible(true);
+
             return false;
         } else { //initial state, or another date was selected => undo
             errorLabel.setVisible(false);

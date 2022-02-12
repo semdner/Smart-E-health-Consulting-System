@@ -179,12 +179,6 @@ public class AppointmentShiftController extends ScheduleLoader {
      */
     public void handleDateChoice(ActionEvent event) throws SQLException, UnsupportedDataTypeException { //not triggered when the same day is re-selected
         selectedTime = null;
-        if (datePicker.getValue().isBefore(LocalDate.now())) {
-            errorLabel.setText("Can't make an appointment in the past.");
-            errorLabel.setVisible(true);
-        } else {
-            errorLabel.setVisible(false);
-        }
         loadSchedule();
     }
 }
