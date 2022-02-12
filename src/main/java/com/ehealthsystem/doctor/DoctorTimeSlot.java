@@ -65,8 +65,6 @@ public class DoctorTimeSlot {
      * @throws UnsupportedDataTypeException
      */
     public static ArrayList<DoctorTimeSlot> getFreeTimeSlots(LocalDate date, Doctor doctor) throws SQLException, UnsupportedDataTypeException {
-        ArrayList<Appointment> appointments = Database.getDoctorsAppointments(doctor.getId(), date);
-
         //Generate times
         ArrayList<LocalDateTime> times = new ArrayList<>();
         LocalTime openingTime = LocalTime.of(8, 0);
@@ -76,6 +74,7 @@ public class DoctorTimeSlot {
         }
 
         //Get busy times (i.e. already reserved by another patient) from database
+        ArrayList<Appointment> appointments = Database.getDoctorsAppointments(doctor.getId(), date);
         ArrayList<LocalDateTime> busyTimes = new ArrayList<>();
         for (Appointment a : appointments) {
             busyTimes.add(a.getDateTime());
