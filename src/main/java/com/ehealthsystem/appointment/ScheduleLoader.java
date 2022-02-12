@@ -17,6 +17,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+/**
+ * Abstract class
+ * extended by scene controllers that need a schedule of appointment slots displayed
+ * (FoundDoctorFullController and AppointmentShiftController)
+ */
 public abstract class ScheduleLoader {
     @FXML
     GridPane scheduleGridPane;
