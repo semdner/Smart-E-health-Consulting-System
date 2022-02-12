@@ -20,7 +20,18 @@ import java.util.Random;
 
 public class SendEmail {
 
-    public static Message prepareMessage(Session session, String myAccount, String recipient, String subject, String textContent) throws MessagingException, UnsupportedEncodingException {
+
+    /**
+     * Prepare an email message
+     * @param session the session to use for authentication
+     * @param myAccount sender email address
+     * @param recipient recipient email address
+     * @param subject email subject
+     * @param textContent email text
+     * @param withAttachment whether the message shall contain a PDF file containing the patient's information as attachment
+     * @return the prepared email message
+     */
+    public static Message prepareMessage(Session session, String myAccount, String recipient, String subject, String textContent, boolean withAttachment) throws MessagingException, IOException, SQLException {
         Message message = new MimeMessage(session);
 
         message.setFrom(new InternetAddress(myAccount, "E-Health System"));
@@ -37,14 +48,18 @@ public class SendEmail {
         multipart.addBodyPart(messageBodyPart);
         // Message fertigstellen, indem sie mit dem Multipart-Content ausgestattet wird
 
-        /*
-        messageBodyPart = new MimeBodyPart();
-        String filename = "file.txt";
-        DataSource source = new FileDataSource(filename);
-        messageBodyPart.setDataHandler(new DataHandler(source));
-        messageBodyPart.setFileName(filename);
-        multipart.addBodyPart(messageBodyPart);
-        */
+        if (withAttachment) {
+            //add attachment to email
+            Path temp = Files.createTempFile("export", ".pdf");
+
+            String absolutePath = temp.toString();
+            CreatePDF.create_Pdf(absolutePath, true);
+            messageBodyPart = new MimeBodyPart();
+            FileDataSource source = new FileDataSource(absolutePath);
+            messageBodyPart.setDataHandler(new DataHandler(source));
+            messageBodyPart.setFileName("Patient_Health_Information.pdf");
+            multipart.addBodyPart(messageBodyPart);
+        }
 
         message.setContent(multipart);
 
@@ -69,13 +84,9 @@ public class SendEmail {
             }
         });
 
-        Message message;
-        // Message-Objekt erzeugen und senden!
-        if(attach == true){
-            message = prepareMessageWithAttachment(session,myAccount,recipient,subject,textContent);
-        } else {
-            message = prepareMessage(session, myAccount, recipient, subject, textContent);
-        }
+        // Message-Objekt erzeugen
+        Message message = prepareMessage(session, myAccount, recipient, subject, textContent, attach);
+
         Transport.send(message); // E-Mail senden!
     }
 
@@ -93,38 +104,5 @@ public class SendEmail {
                 "An account was registered with this email address on the ehealth system. If this was not you, you can safely ignore this email, your email address will not be stored.";
         SendEmail.sendMail(recipient,"Validation code", validation,false);
         RegistrationValidationController.setValidation(String.valueOf(code));
-    }
-        // Prepare Message with Attachment to send pdf of Health Informations
-    public static Message prepareMessageWithAttachment(Session session, String myAccount, String recipient, String subject, String textContent) throws MessagingException, SQLException, IOException {
-        Message message = new MimeMessage(session);
-
-        message.setFrom(new InternetAddress(myAccount, "E-Health System"));
-        message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-        message.setSubject(subject);
-
-        // Multipart-Message ("Wrapper") erstellen
-        Multipart multipart = new MimeMultipart();
-        // Body-Part setzen:
-        BodyPart messageBodyPart = new MimeBodyPart();
-        // Textteil des Body-Parts
-        messageBodyPart.setText(textContent);
-        // Body-Part dem Multipart-Wrapper hinzufügen
-        multipart.addBodyPart(messageBodyPart);
-        // Message fertigstellen, indem sie mit dem Multipart-Content ausgestattet wird
-
-        Path temp = Files.createTempFile("export", ".pdf");
-
-        String absolutePath = temp.toString();
-        CreatePDF.create_Pdf(absolutePath, true);
-        messageBodyPart = new MimeBodyPart();
-        FileDataSource source = new FileDataSource(absolutePath);
-        messageBodyPart.setDataHandler(new DataHandler(source));
-        messageBodyPart.setFileName("Patient_Health_Information.pdf");
-        multipart.addBodyPart(messageBodyPart);
-
-
-        message.setContent(multipart);
-
-        return message;
     }
 }
