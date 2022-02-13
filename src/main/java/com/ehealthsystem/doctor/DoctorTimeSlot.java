@@ -34,7 +34,7 @@ public class DoctorTimeSlot {
 
     /**
      * Return the Date of the Time slot.
-     * @return The date is an object of the type LocalDate.
+     * @return The date as an object of the type LocalDate.
      */
     public LocalDate getDate() {
         return date;
@@ -42,7 +42,7 @@ public class DoctorTimeSlot {
 
     /**
      * Return the time of the time slot.
-     * @return The time is an object of the type LocalTime.
+     * @return The time as an object of the type LocalTime.
      */
     public LocalTime getTime() {
         return time;
