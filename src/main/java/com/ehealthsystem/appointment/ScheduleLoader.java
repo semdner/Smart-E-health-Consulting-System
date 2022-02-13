@@ -46,10 +46,9 @@ public abstract class ScheduleLoader {
      */
     protected boolean loadSchedule(LocalDate date, Doctor doctor, Label dateLabel, Button primaryActionButton) throws SQLException, UnsupportedDataTypeException {
         scheduleGridPane.getChildren().remove(1, scheduleGridPane.getChildren().size()); //clear grid pane, except for date label
-        ArrayList<DoctorTimeSlot> doctorTimeSlotList = DoctorTimeSlot.getFreeTimeSlots(date, doctor);
-
         dateLabel.setText(date.format(Session.dateFormatter));
 
+        ArrayList<DoctorTimeSlot> doctorTimeSlotList = DoctorTimeSlot.getFreeTimeSlots(date, doctor);
         int column = 0;
         int row = 1;
         int freeTimeslots = 0;
