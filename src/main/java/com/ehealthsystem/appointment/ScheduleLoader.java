@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import javax.activation.UnsupportedDataTypeException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -77,10 +78,10 @@ public abstract class ScheduleLoader {
         if (freeTimeslots <= 0) {
             primaryActionButton.setDisable(true);
 
-            if (date.isBefore(LocalDate.now())) {
+            if (doctorTimeSlotList.get(doctorTimeSlotList.size() - 1).getDateTime().isBefore(LocalDateTime.now())) { //last timeslot is already in the past
                 errorLabel.setText("Can't make an appointment in the past.");
             } else {
-                errorLabel.setText("No free appointments that day. How about another day?"); //may have many patients or (if it's today) has simply already closed for today
+                errorLabel.setText("No free appointments that day. How about another day?"); //may have many patients
             }
             errorLabel.setVisible(true);
 
