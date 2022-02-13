@@ -291,7 +291,7 @@ public class FoundDoctorFullController extends ScheduleLoader {
      * @throws SQLException
      * @throws UnsupportedDataTypeException
      */
-    public void handleDateChoice(ActionEvent event) throws SQLException, UnsupportedDataTypeException { //not triggered when the same day is re-selected
+    public void handleDateChoice(ActionEvent event) throws SQLException, UnsupportedDataTypeException { //not triggered when the same day is re-selected or the date picker's value is manually set
         selectedTime = null;
         disableReminderChoice(true); //an appointment time needs to be selected first to determine available reminder times
         Session.appointment.setDate(datePicker.getValue());
