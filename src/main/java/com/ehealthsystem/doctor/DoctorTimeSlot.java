@@ -49,6 +49,14 @@ public class DoctorTimeSlot {
     }
 
     /**
+     * Return the date and time of the time slot.
+     * @return the date and time as an object of the type LocalDateTime
+     */
+    public LocalDateTime getDateTime() {
+        return LocalDateTime.of(date, time);
+    }
+
+    /**
      * Return the availability of the Doctor.
      * @return The availability as a Boolean.
      */
