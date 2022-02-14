@@ -73,8 +73,8 @@ public class SendEmail {
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
 
-        String myAccount = "testemailverteiler2@gmail.com";
-        String myPassword = "FraUAS123";
+        String myAccount = "EMAIL_ADDRESS";
+        String myPassword = "PASSWORD";
         //String myPassword = ResourceReader.getResourceString("FraUAS123");
 
         Session session = Session.getInstance(properties, new Authenticator() {

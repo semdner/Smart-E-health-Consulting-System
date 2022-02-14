@@ -10,7 +10,7 @@ public class Context {
             return context;
 
         // set API Key
-        context = new GeoApiContext.Builder().apiKey("AIzaSyCUFsJZUQjbl0_0o8DAhQzhMOvxhftI6KQ").queryRateLimit(1000).build();
+        context = new GeoApiContext.Builder().apiKey("API_KEY").queryRateLimit(1000).build();
         return context;
     }
 }
