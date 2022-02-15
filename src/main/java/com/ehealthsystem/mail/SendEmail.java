@@ -75,7 +75,7 @@ public class SendEmail {
 
         String myAccount = "EMAIL_ADDRESS";
         String myPassword = "PASSWORD";
-        //String myPassword = ResourceReader.getResourceString("FraUAS123");
+        //String myPassword = ResourceReader.getResourceString("Password.txt");
 
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
