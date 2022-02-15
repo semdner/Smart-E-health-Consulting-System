@@ -27,7 +27,7 @@
 
 ### Email account
 
-> Disclaimer: As this was only a university project, the login data was stored unencrypted. This is not recommended. Use ResourceReader to store the hashed password in a file and load and decrypt it at the appropriate place
+> Disclaimer: As this was only a university project, the login data was stored unencrypted. This is not recommended. Use ResourceReader to store the hashed password in a file and load it if necessary
 
 - The credentials for the email account have been removed for security reasons
 - It can be set under `src/main/java/com/ehealthsystem/map/SendEmail.java` in line 76 (and 77)
