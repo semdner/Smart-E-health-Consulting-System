@@ -1,5 +1,5 @@
 <div align="center">
-  <h2 align="center">Smart E-health Consulting System</h2>
+  <h3 align="center">Smart E-health Consulting System</h3>
   <p align="center">
     A simple software to search, make and manage medical appointments.
   </p>
