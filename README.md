@@ -21,15 +21,15 @@
 
 ### API-Key
 
-- The API key for Google Maps has been removed for security reasons.
+- The API key for Google Maps has been removed for security reasons
 - It can be set under `src/main/java/com/ehealthsystem/map/Context.java` in line 13
 - Replace `"API_KEY"` with your API key
 
 ### Email account
 
-> Disclaimer: As this was only a university project, the login data was stored unencrypted. This is not recommended. Use ResourceReader to store the hashed password in a file and load and decrypt it at the appropriate place. 
+> Disclaimer: As this was only a university project, the login data was stored unencrypted. This is not recommended. Use ResourceReader to store the hashed password in a file and load and decrypt it at the appropriate place
 
-- The credentials for the email account have been removed.
-- It can be set under `src/main/java/com/ehealthsystem/map/SendEmail.java` in line 76 and 77
-- Note the disclaimer and use the commented out line 78 for your password
+- The credentials for the email account have been removed for security reasons
+- It can be set under `src/main/java/com/ehealthsystem/map/SendEmail.java` in line 76 (and 77)
+- Note the disclaimer and use the commented out line 78 for your password instead of line 77
 
