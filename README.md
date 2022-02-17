@@ -1,10 +1,6 @@
-<div align="center">
-  <h3 align="center">Smart E-health Consulting System</h3>
-  <p align="center">
-    A simple software to search, make and manage medical appointments.
-  </p>
-</div>
+# Smart E-health Consulting System
 
+ >A simple software to search, make and manage medical appointments
 
 ## About The Project
 
